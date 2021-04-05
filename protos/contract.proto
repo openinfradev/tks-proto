@@ -13,25 +13,27 @@ option go_package = "github.com/openinfradev/tks-proto/pbgo";
 // ContractService is a service to manage contract's document.
 service ContractService {
   rpc CreateContract(CreateContractRequest) returns (CreateContractResponse) {}
-  rpc UpdateQuota(UpdateQuotaRequest) returns(UpdateQuotaResponse) {}
+  rpc UpdateQuota(UpdateQuotaRequest) returns (UpdateQuotaResponse) {}
+  rpc UpdateServices(UpdateServicesRequest) returns (UpdateServicesResponse) {}
+  rpc GetContract(GetContractRequest) returns (GetContractResponse) {}
+  rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse) {}
+  rpc GetServices(GetServicesRequest) returns (GetServicesResponse) {}
 }
 
-// CreateContractRequest is a request to create new contract to TKS-Contract service.
+// CreateContractRequest is a request to create new contract to the contract service.
 message CreateContractRequest {
   string contractor_name = 1; // Name of contractor
   string contract_id = 2;  // Global Unique ID created by CBP
   ContractQuota quota = 3; // Resource Quota for this contract
   repeated string available_services = 4; // Available service list 
-
-  google.protobuf.Timestamp last_updated = 5;
 }
 
 // CreateContractResponse is a response to the CreateContractRequest request 
-// from TKS-Contract service.
+// from the contract service.
 message CreateContractResponse {
   Code code = 1;
   Error error = 2;
-  string mc_ops_id = 3; // Global Unique ID created by contract service
+  string mc_ops_id = 3; // Global Unique ID created by the contract service
 }
 
 // ContractQuota is a resource quota for total usage in clusters.
@@ -44,15 +46,75 @@ message ContractQuota {
   sint64 fs_ssd = 6; // SSD filesystem (MB) from 0 to 256000000
 }
 
+// UpdateQuotaRequest is a request to update resource quota for specific contract.
 message UpdateQuotaRequest {
   string contract_id = 1; // Global Unique ID created by CBP
   ContractQuota quota = 2; // Resource Quota
 }
 
+// UpdateQuotaResponse is a response to the UpdateQuotaRequest from the contract service
 message UpdateQuotaResponse {
   Code code = 1;
   Error error = 2;
   string contract_id = 3; // Global Unique ID created by CBP
   ContractQuota prev_quota = 4; // Previous Quota
   ContractQuota current_quota = 5; // Current Quota
+}
+
+// UpdateServiceRequest is a request to update available service list to the contract service.
+// The services currently provided are as below:
+//   - LMA(Logging Monitoring Alert)
+//   - service-mesh (Istio, jaeger, kiali)
+message UpdateServicesRequest {
+  string contract_id = 1; // Global Unique ID created by CBP
+  repeated string available_services = 2; // Available Service List 
+}
+
+// UpdateServiceResponse is a response to the UpdateServicesRequest from the contract service.
+message UpdateServicesResponse {
+  Code code = 1;
+  Error error = 2;
+  string contract_id = 3; // Global Unique ID created by CBP
+  ContractQuota prev_services = 4; // Previous Service List
+  ContractQuota current_services = 5; // Current Service List
+}
+
+// GetContractRequest is a request to inquire contract to the contract service.
+message GetContractRequest {
+  string contract_id = 1; // Global Unique ID created by CBP
+}
+
+// GetContractResponse is a response to the GetContractRequest from the contract service.
+message GetContractResponse {
+  Code code = 1;
+  Error error = 2;
+  string contractor_name = 3; // Name of contractor
+  string contract_id = 4;  // Global Unique ID created by CBP
+  ContractQuota quota = 5; // Resource Quota for this contract
+  repeated string available_services = 6; // Available service list 
+  string mc_ops_id = 7;  // Global Unique ID created by the contract service
+  google.protobuf.Timestamp last_updated_ts = 8; // Last updated timestamp
+}
+
+// GetQuotaRequest is a request to inquire quota information of the specific contract.
+message GetQuotaRequest {
+  string contract_id = 1; // Global Unique ID created by CBP
+}
+
+// GetQuotaResponse is a response to the GetQuotaRequest from the contract service.
+message GetQuotaResponse {
+  Code code = 1;
+  Error error = 2;
+}
+
+// GetServiceRequest is a request to get available service list for the specific contract.
+message GetServicesRequest {
+  string mc_ops_id = 1; // Global Unique ID created by Contract Service
+}
+
+// GetServicesResponse is a response to the GetServiceRequest from the contract service.
+message GetServicesResponse {
+  Code code = 1;
+  Error error = 2;
+  repeated string avaiable_service_apps	= 3; // Available Service List
 }

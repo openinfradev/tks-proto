@@ -8,11 +8,11 @@ Please make and write new `.proto` file following the [Style Guide](https://deve
 
 ### Generate .pb.go files
 You can easily generate `.pb.go` files using `make build` command.  
-If there are no errors, `.pb.go` files would be generated in `generated-in-go` directory.
+If there are no errors, `.pb.go` files would be generated in `pbgo/` directory.
 ```console
 $ make build
 go get -u github.com/golang/protobuf/protoc-gen-go
-protoc --proto_path=protos --go_out=generated-in-go --go_opt=paths=source_relative protos/*.proto
+protoc --proto_path=protos --go_out=pbgo --go_opt=paths=source_relative protos/*.proto
 
 $ ls generated-in-go
 common.pb.go   contract.pb.go

@@ -27,7 +27,9 @@ $(PROTOC_GEN_GO):
 	go get -u github.com/golang/protobuf/protoc-gen-go
 
 generate: protos | $(PROTOC_GEN_GO) $(PROTOC)
-	protoc --proto_path=protos --go_out=pbgo --go_opt=paths=source_relative protos/*.proto
+	protoc --proto_path=protos --go_out=pbgo --go_opt=paths=source_relative \
+	--go-grpc_out=pbgo --go-grpc_opt=paths=source_relative \
+	protos/*.proto
 
 # This is a "phony" target - an alias for the above command, so "make build"
 # still works.

@@ -14,6 +14,6 @@ $ make build
 go get -u github.com/golang/protobuf/protoc-gen-go
 protoc --proto_path=protos --go_out=pbgo --go_opt=paths=source_relative protos/*.proto
 
-$ ls generated-in-go
+$ ls pbgo
 common.pb.go   contract.pb.go
 ```

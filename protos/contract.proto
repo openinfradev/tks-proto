@@ -75,8 +75,8 @@ message UpdateServicesResponse {
   Code code = 1;
   Error error = 2;
   string contract_id = 3; // Global Unique ID created by CBP
-  ContractQuota prev_services = 4; // Previous Service List
-  ContractQuota current_services = 5; // Current Service List
+  repeated string prev_services = 4; // Previous Service List
+  repeated string current_services = 5; // Current Service List
 }
 
 // GetContractRequest is a request to inquire contract to the contract service.
@@ -105,6 +105,7 @@ message GetQuotaRequest {
 message GetQuotaResponse {
   Code code = 1;
   Error error = 2;
+  ContractQuota quota = 3; // Current quota for this contract
 }
 
 // GetServiceRequest is a request to get available service list for the specific contract.

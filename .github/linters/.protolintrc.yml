@@ -1,0 +1,45 @@
+
+# Lint directives.
+lint:
+  # Linter rules.
+  # Run `protolint list` to see all available rules.
+  rules:
+    # Set the default to all linters.
+    all_default: false
+
+    add:
+      - FIELD_NAMES_LOWER_SNAKE_CASE
+      - MESSAGE_NAMES_UPPER_CAMEL_CASE
+      - MAX_LINE_LENGTH
+      - INDENT
+      - SERVICE_NAMES_END_WITH
+      - FIELD_NAMES_EXCLUDE_PREPOSITIONS
+      - MESSAGE_NAMES_EXCLUDE_PREPOSITIONS
+      - FILE_NAMES_LOWER_SNAKE_CASE
+      - IMPORTS_SORTED
+      - PACKAGE_NAME_LOWER_CASE
+      - ORDER
+      - MESSAGES_HAVE_COMMENT
+      - SERVICES_HAVE_COMMENT
+      - RPCS_HAVE_COMMENT
+      - FIELDS_HAVE_COMMENT
+      - PROTO3_FIELDS_AVOID_REQUIRED
+      - PROTO3_GROUPS_AVOID
+      - REPEATED_FIELD_NAMES_PLURALIZED
+      - ENUMS_HAVE_COMMENT
+      - ENUM_FIELDS_HAVE_COMMENT
+      - SYNTAX_CONSISTENT
+      - RPC_NAMES_UPPER_CAMEL_CASE
+
+    # The specific linters to remove.
+    remove:
+      - RPC_NAMES_UPPER_CAMEL_CASE
+
+    # SERVICE_NAMES_END_WITH rule option.
+    service_names_end_with:
+      text: Service
+
+    # MESSAGES_HAVE_COMMENT rule option.
+    messages_have_comment:
+      # Comments need to begin with the name of the thing being described. default is false.
+      should_follow_golang_style: true

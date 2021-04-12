@@ -27,14 +27,10 @@ lint:
       - PROTO3_GROUPS_AVOID
       - REPEATED_FIELD_NAMES_PLURALIZED
       - ENUMS_HAVE_COMMENT
-      - ENUM_FIELDS_HAVE_COMMENT
       - SYNTAX_CONSISTENT
       - RPC_NAMES_UPPER_CAMEL_CASE
 
-    # The specific linters to remove.
-    remove:
-      - RPC_NAMES_UPPER_CAMEL_CASE
-
+  rules_option:
     # SERVICE_NAMES_END_WITH rule option.
     service_names_end_with:
       text: Service

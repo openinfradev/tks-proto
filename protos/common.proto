@@ -1,13 +1,15 @@
 /*
-  Common.proto contains most commonly used interfaces when communicating between TKS services.
+  Common.proto contains most commonly used interfaces 
+  when communicating between TKS services.
 */
 syntax = "proto3";
 package pbgo;
 
 option go_package = "github.com/sktelecom/tks-proto/pbgo";
 
+// Code is a response code for gRpc request.
 enum Code {
-  OK = 0;
+  OK_UNSPECIFIED = 0;
   CANCELLED = 1;
   UNKNOWN = 2;
   INVALID_ARGUMENT = 3;
@@ -25,6 +27,8 @@ enum Code {
   UNAVAILABLE = 14;
 }
 
+// Error represents a detailed error for gRPC request.
 message Error {
+  // msg is an error message.
   string msg = 1;
 }

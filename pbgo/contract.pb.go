@@ -29,16 +29,21 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// CreateContractRequest is a request to create new contract to the contract service.
+// CreateContractRequest is a request to create new contract
+// to the contract service.
 type CreateContractRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ContractorName    string         `protobuf:"bytes,1,opt,name=contractor_name,json=contractorName,proto3" json:"contractor_name,omitempty"`          // Name of contractor
-	ContractId        string         `protobuf:"bytes,2,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`                      // Global Unique ID created by CBP
-	Quota             *ContractQuota `protobuf:"bytes,3,opt,name=quota,proto3" json:"quota,omitempty"`                                                  // Resource Quota for this contract
-	AvailableServices []string       `protobuf:"bytes,4,rep,name=available_services,json=availableServices,proto3" json:"available_services,omitempty"` // Available service list
+	// contractor_name is a name of contractor
+	ContractorName string `protobuf:"bytes,1,opt,name=contractor_name,json=contractorName,proto3" json:"contractor_name,omitempty"`
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,2,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// quota is a resource quota for this contract
+	Quota *ContractQuota `protobuf:"bytes,3,opt,name=quota,proto3" json:"quota,omitempty"`
+	// availavle_services is a list of services constomer purchased.
+	AvailableServices []string `protobuf:"bytes,4,rep,name=available_services,json=availableServices,proto3" json:"available_services,omitempty"`
 }
 
 func (x *CreateContractRequest) Reset() {
@@ -102,15 +107,18 @@ func (x *CreateContractRequest) GetAvailableServices() []string {
 }
 
 // CreateContractResponse is a response to the CreateContractRequest request
-// from the contract service.
+//  from the contract service.
 type CreateContractResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code    Code   `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
-	Error   *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	McOpsId string `protobuf:"bytes,3,opt,name=mc_ops_id,json=mcOpsId,proto3" json:"mc_ops_id,omitempty"` // Global Unique ID created by the contract service
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
+	// error is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// mc_ops_id is a global unique ID created by the contract service.
+	McOpsId string `protobuf:"bytes,3,opt,name=mc_ops_id,json=mcOpsId,proto3" json:"mc_ops_id,omitempty"`
 }
 
 func (x *CreateContractResponse) Reset() {
@@ -149,7 +157,7 @@ func (x *CreateContractResponse) GetCode() Code {
 	if x != nil {
 		return x.Code
 	}
-	return Code_OK
+	return Code_OK_UNSPECIFIED
 }
 
 func (x *CreateContractResponse) GetError() *Error {
@@ -172,12 +180,18 @@ type ContractQuota struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Cpu      int64 `protobuf:"zigzag64,1,opt,name=cpu,proto3" json:"cpu,omitempty"`                           // cpu unit(GB) from 10 to 10000
-	Memory   int64 `protobuf:"zigzag64,2,opt,name=memory,proto3" json:"memory,omitempty"`                     // memory unit(MB) from 40 to 40000
-	Block    int64 `protobuf:"zigzag64,3,opt,name=block,proto3" json:"block,omitempty"`                       // block storage(MB) from 0 to 256000000
-	BlockSsd int64 `protobuf:"zigzag64,4,opt,name=block_ssd,json=blockSsd,proto3" json:"block_ssd,omitempty"` // block ssd storage(MB) from 0 to 256000000
-	Fs       int64 `protobuf:"zigzag64,5,opt,name=fs,proto3" json:"fs,omitempty"`                             // filesystem (MB) from 0 to 256000000
-	FsSsd    int64 `protobuf:"zigzag64,6,opt,name=fs_ssd,json=fsSsd,proto3" json:"fs_ssd,omitempty"`          // SSD filesystem (MB) from 0 to 256000000
+	// cpu unit(GB) from 10 to 10000
+	Cpu int64 `protobuf:"zigzag64,1,opt,name=cpu,proto3" json:"cpu,omitempty"`
+	// memory unit(MB) from 40 to 40000
+	Memory int64 `protobuf:"zigzag64,2,opt,name=memory,proto3" json:"memory,omitempty"`
+	// block storage(MB) from 0 to 256000000
+	Block int64 `protobuf:"zigzag64,3,opt,name=block,proto3" json:"block,omitempty"`
+	// // block ssd storage(MB) from 0 to 256000000
+	BlockSsd int64 `protobuf:"zigzag64,4,opt,name=block_ssd,json=blockSsd,proto3" json:"block_ssd,omitempty"`
+	// filesystem (MB) from 0 to 256000000
+	Fs int64 `protobuf:"zigzag64,5,opt,name=fs,proto3" json:"fs,omitempty"`
+	// SSD filesystem (MB) from 0 to 256000000
+	FsSsd int64 `protobuf:"zigzag64,6,opt,name=fs_ssd,json=fsSsd,proto3" json:"fs_ssd,omitempty"`
 }
 
 func (x *ContractQuota) Reset() {
@@ -254,14 +268,17 @@ func (x *ContractQuota) GetFsSsd() int64 {
 	return 0
 }
 
-// UpdateQuotaRequest is a request to update resource quota for specific contract.
+// UpdateQuotaRequest is a request to update resource quota
+//  for specific contract.
 type UpdateQuotaRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ContractId string         `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"` // Global Unique ID created by CBP
-	Quota      *ContractQuota `protobuf:"bytes,2,opt,name=quota,proto3" json:"quota,omitempty"`                             // Resource Quota
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// quota is a resource quota for cpu, memory, storage and so on.
+	Quota *ContractQuota `protobuf:"bytes,2,opt,name=quota,proto3" json:"quota,omitempty"`
 }
 
 func (x *UpdateQuotaRequest) Reset() {
@@ -310,17 +327,23 @@ func (x *UpdateQuotaRequest) GetQuota() *ContractQuota {
 	return nil
 }
 
-// UpdateQuotaResponse is a response to the UpdateQuotaRequest from the contract service
+// UpdateQuotaResponse is a response to the UpdateQuotaRequest
+// from the contract service
 type UpdateQuotaResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code         Code           `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
-	Error        *Error         `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	ContractId   string         `protobuf:"bytes,3,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`       // Global Unique ID created by CBP
-	PrevQuota    *ContractQuota `protobuf:"bytes,4,opt,name=prev_quota,json=prevQuota,proto3" json:"prev_quota,omitempty"`          // Previous Quota
-	CurrentQuota *ContractQuota `protobuf:"bytes,5,opt,name=current_quota,json=currentQuota,proto3" json:"current_quota,omitempty"` // Current Quota
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
+	// error is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,3,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// prev_quota is a quota before updating quota.
+	PrevQuota *ContractQuota `protobuf:"bytes,4,opt,name=prev_quota,json=prevQuota,proto3" json:"prev_quota,omitempty"`
+	// current_quota is a quota after updating.
+	CurrentQuota *ContractQuota `protobuf:"bytes,5,opt,name=current_quota,json=currentQuota,proto3" json:"current_quota,omitempty"`
 }
 
 func (x *UpdateQuotaResponse) Reset() {
@@ -359,7 +382,7 @@ func (x *UpdateQuotaResponse) GetCode() Code {
 	if x != nil {
 		return x.Code
 	}
-	return Code_OK
+	return Code_OK_UNSPECIFIED
 }
 
 func (x *UpdateQuotaResponse) GetError() *Error {
@@ -390,7 +413,8 @@ func (x *UpdateQuotaResponse) GetCurrentQuota() *ContractQuota {
 	return nil
 }
 
-// UpdateServiceRequest is a request to update available service list to the contract service.
+// UpdateServicesRequest is a request
+//  to update available service list to the contract service.
 // The services currently provided are as below:
 //   - LMA(Logging Monitoring Alert)
 //   - service-mesh (Istio, jaeger, kiali)
@@ -399,8 +423,10 @@ type UpdateServicesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ContractId        string   `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`                      // Global Unique ID created by CBP
-	AvailableServices []string `protobuf:"bytes,2,rep,name=available_services,json=availableServices,proto3" json:"available_services,omitempty"` // Available Service List
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// availavle_services is a list of services constomer purchased.
+	AvailableServices []string `protobuf:"bytes,2,rep,name=available_services,json=availableServices,proto3" json:"available_services,omitempty"`
 }
 
 func (x *UpdateServicesRequest) Reset() {
@@ -449,17 +475,23 @@ func (x *UpdateServicesRequest) GetAvailableServices() []string {
 	return nil
 }
 
-// UpdateServiceResponse is a response to the UpdateServicesRequest from the contract service.
+// UpdateServicesResponse is a response
+//  to the UpdateServicesRequest from the contract service.
 type UpdateServicesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code            Code     `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
-	Error           *Error   `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	ContractId      string   `protobuf:"bytes,3,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`                // Global Unique ID created by CBP
-	PrevServices    []string `protobuf:"bytes,4,rep,name=prev_services,json=prevServices,proto3" json:"prev_services,omitempty"`          // Previous Service List
-	CurrentServices []string `protobuf:"bytes,5,rep,name=current_services,json=currentServices,proto3" json:"current_services,omitempty"` // Current Service List
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
+	// error is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,3,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// prev_services is a list of services before updating.
+	PrevServices []string `protobuf:"bytes,4,rep,name=prev_services,json=prevServices,proto3" json:"prev_services,omitempty"`
+	// current_services is a list of services after updating.
+	CurrentServices []string `protobuf:"bytes,5,rep,name=current_services,json=currentServices,proto3" json:"current_services,omitempty"`
 }
 
 func (x *UpdateServicesResponse) Reset() {
@@ -498,7 +530,7 @@ func (x *UpdateServicesResponse) GetCode() Code {
 	if x != nil {
 		return x.Code
 	}
-	return Code_OK
+	return Code_OK_UNSPECIFIED
 }
 
 func (x *UpdateServicesResponse) GetError() *Error {
@@ -535,7 +567,8 @@ type GetContractRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"` // Global Unique ID created by CBP
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
 }
 
 func (x *GetContractRequest) Reset() {
@@ -577,20 +610,29 @@ func (x *GetContractRequest) GetContractId() string {
 	return ""
 }
 
-// GetContractResponse is a response to the GetContractRequest from the contract service.
+// GetContractResponse is a response to the GetContractRequest
+//  from the contract service.
 type GetContractResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code              Code                   `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
-	Error             *Error                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	ContractorName    string                 `protobuf:"bytes,3,opt,name=contractor_name,json=contractorName,proto3" json:"contractor_name,omitempty"`          // Name of contractor
-	ContractId        string                 `protobuf:"bytes,4,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`                      // Global Unique ID created by CBP
-	Quota             *ContractQuota         `protobuf:"bytes,5,opt,name=quota,proto3" json:"quota,omitempty"`                                                  // Resource Quota for this contract
-	AvailableServices []string               `protobuf:"bytes,6,rep,name=available_services,json=availableServices,proto3" json:"available_services,omitempty"` // Available service list
-	McOpsId           string                 `protobuf:"bytes,7,opt,name=mc_ops_id,json=mcOpsId,proto3" json:"mc_ops_id,omitempty"`                             // Global Unique ID created by the contract service
-	LastUpdatedTs     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=last_updated_ts,json=lastUpdatedTs,proto3" json:"last_updated_ts,omitempty"`           // Last updated timestamp
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
+	// error is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// contractor_name is a name of contractor
+	ContractorName string `protobuf:"bytes,3,opt,name=contractor_name,json=contractorName,proto3" json:"contractor_name,omitempty"`
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,4,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// quota is a resource quota for cpu, memory, storage and so on.
+	Quota *ContractQuota `protobuf:"bytes,5,opt,name=quota,proto3" json:"quota,omitempty"`
+	// availavle_services is a list of services constomer purchased.
+	AvailableServices []string `protobuf:"bytes,6,rep,name=available_services,json=availableServices,proto3" json:"available_services,omitempty"`
+	// mc_ops_id is a global unique ID created by the contract service.
+	McOpsId string `protobuf:"bytes,7,opt,name=mc_ops_id,json=mcOpsId,proto3" json:"mc_ops_id,omitempty"`
+	// last_updated_ts is a timestamp last updated.
+	LastUpdatedTs *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=last_updated_ts,json=lastUpdatedTs,proto3" json:"last_updated_ts,omitempty"`
 }
 
 func (x *GetContractResponse) Reset() {
@@ -629,7 +671,7 @@ func (x *GetContractResponse) GetCode() Code {
 	if x != nil {
 		return x.Code
 	}
-	return Code_OK
+	return Code_OK_UNSPECIFIED
 }
 
 func (x *GetContractResponse) GetError() *Error {
@@ -681,13 +723,15 @@ func (x *GetContractResponse) GetLastUpdatedTs() *timestamppb.Timestamp {
 	return nil
 }
 
-// GetQuotaRequest is a request to inquire quota information of the specific contract.
+// GetQuotaRequest is a request to inquire quota information
+//  of the specific contract.
 type GetQuotaRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"` // Global Unique ID created by CBP
+	// contract_id is a global unique ID created by CBP
+	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
 }
 
 func (x *GetQuotaRequest) Reset() {
@@ -729,15 +773,19 @@ func (x *GetQuotaRequest) GetContractId() string {
 	return ""
 }
 
-// GetQuotaResponse is a response to the GetQuotaRequest from the contract service.
+// GetQuotaResponse is a response to the GetQuotaRequest
+//  from the contract service.
 type GetQuotaResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code  Code           `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
-	Error *Error         `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Quota *ContractQuota `protobuf:"bytes,3,opt,name=quota,proto3" json:"quota,omitempty"` // Current quota for this contract
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
+	// error is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// quota is a resource quota for cpu, memory, storage and so on.
+	Quota *ContractQuota `protobuf:"bytes,3,opt,name=quota,proto3" json:"quota,omitempty"`
 }
 
 func (x *GetQuotaResponse) Reset() {
@@ -776,7 +824,7 @@ func (x *GetQuotaResponse) GetCode() Code {
 	if x != nil {
 		return x.Code
 	}
-	return Code_OK
+	return Code_OK_UNSPECIFIED
 }
 
 func (x *GetQuotaResponse) GetError() *Error {
@@ -793,13 +841,15 @@ func (x *GetQuotaResponse) GetQuota() *ContractQuota {
 	return nil
 }
 
-// GetServiceRequest is a request to get available service list for the specific contract.
+// GetServicesRequest is a request to get available service list
+//  for the specific contract.
 type GetServicesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	McOpsId string `protobuf:"bytes,1,opt,name=mc_ops_id,json=mcOpsId,proto3" json:"mc_ops_id,omitempty"` // Global Unique ID created by Contract Service
+	// mc_ops_id is a global unique ID created by the contract service.
+	McOpsId string `protobuf:"bytes,1,opt,name=mc_ops_id,json=mcOpsId,proto3" json:"mc_ops_id,omitempty"`
 }
 
 func (x *GetServicesRequest) Reset() {
@@ -841,15 +891,19 @@ func (x *GetServicesRequest) GetMcOpsId() string {
 	return ""
 }
 
-// GetServicesResponse is a response to the GetServiceRequest from the contract service.
+// GetServicesResponse is a response to the GetServiceRequest
+//  from the contract service.
 type GetServicesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code                Code     `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
-	Error               *Error   `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	AvaiableServiceApps []string `protobuf:"bytes,3,rep,name=avaiable_service_apps,json=avaiableServiceApps,proto3" json:"avaiable_service_apps,omitempty"` // Available Service List
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=pbgo.Code" json:"code,omitempty"`
+	// error is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// availavle_services is a list of services constomer purchased.
+	AvaiableServiceApps []string `protobuf:"bytes,3,rep,name=avaiable_service_apps,json=avaiableServiceApps,proto3" json:"avaiable_service_apps,omitempty"`
 }
 
 func (x *GetServicesResponse) Reset() {
@@ -888,7 +942,7 @@ func (x *GetServicesResponse) GetCode() Code {
 	if x != nil {
 		return x.Code
 	}
-	return Code_OK
+	return Code_OK_UNSPECIFIED
 }
 
 func (x *GetServicesResponse) GetError() *Error {
@@ -909,9 +963,9 @@ var File_contract_proto protoreflect.FileDescriptor
 
 var file_contract_proto_rawDesc = []byte{
 	0x0a, 0x0e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x12, 0x04, 0x70, 0x62, 0x67, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
-	0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0c, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
+	0x12, 0x04, 0x70, 0x62, 0x67, 0x6f, 0x1a, 0x0c, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xbb, 0x01, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x27, 0x0a, 0x0f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x5f, 0x6e, 0x61,

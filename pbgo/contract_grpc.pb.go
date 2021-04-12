@@ -18,11 +18,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ContractServiceClient interface {
+	// CreateContract creates new contract.
 	CreateContract(ctx context.Context, in *CreateContractRequest, opts ...grpc.CallOption) (*CreateContractResponse, error)
+	// UpdateQuota updates quota of the contract.
 	UpdateQuota(ctx context.Context, in *UpdateQuotaRequest, opts ...grpc.CallOption) (*UpdateQuotaResponse, error)
+	// UpdateServices updates list of available services of the contract.
 	UpdateServices(ctx context.Context, in *UpdateServicesRequest, opts ...grpc.CallOption) (*UpdateServicesResponse, error)
+	// GetContract returns a contract if exists.
 	GetContract(ctx context.Context, in *GetContractRequest, opts ...grpc.CallOption) (*GetContractResponse, error)
+	// GetQuota returns a quota for the contract.
 	GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error)
+	// GetServices returns list of available services for the contract.
 	GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error)
 }
 
@@ -92,11 +98,17 @@ func (c *contractServiceClient) GetServices(ctx context.Context, in *GetServices
 // All implementations must embed UnimplementedContractServiceServer
 // for forward compatibility
 type ContractServiceServer interface {
+	// CreateContract creates new contract.
 	CreateContract(context.Context, *CreateContractRequest) (*CreateContractResponse, error)
+	// UpdateQuota updates quota of the contract.
 	UpdateQuota(context.Context, *UpdateQuotaRequest) (*UpdateQuotaResponse, error)
+	// UpdateServices updates list of available services of the contract.
 	UpdateServices(context.Context, *UpdateServicesRequest) (*UpdateServicesResponse, error)
+	// GetContract returns a contract if exists.
 	GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error)
+	// GetQuota returns a quota for the contract.
 	GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error)
+	// GetServices returns list of available services for the contract.
 	GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error)
 	mustEmbedUnimplementedContractServiceServer()
 }

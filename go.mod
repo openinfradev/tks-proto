@@ -1,4 +1,4 @@
-module github.com/openinfradev/tks-proto
+module github.com/sktelecom/tks-proto
 
 go 1.16
 

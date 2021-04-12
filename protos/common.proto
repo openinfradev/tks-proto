@@ -1,5 +1,6 @@
 /*
-  Common.proto contains most commonly used interfaces when communicating between TKS services.
+  Common.proto contains most commonly used interfaces 
+  when communicating between TKS services.
 */
 syntax = "proto3";
 package pbgo;
@@ -28,5 +29,6 @@ enum Code {
 
 // Error represents a detailed error for gRPC request.
 message Error {
+  // msg is an error message.
   string msg = 1;
 }

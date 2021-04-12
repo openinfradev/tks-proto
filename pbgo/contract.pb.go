@@ -413,7 +413,7 @@ func (x *UpdateQuotaResponse) GetCurrentQuota() *ContractQuota {
 	return nil
 }
 
-// UpdateServiceRequest is a request
+// UpdateServicesRequest is a request
 //  to update available service list to the contract service.
 // The services currently provided are as below:
 //   - LMA(Logging Monitoring Alert)
@@ -475,7 +475,7 @@ func (x *UpdateServicesRequest) GetAvailableServices() []string {
 	return nil
 }
 
-// UpdateServiceResponse is a response
+// UpdateServicesResponse is a response
 //  to the UpdateServicesRequest from the contract service.
 type UpdateServicesResponse struct {
 	state         protoimpl.MessageState
@@ -841,7 +841,7 @@ func (x *GetQuotaResponse) GetQuota() *ContractQuota {
 	return nil
 }
 
-// GetServiceRequest is a request to get available service list
+// GetServicesRequest is a request to get available service list
 //  for the specific contract.
 type GetServicesRequest struct {
 	state         protoimpl.MessageState

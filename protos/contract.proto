@@ -90,7 +90,7 @@ message UpdateQuotaResponse {
   ContractQuota current_quota = 5;
 }
 
-// UpdateServiceRequest is a request 
+// UpdateServicesRequest is a request 
 //  to update available service list to the contract service.
 // The services currently provided are as below:
 //   - LMA(Logging Monitoring Alert)
@@ -102,7 +102,7 @@ message UpdateServicesRequest {
   repeated string available_services = 2; 
 }
 
-// UpdateServiceResponse is a response 
+// UpdateServicesResponse is a response 
 //  to the UpdateServicesRequest from the contract service.
 message UpdateServicesResponse {
   // code is a response code.
@@ -162,7 +162,7 @@ message GetQuotaResponse {
   ContractQuota quota = 3;
 }
 
-// GetServiceRequest is a request to get available service list 
+// GetServicesRequest is a request to get available service list 
 //  for the specific contract.
 message GetServicesRequest {
   // mc_ops_id is a global unique ID created by the contract service.

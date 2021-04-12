@@ -5,6 +5,8 @@
 syntax = "proto3";
 package pbgo;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/sktelecom/tks-proto/pbgo";
 
 // Code is a response code for gRpc request.
@@ -31,4 +33,135 @@ enum Code {
 message Error {
   // msg is an error message.
   string msg = 1;
+}
+
+// AppStatus represents a status of the application
+enum AppStatus {
+  APP_UNSPECIFIED = 0;
+  APP_INSTALLING = 1;
+  APP_RUNNING = 2;
+  APP_DELETING = 4;
+  APP_DELETED = 5;
+  APP_ERROR = 6;
+}
+
+// ClusterStatus represents a status of the cluster
+enum ClusterStatus {
+  UNSPECIFIED = 0;
+  INSTALLING = 1;
+  RUNNING = 2;
+  DELETING = 4;
+  DELETED = 5;
+  ERROR = 6;
+}
+
+// EpType is a key for endpoint.
+enum EpType {
+  EP_UNSPECIFIED = 0;
+  THANOS = 1;
+  PROMETHEUS = 2;
+  GRAFANA = 3;
+  KIALI = 4;
+  KIBANA = 5;
+  ELASTICSERCH = 6;
+  CLOUD_CONSOLE = 7;
+  HORIZON = 8;
+  JAEGER = 9;
+  KUBERNETES_DASHBOARD = 10;
+}
+
+// Endpoint represents each endpoint with type 
+message Endpoint {
+  // type indicate the software to make this endpoint
+  EpType type = 1;
+  // url is the url for the endpoint
+  string url = 2;
+}
+
+// ServiceApp represents each Application.
+message ServiceApp {
+  //id for the application
+  string app_id = 1;
+  // name for users
+  string app_name = 2;
+  // type (lma/servicemesh)
+  string type = 3;
+  // owner is a upword link(??)  Cluster ID
+  string owner = 4;
+  // a status of the application eg) Installing/Running/Error
+  AppStatus status = 5;
+  // endpoints is an array of endpoints
+  repeated Endpoint endpoints = 6;
+  // external_lable is the label used for globally unique identification
+  string external_label = 7;
+  // creation_timestamp is  a creatioin timestamp for the application
+  google.protobuf.Timestamp creation_timestamp = 8;
+  // last_transition_time is a timestamp for the trigger of status change
+  google.protobuf.Timestamp last_transition_time  = 9;
+}
+
+// Cluster represents each Cluster.
+message Cluster {
+  // is is a unique id for the cluster
+  string id = 1;
+  // name is a cluster name for users
+  string name = 2;
+  // creation_timestamp is a creatioin timestamp for the cluster
+  google.protobuf.Timestamp creation_timestamp = 3;
+  // last_transition_time is a timestamp for the trigger of status change
+  google.protobuf.Timestamp last_transition_time  = 4;
+  // status is a status of the cluste eg) Installing/Running/Error
+  ClusterStatus status = 5;
+  // owner is a upword link - McInfo ID
+  string owner = 6;
+  // service_apps is a array of applications
+  repeated ServiceApp service_apps = 7;
+  // kubeconfig is a default kubeconfig for the cluster
+  string kubeconfig = 8;
+}
+
+// McInfo is Multi-Custer info with clusters.
+message McInfo {
+  // mc_ops_id is Global Unique ID
+  string mc_ops_id = 1;
+  // tenant_id is Tenent ID of CSP
+  string tenant_id = 2;
+  // creation_timestamp is a creatioin timestamp for MC
+  google.protobuf.Timestamp creation_timestamp = 3;
+  // clusters is a array of Cluster Info
+  repeated Cluster clusters = 4;
+}
+
+// IDRequest is a request with a id
+message IDRequest {
+  // id is a id to ask
+  string id = 1;
+}
+
+// SimpleResponse returns a result for the request (the simplest return type)
+message SimpleResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+}
+
+// IDsResponse returns arry of ids
+message IDsResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // ids is a array of ids
+  repeated string ids = 3;
+}
+
+// IDResponse returns a id
+message IDResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // id is a id
+  string id = 3;
 }

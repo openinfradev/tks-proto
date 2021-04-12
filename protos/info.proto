@@ -1,0 +1,216 @@
+/*
+  Define messages to create new info to TKS-Info service. 
+*/
+
+syntax = "proto3";
+package pbgo;
+
+import "common.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/sktelecom/tks-proto/pbgo";
+
+// InfoService is a service to manage info's document.
+service InfoService {
+  // CreateMC create Multi cluster and return the id for the mc
+  rpc CreateMC(CreateMCRequest) returns (IDResponse) {}
+  // GetMCIDs get all multicluster ids for the request
+  rpc GetMCIDs(GetIDsRequest) returns (IDsResponse) {}
+  // GetMC get the multicluster for the requsted id.
+  rpc GetMC(IDRequest) returns (GetMCResponse) {}
+  // GetMCs get every multicusters
+  rpc GetMCs(google.protobuf.Empty) returns (GetMCsResponse) {}
+  // CreateCluster create cluster on the multicuster with tenent id
+  rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
+  // GetClusterget cluster for the id of the cluster
+  rpc GetCluster(GetClusterRequest) returns (GetClusterResponse) {}
+  // GetClusters get every clusters on the mutlcluster
+  rpc GetClusters(GetClustersRequest) returns (GetClustersResponse) {}
+  // UpdateClusterStatus update Status of the Cluster
+  rpc UpdateClusterStatus(UpdateClusterStatusRequest) 
+    returns (SimpleResponse) {}
+  // ValidateLabelUniqueness check uniqueness of the label
+  rpc ValidateLabelUniqueness(ValidateLabelUniquenessRequest)
+    returns (ValidateLabelUniquenessResponse) {}
+  // GetAppID get an array of app IDs with knowlege
+  rpc GetAppID(GetAppRequest) returns (IDsResponse) {}
+  // GetAllApps get app info in the cluster with the ID
+  rpc GetAllApps(IDRequest) returns (GetAppsResponse) {}
+  // GetApps get app info for the given contdition
+  rpc GetApps(GetAppsRequest) returns (GetAppResponse) {}
+  // UpdateAppStatus update Status of the application
+  rpc UpdateAppStatus(UpdateAppStatusRequest) returns (SimpleResponse) {}
+  // UpdateEndpoints update endpoints by the application
+  rpc UpdateEndpoints(UpdateEndpointsRequest) returns (SimpleResponse) {}
+}
+
+// CreateMCRequest is used to create a new MultiCluster
+message CreateMCRequest {
+  // mc_ops_id is Global Unique MultiCluster ID
+  string mc_ops_id = 1;
+  // mc_name is a MC name for users
+  string mc_name = 2;
+}
+
+// GetIDsRequest is used to get an array of MultiCluster ids to correspond with
+//   id or name or tenant id.
+message GetIDsRequest {
+  // mc_ops_id is Global Unique MultiCluster ID
+  string mc_ops_id = 1;
+  // mc_name is a MC name for users
+  string mc_name = 2;
+  // tenant_id is a tenant ID for CSP
+  string tenant_id = 3;
+}
+
+// GetMCResponse contains a MultiCluster info.
+message GetMCResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // mc_info is a MultiCluster Info
+  McInfo mc_info = 3;
+}
+
+// GetMCsResponse contains an array of MultiCluster infos. 
+message GetMCsResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // mcs_info is an array of MultiCluster Info
+  repeated McInfo mcs_infos = 3;
+}
+
+// CreateClusterRequest is used to create a new cluster on the MultiCluster by 
+//   tenant
+message CreateClusterRequest {
+  // mc_ops_id is Global Unique MultiCluster ID to create new cluster
+  string mc_ops_id = 1;
+  // cluster_name is a cluster name defined by users
+  string cluster_name = 2;
+  // tenant_id is a tenant ID for CSP
+  string tenant_id = 3;
+  // service_apps is an array of applications to be installed (lma,service-mesh)
+  repeated string service_apps = 4;
+}
+
+// GetClusterRequest is used to get info of MultiCluster to correspond with id 
+//  or name.
+message GetClusterRequest {
+  // cluster_id is a cluster ID
+  string cluster_id = 1;
+  // cluster_name is a cluster name for users
+  string cluster_name = 2;
+}
+
+// GetClusterResponse contains a cluster info.
+message GetClusterResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // cluster is info for the cluster
+  Cluster cluster = 3;
+}
+
+// GetClustersRequest is a used to get an array of every cluster on the
+//   MultiCluster
+message GetClustersRequest {
+  // mc_ops_id is Global Unique ID
+  string mc_ops_id = 1;
+}
+
+// GetClustersResponse contains an array of cluster infos. 
+message GetClustersResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // cluster is info. for the cluster
+  repeated Cluster clusters = 3;
+}
+
+
+// UpdateClusterStatusRequest is used to change status of the cluster
+message UpdateClusterStatusRequest {
+  // cluster_id is a cluster ID
+  string cluster_id = 1;
+  // status is the clusterstatus to be changed
+  ClusterStatus status = 2;
+}
+
+// ValidateLabelUniquenessRequest is used to check the uniqueness of the label
+message ValidateLabelUniquenessRequest {
+  // label is a label to check uniqueness
+  string label = 1;
+}
+
+// ValidateLabelUniquenessResponse contains the resule of the uniqueness check
+message ValidateLabelUniquenessResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // uniqueness is result of checking uniqueness for the label
+  bool uniqueness = 3;// uniqueness for requested label
+}
+
+// GetAppsRequest is used to get an array of application infos on the cluster
+message GetAppsRequest {
+  // cluster_id is the global Unique cluster ID
+  string cluster_id = 1;
+  // app_id is a id of the application, and it's optional
+  string app_id = 2;
+  // app_name is a name of the application, and it's optional
+  string app_name = 3;
+}
+
+// GetAppRequest is used to get an array of application infos on the cluster
+message GetAppRequest {
+  // cluster_id is the global Unique cluster ID
+  string cluster_id = 1;
+  // app_name is a name of the application
+  string app_name = 2;
+}
+
+// GetAppResponse contains an array of cluster infos. 
+message GetAppResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // app is a application Info
+  ServiceApp app = 3;
+}
+
+// GetAppsResponse contains an array of application infos.
+message GetAppsResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // apps is an array of applications
+  repeated ServiceApp apps = 3;
+}
+
+// UpdateAppStatusRequest is used to change the status of the app
+message UpdateAppStatusRequest {
+  // cluster_id is the global Unique cluster ID
+  string cluster_id = 1;
+  // app_id is the application id to change the status
+  string app_id = 2;
+  // status is a AppStatus of the application
+  AppStatus status = 3;
+}
+
+// UpdateEndpointsRequest is used to change status of the cluster
+message UpdateEndpointsRequest {
+  // cluster_id is the global Unique cluster ID
+  string cluster_id = 1;
+  // app_id is the application id to change the endpoint
+  string app_id = 2;
+  // endpoints is an array of endpoints to update
+  repeated Endpoint endpoints = 3;
+}

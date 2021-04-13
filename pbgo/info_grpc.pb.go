@@ -37,16 +37,6 @@ type InfoServiceClient interface {
 	UpdateClusterStatus(ctx context.Context, in *UpdateClusterStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 	// ValidateLabelUniqueness check uniqueness of the label
 	ValidateLabelUniqueness(ctx context.Context, in *ValidateLabelUniquenessRequest, opts ...grpc.CallOption) (*ValidateLabelUniquenessResponse, error)
-	// GetAppID get an array of app IDs with knowlege
-	GetAppID(ctx context.Context, in *GetAppRequest, opts ...grpc.CallOption) (*IDsResponse, error)
-	// GetAllApps get app info in the cluster with the ID
-	GetAllApps(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
-	// GetApps get app info for the given contdition
-	GetApps(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppResponse, error)
-	// UpdateAppStatus update Status of the application
-	UpdateAppStatus(ctx context.Context, in *UpdateAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// UpdateEndpoints update endpoints by the application
-	UpdateEndpoints(ctx context.Context, in *UpdateEndpointsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
 type infoServiceClient struct {
@@ -138,51 +128,6 @@ func (c *infoServiceClient) ValidateLabelUniqueness(ctx context.Context, in *Val
 	return out, nil
 }
 
-func (c *infoServiceClient) GetAppID(ctx context.Context, in *GetAppRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
-	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetAppID", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) GetAllApps(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
-	out := new(GetAppsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetAllApps", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) GetApps(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppResponse, error) {
-	out := new(GetAppResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetApps", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) UpdateAppStatus(ctx context.Context, in *UpdateAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateAppStatus", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) UpdateEndpoints(ctx context.Context, in *UpdateEndpointsRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateEndpoints", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // InfoServiceServer is the server API for InfoService service.
 // All implementations must embed UnimplementedInfoServiceServer
 // for forward compatibility
@@ -205,16 +150,6 @@ type InfoServiceServer interface {
 	UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error)
 	// ValidateLabelUniqueness check uniqueness of the label
 	ValidateLabelUniqueness(context.Context, *ValidateLabelUniquenessRequest) (*ValidateLabelUniquenessResponse, error)
-	// GetAppID get an array of app IDs with knowlege
-	GetAppID(context.Context, *GetAppRequest) (*IDsResponse, error)
-	// GetAllApps get app info in the cluster with the ID
-	GetAllApps(context.Context, *IDRequest) (*GetAppsResponse, error)
-	// GetApps get app info for the given contdition
-	GetApps(context.Context, *GetAppsRequest) (*GetAppResponse, error)
-	// UpdateAppStatus update Status of the application
-	UpdateAppStatus(context.Context, *UpdateAppStatusRequest) (*SimpleResponse, error)
-	// UpdateEndpoints update endpoints by the application
-	UpdateEndpoints(context.Context, *UpdateEndpointsRequest) (*SimpleResponse, error)
 	mustEmbedUnimplementedInfoServiceServer()
 }
 
@@ -248,21 +183,6 @@ func (UnimplementedInfoServiceServer) UpdateClusterStatus(context.Context, *Upda
 }
 func (UnimplementedInfoServiceServer) ValidateLabelUniqueness(context.Context, *ValidateLabelUniquenessRequest) (*ValidateLabelUniquenessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateLabelUniqueness not implemented")
-}
-func (UnimplementedInfoServiceServer) GetAppID(context.Context, *GetAppRequest) (*IDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppID not implemented")
-}
-func (UnimplementedInfoServiceServer) GetAllApps(context.Context, *IDRequest) (*GetAppsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllApps not implemented")
-}
-func (UnimplementedInfoServiceServer) GetApps(context.Context, *GetAppsRequest) (*GetAppResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetApps not implemented")
-}
-func (UnimplementedInfoServiceServer) UpdateAppStatus(context.Context, *UpdateAppStatusRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAppStatus not implemented")
-}
-func (UnimplementedInfoServiceServer) UpdateEndpoints(context.Context, *UpdateEndpointsRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateEndpoints not implemented")
 }
 func (UnimplementedInfoServiceServer) mustEmbedUnimplementedInfoServiceServer() {}
 
@@ -439,96 +359,6 @@ func _InfoService_ValidateLabelUniqueness_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetAppID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAppRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetAppID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetAppID",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetAppID(ctx, req.(*GetAppRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_GetAllApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetAllApps(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetAllApps",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetAllApps(ctx, req.(*IDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_GetApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAppsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetApps(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetApps",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetApps(ctx, req.(*GetAppsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_UpdateAppStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAppStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).UpdateAppStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/UpdateAppStatus",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).UpdateAppStatus(ctx, req.(*UpdateAppStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_UpdateEndpoints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateEndpointsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).UpdateEndpoints(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/UpdateEndpoints",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).UpdateEndpoints(ctx, req.(*UpdateEndpointsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // InfoService_ServiceDesc is the grpc.ServiceDesc for InfoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -572,25 +402,245 @@ var InfoService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ValidateLabelUniqueness",
 			Handler:    _InfoService_ValidateLabelUniqueness_Handler,
 		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "info.proto",
+}
+
+// AppInfoServiceClient is the client API for AppInfoService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type AppInfoServiceClient interface {
+	// GetAppID get an array of app IDs with knowlege
+	GetAppID(ctx context.Context, in *GetAppRequest, opts ...grpc.CallOption) (*IDsResponse, error)
+	// GetAllApps get app info in the cluster with the ID
+	GetAllApps(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
+	// GetApps get app info for the given contdition
+	GetApps(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppResponse, error)
+	// UpdateAppStatus update Status of the application
+	UpdateAppStatus(ctx context.Context, in *UpdateAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// UpdateEndpoints update endpoints by the application
+	UpdateEndpoints(ctx context.Context, in *UpdateEndpointsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+}
+
+type appInfoServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAppInfoServiceClient(cc grpc.ClientConnInterface) AppInfoServiceClient {
+	return &appInfoServiceClient{cc}
+}
+
+func (c *appInfoServiceClient) GetAppID(ctx context.Context, in *GetAppRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+	out := new(IDsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) GetAllApps(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
+	out := new(GetAppsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAllApps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) GetApps(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppResponse, error) {
+	out := new(GetAppResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetApps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) UpdateAppStatus(ctx context.Context, in *UpdateAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/UpdateAppStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) UpdateEndpoints(ctx context.Context, in *UpdateEndpointsRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/UpdateEndpoints", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AppInfoServiceServer is the server API for AppInfoService service.
+// All implementations must embed UnimplementedAppInfoServiceServer
+// for forward compatibility
+type AppInfoServiceServer interface {
+	// GetAppID get an array of app IDs with knowlege
+	GetAppID(context.Context, *GetAppRequest) (*IDsResponse, error)
+	// GetAllApps get app info in the cluster with the ID
+	GetAllApps(context.Context, *IDRequest) (*GetAppsResponse, error)
+	// GetApps get app info for the given contdition
+	GetApps(context.Context, *GetAppsRequest) (*GetAppResponse, error)
+	// UpdateAppStatus update Status of the application
+	UpdateAppStatus(context.Context, *UpdateAppStatusRequest) (*SimpleResponse, error)
+	// UpdateEndpoints update endpoints by the application
+	UpdateEndpoints(context.Context, *UpdateEndpointsRequest) (*SimpleResponse, error)
+	mustEmbedUnimplementedAppInfoServiceServer()
+}
+
+// UnimplementedAppInfoServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedAppInfoServiceServer struct {
+}
+
+func (UnimplementedAppInfoServiceServer) GetAppID(context.Context, *GetAppRequest) (*IDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppID not implemented")
+}
+func (UnimplementedAppInfoServiceServer) GetAllApps(context.Context, *IDRequest) (*GetAppsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllApps not implemented")
+}
+func (UnimplementedAppInfoServiceServer) GetApps(context.Context, *GetAppsRequest) (*GetAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetApps not implemented")
+}
+func (UnimplementedAppInfoServiceServer) UpdateAppStatus(context.Context, *UpdateAppStatusRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAppStatus not implemented")
+}
+func (UnimplementedAppInfoServiceServer) UpdateEndpoints(context.Context, *UpdateEndpointsRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEndpoints not implemented")
+}
+func (UnimplementedAppInfoServiceServer) mustEmbedUnimplementedAppInfoServiceServer() {}
+
+// UnsafeAppInfoServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AppInfoServiceServer will
+// result in compilation errors.
+type UnsafeAppInfoServiceServer interface {
+	mustEmbedUnimplementedAppInfoServiceServer()
+}
+
+func RegisterAppInfoServiceServer(s grpc.ServiceRegistrar, srv AppInfoServiceServer) {
+	s.RegisterService(&AppInfoService_ServiceDesc, srv)
+}
+
+func _AppInfoService_GetAppID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).GetAppID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/GetAppID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).GetAppID(ctx, req.(*GetAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_GetAllApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).GetAllApps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/GetAllApps",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).GetAllApps(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_GetApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).GetApps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/GetApps",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).GetApps(ctx, req.(*GetAppsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_UpdateAppStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAppStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).UpdateAppStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/UpdateAppStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).UpdateAppStatus(ctx, req.(*UpdateAppStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_UpdateEndpoints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEndpointsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).UpdateEndpoints(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/UpdateEndpoints",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).UpdateEndpoints(ctx, req.(*UpdateEndpointsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// AppInfoService_ServiceDesc is the grpc.ServiceDesc for AppInfoService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var AppInfoService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pbgo.AppInfoService",
+	HandlerType: (*AppInfoServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetAppID",
-			Handler:    _InfoService_GetAppID_Handler,
+			Handler:    _AppInfoService_GetAppID_Handler,
 		},
 		{
 			MethodName: "GetAllApps",
-			Handler:    _InfoService_GetAllApps_Handler,
+			Handler:    _AppInfoService_GetAllApps_Handler,
 		},
 		{
 			MethodName: "GetApps",
-			Handler:    _InfoService_GetApps_Handler,
+			Handler:    _AppInfoService_GetApps_Handler,
 		},
 		{
 			MethodName: "UpdateAppStatus",
-			Handler:    _InfoService_UpdateAppStatus_Handler,
+			Handler:    _AppInfoService_UpdateAppStatus_Handler,
 		},
 		{
 			MethodName: "UpdateEndpoints",
-			Handler:    _InfoService_UpdateEndpoints_Handler,
+			Handler:    _AppInfoService_UpdateEndpoints_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

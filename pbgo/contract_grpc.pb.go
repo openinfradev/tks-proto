@@ -26,6 +26,8 @@ type ContractServiceClient interface {
 	UpdateServices(ctx context.Context, in *UpdateServicesRequest, opts ...grpc.CallOption) (*UpdateServicesResponse, error)
 	// GetContract returns a contract if exists.
 	GetContract(ctx context.Context, in *GetContractRequest, opts ...grpc.CallOption) (*GetContractResponse, error)
+	// Getcontracts return a list of contract.
+	GetContracts(ctx context.Context, in *GetContractsRequest, opts ...grpc.CallOption) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
 	GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error)
 	// GetServices returns list of available services for the contract.
@@ -76,6 +78,15 @@ func (c *contractServiceClient) GetContract(ctx context.Context, in *GetContract
 	return out, nil
 }
 
+func (c *contractServiceClient) GetContracts(ctx context.Context, in *GetContractsRequest, opts ...grpc.CallOption) (*GetContractsResponse, error) {
+	out := new(GetContractsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.ContractService/GetContracts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *contractServiceClient) GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error) {
 	out := new(GetQuotaResponse)
 	err := c.cc.Invoke(ctx, "/pbgo.ContractService/GetQuota", in, out, opts...)
@@ -106,6 +117,8 @@ type ContractServiceServer interface {
 	UpdateServices(context.Context, *UpdateServicesRequest) (*UpdateServicesResponse, error)
 	// GetContract returns a contract if exists.
 	GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error)
+	// Getcontracts return a list of contract.
+	GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
 	GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error)
 	// GetServices returns list of available services for the contract.
@@ -128,6 +141,9 @@ func (UnimplementedContractServiceServer) UpdateServices(context.Context, *Updat
 }
 func (UnimplementedContractServiceServer) GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContract not implemented")
+}
+func (UnimplementedContractServiceServer) GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetContracts not implemented")
 }
 func (UnimplementedContractServiceServer) GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetQuota not implemented")
@@ -220,6 +236,24 @@ func _ContractService_GetContract_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContractService_GetContracts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetContractsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContractServiceServer).GetContracts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.ContractService/GetContracts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContractServiceServer).GetContracts(ctx, req.(*GetContractsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ContractService_GetQuota_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetQuotaRequest)
 	if err := dec(in); err != nil {
@@ -278,6 +312,10 @@ var ContractService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetContract",
 			Handler:    _ContractService_GetContract_Handler,
+		},
+		{
+			MethodName: "GetContracts",
+			Handler:    _ContractService_GetContracts_Handler,
 		},
 		{
 			MethodName: "GetQuota",

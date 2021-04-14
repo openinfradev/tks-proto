@@ -610,7 +610,7 @@ func (x *GetContractRequest) GetContractId() string {
 	return ""
 }
 
-// GetContractsResponse is a response to the GetContractRequest
+// GetContractResponse is a response to the GetContractRequest
 //  from the contract service.
 type GetContractResponse struct {
 	state         protoimpl.MessageState
@@ -678,6 +678,7 @@ func (x *GetContractResponse) GetContract() *Contract {
 	return nil
 }
 
+// Contract is a contract information.
 type Contract struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

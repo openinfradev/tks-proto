@@ -125,7 +125,7 @@ message GetContractRequest {
   string contract_id = 1;
 }
 
-// GetContractsResponse is a response to the GetContractRequest 
+// GetContractResponse is a response to the GetContractRequest 
 //  from the contract service.
 message GetContractResponse {
   // code is a response code.
@@ -136,6 +136,7 @@ message GetContractResponse {
   Contract contract = 3;
 }
 
+// Contract is a contract information.
 message Contract {
   // contractor_name is a name of contractor
   string contractor_name = 1;

@@ -32,6 +32,10 @@ service InfoService {
   // ValidateLabelUniqueness check uniqueness of the label
   rpc ValidateLabelUniqueness(ValidateLabelUniquenessRequest)
     returns (ValidateLabelUniquenessResponse) {}
+}
+
+// AppInfoService is a service to manage Application info's document.
+service AppInfoService {
   // GetAppID get an array of app IDs with knowlege
   rpc GetAppID(GetAppRequest) returns (IDsResponse) {}
   // GetAllApps get app info in the cluster with the ID

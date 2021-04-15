@@ -12,14 +12,16 @@ option go_package = "github.com/sktelecom/tks-proto/pbgo";
 
 // InfoService is a service to manage info's document.
 service InfoService {
-  // CreateMC create Multi cluster and return the id for the mc
-  rpc CreateMC(CreateMCRequest) returns (IDResponse) {}
-  // GetMCIDs get all multicluster ids for the request
-  rpc GetMCIDs(GetIDsRequest) returns (IDsResponse) {}
-  // GetMC get the multicluster for the requsted id.
-  rpc GetMC(IDRequest) returns (GetMCResponse) {}
-  // GetMCs get every multicusters
-  rpc GetMCs(google.protobuf.Empty) returns (GetMCsResponse) {}
+  // CreateTenant create new tenant for the contract id.
+  rpc CreateTenant(CreateTenantRequest) returns (IDResponse) {}
+  // GetTenantIDs returns all tenants ids.
+  rpc GetTenantIDs(google.protobuf.Empty) returns (IDsResponse) {}
+  // GetTenantID returns the tenant id for the contract id.
+  rpc GetTenantID(IDRequest) returns (IDResponse) {}
+  // UpdateTenant updates an authentication config for IaaS.
+  rpc UpdateTenant(UpdateTenantRequest) returns (SimpleResponse) {}
+  // GetTenantAuth returns an authentication info by tenant id.
+  rpc GetTenantAuth(IDRequest) returns (GetTenantAuthResponse) {}
   // CreateCluster create cluster on the multicuster with tenent id
   rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
   // GetClusterget cluster for the id of the cluster
@@ -48,56 +50,46 @@ service AppInfoService {
   rpc UpdateEndpoints(UpdateEndpointsRequest) returns (SimpleResponse) {}
 }
 
-// CreateMCRequest is used to create a new MultiCluster
-message CreateMCRequest {
-  // mc_ops_id is Global Unique MultiCluster ID
-  string mc_ops_id = 1;
-  // mc_name is a MC name for users
-  string mc_name = 2;
+// CreateTenantRequest is used to create a new MultiCluster
+message CreateTenantRequest {
+  // contract_id is Global Unique MultiCluster ID
+  string contract_id = 1;
+  // tenant_name is a tenant name for users
+  string tenant_name = 2;
+  // auth is an optional. This is an authentication info for IaaS.
+  string auth = 3;
 }
 
-// GetIDsRequest is used to get an array of MultiCluster ids to correspond with
-//   id or name or tenant id.
-message GetIDsRequest {
-  // mc_ops_id is Global Unique MultiCluster ID
-  string mc_ops_id = 1;
-  // mc_name is a MC name for users
-  string mc_name = 2;
-  // tenant_id is a tenant ID for CSP
-  string tenant_id = 3;
-}
-
-// GetMCResponse contains a MultiCluster info.
-message GetMCResponse {
+// GetTenantAuthResponse is used to get an authentication information by
+//   tenant id.
+message GetTenantAuthResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // mc_info is a MultiCluster Info
-  McInfo mc_info = 3;
+  // auth is an authentication info stiringified in JSON.
+  string auth = 3;
 }
 
-// GetMCsResponse contains an array of MultiCluster infos. 
-message GetMCsResponse {
-  // code is a response code.
-  Code code = 1;
-  // error is a detailed error message.
-  Error error = 2;
-  // mcs_info is an array of MultiCluster Info
-  repeated McInfo mcs_infos = 3;
+// UpdateTenantRequest updates an authenticationg information for tenant.
+message UpdateTenantRequest {
+  // contract_id is an optional but needs either contract_id or tenant_id.
+  string contract_id = 1;
+  // tenant_id is an optional but needs either contract_id or tenant_id.
+  string tenant_id = 2;
+  // auth is an authentication info to update.
+  string auth = 3; 
 }
 
 // CreateClusterRequest is used to create a new cluster on the MultiCluster by 
 //   tenant
 message CreateClusterRequest {
-  // mc_ops_id is Global Unique MultiCluster ID to create new cluster
-  string mc_ops_id = 1;
+  // tenant_id is a tenant ID for CSP
+  string tenant_id = 1;
   // cluster_name is a cluster name defined by users
   string cluster_name = 2;
-  // tenant_id is a tenant ID for CSP
-  string tenant_id = 3;
   // service_apps is an array of applications to be installed (lma,service-mesh)
-  repeated string service_apps = 4;
+  repeated string service_apps = 3;
 }
 
 // GetClusterRequest is used to get info of MultiCluster to correspond with id 
@@ -122,8 +114,8 @@ message GetClusterResponse {
 // GetClustersRequest is a used to get an array of every cluster on the
 //   MultiCluster
 message GetClustersRequest {
-  // mc_ops_id is Global Unique ID
-  string mc_ops_id = 1;
+  // tenant_id is a Global Unique ID
+  string tenant_id = 1;
 }
 
 // GetClustersResponse contains an array of cluster infos. 

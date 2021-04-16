@@ -12,16 +12,16 @@ option go_package = "github.com/sktelecom/tks-proto/pbgo";
 
 // InfoService is a service to manage info's document.
 service InfoService {
-  // CreateTenant create new tenant for the contract id.
-  rpc CreateTenant(CreateTenantRequest) returns (IDResponse) {}
-  // GetTenantIDs returns all tenants ids.
-  rpc GetTenantIDs(google.protobuf.Empty) returns (IDsResponse) {}
-  // GetTenantID returns the tenant id for the contract id.
-  rpc GetTenantID(IDRequest) returns (IDResponse) {}
-  // UpdateTenant updates an authentication config for IaaS.
-  rpc UpdateTenant(UpdateTenantRequest) returns (SimpleResponse) {}
-  // GetTenantAuth returns an authentication info by tenant id.
-  rpc GetTenantAuth(IDRequest) returns (GetTenantAuthResponse) {}
+  // CreateCSPInfo create new CSP Info for the contract id.
+  rpc CreateCSPInfo(CreateCSPInfoRequest) returns (IDResponse) {}
+  // GetCSPIDs returns all CSP ids.
+  rpc GetCSPIDs(google.protobuf.Empty) returns (IDsResponse) {}
+  // GetCSPIDsByContractID returns the CSP ids by the contract id.
+  rpc GetCSPIDsByContractID(IDRequest) returns (IDsResponse) {}
+  // UpdateCSPInfo updates an authentication config for CSP.
+  rpc UpdateCSPInfo(UpdateCSPInfoRequest) returns (SimpleResponse) {}
+  // GetCSPAuth returns an authentication info by csp id.
+  rpc GetCSPAuth(IDRequest) returns (GetCSPAuthResponse) {}
   // CreateCluster create cluster on the multicuster with tenent id
   rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
   // GetClusterget cluster for the id of the cluster
@@ -50,19 +50,19 @@ service AppInfoService {
   rpc UpdateEndpoints(UpdateEndpointsRequest) returns (SimpleResponse) {}
 }
 
-// CreateTenantRequest is used to create a new MultiCluster
-message CreateTenantRequest {
+// CreateCSPInfoRequest is used to create a new CSP Info
+message CreateCSPInfoRequest {
   // contract_id is Global Unique MultiCluster ID
   string contract_id = 1;
-  // tenant_name is a tenant name for users
-  string tenant_name = 2;
+  // csp_name is a name for users
+  string csp_name = 2;
   // auth is an optional. This is an authentication info for IaaS.
   string auth = 3;
 }
 
-// GetTenantAuthResponse is used to get an authentication information by
-//   tenant id.
-message GetTenantAuthResponse {
+// GetCSPAuthResponse is used to get an authentication information by
+//   csp id.
+message GetCSPAuthResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
@@ -71,21 +71,18 @@ message GetTenantAuthResponse {
   string auth = 3;
 }
 
-// UpdateTenantRequest updates an authenticationg information for tenant.
-message UpdateTenantRequest {
-  // contract_id is an optional but needs either contract_id or tenant_id.
-  string contract_id = 1;
-  // tenant_id is an optional but needs either contract_id or tenant_id.
-  string tenant_id = 2;
+// UpdateCSPInfoRequest updates an authenticationg information for CSP.
+message UpdateCSPInfoRequest {
+  // csp_id is .
+  string csp_id = 1;
   // auth is an authentication info to update.
-  string auth = 3; 
+  string auth = 2; 
 }
 
-// CreateClusterRequest is used to create a new cluster on the MultiCluster by 
-//   tenant
+// CreateClusterRequest is used to create a new cluster.
 message CreateClusterRequest {
-  // tenant_id is a tenant ID for CSP
-  string tenant_id = 1;
+  // csp_id is an ID of CSPInfo
+  string csp_id = 1;
   // cluster_name is a cluster name defined by users
   string cluster_name = 2;
   // service_apps is an array of applications to be installed (lma,service-mesh)
@@ -111,11 +108,10 @@ message GetClusterResponse {
   Cluster cluster = 3;
 }
 
-// GetClustersRequest is a used to get an array of every cluster on the
-//   MultiCluster
+// GetClustersRequest returns a list of clusters in specific CSP.
 message GetClustersRequest {
-  // tenant_id is a Global Unique ID
-  string tenant_id = 1;
+  // csp_id is a Global Unique ID
+  string csp_id = 1;
 }
 
 // GetClustersResponse contains an array of cluster infos. 

@@ -19,16 +19,16 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InfoServiceClient interface {
-	// CreateTenant create new tenant for the contract id.
-	CreateTenant(ctx context.Context, in *CreateTenantRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// GetTenantIDs returns all tenants ids.
-	GetTenantIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
-	// GetTenantID returns the tenant id for the contract id.
-	GetTenantID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// UpdateTenant updates an authentication config for IaaS.
-	UpdateTenant(ctx context.Context, in *UpdateTenantRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// GetTenantAuth returns an authentication info by tenant id.
-	GetTenantAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetTenantAuthResponse, error)
+	// CreateCSPInfo create new CSP Info for the contract id.
+	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetCSPIDs returns all CSP ids.
+	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
+	// GetCSPIDsByContractID returns the CSP ids by the contract id.
+	GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error)
+	// UpdateCSPInfo updates an authentication config for CSP.
+	UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// GetCSPAuth returns an authentication info by csp id.
+	GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error)
 	// CreateCluster create cluster on the multicuster with tenent id
 	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
 	// GetClusterget cluster for the id of the cluster
@@ -49,45 +49,45 @@ func NewInfoServiceClient(cc grpc.ClientConnInterface) InfoServiceClient {
 	return &infoServiceClient{cc}
 }
 
-func (c *infoServiceClient) CreateTenant(ctx context.Context, in *CreateTenantRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+func (c *infoServiceClient) CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/CreateTenant", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/CreateCSPInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetTenantIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error) {
+func (c *infoServiceClient) GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error) {
 	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetTenantIDs", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPIDs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetTenantID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDResponse, error) {
-	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetTenantID", in, out, opts...)
+func (c *infoServiceClient) GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+	out := new(IDsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPIDsByContractID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) UpdateTenant(ctx context.Context, in *UpdateTenantRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+func (c *infoServiceClient) UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateTenant", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateCSPInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetTenantAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetTenantAuthResponse, error) {
-	out := new(GetTenantAuthResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetTenantAuth", in, out, opts...)
+func (c *infoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error) {
+	out := new(GetCSPAuthResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -143,16 +143,16 @@ func (c *infoServiceClient) ValidateLabelUniqueness(ctx context.Context, in *Val
 // All implementations must embed UnimplementedInfoServiceServer
 // for forward compatibility
 type InfoServiceServer interface {
-	// CreateTenant create new tenant for the contract id.
-	CreateTenant(context.Context, *CreateTenantRequest) (*IDResponse, error)
-	// GetTenantIDs returns all tenants ids.
-	GetTenantIDs(context.Context, *emptypb.Empty) (*IDsResponse, error)
-	// GetTenantID returns the tenant id for the contract id.
-	GetTenantID(context.Context, *IDRequest) (*IDResponse, error)
-	// UpdateTenant updates an authentication config for IaaS.
-	UpdateTenant(context.Context, *UpdateTenantRequest) (*SimpleResponse, error)
-	// GetTenantAuth returns an authentication info by tenant id.
-	GetTenantAuth(context.Context, *IDRequest) (*GetTenantAuthResponse, error)
+	// CreateCSPInfo create new CSP Info for the contract id.
+	CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error)
+	// GetCSPIDs returns all CSP ids.
+	GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error)
+	// GetCSPIDsByContractID returns the CSP ids by the contract id.
+	GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error)
+	// UpdateCSPInfo updates an authentication config for CSP.
+	UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error)
+	// GetCSPAuth returns an authentication info by csp id.
+	GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error)
 	// CreateCluster create cluster on the multicuster with tenent id
 	CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error)
 	// GetClusterget cluster for the id of the cluster
@@ -170,20 +170,20 @@ type InfoServiceServer interface {
 type UnimplementedInfoServiceServer struct {
 }
 
-func (UnimplementedInfoServiceServer) CreateTenant(context.Context, *CreateTenantRequest) (*IDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTenant not implemented")
+func (UnimplementedInfoServiceServer) CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCSPInfo not implemented")
 }
-func (UnimplementedInfoServiceServer) GetTenantIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTenantIDs not implemented")
+func (UnimplementedInfoServiceServer) GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDs not implemented")
 }
-func (UnimplementedInfoServiceServer) GetTenantID(context.Context, *IDRequest) (*IDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTenantID not implemented")
+func (UnimplementedInfoServiceServer) GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDsByContractID not implemented")
 }
-func (UnimplementedInfoServiceServer) UpdateTenant(context.Context, *UpdateTenantRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTenant not implemented")
+func (UnimplementedInfoServiceServer) UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCSPInfo not implemented")
 }
-func (UnimplementedInfoServiceServer) GetTenantAuth(context.Context, *IDRequest) (*GetTenantAuthResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTenantAuth not implemented")
+func (UnimplementedInfoServiceServer) GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPAuth not implemented")
 }
 func (UnimplementedInfoServiceServer) CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCluster not implemented")
@@ -213,92 +213,92 @@ func RegisterInfoServiceServer(s grpc.ServiceRegistrar, srv InfoServiceServer) {
 	s.RegisterService(&InfoService_ServiceDesc, srv)
 }
 
-func _InfoService_CreateTenant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTenantRequest)
+func _InfoService_CreateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCSPInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).CreateTenant(ctx, in)
+		return srv.(InfoServiceServer).CreateCSPInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/CreateTenant",
+		FullMethod: "/pbgo.InfoService/CreateCSPInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).CreateTenant(ctx, req.(*CreateTenantRequest))
+		return srv.(InfoServiceServer).CreateCSPInfo(ctx, req.(*CreateCSPInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetTenantIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _InfoService_GetCSPIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetTenantIDs(ctx, in)
+		return srv.(InfoServiceServer).GetCSPIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetTenantIDs",
+		FullMethod: "/pbgo.InfoService/GetCSPIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetTenantIDs(ctx, req.(*emptypb.Empty))
+		return srv.(InfoServiceServer).GetCSPIDs(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetTenantID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _InfoService_GetCSPIDsByContractID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetTenantID(ctx, in)
+		return srv.(InfoServiceServer).GetCSPIDsByContractID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetTenantID",
+		FullMethod: "/pbgo.InfoService/GetCSPIDsByContractID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetTenantID(ctx, req.(*IDRequest))
+		return srv.(InfoServiceServer).GetCSPIDsByContractID(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_UpdateTenant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTenantRequest)
+func _InfoService_UpdateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCSPInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).UpdateTenant(ctx, in)
+		return srv.(InfoServiceServer).UpdateCSPInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/UpdateTenant",
+		FullMethod: "/pbgo.InfoService/UpdateCSPInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).UpdateTenant(ctx, req.(*UpdateTenantRequest))
+		return srv.(InfoServiceServer).UpdateCSPInfo(ctx, req.(*UpdateCSPInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetTenantAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _InfoService_GetCSPAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetTenantAuth(ctx, in)
+		return srv.(InfoServiceServer).GetCSPAuth(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetTenantAuth",
+		FullMethod: "/pbgo.InfoService/GetCSPAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetTenantAuth(ctx, req.(*IDRequest))
+		return srv.(InfoServiceServer).GetCSPAuth(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -401,24 +401,24 @@ var InfoService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*InfoServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateTenant",
-			Handler:    _InfoService_CreateTenant_Handler,
+			MethodName: "CreateCSPInfo",
+			Handler:    _InfoService_CreateCSPInfo_Handler,
 		},
 		{
-			MethodName: "GetTenantIDs",
-			Handler:    _InfoService_GetTenantIDs_Handler,
+			MethodName: "GetCSPIDs",
+			Handler:    _InfoService_GetCSPIDs_Handler,
 		},
 		{
-			MethodName: "GetTenantID",
-			Handler:    _InfoService_GetTenantID_Handler,
+			MethodName: "GetCSPIDsByContractID",
+			Handler:    _InfoService_GetCSPIDsByContractID_Handler,
 		},
 		{
-			MethodName: "UpdateTenant",
-			Handler:    _InfoService_UpdateTenant_Handler,
+			MethodName: "UpdateCSPInfo",
+			Handler:    _InfoService_UpdateCSPInfo_Handler,
 		},
 		{
-			MethodName: "GetTenantAuth",
-			Handler:    _InfoService_GetTenantAuth_Handler,
+			MethodName: "GetCSPAuth",
+			Handler:    _InfoService_GetCSPAuth_Handler,
 		},
 		{
 			MethodName: "CreateCluster",

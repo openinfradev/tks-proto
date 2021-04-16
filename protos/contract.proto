@@ -50,8 +50,8 @@ message CreateContractResponse {
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // tenant_id is a global unique ID created by the info service.
-  string tenant_id = 3;
+  // csp_id is a global unique ID created by the info service.
+  string csp_id = 3;
 }
 
 // ContractQuota is a resource quota for total usage in clusters.
@@ -148,8 +148,8 @@ message Contract {
   ContractQuota quota = 3;
   // availavle_services is a list of services constomer purchased.
   repeated string available_services = 4;
-  // tenant_id is a global unique ID created by the info service.
-  string tenant_id = 5;
+  // csp_id is a global unique ID created by the info service.
+  string csp_id = 5;
   // last_updated_ts is a timestamp last updated.
   google.protobuf.Timestamp last_updated_ts = 6;
 }

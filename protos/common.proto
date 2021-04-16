@@ -114,8 +114,8 @@ message Cluster {
   ClusterStatus status = 5;
   // contract_id is a contract ID.
   string contract_id = 6;
-  // tenant_id is a tenant ID.
-  string tenant_id = 7;
+  // csp_id is an ID of CSPInfo.
+  string csp_id = 7;
   // service_apps is a array of applications
   repeated ServiceApp service_apps = 8;
   // kubeconfig is a default kubeconfig for the cluster

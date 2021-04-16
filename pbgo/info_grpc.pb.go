@@ -29,8 +29,10 @@ type InfoServiceClient interface {
 	UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 	// GetCSPAuth returns an authentication info by csp id.
 	GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error)
-	// CreateCluster create cluster on the multicuster with tenent id
-	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// AddClusterInfo adds newly created cluster information
+	AddClusterInfo(ctx context.Context, in *AddClusterInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// UpdateClusterConf updates the cluster configuration information
+	UpdateClusterConf(ctx context.Context, in *UpdateClusterConfRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 	// GetClusterget cluster for the id of the cluster
 	GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error)
 	// GetClusters get every clusters on the mutlcluster
@@ -94,9 +96,18 @@ func (c *infoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, opts 
 	return out, nil
 }
 
-func (c *infoServiceClient) CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+func (c *infoServiceClient) AddClusterInfo(ctx context.Context, in *AddClusterInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/CreateCluster", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/AddClusterInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoServiceClient) UpdateClusterConf(ctx context.Context, in *UpdateClusterConfRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateClusterConf", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,8 +164,10 @@ type InfoServiceServer interface {
 	UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error)
 	// GetCSPAuth returns an authentication info by csp id.
 	GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error)
-	// CreateCluster create cluster on the multicuster with tenent id
-	CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error)
+	// AddClusterInfo adds newly created cluster information
+	AddClusterInfo(context.Context, *AddClusterInfoRequest) (*IDResponse, error)
+	// UpdateClusterConf updates the cluster configuration information
+	UpdateClusterConf(context.Context, *UpdateClusterConfRequest) (*SimpleResponse, error)
 	// GetClusterget cluster for the id of the cluster
 	GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error)
 	// GetClusters get every clusters on the mutlcluster
@@ -185,8 +198,11 @@ func (UnimplementedInfoServiceServer) UpdateCSPInfo(context.Context, *UpdateCSPI
 func (UnimplementedInfoServiceServer) GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCSPAuth not implemented")
 }
-func (UnimplementedInfoServiceServer) CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCluster not implemented")
+func (UnimplementedInfoServiceServer) AddClusterInfo(context.Context, *AddClusterInfoRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddClusterInfo not implemented")
+}
+func (UnimplementedInfoServiceServer) UpdateClusterConf(context.Context, *UpdateClusterConfRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateClusterConf not implemented")
 }
 func (UnimplementedInfoServiceServer) GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCluster not implemented")
@@ -303,20 +319,38 @@ func _InfoService_GetCSPAuth_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_CreateCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateClusterRequest)
+func _InfoService_AddClusterInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddClusterInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).CreateCluster(ctx, in)
+		return srv.(InfoServiceServer).AddClusterInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/CreateCluster",
+		FullMethod: "/pbgo.InfoService/AddClusterInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).CreateCluster(ctx, req.(*CreateClusterRequest))
+		return srv.(InfoServiceServer).AddClusterInfo(ctx, req.(*AddClusterInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InfoService_UpdateClusterConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateClusterConfRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServiceServer).UpdateClusterConf(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.InfoService/UpdateClusterConf",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServiceServer).UpdateClusterConf(ctx, req.(*UpdateClusterConfRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -421,8 +455,12 @@ var InfoService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _InfoService_GetCSPAuth_Handler,
 		},
 		{
-			MethodName: "CreateCluster",
-			Handler:    _InfoService_CreateCluster_Handler,
+			MethodName: "AddClusterInfo",
+			Handler:    _InfoService_AddClusterInfo_Handler,
+		},
+		{
+			MethodName: "UpdateClusterConf",
+			Handler:    _InfoService_UpdateClusterConf_Handler,
 		},
 		{
 			MethodName: "GetCluster",

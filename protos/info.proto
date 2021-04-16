@@ -22,8 +22,10 @@ service InfoService {
   rpc UpdateCSPInfo(UpdateCSPInfoRequest) returns (SimpleResponse) {}
   // GetCSPAuth returns an authentication info by csp id.
   rpc GetCSPAuth(IDRequest) returns (GetCSPAuthResponse) {}
-  // CreateCluster create cluster on the multicuster with tenent id
-  rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
+  // AddClusterInfo adds newly created cluster information
+  rpc AddClusterInfo(AddClusterInfoRequest) returns (IDResponse) {}
+  // UpdateClusterConf updates the cluster configuration information
+  rpc UpdateClusterConf(UpdateClusterConfRequest) returns (SimpleResponse) {}
   // GetClusterget cluster for the id of the cluster
   rpc GetCluster(GetClusterRequest) returns (GetClusterResponse) {}
   // GetClusters get every clusters on the mutlcluster
@@ -79,23 +81,31 @@ message UpdateCSPInfoRequest {
   string auth = 2; 
 }
 
-// CreateClusterRequest is used to create a new cluster.
-message CreateClusterRequest {
-  // csp_id is an ID of CSPInfo
-  string csp_id = 1;
+// AddClusterInfoRequest is used to add a new cluster info
+message AddClusterInfoRequest {
+  // contract_id is a contract ID.
+  string contract_id = 1;
+  // csp_id is an ID of CSPInfo.
+  string csp_id = 2;
   // cluster_name is a cluster name defined by users
-  string cluster_name = 2;
-  // service_apps is an array of applications to be installed (lma,service-mesh)
-  repeated string service_apps = 3;
+  string name = 3;
+  // conf is a cluster configuration
+  ClusterConf conf = 4;
 }
 
-// GetClusterRequest is used to get info of MultiCluster to correspond with id 
-//  or name.
+// UpdateClusterConfRequest is used to update kubernetes cluster configuration
+// to correspond with id
+message UpdateClusterConfRequest {
+  // cluster_id is a cluster ID
+  string cluster_id = 1;
+  // conf is a kubernetes cluster configuration
+  ClusterConf conf = 2;
+}
+
+// GetClusterRequest is used to get info of MultiCluster to correspond with id
 message GetClusterRequest {
   // cluster_id is a cluster ID
   string cluster_id = 1;
-  // cluster_name is a cluster name for users
-  string cluster_name = 2;
 }
 
 // GetClusterResponse contains a cluster info.
@@ -123,7 +133,6 @@ message GetClustersResponse {
   // cluster is info. for the cluster
   repeated Cluster clusters = 3;
 }
-
 
 // UpdateClusterStatusRequest is used to change status of the cluster
 message UpdateClusterStatusRequest {

@@ -12,14 +12,16 @@ option go_package = "github.com/sktelecom/tks-proto/pbgo";
 
 // InfoService is a service to manage info's document.
 service InfoService {
-  // CreateMC create Multi cluster and return the id for the mc
-  rpc CreateMC(CreateMCRequest) returns (IDResponse) {}
-  // GetMCIDs get all multicluster ids for the request
-  rpc GetMCIDs(GetIDsRequest) returns (IDsResponse) {}
-  // GetMC get the multicluster for the requsted id.
-  rpc GetMC(IDRequest) returns (GetMCResponse) {}
-  // GetMCs get every multicusters
-  rpc GetMCs(google.protobuf.Empty) returns (GetMCsResponse) {}
+  // CreateCSPInfo create new CSP Info for the contract id.
+  rpc CreateCSPInfo(CreateCSPInfoRequest) returns (IDResponse) {}
+  // GetCSPIDs returns all CSP ids.
+  rpc GetCSPIDs(google.protobuf.Empty) returns (IDsResponse) {}
+  // GetCSPIDsByContractID returns the CSP ids by the contract id.
+  rpc GetCSPIDsByContractID(IDRequest) returns (IDsResponse) {}
+  // UpdateCSPInfo updates an authentication config for CSP.
+  rpc UpdateCSPInfo(UpdateCSPInfoRequest) returns (SimpleResponse) {}
+  // GetCSPAuth returns an authentication info by csp id.
+  rpc GetCSPAuth(IDRequest) returns (GetCSPAuthResponse) {}
   // CreateCluster create cluster on the multicuster with tenent id
   rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
   // GetClusterget cluster for the id of the cluster
@@ -48,56 +50,43 @@ service AppInfoService {
   rpc UpdateEndpoints(UpdateEndpointsRequest) returns (SimpleResponse) {}
 }
 
-// CreateMCRequest is used to create a new MultiCluster
-message CreateMCRequest {
-  // mc_ops_id is Global Unique MultiCluster ID
-  string mc_ops_id = 1;
-  // mc_name is a MC name for users
-  string mc_name = 2;
+// CreateCSPInfoRequest is used to create a new CSP Info
+message CreateCSPInfoRequest {
+  // contract_id is Global Unique MultiCluster ID
+  string contract_id = 1;
+  // csp_name is a name for users
+  string csp_name = 2;
+  // auth is an optional. This is an authentication info for IaaS.
+  string auth = 3;
 }
 
-// GetIDsRequest is used to get an array of MultiCluster ids to correspond with
-//   id or name or tenant id.
-message GetIDsRequest {
-  // mc_ops_id is Global Unique MultiCluster ID
-  string mc_ops_id = 1;
-  // mc_name is a MC name for users
-  string mc_name = 2;
-  // tenant_id is a tenant ID for CSP
-  string tenant_id = 3;
-}
-
-// GetMCResponse contains a MultiCluster info.
-message GetMCResponse {
+// GetCSPAuthResponse is used to get an authentication information by
+//   csp id.
+message GetCSPAuthResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // mc_info is a MultiCluster Info
-  McInfo mc_info = 3;
+  // auth is an authentication info stiringified in JSON.
+  string auth = 3;
 }
 
-// GetMCsResponse contains an array of MultiCluster infos. 
-message GetMCsResponse {
-  // code is a response code.
-  Code code = 1;
-  // error is a detailed error message.
-  Error error = 2;
-  // mcs_info is an array of MultiCluster Info
-  repeated McInfo mcs_infos = 3;
+// UpdateCSPInfoRequest updates an authenticationg information for CSP.
+message UpdateCSPInfoRequest {
+  // csp_id is .
+  string csp_id = 1;
+  // auth is an authentication info to update.
+  string auth = 2; 
 }
 
-// CreateClusterRequest is used to create a new cluster on the MultiCluster by 
-//   tenant
+// CreateClusterRequest is used to create a new cluster.
 message CreateClusterRequest {
-  // mc_ops_id is Global Unique MultiCluster ID to create new cluster
-  string mc_ops_id = 1;
+  // csp_id is an ID of CSPInfo
+  string csp_id = 1;
   // cluster_name is a cluster name defined by users
   string cluster_name = 2;
-  // tenant_id is a tenant ID for CSP
-  string tenant_id = 3;
   // service_apps is an array of applications to be installed (lma,service-mesh)
-  repeated string service_apps = 4;
+  repeated string service_apps = 3;
 }
 
 // GetClusterRequest is used to get info of MultiCluster to correspond with id 
@@ -119,11 +108,10 @@ message GetClusterResponse {
   Cluster cluster = 3;
 }
 
-// GetClustersRequest is a used to get an array of every cluster on the
-//   MultiCluster
+// GetClustersRequest returns a list of clusters in specific CSP.
 message GetClustersRequest {
-  // mc_ops_id is Global Unique ID
-  string mc_ops_id = 1;
+  // csp_id is a Global Unique ID
+  string csp_id = 1;
 }
 
 // GetClustersResponse contains an array of cluster infos. 

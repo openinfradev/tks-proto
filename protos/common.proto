@@ -106,30 +106,20 @@ message Cluster {
   string id = 1;
   // name is a cluster name for users
   string name = 2;
-  // creation_timestamp is a creatioin timestamp for the cluster
-  google.protobuf.Timestamp creation_timestamp = 3;
-  // last_transition_time is a timestamp for the trigger of status change
-  google.protobuf.Timestamp last_transition_time  = 4;
+  // created_ts is a creatioin timestamp for the cluster
+  google.protobuf.Timestamp created_ts = 3;
+  // last_updated_ts is a timestamp for the trigger of status change
+  google.protobuf.Timestamp last_updated_ts  = 4;
   // status is a status of the cluste eg) Installing/Running/Error
   ClusterStatus status = 5;
-  // owner is a upword link - McInfo ID
-  string owner = 6;
+  // contract_id is a contract ID.
+  string contract_id = 6;
+  // csp_id is an ID of CSPInfo.
+  string csp_id = 7;
   // service_apps is a array of applications
-  repeated ServiceApp service_apps = 7;
+  repeated ServiceApp service_apps = 8;
   // kubeconfig is a default kubeconfig for the cluster
-  string kubeconfig = 8;
-}
-
-// McInfo is Multi-Custer info with clusters.
-message McInfo {
-  // mc_ops_id is Global Unique ID
-  string mc_ops_id = 1;
-  // tenant_id is Tenent ID of CSP
-  string tenant_id = 2;
-  // creation_timestamp is a creatioin timestamp for MC
-  google.protobuf.Timestamp creation_timestamp = 3;
-  // clusters is a array of Cluster Info
-  repeated Cluster clusters = 4;
+  string kubeconfig = 9;
 }
 
 // IDRequest is a request with a id

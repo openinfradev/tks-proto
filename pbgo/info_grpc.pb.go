@@ -19,14 +19,16 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InfoServiceClient interface {
-	// CreateMC create Multi cluster and return the id for the mc
-	CreateMC(ctx context.Context, in *CreateMCRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// GetMCIDs get all multicluster ids for the request
-	GetMCIDs(ctx context.Context, in *GetIDsRequest, opts ...grpc.CallOption) (*IDsResponse, error)
-	// GetMC get the multicluster for the requsted id.
-	GetMC(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetMCResponse, error)
-	// GetMCs get every multicusters
-	GetMCs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMCsResponse, error)
+	// CreateCSPInfo create new CSP Info for the contract id.
+	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetCSPIDs returns all CSP ids.
+	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
+	// GetCSPIDsByContractID returns the CSP ids by the contract id.
+	GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error)
+	// UpdateCSPInfo updates an authentication config for CSP.
+	UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// GetCSPAuth returns an authentication info by csp id.
+	GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error)
 	// CreateCluster create cluster on the multicuster with tenent id
 	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
 	// GetClusterget cluster for the id of the cluster
@@ -47,36 +49,45 @@ func NewInfoServiceClient(cc grpc.ClientConnInterface) InfoServiceClient {
 	return &infoServiceClient{cc}
 }
 
-func (c *infoServiceClient) CreateMC(ctx context.Context, in *CreateMCRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+func (c *infoServiceClient) CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/CreateMC", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/CreateCSPInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetMCIDs(ctx context.Context, in *GetIDsRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+func (c *infoServiceClient) GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error) {
 	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetMCIDs", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPIDs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetMC(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetMCResponse, error) {
-	out := new(GetMCResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetMC", in, out, opts...)
+func (c *infoServiceClient) GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+	out := new(IDsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPIDsByContractID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetMCs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMCsResponse, error) {
-	out := new(GetMCsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetMCs", in, out, opts...)
+func (c *infoServiceClient) UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateCSPInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *infoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error) {
+	out := new(GetCSPAuthResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -132,14 +143,16 @@ func (c *infoServiceClient) ValidateLabelUniqueness(ctx context.Context, in *Val
 // All implementations must embed UnimplementedInfoServiceServer
 // for forward compatibility
 type InfoServiceServer interface {
-	// CreateMC create Multi cluster and return the id for the mc
-	CreateMC(context.Context, *CreateMCRequest) (*IDResponse, error)
-	// GetMCIDs get all multicluster ids for the request
-	GetMCIDs(context.Context, *GetIDsRequest) (*IDsResponse, error)
-	// GetMC get the multicluster for the requsted id.
-	GetMC(context.Context, *IDRequest) (*GetMCResponse, error)
-	// GetMCs get every multicusters
-	GetMCs(context.Context, *emptypb.Empty) (*GetMCsResponse, error)
+	// CreateCSPInfo create new CSP Info for the contract id.
+	CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error)
+	// GetCSPIDs returns all CSP ids.
+	GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error)
+	// GetCSPIDsByContractID returns the CSP ids by the contract id.
+	GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error)
+	// UpdateCSPInfo updates an authentication config for CSP.
+	UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error)
+	// GetCSPAuth returns an authentication info by csp id.
+	GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error)
 	// CreateCluster create cluster on the multicuster with tenent id
 	CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error)
 	// GetClusterget cluster for the id of the cluster
@@ -157,17 +170,20 @@ type InfoServiceServer interface {
 type UnimplementedInfoServiceServer struct {
 }
 
-func (UnimplementedInfoServiceServer) CreateMC(context.Context, *CreateMCRequest) (*IDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMC not implemented")
+func (UnimplementedInfoServiceServer) CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCSPInfo not implemented")
 }
-func (UnimplementedInfoServiceServer) GetMCIDs(context.Context, *GetIDsRequest) (*IDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMCIDs not implemented")
+func (UnimplementedInfoServiceServer) GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDs not implemented")
 }
-func (UnimplementedInfoServiceServer) GetMC(context.Context, *IDRequest) (*GetMCResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMC not implemented")
+func (UnimplementedInfoServiceServer) GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDsByContractID not implemented")
 }
-func (UnimplementedInfoServiceServer) GetMCs(context.Context, *emptypb.Empty) (*GetMCsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMCs not implemented")
+func (UnimplementedInfoServiceServer) UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCSPInfo not implemented")
+}
+func (UnimplementedInfoServiceServer) GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPAuth not implemented")
 }
 func (UnimplementedInfoServiceServer) CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCluster not implemented")
@@ -197,74 +213,92 @@ func RegisterInfoServiceServer(s grpc.ServiceRegistrar, srv InfoServiceServer) {
 	s.RegisterService(&InfoService_ServiceDesc, srv)
 }
 
-func _InfoService_CreateMC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMCRequest)
+func _InfoService_CreateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCSPInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).CreateMC(ctx, in)
+		return srv.(InfoServiceServer).CreateCSPInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/CreateMC",
+		FullMethod: "/pbgo.InfoService/CreateCSPInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).CreateMC(ctx, req.(*CreateMCRequest))
+		return srv.(InfoServiceServer).CreateCSPInfo(ctx, req.(*CreateCSPInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetMCIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetIDsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetMCIDs(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetMCIDs",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetMCIDs(ctx, req.(*GetIDsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_GetMC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetMC(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetMC",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetMC(ctx, req.(*IDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_GetMCs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _InfoService_GetCSPIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetMCs(ctx, in)
+		return srv.(InfoServiceServer).GetCSPIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetMCs",
+		FullMethod: "/pbgo.InfoService/GetCSPIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetMCs(ctx, req.(*emptypb.Empty))
+		return srv.(InfoServiceServer).GetCSPIDs(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InfoService_GetCSPIDsByContractID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServiceServer).GetCSPIDsByContractID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.InfoService/GetCSPIDsByContractID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServiceServer).GetCSPIDsByContractID(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InfoService_UpdateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCSPInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServiceServer).UpdateCSPInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.InfoService/UpdateCSPInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServiceServer).UpdateCSPInfo(ctx, req.(*UpdateCSPInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InfoService_GetCSPAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InfoServiceServer).GetCSPAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.InfoService/GetCSPAuth",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InfoServiceServer).GetCSPAuth(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -367,20 +401,24 @@ var InfoService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*InfoServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateMC",
-			Handler:    _InfoService_CreateMC_Handler,
+			MethodName: "CreateCSPInfo",
+			Handler:    _InfoService_CreateCSPInfo_Handler,
 		},
 		{
-			MethodName: "GetMCIDs",
-			Handler:    _InfoService_GetMCIDs_Handler,
+			MethodName: "GetCSPIDs",
+			Handler:    _InfoService_GetCSPIDs_Handler,
 		},
 		{
-			MethodName: "GetMC",
-			Handler:    _InfoService_GetMC_Handler,
+			MethodName: "GetCSPIDsByContractID",
+			Handler:    _InfoService_GetCSPIDsByContractID_Handler,
 		},
 		{
-			MethodName: "GetMCs",
-			Handler:    _InfoService_GetMCs_Handler,
+			MethodName: "UpdateCSPInfo",
+			Handler:    _InfoService_UpdateCSPInfo_Handler,
+		},
+		{
+			MethodName: "GetCSPAuth",
+			Handler:    _InfoService_GetCSPAuth_Handler,
 		},
 		{
 			MethodName: "CreateCluster",

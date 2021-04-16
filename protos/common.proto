@@ -116,10 +116,8 @@ message Cluster {
   string contract_id = 6;
   // csp_id is an ID of CSPInfo.
   string csp_id = 7;
-  // service_apps is a array of applications
-  repeated ServiceApp service_apps = 8;
   // kubeconfig is a default kubeconfig for the cluster
-  string kubeconfig = 9;
+  string kubeconfig = 8;
 }
 
 // IDRequest is a request with a id

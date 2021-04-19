@@ -116,10 +116,30 @@ message Cluster {
   string contract_id = 6;
   // csp_id is an ID of CSPInfo.
   string csp_id = 7;
+  // conf is a kubernete cluster configuration
+  ClusterConf conf = 8;
   // service_apps is a array of applications
-  repeated ServiceApp service_apps = 8;
+  repeated ServiceApp service_apps = 9;
   // kubeconfig is a default kubeconfig for the cluster
-  string kubeconfig = 9;
+  string kubeconfig = 10;
+}
+
+// ClusterConf represents a Kubernetes cluster configuration.
+message ClusterConf {
+  // master_flavor is a machine node spec flavor for the master nodes
+  string master_flavor = 1;
+  // master_replicas is a number of the master nodes
+  int32 master_replicas = 2;
+  // master_root_size is a root volume size of the master nodes
+  int64 master_root_size = 3;
+  // worker_flavor is a machine node spec flavor for the worker nodes
+  string worker_flavor = 4;
+  // worker_replicas is a number of the worker nodes
+  int32 worker_replicas = 5;
+  // worker_root_size is a root volume size of the worker nodes
+  int64 worker_root_size = 6;
+  // k8s_version is a kubernetes version for the cluster
+  string k8s_version = 7;
 }
 
 // IDRequest is a request with a id

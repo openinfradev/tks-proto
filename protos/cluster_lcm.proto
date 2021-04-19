@@ -1,0 +1,40 @@
+/*
+  Define messages for TKS-ClusterLCM service.
+*/
+
+syntax = "proto3";
+package pbgo;
+
+import "common.proto";
+
+option go_package = "github.com/sktelecom/tks-proto/pbgo";
+
+// ClusterLcmService is a service to manage cluster's document.
+service ClusterLcmService {
+  // CreateCluster creates a Kubernetes cluster and returns cluster id
+  rpc CreateCluster(CreateClusterRequest) returns (IDsResponse) {}
+  // ScaleCluster scales the Kubernetes cluster
+  rpc ScaleCluster(ScaleClusterRequest) returns (SimpleResponse) {}
+}
+
+// CreateClusterRequest is a request to create a Kubernetes cluster
+message CreateClusterRequest {
+  // contract_id is a contract ID.
+  string contract_id = 1;
+  // csp_id is an ID of CSPInfo.
+  string csp_id = 2;
+  // cluster_name is a cluster name defined by users
+  string name = 3;
+  // conf is a cluster configuration
+  ClusterConf conf = 4;
+}
+
+// ScaleClusterRequest is a request to scale the number of nodes on the cluster
+message ScaleClusterRequest {
+  // cluster_id is Global Unique ID
+  string cluster_id = 1;
+  // master_replicas is the number of master node
+  int32 master_replicas = 2;
+  // worker_replicas is the number of worker node
+  int32 worker_replicas = 3;
+}

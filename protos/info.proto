@@ -41,11 +41,15 @@ service InfoService {
 // AppInfoService is a service to manage Application info's document.
 service AppInfoService {
   // GetAppID get an array of app IDs with knowlege
-  rpc GetAppID(GetAppRequest) returns (IDsResponse) {}
-  // GetAllApps get app info in the cluster with the ID
-  rpc GetAllApps(IDRequest) returns (GetAppsResponse) {}
-  // GetApps get app info for the given contdition
-  rpc GetApps(GetAppsRequest) returns (GetAppResponse) {}
+  rpc GetAppIDs(IDRequest) returns (IDsResponse) {}
+  // GetAllAppsByClusterID get apps infos By the clusterID
+  rpc GetAllAppsByClusterID(IDRequest) returns (GetAppsResponse) {}
+  // GetAppsByName get apps infos by app name in the cluster
+  rpc GetAppsByName(GetAppsRequest) returns (GetAppsResponse) {}
+  // GetAppsByType get apps infos by app type in the cluster
+  rpc GetAppsByType(GetAppsRequest) returns (GetAppsResponse) {}
+  // GetApp get app info by app ID
+  rpc GetApp(GetAppRequest) returns (GetAppResponse) {}
   // UpdateAppStatus update Status of the application
   rpc UpdateAppStatus(UpdateAppStatusRequest) returns (SimpleResponse) {}
   // UpdateEndpoints update endpoints by the application
@@ -162,10 +166,10 @@ message ValidateLabelUniquenessResponse {
 message GetAppsRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
-  // app_id is a id of the application, and it's optional
-  string app_id = 2;
-  // app_name is a name of the application, and it's optional
-  string app_name = 3;
+  // app_name is a name of the application
+  string app_name = 2;
+  // app_type is a type of the application
+  AppType type = 3;
 }
 
 // GetAppRequest is used to get an array of application infos on the cluster
@@ -173,7 +177,7 @@ message GetAppRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
   // app_name is a name of the application
-  string app_name = 2;
+  string app_id = 2;
 }
 
 // GetAppResponse contains an array of cluster infos. 

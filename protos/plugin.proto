@@ -1,0 +1,76 @@
+/*
+  Define messages to create new plugin to TKS-Plugin service
+*/
+
+syntax = "proto3";
+package pbgo;
+
+import "common.proto";
+
+option go_package = "github.com/sktelecom/tks-proto/pbgo";
+
+// PluginService is a service to manage cluster's plugin.
+//  (CNI,CSI,Decapod,ArgoCD...)
+service PluginService {
+  rpc StartDeployPlugin(StartDeployPluginRequest) returns (StartDeployPluginResponse) {}
+  rpc StopDeployPlugin(StopDeployPluginRequest) returns (StopDeployPluginResponse) {}
+  rpc GetPlugins(GetPluginsRequest) returns (GetPluginsResponse) {}
+}
+
+// StartDeployPluginRequest is a request to deploy a Kubernetes plugin
+message StartDeployPluginRequest {
+  string cluster_id = 1;
+  string kubeconfig = 2;
+  // plugin is a plugin name defined by users
+  string plugin = 3;
+  // version is a plugin version
+  string version = 4;
+}
+
+// StartDeployPluginResponse is a response to the StartDeployPluginRequest
+//  from the plugin service.
+message StartDeployPluginResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // plugin_id is a global unique ID created by the plugin service.
+  string plugin_id = 3;
+}
+
+// StopDeployPluginRequest is a request to stop deploy a Kubernetes plugin
+message StopDeployPluginRequest {
+  // plugin_id is a global unique ID created by the plugin service.
+  string plugin_id = 1;
+}
+
+// StopDeployPluginResponse is a response to the StopDeployPluginRequest
+//  from the plugin service.
+message StopDeployPluginResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+}
+
+// GetPluginsRequest is a request to get information 
+//  about plugin that is deployed
+message GetPluginsRequest { 
+  string cluster_id = 1;
+}
+
+// GetPluginsResponse is a response to the GetPluginsRequest
+// from the plugin service.
+message GetPluginsResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // plugin_id is a global unique ID created by the plugin service.
+  string plugin_id = 3;
+  string cluster_id = 4;
+  // plugin is a plugin name defined by users
+  string plugin = 5;
+  // version is a plugin version
+  string version = 6;
+}

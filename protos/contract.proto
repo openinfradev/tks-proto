@@ -39,8 +39,8 @@ message CreateContractRequest {
   ContractQuota quota = 3;
   // availavle_services is a list of services constomer purchased.
   repeated string available_services = 4;
-  // tenant_auth is an authentication information for IaaS Provider.
-  string tenant_auth = 5;
+  // csp_auth is an authentication information for IaaS Provider.
+  string csp_auth = 5;
 }
 
 // CreateContractResponse is a response to the CreateContractRequest request 

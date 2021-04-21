@@ -40,19 +40,25 @@ service InfoService {
 
 // AppInfoService is a service to manage Application info's document.
 service AppInfoService {
-  // GetAppID get an array of app IDs with knowlege
+  // AddApp creates new app info.
+  rpc AddApp(AddAppRequest) returns (IDResponse) {}
+  // DeleteApp deletes app info.
+  rpc DeleteApp(DeleteAppRequest) returns (SimpleResponse) {}
+  // GetAppID gets an array of app IDs with knowlege
   rpc GetAppIDs(IDRequest) returns (IDsResponse) {}
-  // GetAllAppsByClusterID get apps infos By the clusterID
+  // GetAllAppsByClusterID gets an array of app infos By the clusterID
   rpc GetAllAppsByClusterID(IDRequest) returns (GetAppsResponse) {}
-  // GetAppsByName get apps infos by app name in the cluster
+  // GetAppsByName gets an array of app infos by app name in the cluster
   rpc GetAppsByName(GetAppsRequest) returns (GetAppsResponse) {}
-  // GetAppsByType get apps infos by app type in the cluster
+  // GetAppsByType gets an array of app infos by app type in the cluster
   rpc GetAppsByType(GetAppsRequest) returns (GetAppsResponse) {}
-  // GetApp get app info by app ID
+  // GetApp gets app info by app ID
   rpc GetApp(GetAppRequest) returns (GetAppResponse) {}
-  // UpdateAppStatus update Status of the application
+  // UpdateApp updates an app info
+  rpc UpdateApp(UpdateAppRequest) returns (SimpleResponse) {}
+  // UpdateAppStatus updates status of the application
   rpc UpdateAppStatus(UpdateAppStatusRequest) returns (SimpleResponse) {}
-  // UpdateEndpoints update endpoints by the application
+  // UpdateEndpoints updates endpoints by the application
   rpc UpdateEndpoints(UpdateEndpointsRequest) returns (SimpleResponse) {}
 }
 
@@ -160,6 +166,30 @@ message ValidateLabelUniquenessResponse {
   Error error = 2;
   // uniqueness is result of checking uniqueness for the label
   bool uniqueness = 3;// uniqueness for requested label
+}
+
+// AddAppRequest is used to add a new app info
+message AddAppRequest {
+  // cluster_id is a cluster ID
+  string cluster_id = 1;
+  // service_app is a service_app info
+  ServiceApp service_app = 2;
+}
+
+// UpdateAppRequest is used to update app info
+message UpdateAppRequest {
+  // cluster_id is a cluster ID
+  string cluster_id = 1;
+  // service_app is a service_app info
+  ServiceApp service_app = 2;
+}
+
+// DeleteAppRequest is used to delete app info
+message DeleteAppRequest {
+  // cluster_id is a cluster ID
+  string cluster_id = 1;
+  // app_id is a app id which will be deleted
+  string app_id = 2;
 }
 
 // GetAppsRequest is used to get an array of application infos on the cluster

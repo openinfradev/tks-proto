@@ -18,8 +18,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PluginServiceClient interface {
+	// StartDeployPlugin deploy a plugin
 	StartDeployPlugin(ctx context.Context, in *StartDeployPluginRequest, opts ...grpc.CallOption) (*StartDeployPluginResponse, error)
-	StopDeployPlugin(ctx context.Context, in *StopDeployPluginRequest, opts ...grpc.CallOption) (*StopDeployPluginResponse, error)
+	// StopDeployPlugin stop to deploy a plugin
+	StopDeployPlugin(ctx context.Context, in *StopDeployPluginRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// GetPlugins returns a deployed plugins list
 	GetPlugins(ctx context.Context, in *GetPluginsRequest, opts ...grpc.CallOption) (*GetPluginsResponse, error)
 }
 
@@ -40,8 +43,8 @@ func (c *pluginServiceClient) StartDeployPlugin(ctx context.Context, in *StartDe
 	return out, nil
 }
 
-func (c *pluginServiceClient) StopDeployPlugin(ctx context.Context, in *StopDeployPluginRequest, opts ...grpc.CallOption) (*StopDeployPluginResponse, error) {
-	out := new(StopDeployPluginResponse)
+func (c *pluginServiceClient) StopDeployPlugin(ctx context.Context, in *StopDeployPluginRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
 	err := c.cc.Invoke(ctx, "/pbgo.PluginService/StopDeployPlugin", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,8 +65,11 @@ func (c *pluginServiceClient) GetPlugins(ctx context.Context, in *GetPluginsRequ
 // All implementations must embed UnimplementedPluginServiceServer
 // for forward compatibility
 type PluginServiceServer interface {
+	// StartDeployPlugin deploy a plugin
 	StartDeployPlugin(context.Context, *StartDeployPluginRequest) (*StartDeployPluginResponse, error)
-	StopDeployPlugin(context.Context, *StopDeployPluginRequest) (*StopDeployPluginResponse, error)
+	// StopDeployPlugin stop to deploy a plugin
+	StopDeployPlugin(context.Context, *StopDeployPluginRequest) (*SimpleResponse, error)
+	// GetPlugins returns a deployed plugins list
 	GetPlugins(context.Context, *GetPluginsRequest) (*GetPluginsResponse, error)
 	mustEmbedUnimplementedPluginServiceServer()
 }
@@ -75,7 +81,7 @@ type UnimplementedPluginServiceServer struct {
 func (UnimplementedPluginServiceServer) StartDeployPlugin(context.Context, *StartDeployPluginRequest) (*StartDeployPluginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartDeployPlugin not implemented")
 }
-func (UnimplementedPluginServiceServer) StopDeployPlugin(context.Context, *StopDeployPluginRequest) (*StopDeployPluginResponse, error) {
+func (UnimplementedPluginServiceServer) StopDeployPlugin(context.Context, *StopDeployPluginRequest) (*SimpleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopDeployPlugin not implemented")
 }
 func (UnimplementedPluginServiceServer) GetPlugins(context.Context, *GetPluginsRequest) (*GetPluginsResponse, error) {

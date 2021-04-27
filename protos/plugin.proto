@@ -12,14 +12,22 @@ option go_package = "github.com/sktelecom/tks-proto/pbgo";
 // PluginService is a service to manage cluster's plugin.
 //  (CNI,CSI,Decapod,ArgoCD...)
 service PluginService {
-  rpc StartDeployPlugin(StartDeployPluginRequest) returns (StartDeployPluginResponse) {}
-  rpc StopDeployPlugin(StopDeployPluginRequest) returns (StopDeployPluginResponse) {}
-  rpc GetPlugins(GetPluginsRequest) returns (GetPluginsResponse) {}
+  // StartDeployPlugin deploy a plugin
+  rpc StartDeployPlugin(StartDeployPluginRequest) 
+    returns (StartDeployPluginResponse) {}
+  // StopDeployPlugin stop to deploy a plugin
+  rpc StopDeployPlugin(StopDeployPluginRequest) 
+    returns (SimpleResponse) {}
+  // GetPlugins returns a deployed plugins list
+  rpc GetPlugins(GetPluginsRequest) 
+    returns (GetPluginsResponse) {}
 }
 
 // StartDeployPluginRequest is a request to deploy a Kubernetes plugin
 message StartDeployPluginRequest {
+  // cluster_id is a unique id for the cluster
   string cluster_id = 1;
+  // kubeconfig is a default kubeconfig for the cluster
   string kubeconfig = 2;
   // plugin is a plugin name defined by users
   string plugin = 3;
@@ -44,18 +52,10 @@ message StopDeployPluginRequest {
   string plugin_id = 1;
 }
 
-// StopDeployPluginResponse is a response to the StopDeployPluginRequest
-//  from the plugin service.
-message StopDeployPluginResponse {
-  // code is a response code.
-  Code code = 1;
-  // error is a detailed error message.
-  Error error = 2;
-}
-
 // GetPluginsRequest is a request to get information 
 //  about plugin that is deployed
-message GetPluginsRequest { 
+message GetPluginsRequest {
+  // cluster_id is a unique id for the cluster
   string cluster_id = 1;
 }
 
@@ -68,6 +68,7 @@ message GetPluginsResponse {
   Error error = 2;
   // plugin_id is a global unique ID created by the plugin service.
   string plugin_id = 3;
+  // cluster_id is a unique id for the cluster
   string cluster_id = 4;
   // plugin is a plugin name defined by users
   string plugin = 5;

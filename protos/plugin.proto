@@ -13,18 +13,15 @@ option go_package = "github.com/sktelecom/tks-proto/pbgo";
 //  (CNI,CSI,Decapod,ArgoCD...)
 service PluginService {
   // StartDeployPlugin deploy a plugin
-  rpc StartDeployPlugin(StartDeployPluginRequest) 
-    returns (StartDeployPluginResponse) {}
-  // StopDeployPlugin stop to deploy a plugin
-  rpc StopDeployPlugin(StopDeployPluginRequest) 
-    returns (SimpleResponse) {}
+  rpc DeployPlugin(DeployPluginRequest) returns (DeployPluginResponse) {}
+  // CancelDeployPlugin cancel to deploy a plugin
+  rpc CancelDeployPlugin(CancelDeployPluginRequest) returns (SimpleResponse) {}
   // GetPlugins returns a deployed plugins list
-  rpc GetPlugins(GetPluginsRequest) 
-    returns (GetPluginsResponse) {}
+  rpc GetPlugins(GetPluginsRequest)  returns (GetPluginsResponse) {}
 }
 
-// StartDeployPluginRequest is a request to deploy a Kubernetes plugin
-message StartDeployPluginRequest {
+// DeployPluginRequest is a request to deploy a Kubernetes plugin
+message DeployPluginRequest {
   // cluster_id is a unique id for the cluster
   string cluster_id = 1;
   // kubeconfig is a default kubeconfig for the cluster
@@ -35,9 +32,9 @@ message StartDeployPluginRequest {
   string version = 4;
 }
 
-// StartDeployPluginResponse is a response to the StartDeployPluginRequest
+// DeployPluginResponse is a response to the DeployPluginRequest
 //  from the plugin service.
-message StartDeployPluginResponse {
+message DeployPluginResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
@@ -46,8 +43,8 @@ message StartDeployPluginResponse {
   string plugin_id = 3;
 }
 
-// StopDeployPluginRequest is a request to stop deploy a Kubernetes plugin
-message StopDeployPluginRequest {
+// CancelDeployPluginRequest is a request to stop deploy a Kubernetes plugin
+message CancelDeployPluginRequest {
   // plugin_id is a global unique ID created by the plugin service.
   string plugin_id = 1;
 }

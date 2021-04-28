@@ -19,9 +19,9 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PluginServiceClient interface {
 	// StartDeployPlugin deploy a plugin
-	StartDeployPlugin(ctx context.Context, in *StartDeployPluginRequest, opts ...grpc.CallOption) (*StartDeployPluginResponse, error)
-	// StopDeployPlugin stop to deploy a plugin
-	StopDeployPlugin(ctx context.Context, in *StopDeployPluginRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	DeployPlugin(ctx context.Context, in *DeployPluginRequest, opts ...grpc.CallOption) (*DeployPluginResponse, error)
+	// CancelDeployPlugin cancel to deploy a plugin
+	CancelDeployPlugin(ctx context.Context, in *CancelDeployPluginRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 	// GetPlugins returns a deployed plugins list
 	GetPlugins(ctx context.Context, in *GetPluginsRequest, opts ...grpc.CallOption) (*GetPluginsResponse, error)
 }
@@ -34,18 +34,18 @@ func NewPluginServiceClient(cc grpc.ClientConnInterface) PluginServiceClient {
 	return &pluginServiceClient{cc}
 }
 
-func (c *pluginServiceClient) StartDeployPlugin(ctx context.Context, in *StartDeployPluginRequest, opts ...grpc.CallOption) (*StartDeployPluginResponse, error) {
-	out := new(StartDeployPluginResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.PluginService/StartDeployPlugin", in, out, opts...)
+func (c *pluginServiceClient) DeployPlugin(ctx context.Context, in *DeployPluginRequest, opts ...grpc.CallOption) (*DeployPluginResponse, error) {
+	out := new(DeployPluginResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.PluginService/DeployPlugin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pluginServiceClient) StopDeployPlugin(ctx context.Context, in *StopDeployPluginRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+func (c *pluginServiceClient) CancelDeployPlugin(ctx context.Context, in *CancelDeployPluginRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.PluginService/StopDeployPlugin", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.PluginService/CancelDeployPlugin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,9 +66,9 @@ func (c *pluginServiceClient) GetPlugins(ctx context.Context, in *GetPluginsRequ
 // for forward compatibility
 type PluginServiceServer interface {
 	// StartDeployPlugin deploy a plugin
-	StartDeployPlugin(context.Context, *StartDeployPluginRequest) (*StartDeployPluginResponse, error)
-	// StopDeployPlugin stop to deploy a plugin
-	StopDeployPlugin(context.Context, *StopDeployPluginRequest) (*SimpleResponse, error)
+	DeployPlugin(context.Context, *DeployPluginRequest) (*DeployPluginResponse, error)
+	// CancelDeployPlugin cancel to deploy a plugin
+	CancelDeployPlugin(context.Context, *CancelDeployPluginRequest) (*SimpleResponse, error)
 	// GetPlugins returns a deployed plugins list
 	GetPlugins(context.Context, *GetPluginsRequest) (*GetPluginsResponse, error)
 	mustEmbedUnimplementedPluginServiceServer()
@@ -78,11 +78,11 @@ type PluginServiceServer interface {
 type UnimplementedPluginServiceServer struct {
 }
 
-func (UnimplementedPluginServiceServer) StartDeployPlugin(context.Context, *StartDeployPluginRequest) (*StartDeployPluginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StartDeployPlugin not implemented")
+func (UnimplementedPluginServiceServer) DeployPlugin(context.Context, *DeployPluginRequest) (*DeployPluginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeployPlugin not implemented")
 }
-func (UnimplementedPluginServiceServer) StopDeployPlugin(context.Context, *StopDeployPluginRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StopDeployPlugin not implemented")
+func (UnimplementedPluginServiceServer) CancelDeployPlugin(context.Context, *CancelDeployPluginRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelDeployPlugin not implemented")
 }
 func (UnimplementedPluginServiceServer) GetPlugins(context.Context, *GetPluginsRequest) (*GetPluginsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlugins not implemented")
@@ -100,38 +100,38 @@ func RegisterPluginServiceServer(s grpc.ServiceRegistrar, srv PluginServiceServe
 	s.RegisterService(&PluginService_ServiceDesc, srv)
 }
 
-func _PluginService_StartDeployPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StartDeployPluginRequest)
+func _PluginService_DeployPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeployPluginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PluginServiceServer).StartDeployPlugin(ctx, in)
+		return srv.(PluginServiceServer).DeployPlugin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.PluginService/StartDeployPlugin",
+		FullMethod: "/pbgo.PluginService/DeployPlugin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginServiceServer).StartDeployPlugin(ctx, req.(*StartDeployPluginRequest))
+		return srv.(PluginServiceServer).DeployPlugin(ctx, req.(*DeployPluginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PluginService_StopDeployPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StopDeployPluginRequest)
+func _PluginService_CancelDeployPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelDeployPluginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PluginServiceServer).StopDeployPlugin(ctx, in)
+		return srv.(PluginServiceServer).CancelDeployPlugin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.PluginService/StopDeployPlugin",
+		FullMethod: "/pbgo.PluginService/CancelDeployPlugin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginServiceServer).StopDeployPlugin(ctx, req.(*StopDeployPluginRequest))
+		return srv.(PluginServiceServer).CancelDeployPlugin(ctx, req.(*CancelDeployPluginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -162,12 +162,12 @@ var PluginService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PluginServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "StartDeployPlugin",
-			Handler:    _PluginService_StartDeployPlugin_Handler,
+			MethodName: "DeployPlugin",
+			Handler:    _PluginService_DeployPlugin_Handler,
 		},
 		{
-			MethodName: "StopDeployPlugin",
-			Handler:    _PluginService_StopDeployPlugin_Handler,
+			MethodName: "CancelDeployPlugin",
+			Handler:    _PluginService_CancelDeployPlugin_Handler,
 		},
 		{
 			MethodName: "GetPlugins",

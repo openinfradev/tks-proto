@@ -59,6 +59,18 @@ message GetPluginsRequest {
   string cluster_id = 1;
 }
 
+// Plugin is a plugin information
+message Plugin {
+  // cluster_id is a unique id for the cluster
+  string cluster_id = 1;
+  // plugin_id is a global unique ID created by the plugin service.
+  string plugin_id = 2;
+  // plugin is a plugin name defined by users
+  string plugin = 3;
+  // version is a plugin version
+  string version = 4;
+}
+
 // GetPluginsResponse is a response to the GetPluginsRequest
 // from the plugin service.
 message GetPluginsResponse {
@@ -66,12 +78,6 @@ message GetPluginsResponse {
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // plugin_id is a global unique ID created by the plugin service.
-  string plugin_id = 3;
-  // cluster_id is a unique id for the cluster
-  string cluster_id = 4;
-  // plugin is a plugin name defined by users
-  string plugin = 5;
-  // version is a plugin version
-  string version = 6;
+  // plugins is a list of plugins.
+  repeated Plugin plugins = 3;
 }

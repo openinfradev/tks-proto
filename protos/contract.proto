@@ -24,8 +24,8 @@ service ContractService {
   rpc GetContracts(GetContractsRequest) returns (GetContractsResponse) {}
   // GetQuota returns a quota for the contract.
   rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse) {}
-  // GetServices returns list of available services for the contract.
-  rpc GetServices(GetServicesRequest) returns (GetServicesResponse) {}
+  // GetAvailableServices returns list of available services for the contract.
+  rpc GetAvailableServices(GetAvailableServicesRequest) returns (GetAvailableServicesResponse) {}
 }
 
 // CreateContractRequest is a request to create new contract 
@@ -191,16 +191,16 @@ message GetQuotaResponse {
   ContractQuota quota = 3;
 }
 
-// GetServicesRequest is a request to get available service list 
+// GetAvailableServicesRequest is a request to get available service list 
 //  for the specific contract.
-message GetServicesRequest {
-  // mc_ops_id is a global unique ID created by the contract service.
-  string mc_ops_id = 1;
+message GetAvailableServicesRequest {
+  // contract_id is a global unique ID created by the contract service.
+  string contract_id = 1;
 }
 
-// GetServicesResponse is a response to the GetServiceRequest 
+// GetAvailableServicesResponse is a response to the GetAvailableServicesRequest 
 //  from the contract service.
-message GetServicesResponse {
+message GetAvailableServicesResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.

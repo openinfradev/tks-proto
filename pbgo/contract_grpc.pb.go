@@ -30,8 +30,8 @@ type ContractServiceClient interface {
 	GetContracts(ctx context.Context, in *GetContractsRequest, opts ...grpc.CallOption) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
 	GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error)
-	// GetServices returns list of available services for the contract.
-	GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error)
+	// GetAvailableServices returns list of available services for the contract.
+	GetAvailableServices(ctx context.Context, in *GetAvailableServicesRequest, opts ...grpc.CallOption) (*GetAvailableServicesResponse, error)
 }
 
 type contractServiceClient struct {
@@ -96,9 +96,9 @@ func (c *contractServiceClient) GetQuota(ctx context.Context, in *GetQuotaReques
 	return out, nil
 }
 
-func (c *contractServiceClient) GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error) {
-	out := new(GetServicesResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.ContractService/GetServices", in, out, opts...)
+func (c *contractServiceClient) GetAvailableServices(ctx context.Context, in *GetAvailableServicesRequest, opts ...grpc.CallOption) (*GetAvailableServicesResponse, error) {
+	out := new(GetAvailableServicesResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.ContractService/GetAvailableServices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -121,8 +121,8 @@ type ContractServiceServer interface {
 	GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
 	GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error)
-	// GetServices returns list of available services for the contract.
-	GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error)
+	// GetAvailableServices returns list of available services for the contract.
+	GetAvailableServices(context.Context, *GetAvailableServicesRequest) (*GetAvailableServicesResponse, error)
 	mustEmbedUnimplementedContractServiceServer()
 }
 
@@ -148,8 +148,8 @@ func (UnimplementedContractServiceServer) GetContracts(context.Context, *GetCont
 func (UnimplementedContractServiceServer) GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetQuota not implemented")
 }
-func (UnimplementedContractServiceServer) GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
+func (UnimplementedContractServiceServer) GetAvailableServices(context.Context, *GetAvailableServicesRequest) (*GetAvailableServicesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAvailableServices not implemented")
 }
 func (UnimplementedContractServiceServer) mustEmbedUnimplementedContractServiceServer() {}
 
@@ -272,20 +272,20 @@ func _ContractService_GetQuota_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ContractService_GetServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetServicesRequest)
+func _ContractService_GetAvailableServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAvailableServicesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContractServiceServer).GetServices(ctx, in)
+		return srv.(ContractServiceServer).GetAvailableServices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.ContractService/GetServices",
+		FullMethod: "/pbgo.ContractService/GetAvailableServices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContractServiceServer).GetServices(ctx, req.(*GetServicesRequest))
+		return srv.(ContractServiceServer).GetAvailableServices(ctx, req.(*GetAvailableServicesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -322,8 +322,8 @@ var ContractService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ContractService_GetQuota_Handler,
 		},
 		{
-			MethodName: "GetServices",
-			Handler:    _ContractService_GetServices_Handler,
+			MethodName: "GetAvailableServices",
+			Handler:    _ContractService_GetAvailableServices_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

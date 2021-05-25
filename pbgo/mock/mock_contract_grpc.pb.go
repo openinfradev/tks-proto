@@ -56,6 +56,26 @@ func (mr *MockContractServiceClientMockRecorder) CreateContract(ctx, in interfac
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateContract", reflect.TypeOf((*MockContractServiceClient)(nil).CreateContract), varargs...)
 }
 
+// GetAvailableServices mocks base method.
+func (m *MockContractServiceClient) GetAvailableServices(ctx context.Context, in *pbgo.GetAvailableServicesRequest, opts ...grpc.CallOption) (*pbgo.GetAvailableServicesResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetAvailableServices", varargs...)
+	ret0, _ := ret[0].(*pbgo.GetAvailableServicesResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAvailableServices indicates an expected call of GetAvailableServices.
+func (mr *MockContractServiceClientMockRecorder) GetAvailableServices(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAvailableServices", reflect.TypeOf((*MockContractServiceClient)(nil).GetAvailableServices), varargs...)
+}
+
 // GetContract mocks base method.
 func (m *MockContractServiceClient) GetContract(ctx context.Context, in *pbgo.GetContractRequest, opts ...grpc.CallOption) (*pbgo.GetContractResponse, error) {
 	m.ctrl.T.Helper()
@@ -114,26 +134,6 @@ func (mr *MockContractServiceClientMockRecorder) GetQuota(ctx, in interface{}, o
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQuota", reflect.TypeOf((*MockContractServiceClient)(nil).GetQuota), varargs...)
-}
-
-// GetServices mocks base method.
-func (m *MockContractServiceClient) GetServices(ctx context.Context, in *pbgo.GetServicesRequest, opts ...grpc.CallOption) (*pbgo.GetServicesResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetServices", varargs...)
-	ret0, _ := ret[0].(*pbgo.GetServicesResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetServices indicates an expected call of GetServices.
-func (mr *MockContractServiceClientMockRecorder) GetServices(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetServices", reflect.TypeOf((*MockContractServiceClient)(nil).GetServices), varargs...)
 }
 
 // UpdateQuota mocks base method.
@@ -214,6 +214,21 @@ func (mr *MockContractServiceServerMockRecorder) CreateContract(arg0, arg1 inter
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateContract", reflect.TypeOf((*MockContractServiceServer)(nil).CreateContract), arg0, arg1)
 }
 
+// GetAvailableServices mocks base method.
+func (m *MockContractServiceServer) GetAvailableServices(arg0 context.Context, arg1 *pbgo.GetAvailableServicesRequest) (*pbgo.GetAvailableServicesResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAvailableServices", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.GetAvailableServicesResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAvailableServices indicates an expected call of GetAvailableServices.
+func (mr *MockContractServiceServerMockRecorder) GetAvailableServices(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAvailableServices", reflect.TypeOf((*MockContractServiceServer)(nil).GetAvailableServices), arg0, arg1)
+}
+
 // GetContract mocks base method.
 func (m *MockContractServiceServer) GetContract(arg0 context.Context, arg1 *pbgo.GetContractRequest) (*pbgo.GetContractResponse, error) {
 	m.ctrl.T.Helper()
@@ -257,21 +272,6 @@ func (m *MockContractServiceServer) GetQuota(arg0 context.Context, arg1 *pbgo.Ge
 func (mr *MockContractServiceServerMockRecorder) GetQuota(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQuota", reflect.TypeOf((*MockContractServiceServer)(nil).GetQuota), arg0, arg1)
-}
-
-// GetServices mocks base method.
-func (m *MockContractServiceServer) GetServices(arg0 context.Context, arg1 *pbgo.GetServicesRequest) (*pbgo.GetServicesResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetServices", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.GetServicesResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetServices indicates an expected call of GetServices.
-func (mr *MockContractServiceServerMockRecorder) GetServices(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetServices", reflect.TypeOf((*MockContractServiceServer)(nil).GetServices), arg0, arg1)
 }
 
 // UpdateQuota mocks base method.

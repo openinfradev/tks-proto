@@ -101,9 +101,9 @@ message ServiceApp {
   repeated Endpoint endpoints = 6;
   // external_lable is the label used for globally unique identification
   string external_label = 7;
-  // created_ts is  a creatioin timestamp for the application
+  // created_at is  a creatioin timestamp for the application
   google.protobuf.Timestamp created_at = 8;
-  // last_updated_ts is a timestamp for the trigger of status change
+  // updated_at is a timestamp for the trigger of status change
   google.protobuf.Timestamp updated_at  = 9;
 }
 
@@ -113,10 +113,10 @@ message Cluster {
   string id = 1;
   // name is a cluster name for users
   string name = 2;
-  // created_ts is a creatioin timestamp for the cluster
-  google.protobuf.Timestamp created_ts = 3;
-  // last_updated_ts is a timestamp for the trigger of status change
-  google.protobuf.Timestamp last_updated_ts  = 4;
+  // created_at is a creatioin timestamp for the cluster
+  google.protobuf.Timestamp created_at = 3;
+  // updated_at is a timestamp for the trigger of status change
+  google.protobuf.Timestamp updated_at  = 4;
   // status is a status of the cluste eg) Installing/Running/Error
   ClusterStatus status = 5;
   // contract_id is a contract ID.

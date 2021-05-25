@@ -39,8 +39,6 @@ type InfoServiceClient interface {
 	GetClusters(ctx context.Context, in *GetClustersRequest, opts ...grpc.CallOption) (*GetClustersResponse, error)
 	// UpdateClusterStatus update Status of the Cluster
 	UpdateClusterStatus(ctx context.Context, in *UpdateClusterStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// ValidateLabelUniqueness check uniqueness of the label
-	ValidateLabelUniqueness(ctx context.Context, in *ValidateLabelUniquenessRequest, opts ...grpc.CallOption) (*ValidateLabelUniquenessResponse, error)
 }
 
 type infoServiceClient struct {
@@ -141,15 +139,6 @@ func (c *infoServiceClient) UpdateClusterStatus(ctx context.Context, in *UpdateC
 	return out, nil
 }
 
-func (c *infoServiceClient) ValidateLabelUniqueness(ctx context.Context, in *ValidateLabelUniquenessRequest, opts ...grpc.CallOption) (*ValidateLabelUniquenessResponse, error) {
-	out := new(ValidateLabelUniquenessResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/ValidateLabelUniqueness", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // InfoServiceServer is the server API for InfoService service.
 // All implementations must embed UnimplementedInfoServiceServer
 // for forward compatibility
@@ -174,8 +163,6 @@ type InfoServiceServer interface {
 	GetClusters(context.Context, *GetClustersRequest) (*GetClustersResponse, error)
 	// UpdateClusterStatus update Status of the Cluster
 	UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error)
-	// ValidateLabelUniqueness check uniqueness of the label
-	ValidateLabelUniqueness(context.Context, *ValidateLabelUniquenessRequest) (*ValidateLabelUniquenessResponse, error)
 	mustEmbedUnimplementedInfoServiceServer()
 }
 
@@ -212,9 +199,6 @@ func (UnimplementedInfoServiceServer) GetClusters(context.Context, *GetClustersR
 }
 func (UnimplementedInfoServiceServer) UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateClusterStatus not implemented")
-}
-func (UnimplementedInfoServiceServer) ValidateLabelUniqueness(context.Context, *ValidateLabelUniquenessRequest) (*ValidateLabelUniquenessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ValidateLabelUniqueness not implemented")
 }
 func (UnimplementedInfoServiceServer) mustEmbedUnimplementedInfoServiceServer() {}
 
@@ -409,24 +393,6 @@ func _InfoService_UpdateClusterStatus_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_ValidateLabelUniqueness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidateLabelUniquenessRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).ValidateLabelUniqueness(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/ValidateLabelUniqueness",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).ValidateLabelUniqueness(ctx, req.(*ValidateLabelUniquenessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // InfoService_ServiceDesc is the grpc.ServiceDesc for InfoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -473,10 +439,6 @@ var InfoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateClusterStatus",
 			Handler:    _InfoService_UpdateClusterStatus_Handler,
-		},
-		{
-			MethodName: "ValidateLabelUniqueness",
-			Handler:    _InfoService_ValidateLabelUniqueness_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

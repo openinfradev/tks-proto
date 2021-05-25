@@ -33,9 +33,6 @@ service InfoService {
   // UpdateClusterStatus update Status of the Cluster
   rpc UpdateClusterStatus(UpdateClusterStatusRequest) 
     returns (SimpleResponse) {}
-  // ValidateLabelUniqueness check uniqueness of the label
-  rpc ValidateLabelUniqueness(ValidateLabelUniquenessRequest)
-    returns (ValidateLabelUniquenessResponse) {}
 }
 
 // AppInfoService is a service to manage Application info's document.
@@ -150,22 +147,6 @@ message UpdateClusterStatusRequest {
   string cluster_id = 1;
   // status is the clusterstatus to be changed
   ClusterStatus status = 2;
-}
-
-// ValidateLabelUniquenessRequest is used to check the uniqueness of the label
-message ValidateLabelUniquenessRequest {
-  // label is a label to check uniqueness
-  string label = 1;
-}
-
-// ValidateLabelUniquenessResponse contains the resule of the uniqueness check
-message ValidateLabelUniquenessResponse {
-  // code is a response code.
-  Code code = 1;
-  // error is a detailed error message.
-  Error error = 2;
-  // uniqueness is result of checking uniqueness for the label
-  bool uniqueness = 3;// uniqueness for requested label
 }
 
 // AddAppRequest is used to add a new app info

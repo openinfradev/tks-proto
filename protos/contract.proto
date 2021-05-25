@@ -152,8 +152,10 @@ message Contract {
   repeated string available_services = 4;
   // csp_id is a global unique ID created by the info service.
   string csp_id = 5;
-  // last_updated_ts is a timestamp last updated.
-  google.protobuf.Timestamp last_updated_ts = 6;
+  // updated_at is a timestamp last updated.
+  google.protobuf.Timestamp updated_at = 6;
+  // created_at is a timestamp created.
+  google.protobuf.Timestamp created_at = 7;
 }
 
 // GetContractsRequest is a request to inquire all contracts 

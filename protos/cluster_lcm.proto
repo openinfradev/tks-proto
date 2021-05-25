@@ -45,12 +45,10 @@ message ScaleClusterRequest {
 
 // InstallAppsRequest is a request to install applications on the Cluster
 message InstallAppsRequest {
-  // cluster_id is Global Unique ID
-  string cluster_id = 1;
-  // service_apps is a array of App names to install
-  repeated string service_apps = 2;
+  // apps are applications to install into target cluster.
+  repeated ServiceApp apps = 1; 
 }
- 
+
 // UninstallAppsRequest is a request to delete applications on the Cluster
 message UninstallAppsRequest {
   // cluster_id is Global Unique ID

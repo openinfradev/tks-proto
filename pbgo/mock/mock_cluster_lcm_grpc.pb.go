@@ -56,24 +56,24 @@ func (mr *MockClusterLcmServiceClientMockRecorder) CreateCluster(ctx, in interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCluster", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).CreateCluster), varargs...)
 }
 
-// InstallApps mocks base method.
-func (m *MockClusterLcmServiceClient) InstallApps(ctx context.Context, in *pbgo.InstallAppsRequest, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
+// InstallAppGroups mocks base method.
+func (m *MockClusterLcmServiceClient) InstallAppGroups(ctx context.Context, in *pbgo.InstallAppGroupsRequest, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "InstallApps", varargs...)
+	ret := m.ctrl.Call(m, "InstallAppGroups", varargs...)
 	ret0, _ := ret[0].(*pbgo.IDsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// InstallApps indicates an expected call of InstallApps.
-func (mr *MockClusterLcmServiceClientMockRecorder) InstallApps(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// InstallAppGroups indicates an expected call of InstallAppGroups.
+func (mr *MockClusterLcmServiceClientMockRecorder) InstallAppGroups(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InstallApps", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).InstallApps), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InstallAppGroups", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).InstallAppGroups), varargs...)
 }
 
 // ScaleCluster mocks base method.
@@ -96,24 +96,24 @@ func (mr *MockClusterLcmServiceClientMockRecorder) ScaleCluster(ctx, in interfac
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ScaleCluster", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).ScaleCluster), varargs...)
 }
 
-// UninstallApps mocks base method.
-func (m *MockClusterLcmServiceClient) UninstallApps(ctx context.Context, in *pbgo.UninstallAppsRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+// UninstallAppGroups mocks base method.
+func (m *MockClusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *pbgo.UninstallAppGroupsRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "UninstallApps", varargs...)
+	ret := m.ctrl.Call(m, "UninstallAppGroups", varargs...)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// UninstallApps indicates an expected call of UninstallApps.
-func (mr *MockClusterLcmServiceClientMockRecorder) UninstallApps(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// UninstallAppGroups indicates an expected call of UninstallAppGroups.
+func (mr *MockClusterLcmServiceClientMockRecorder) UninstallAppGroups(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UninstallApps", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).UninstallApps), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UninstallAppGroups", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).UninstallAppGroups), varargs...)
 }
 
 // MockClusterLcmServiceServer is a mock of ClusterLcmServiceServer interface.
@@ -154,19 +154,19 @@ func (mr *MockClusterLcmServiceServerMockRecorder) CreateCluster(arg0, arg1 inte
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCluster", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).CreateCluster), arg0, arg1)
 }
 
-// InstallApps mocks base method.
-func (m *MockClusterLcmServiceServer) InstallApps(arg0 context.Context, arg1 *pbgo.InstallAppsRequest) (*pbgo.IDsResponse, error) {
+// InstallAppGroups mocks base method.
+func (m *MockClusterLcmServiceServer) InstallAppGroups(arg0 context.Context, arg1 *pbgo.InstallAppGroupsRequest) (*pbgo.IDsResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "InstallApps", arg0, arg1)
+	ret := m.ctrl.Call(m, "InstallAppGroups", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.IDsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// InstallApps indicates an expected call of InstallApps.
-func (mr *MockClusterLcmServiceServerMockRecorder) InstallApps(arg0, arg1 interface{}) *gomock.Call {
+// InstallAppGroups indicates an expected call of InstallAppGroups.
+func (mr *MockClusterLcmServiceServerMockRecorder) InstallAppGroups(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InstallApps", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).InstallApps), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InstallAppGroups", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).InstallAppGroups), arg0, arg1)
 }
 
 // ScaleCluster mocks base method.
@@ -184,19 +184,19 @@ func (mr *MockClusterLcmServiceServerMockRecorder) ScaleCluster(arg0, arg1 inter
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ScaleCluster", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).ScaleCluster), arg0, arg1)
 }
 
-// UninstallApps mocks base method.
-func (m *MockClusterLcmServiceServer) UninstallApps(arg0 context.Context, arg1 *pbgo.UninstallAppsRequest) (*pbgo.SimpleResponse, error) {
+// UninstallAppGroups mocks base method.
+func (m *MockClusterLcmServiceServer) UninstallAppGroups(arg0 context.Context, arg1 *pbgo.UninstallAppGroupsRequest) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UninstallApps", arg0, arg1)
+	ret := m.ctrl.Call(m, "UninstallAppGroups", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// UninstallApps indicates an expected call of UninstallApps.
-func (mr *MockClusterLcmServiceServerMockRecorder) UninstallApps(arg0, arg1 interface{}) *gomock.Call {
+// UninstallAppGroups indicates an expected call of UninstallAppGroups.
+func (mr *MockClusterLcmServiceServerMockRecorder) UninstallAppGroups(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UninstallApps", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).UninstallApps), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UninstallAppGroups", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).UninstallAppGroups), arg0, arg1)
 }
 
 // mustEmbedUnimplementedClusterLcmServiceServer mocks base method.

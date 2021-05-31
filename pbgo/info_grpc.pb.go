@@ -449,26 +449,24 @@ var InfoService_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppInfoServiceClient interface {
-	// AddApp creates new app info.
-	AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// DeleteApp deletes app info.
-	DeleteApp(ctx context.Context, in *DeleteAppRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// GetAppID gets an array of app IDs with knowlege
-	GetAppIDs(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error)
-	// GetAllAppsByClusterID gets an array of app infos By the clusterID
-	GetAllAppsByClusterID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
-	// GetAppsByName gets an array of app infos by app name in the cluster
-	GetAppsByName(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
-	// GetAppsByType gets an array of app infos by app type in the cluster
-	GetAppsByType(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
-	// GetApp gets app info by app ID
-	GetApp(ctx context.Context, in *GetAppRequest, opts ...grpc.CallOption) (*GetAppResponse, error)
-	// UpdateApp updates an app info
+	// CreateAppGroup creates a new application group.
+	CreateAppGroup(ctx context.Context, in *CreateAppGroupRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetAppGroupsByClusterID gets an array of app infos By the clusterID
+	GetAppGroupsByClusterID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppGroupsResponse, error)
+	// GetAppGroups gets an array of app infos by app name or app type in the cluster
+	GetAppGroups(ctx context.Context, in *GetAppGroupsRequest, opts ...grpc.CallOption) (*GetAppGroupsResponse, error)
+	// GetAppGroup gets an application group by application group ID
+	GetAppGroup(ctx context.Context, in *GetAppGroupRequest, opts ...grpc.CallOption) (*GetAppGroupResponse, error)
+	// UpdateAppGroupStatus updates a status of an application group
+	UpdateAppGroupStatus(ctx context.Context, in *UpdateAppGroupStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// DeleteAppGroup deletes an app group.
+	DeleteAppGroup(ctx context.Context, in *DeleteAppGroupRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// GetAppsByClusterID gets applications by application group id.
+	GetAppsByAppGroupID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
+	// GetApps gets applications by application type and application id.
+	GetApps(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppsResponse, error)
+	// UpdateApp updates application data.
 	UpdateApp(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// UpdateAppStatus updates status of the application
-	UpdateAppStatus(ctx context.Context, in *UpdateAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// UpdateEndpoints updates endpoints by the application
-	UpdateEndpoints(ctx context.Context, in *UpdateEndpointsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
 type appInfoServiceClient struct {
@@ -479,63 +477,72 @@ func NewAppInfoServiceClient(cc grpc.ClientConnInterface) AppInfoServiceClient {
 	return &appInfoServiceClient{cc}
 }
 
-func (c *appInfoServiceClient) AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+func (c *appInfoServiceClient) CreateAppGroup(ctx context.Context, in *CreateAppGroupRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/AddApp", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/CreateAppGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appInfoServiceClient) DeleteApp(ctx context.Context, in *DeleteAppRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+func (c *appInfoServiceClient) GetAppGroupsByClusterID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppGroupsResponse, error) {
+	out := new(GetAppGroupsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppGroupsByClusterID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) GetAppGroups(ctx context.Context, in *GetAppGroupsRequest, opts ...grpc.CallOption) (*GetAppGroupsResponse, error) {
+	out := new(GetAppGroupsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppGroups", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) GetAppGroup(ctx context.Context, in *GetAppGroupRequest, opts ...grpc.CallOption) (*GetAppGroupResponse, error) {
+	out := new(GetAppGroupResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appInfoServiceClient) UpdateAppGroupStatus(ctx context.Context, in *UpdateAppGroupStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/DeleteApp", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/UpdateAppGroupStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appInfoServiceClient) GetAppIDs(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
-	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppIDs", in, out, opts...)
+func (c *appInfoServiceClient) DeleteAppGroup(ctx context.Context, in *DeleteAppGroupRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/DeleteAppGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appInfoServiceClient) GetAllAppsByClusterID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
+func (c *appInfoServiceClient) GetAppsByAppGroupID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
 	out := new(GetAppsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAllAppsByClusterID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppsByAppGroupID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *appInfoServiceClient) GetAppsByName(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
+func (c *appInfoServiceClient) GetApps(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
 	out := new(GetAppsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppsByName", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appInfoServiceClient) GetAppsByType(ctx context.Context, in *GetAppsRequest, opts ...grpc.CallOption) (*GetAppsResponse, error) {
-	out := new(GetAppsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetAppsByType", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appInfoServiceClient) GetApp(ctx context.Context, in *GetAppRequest, opts ...grpc.CallOption) (*GetAppResponse, error) {
-	out := new(GetAppResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetApp", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/GetApps", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -551,48 +558,28 @@ func (c *appInfoServiceClient) UpdateApp(ctx context.Context, in *UpdateAppReque
 	return out, nil
 }
 
-func (c *appInfoServiceClient) UpdateAppStatus(ctx context.Context, in *UpdateAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/UpdateAppStatus", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appInfoServiceClient) UpdateEndpoints(ctx context.Context, in *UpdateEndpointsRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.AppInfoService/UpdateEndpoints", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AppInfoServiceServer is the server API for AppInfoService service.
 // All implementations must embed UnimplementedAppInfoServiceServer
 // for forward compatibility
 type AppInfoServiceServer interface {
-	// AddApp creates new app info.
-	AddApp(context.Context, *AddAppRequest) (*IDResponse, error)
-	// DeleteApp deletes app info.
-	DeleteApp(context.Context, *DeleteAppRequest) (*SimpleResponse, error)
-	// GetAppID gets an array of app IDs with knowlege
-	GetAppIDs(context.Context, *IDRequest) (*IDsResponse, error)
-	// GetAllAppsByClusterID gets an array of app infos By the clusterID
-	GetAllAppsByClusterID(context.Context, *IDRequest) (*GetAppsResponse, error)
-	// GetAppsByName gets an array of app infos by app name in the cluster
-	GetAppsByName(context.Context, *GetAppsRequest) (*GetAppsResponse, error)
-	// GetAppsByType gets an array of app infos by app type in the cluster
-	GetAppsByType(context.Context, *GetAppsRequest) (*GetAppsResponse, error)
-	// GetApp gets app info by app ID
-	GetApp(context.Context, *GetAppRequest) (*GetAppResponse, error)
-	// UpdateApp updates an app info
+	// CreateAppGroup creates a new application group.
+	CreateAppGroup(context.Context, *CreateAppGroupRequest) (*IDResponse, error)
+	// GetAppGroupsByClusterID gets an array of app infos By the clusterID
+	GetAppGroupsByClusterID(context.Context, *IDRequest) (*GetAppGroupsResponse, error)
+	// GetAppGroups gets an array of app infos by app name or app type in the cluster
+	GetAppGroups(context.Context, *GetAppGroupsRequest) (*GetAppGroupsResponse, error)
+	// GetAppGroup gets an application group by application group ID
+	GetAppGroup(context.Context, *GetAppGroupRequest) (*GetAppGroupResponse, error)
+	// UpdateAppGroupStatus updates a status of an application group
+	UpdateAppGroupStatus(context.Context, *UpdateAppGroupStatusRequest) (*SimpleResponse, error)
+	// DeleteAppGroup deletes an app group.
+	DeleteAppGroup(context.Context, *DeleteAppGroupRequest) (*SimpleResponse, error)
+	// GetAppsByClusterID gets applications by application group id.
+	GetAppsByAppGroupID(context.Context, *IDRequest) (*GetAppsResponse, error)
+	// GetApps gets applications by application type and application id.
+	GetApps(context.Context, *GetAppsRequest) (*GetAppsResponse, error)
+	// UpdateApp updates application data.
 	UpdateApp(context.Context, *UpdateAppRequest) (*SimpleResponse, error)
-	// UpdateAppStatus updates status of the application
-	UpdateAppStatus(context.Context, *UpdateAppStatusRequest) (*SimpleResponse, error)
-	// UpdateEndpoints updates endpoints by the application
-	UpdateEndpoints(context.Context, *UpdateEndpointsRequest) (*SimpleResponse, error)
 	mustEmbedUnimplementedAppInfoServiceServer()
 }
 
@@ -600,35 +587,32 @@ type AppInfoServiceServer interface {
 type UnimplementedAppInfoServiceServer struct {
 }
 
-func (UnimplementedAppInfoServiceServer) AddApp(context.Context, *AddAppRequest) (*IDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddApp not implemented")
+func (UnimplementedAppInfoServiceServer) CreateAppGroup(context.Context, *CreateAppGroupRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAppGroup not implemented")
 }
-func (UnimplementedAppInfoServiceServer) DeleteApp(context.Context, *DeleteAppRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteApp not implemented")
+func (UnimplementedAppInfoServiceServer) GetAppGroupsByClusterID(context.Context, *IDRequest) (*GetAppGroupsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppGroupsByClusterID not implemented")
 }
-func (UnimplementedAppInfoServiceServer) GetAppIDs(context.Context, *IDRequest) (*IDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppIDs not implemented")
+func (UnimplementedAppInfoServiceServer) GetAppGroups(context.Context, *GetAppGroupsRequest) (*GetAppGroupsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppGroups not implemented")
 }
-func (UnimplementedAppInfoServiceServer) GetAllAppsByClusterID(context.Context, *IDRequest) (*GetAppsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllAppsByClusterID not implemented")
+func (UnimplementedAppInfoServiceServer) GetAppGroup(context.Context, *GetAppGroupRequest) (*GetAppGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppGroup not implemented")
 }
-func (UnimplementedAppInfoServiceServer) GetAppsByName(context.Context, *GetAppsRequest) (*GetAppsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppsByName not implemented")
+func (UnimplementedAppInfoServiceServer) UpdateAppGroupStatus(context.Context, *UpdateAppGroupStatusRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAppGroupStatus not implemented")
 }
-func (UnimplementedAppInfoServiceServer) GetAppsByType(context.Context, *GetAppsRequest) (*GetAppsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppsByType not implemented")
+func (UnimplementedAppInfoServiceServer) DeleteAppGroup(context.Context, *DeleteAppGroupRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAppGroup not implemented")
 }
-func (UnimplementedAppInfoServiceServer) GetApp(context.Context, *GetAppRequest) (*GetAppResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetApp not implemented")
+func (UnimplementedAppInfoServiceServer) GetAppsByAppGroupID(context.Context, *IDRequest) (*GetAppsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppsByAppGroupID not implemented")
+}
+func (UnimplementedAppInfoServiceServer) GetApps(context.Context, *GetAppsRequest) (*GetAppsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetApps not implemented")
 }
 func (UnimplementedAppInfoServiceServer) UpdateApp(context.Context, *UpdateAppRequest) (*SimpleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateApp not implemented")
-}
-func (UnimplementedAppInfoServiceServer) UpdateAppStatus(context.Context, *UpdateAppStatusRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAppStatus not implemented")
-}
-func (UnimplementedAppInfoServiceServer) UpdateEndpoints(context.Context, *UpdateEndpointsRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateEndpoints not implemented")
 }
 func (UnimplementedAppInfoServiceServer) mustEmbedUnimplementedAppInfoServiceServer() {}
 
@@ -643,128 +627,146 @@ func RegisterAppInfoServiceServer(s grpc.ServiceRegistrar, srv AppInfoServiceSer
 	s.RegisterService(&AppInfoService_ServiceDesc, srv)
 }
 
-func _AppInfoService_AddApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddAppRequest)
+func _AppInfoService_CreateAppGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAppGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppInfoServiceServer).AddApp(ctx, in)
+		return srv.(AppInfoServiceServer).CreateAppGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/AddApp",
+		FullMethod: "/pbgo.AppInfoService/CreateAppGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).AddApp(ctx, req.(*AddAppRequest))
+		return srv.(AppInfoServiceServer).CreateAppGroup(ctx, req.(*CreateAppGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppInfoService_DeleteApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteAppRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppInfoServiceServer).DeleteApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/DeleteApp",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).DeleteApp(ctx, req.(*DeleteAppRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppInfoService_GetAppIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AppInfoService_GetAppGroupsByClusterID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppInfoServiceServer).GetAppIDs(ctx, in)
+		return srv.(AppInfoServiceServer).GetAppGroupsByClusterID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/GetAppIDs",
+		FullMethod: "/pbgo.AppInfoService/GetAppGroupsByClusterID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).GetAppIDs(ctx, req.(*IDRequest))
+		return srv.(AppInfoServiceServer).GetAppGroupsByClusterID(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppInfoService_GetAllAppsByClusterID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AppInfoService_GetAppGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppGroupsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).GetAppGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/GetAppGroups",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).GetAppGroups(ctx, req.(*GetAppGroupsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_GetAppGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).GetAppGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/GetAppGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).GetAppGroup(ctx, req.(*GetAppGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_UpdateAppGroupStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAppGroupStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).UpdateAppGroupStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/UpdateAppGroupStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).UpdateAppGroupStatus(ctx, req.(*UpdateAppGroupStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_DeleteAppGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAppGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppInfoServiceServer).DeleteAppGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.AppInfoService/DeleteAppGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppInfoServiceServer).DeleteAppGroup(ctx, req.(*DeleteAppGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppInfoService_GetAppsByAppGroupID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppInfoServiceServer).GetAllAppsByClusterID(ctx, in)
+		return srv.(AppInfoServiceServer).GetAppsByAppGroupID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/GetAllAppsByClusterID",
+		FullMethod: "/pbgo.AppInfoService/GetAppsByAppGroupID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).GetAllAppsByClusterID(ctx, req.(*IDRequest))
+		return srv.(AppInfoServiceServer).GetAppsByAppGroupID(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppInfoService_GetAppsByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AppInfoService_GetApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetAppsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppInfoServiceServer).GetAppsByName(ctx, in)
+		return srv.(AppInfoServiceServer).GetApps(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/GetAppsByName",
+		FullMethod: "/pbgo.AppInfoService/GetApps",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).GetAppsByName(ctx, req.(*GetAppsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppInfoService_GetAppsByType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAppsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppInfoServiceServer).GetAppsByType(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/GetAppsByType",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).GetAppsByType(ctx, req.(*GetAppsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppInfoService_GetApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAppRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppInfoServiceServer).GetApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/GetApp",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).GetApp(ctx, req.(*GetAppRequest))
+		return srv.(AppInfoServiceServer).GetApps(ctx, req.(*GetAppsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -787,42 +789,6 @@ func _AppInfoService_UpdateApp_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AppInfoService_UpdateAppStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAppStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppInfoServiceServer).UpdateAppStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/UpdateAppStatus",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).UpdateAppStatus(ctx, req.(*UpdateAppStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppInfoService_UpdateEndpoints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateEndpointsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppInfoServiceServer).UpdateEndpoints(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.AppInfoService/UpdateEndpoints",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppInfoServiceServer).UpdateEndpoints(ctx, req.(*UpdateEndpointsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AppInfoService_ServiceDesc is the grpc.ServiceDesc for AppInfoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -831,44 +797,40 @@ var AppInfoService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AppInfoServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddApp",
-			Handler:    _AppInfoService_AddApp_Handler,
+			MethodName: "CreateAppGroup",
+			Handler:    _AppInfoService_CreateAppGroup_Handler,
 		},
 		{
-			MethodName: "DeleteApp",
-			Handler:    _AppInfoService_DeleteApp_Handler,
+			MethodName: "GetAppGroupsByClusterID",
+			Handler:    _AppInfoService_GetAppGroupsByClusterID_Handler,
 		},
 		{
-			MethodName: "GetAppIDs",
-			Handler:    _AppInfoService_GetAppIDs_Handler,
+			MethodName: "GetAppGroups",
+			Handler:    _AppInfoService_GetAppGroups_Handler,
 		},
 		{
-			MethodName: "GetAllAppsByClusterID",
-			Handler:    _AppInfoService_GetAllAppsByClusterID_Handler,
+			MethodName: "GetAppGroup",
+			Handler:    _AppInfoService_GetAppGroup_Handler,
 		},
 		{
-			MethodName: "GetAppsByName",
-			Handler:    _AppInfoService_GetAppsByName_Handler,
+			MethodName: "UpdateAppGroupStatus",
+			Handler:    _AppInfoService_UpdateAppGroupStatus_Handler,
 		},
 		{
-			MethodName: "GetAppsByType",
-			Handler:    _AppInfoService_GetAppsByType_Handler,
+			MethodName: "DeleteAppGroup",
+			Handler:    _AppInfoService_DeleteAppGroup_Handler,
 		},
 		{
-			MethodName: "GetApp",
-			Handler:    _AppInfoService_GetApp_Handler,
+			MethodName: "GetAppsByAppGroupID",
+			Handler:    _AppInfoService_GetAppsByAppGroupID_Handler,
+		},
+		{
+			MethodName: "GetApps",
+			Handler:    _AppInfoService_GetApps_Handler,
 		},
 		{
 			MethodName: "UpdateApp",
 			Handler:    _AppInfoService_UpdateApp_Handler,
-		},
-		{
-			MethodName: "UpdateAppStatus",
-			Handler:    _AppInfoService_UpdateAppStatus_Handler,
-		},
-		{
-			MethodName: "UpdateEndpoints",
-			Handler:    _AppInfoService_UpdateEndpoints_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

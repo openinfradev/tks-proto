@@ -22,10 +22,10 @@ type ClusterLcmServiceClient interface {
 	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDsResponse, error)
 	// ScaleCluster scales the Kubernetes cluster
 	ScaleCluster(ctx context.Context, in *ScaleClusterRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// InstallApps install apps, return a array of application id
-	InstallApps(ctx context.Context, in *InstallAppsRequest, opts ...grpc.CallOption) (*IDsResponse, error)
-	// UninstallApps uninstall apps
-	UninstallApps(ctx context.Context, in *UninstallAppsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// InstallAppGroups install app groups, return a array of app group id
+	InstallAppGroups(ctx context.Context, in *InstallAppGroupsRequest, opts ...grpc.CallOption) (*IDsResponse, error)
+	// UninstallAppGroups uninstall app groups.
+	UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
 type clusterLcmServiceClient struct {
@@ -54,18 +54,18 @@ func (c *clusterLcmServiceClient) ScaleCluster(ctx context.Context, in *ScaleClu
 	return out, nil
 }
 
-func (c *clusterLcmServiceClient) InstallApps(ctx context.Context, in *InstallAppsRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+func (c *clusterLcmServiceClient) InstallAppGroups(ctx context.Context, in *InstallAppGroupsRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
 	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.ClusterLcmService/InstallApps", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterLcmService/InstallAppGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *clusterLcmServiceClient) UninstallApps(ctx context.Context, in *UninstallAppsRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+func (c *clusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.ClusterLcmService/UninstallApps", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterLcmService/UninstallAppGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,10 +80,10 @@ type ClusterLcmServiceServer interface {
 	CreateCluster(context.Context, *CreateClusterRequest) (*IDsResponse, error)
 	// ScaleCluster scales the Kubernetes cluster
 	ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error)
-	// InstallApps install apps, return a array of application id
-	InstallApps(context.Context, *InstallAppsRequest) (*IDsResponse, error)
-	// UninstallApps uninstall apps
-	UninstallApps(context.Context, *UninstallAppsRequest) (*SimpleResponse, error)
+	// InstallAppGroups install app groups, return a array of app group id
+	InstallAppGroups(context.Context, *InstallAppGroupsRequest) (*IDsResponse, error)
+	// UninstallAppGroups uninstall app groups.
+	UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*SimpleResponse, error)
 	mustEmbedUnimplementedClusterLcmServiceServer()
 }
 
@@ -97,11 +97,11 @@ func (UnimplementedClusterLcmServiceServer) CreateCluster(context.Context, *Crea
 func (UnimplementedClusterLcmServiceServer) ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleCluster not implemented")
 }
-func (UnimplementedClusterLcmServiceServer) InstallApps(context.Context, *InstallAppsRequest) (*IDsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InstallApps not implemented")
+func (UnimplementedClusterLcmServiceServer) InstallAppGroups(context.Context, *InstallAppGroupsRequest) (*IDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InstallAppGroups not implemented")
 }
-func (UnimplementedClusterLcmServiceServer) UninstallApps(context.Context, *UninstallAppsRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UninstallApps not implemented")
+func (UnimplementedClusterLcmServiceServer) UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UninstallAppGroups not implemented")
 }
 func (UnimplementedClusterLcmServiceServer) mustEmbedUnimplementedClusterLcmServiceServer() {}
 
@@ -152,38 +152,38 @@ func _ClusterLcmService_ScaleCluster_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ClusterLcmService_InstallApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InstallAppsRequest)
+func _ClusterLcmService_InstallAppGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstallAppGroupsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ClusterLcmServiceServer).InstallApps(ctx, in)
+		return srv.(ClusterLcmServiceServer).InstallAppGroups(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.ClusterLcmService/InstallApps",
+		FullMethod: "/pbgo.ClusterLcmService/InstallAppGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClusterLcmServiceServer).InstallApps(ctx, req.(*InstallAppsRequest))
+		return srv.(ClusterLcmServiceServer).InstallAppGroups(ctx, req.(*InstallAppGroupsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ClusterLcmService_UninstallApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UninstallAppsRequest)
+func _ClusterLcmService_UninstallAppGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UninstallAppGroupsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ClusterLcmServiceServer).UninstallApps(ctx, in)
+		return srv.(ClusterLcmServiceServer).UninstallAppGroups(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.ClusterLcmService/UninstallApps",
+		FullMethod: "/pbgo.ClusterLcmService/UninstallAppGroups",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClusterLcmServiceServer).UninstallApps(ctx, req.(*UninstallAppsRequest))
+		return srv.(ClusterLcmServiceServer).UninstallAppGroups(ctx, req.(*UninstallAppGroupsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -204,12 +204,12 @@ var ClusterLcmService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ClusterLcmService_ScaleCluster_Handler,
 		},
 		{
-			MethodName: "InstallApps",
-			Handler:    _ClusterLcmService_InstallApps_Handler,
+			MethodName: "InstallAppGroups",
+			Handler:    _ClusterLcmService_InstallAppGroups_Handler,
 		},
 		{
-			MethodName: "UninstallApps",
-			Handler:    _ClusterLcmService_UninstallApps_Handler,
+			MethodName: "UninstallAppGroups",
+			Handler:    _ClusterLcmService_UninstallAppGroups_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

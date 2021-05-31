@@ -480,144 +480,144 @@ func (m *MockAppInfoServiceClient) EXPECT() *MockAppInfoServiceClientMockRecorde
 	return m.recorder
 }
 
-// AddApp mocks base method.
-func (m *MockAppInfoServiceClient) AddApp(ctx context.Context, in *pbgo.AddAppRequest, opts ...grpc.CallOption) (*pbgo.IDResponse, error) {
+// CreateAppGroup mocks base method.
+func (m *MockAppInfoServiceClient) CreateAppGroup(ctx context.Context, in *pbgo.CreateAppGroupRequest, opts ...grpc.CallOption) (*pbgo.IDResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "AddApp", varargs...)
+	ret := m.ctrl.Call(m, "CreateAppGroup", varargs...)
 	ret0, _ := ret[0].(*pbgo.IDResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// AddApp indicates an expected call of AddApp.
-func (mr *MockAppInfoServiceClientMockRecorder) AddApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// CreateAppGroup indicates an expected call of CreateAppGroup.
+func (mr *MockAppInfoServiceClientMockRecorder) CreateAppGroup(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddApp", reflect.TypeOf((*MockAppInfoServiceClient)(nil).AddApp), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAppGroup", reflect.TypeOf((*MockAppInfoServiceClient)(nil).CreateAppGroup), varargs...)
 }
 
-// DeleteApp mocks base method.
-func (m *MockAppInfoServiceClient) DeleteApp(ctx context.Context, in *pbgo.DeleteAppRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+// DeleteAppGroup mocks base method.
+func (m *MockAppInfoServiceClient) DeleteAppGroup(ctx context.Context, in *pbgo.DeleteAppGroupRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "DeleteApp", varargs...)
+	ret := m.ctrl.Call(m, "DeleteAppGroup", varargs...)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// DeleteApp indicates an expected call of DeleteApp.
-func (mr *MockAppInfoServiceClientMockRecorder) DeleteApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// DeleteAppGroup indicates an expected call of DeleteAppGroup.
+func (mr *MockAppInfoServiceClientMockRecorder) DeleteAppGroup(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteApp", reflect.TypeOf((*MockAppInfoServiceClient)(nil).DeleteApp), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteAppGroup", reflect.TypeOf((*MockAppInfoServiceClient)(nil).DeleteAppGroup), varargs...)
 }
 
-// GetAllAppsByClusterID mocks base method.
-func (m *MockAppInfoServiceClient) GetAllAppsByClusterID(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.GetAppsResponse, error) {
+// GetAppGroup mocks base method.
+func (m *MockAppInfoServiceClient) GetAppGroup(ctx context.Context, in *pbgo.GetAppGroupRequest, opts ...grpc.CallOption) (*pbgo.GetAppGroupResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "GetAllAppsByClusterID", varargs...)
+	ret := m.ctrl.Call(m, "GetAppGroup", varargs...)
+	ret0, _ := ret[0].(*pbgo.GetAppGroupResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppGroup indicates an expected call of GetAppGroup.
+func (mr *MockAppInfoServiceClientMockRecorder) GetAppGroup(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppGroup", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppGroup), varargs...)
+}
+
+// GetAppGroups mocks base method.
+func (m *MockAppInfoServiceClient) GetAppGroups(ctx context.Context, in *pbgo.GetAppGroupsRequest, opts ...grpc.CallOption) (*pbgo.GetAppGroupsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetAppGroups", varargs...)
+	ret0, _ := ret[0].(*pbgo.GetAppGroupsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppGroups indicates an expected call of GetAppGroups.
+func (mr *MockAppInfoServiceClientMockRecorder) GetAppGroups(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppGroups", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppGroups), varargs...)
+}
+
+// GetAppGroupsByClusterID mocks base method.
+func (m *MockAppInfoServiceClient) GetAppGroupsByClusterID(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.GetAppGroupsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetAppGroupsByClusterID", varargs...)
+	ret0, _ := ret[0].(*pbgo.GetAppGroupsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppGroupsByClusterID indicates an expected call of GetAppGroupsByClusterID.
+func (mr *MockAppInfoServiceClientMockRecorder) GetAppGroupsByClusterID(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppGroupsByClusterID", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppGroupsByClusterID), varargs...)
+}
+
+// GetApps mocks base method.
+func (m *MockAppInfoServiceClient) GetApps(ctx context.Context, in *pbgo.GetAppsRequest, opts ...grpc.CallOption) (*pbgo.GetAppsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetApps", varargs...)
 	ret0, _ := ret[0].(*pbgo.GetAppsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetAllAppsByClusterID indicates an expected call of GetAllAppsByClusterID.
-func (mr *MockAppInfoServiceClientMockRecorder) GetAllAppsByClusterID(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// GetApps indicates an expected call of GetApps.
+func (mr *MockAppInfoServiceClientMockRecorder) GetApps(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllAppsByClusterID", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAllAppsByClusterID), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApps", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetApps), varargs...)
 }
 
-// GetApp mocks base method.
-func (m *MockAppInfoServiceClient) GetApp(ctx context.Context, in *pbgo.GetAppRequest, opts ...grpc.CallOption) (*pbgo.GetAppResponse, error) {
+// GetAppsByAppGroupID mocks base method.
+func (m *MockAppInfoServiceClient) GetAppsByAppGroupID(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.GetAppsResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "GetApp", varargs...)
-	ret0, _ := ret[0].(*pbgo.GetAppResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetApp indicates an expected call of GetApp.
-func (mr *MockAppInfoServiceClientMockRecorder) GetApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApp", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetApp), varargs...)
-}
-
-// GetAppIDs mocks base method.
-func (m *MockAppInfoServiceClient) GetAppIDs(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetAppIDs", varargs...)
-	ret0, _ := ret[0].(*pbgo.IDsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetAppIDs indicates an expected call of GetAppIDs.
-func (mr *MockAppInfoServiceClientMockRecorder) GetAppIDs(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppIDs", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppIDs), varargs...)
-}
-
-// GetAppsByName mocks base method.
-func (m *MockAppInfoServiceClient) GetAppsByName(ctx context.Context, in *pbgo.GetAppsRequest, opts ...grpc.CallOption) (*pbgo.GetAppsResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetAppsByName", varargs...)
+	ret := m.ctrl.Call(m, "GetAppsByAppGroupID", varargs...)
 	ret0, _ := ret[0].(*pbgo.GetAppsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetAppsByName indicates an expected call of GetAppsByName.
-func (mr *MockAppInfoServiceClientMockRecorder) GetAppsByName(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// GetAppsByAppGroupID indicates an expected call of GetAppsByAppGroupID.
+func (mr *MockAppInfoServiceClientMockRecorder) GetAppsByAppGroupID(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppsByName", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppsByName), varargs...)
-}
-
-// GetAppsByType mocks base method.
-func (m *MockAppInfoServiceClient) GetAppsByType(ctx context.Context, in *pbgo.GetAppsRequest, opts ...grpc.CallOption) (*pbgo.GetAppsResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetAppsByType", varargs...)
-	ret0, _ := ret[0].(*pbgo.GetAppsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetAppsByType indicates an expected call of GetAppsByType.
-func (mr *MockAppInfoServiceClientMockRecorder) GetAppsByType(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppsByType", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppsByType), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppsByAppGroupID", reflect.TypeOf((*MockAppInfoServiceClient)(nil).GetAppsByAppGroupID), varargs...)
 }
 
 // UpdateApp mocks base method.
@@ -640,44 +640,24 @@ func (mr *MockAppInfoServiceClientMockRecorder) UpdateApp(ctx, in interface{}, o
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateApp", reflect.TypeOf((*MockAppInfoServiceClient)(nil).UpdateApp), varargs...)
 }
 
-// UpdateAppStatus mocks base method.
-func (m *MockAppInfoServiceClient) UpdateAppStatus(ctx context.Context, in *pbgo.UpdateAppStatusRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+// UpdateAppGroupStatus mocks base method.
+func (m *MockAppInfoServiceClient) UpdateAppGroupStatus(ctx context.Context, in *pbgo.UpdateAppGroupStatusRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "UpdateAppStatus", varargs...)
+	ret := m.ctrl.Call(m, "UpdateAppGroupStatus", varargs...)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// UpdateAppStatus indicates an expected call of UpdateAppStatus.
-func (mr *MockAppInfoServiceClientMockRecorder) UpdateAppStatus(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+// UpdateAppGroupStatus indicates an expected call of UpdateAppGroupStatus.
+func (mr *MockAppInfoServiceClientMockRecorder) UpdateAppGroupStatus(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppStatus", reflect.TypeOf((*MockAppInfoServiceClient)(nil).UpdateAppStatus), varargs...)
-}
-
-// UpdateEndpoints mocks base method.
-func (m *MockAppInfoServiceClient) UpdateEndpoints(ctx context.Context, in *pbgo.UpdateEndpointsRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "UpdateEndpoints", varargs...)
-	ret0, _ := ret[0].(*pbgo.SimpleResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// UpdateEndpoints indicates an expected call of UpdateEndpoints.
-func (mr *MockAppInfoServiceClientMockRecorder) UpdateEndpoints(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateEndpoints", reflect.TypeOf((*MockAppInfoServiceClient)(nil).UpdateEndpoints), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppGroupStatus", reflect.TypeOf((*MockAppInfoServiceClient)(nil).UpdateAppGroupStatus), varargs...)
 }
 
 // MockAppInfoServiceServer is a mock of AppInfoServiceServer interface.
@@ -703,109 +683,109 @@ func (m *MockAppInfoServiceServer) EXPECT() *MockAppInfoServiceServerMockRecorde
 	return m.recorder
 }
 
-// AddApp mocks base method.
-func (m *MockAppInfoServiceServer) AddApp(arg0 context.Context, arg1 *pbgo.AddAppRequest) (*pbgo.IDResponse, error) {
+// CreateAppGroup mocks base method.
+func (m *MockAppInfoServiceServer) CreateAppGroup(arg0 context.Context, arg1 *pbgo.CreateAppGroupRequest) (*pbgo.IDResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AddApp", arg0, arg1)
+	ret := m.ctrl.Call(m, "CreateAppGroup", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.IDResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// AddApp indicates an expected call of AddApp.
-func (mr *MockAppInfoServiceServerMockRecorder) AddApp(arg0, arg1 interface{}) *gomock.Call {
+// CreateAppGroup indicates an expected call of CreateAppGroup.
+func (mr *MockAppInfoServiceServerMockRecorder) CreateAppGroup(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddApp", reflect.TypeOf((*MockAppInfoServiceServer)(nil).AddApp), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAppGroup", reflect.TypeOf((*MockAppInfoServiceServer)(nil).CreateAppGroup), arg0, arg1)
 }
 
-// DeleteApp mocks base method.
-func (m *MockAppInfoServiceServer) DeleteApp(arg0 context.Context, arg1 *pbgo.DeleteAppRequest) (*pbgo.SimpleResponse, error) {
+// DeleteAppGroup mocks base method.
+func (m *MockAppInfoServiceServer) DeleteAppGroup(arg0 context.Context, arg1 *pbgo.DeleteAppGroupRequest) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeleteApp", arg0, arg1)
+	ret := m.ctrl.Call(m, "DeleteAppGroup", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// DeleteApp indicates an expected call of DeleteApp.
-func (mr *MockAppInfoServiceServerMockRecorder) DeleteApp(arg0, arg1 interface{}) *gomock.Call {
+// DeleteAppGroup indicates an expected call of DeleteAppGroup.
+func (mr *MockAppInfoServiceServerMockRecorder) DeleteAppGroup(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteApp", reflect.TypeOf((*MockAppInfoServiceServer)(nil).DeleteApp), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteAppGroup", reflect.TypeOf((*MockAppInfoServiceServer)(nil).DeleteAppGroup), arg0, arg1)
 }
 
-// GetAllAppsByClusterID mocks base method.
-func (m *MockAppInfoServiceServer) GetAllAppsByClusterID(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.GetAppsResponse, error) {
+// GetAppGroup mocks base method.
+func (m *MockAppInfoServiceServer) GetAppGroup(arg0 context.Context, arg1 *pbgo.GetAppGroupRequest) (*pbgo.GetAppGroupResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAllAppsByClusterID", arg0, arg1)
+	ret := m.ctrl.Call(m, "GetAppGroup", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.GetAppGroupResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppGroup indicates an expected call of GetAppGroup.
+func (mr *MockAppInfoServiceServerMockRecorder) GetAppGroup(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppGroup", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppGroup), arg0, arg1)
+}
+
+// GetAppGroups mocks base method.
+func (m *MockAppInfoServiceServer) GetAppGroups(arg0 context.Context, arg1 *pbgo.GetAppGroupsRequest) (*pbgo.GetAppGroupsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAppGroups", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.GetAppGroupsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppGroups indicates an expected call of GetAppGroups.
+func (mr *MockAppInfoServiceServerMockRecorder) GetAppGroups(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppGroups", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppGroups), arg0, arg1)
+}
+
+// GetAppGroupsByClusterID mocks base method.
+func (m *MockAppInfoServiceServer) GetAppGroupsByClusterID(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.GetAppGroupsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAppGroupsByClusterID", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.GetAppGroupsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppGroupsByClusterID indicates an expected call of GetAppGroupsByClusterID.
+func (mr *MockAppInfoServiceServerMockRecorder) GetAppGroupsByClusterID(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppGroupsByClusterID", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppGroupsByClusterID), arg0, arg1)
+}
+
+// GetApps mocks base method.
+func (m *MockAppInfoServiceServer) GetApps(arg0 context.Context, arg1 *pbgo.GetAppsRequest) (*pbgo.GetAppsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetApps", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.GetAppsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetAllAppsByClusterID indicates an expected call of GetAllAppsByClusterID.
-func (mr *MockAppInfoServiceServerMockRecorder) GetAllAppsByClusterID(arg0, arg1 interface{}) *gomock.Call {
+// GetApps indicates an expected call of GetApps.
+func (mr *MockAppInfoServiceServerMockRecorder) GetApps(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllAppsByClusterID", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAllAppsByClusterID), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApps", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetApps), arg0, arg1)
 }
 
-// GetApp mocks base method.
-func (m *MockAppInfoServiceServer) GetApp(arg0 context.Context, arg1 *pbgo.GetAppRequest) (*pbgo.GetAppResponse, error) {
+// GetAppsByAppGroupID mocks base method.
+func (m *MockAppInfoServiceServer) GetAppsByAppGroupID(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.GetAppsResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetApp", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.GetAppResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetApp indicates an expected call of GetApp.
-func (mr *MockAppInfoServiceServerMockRecorder) GetApp(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApp", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetApp), arg0, arg1)
-}
-
-// GetAppIDs mocks base method.
-func (m *MockAppInfoServiceServer) GetAppIDs(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.IDsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAppIDs", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.IDsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetAppIDs indicates an expected call of GetAppIDs.
-func (mr *MockAppInfoServiceServerMockRecorder) GetAppIDs(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppIDs", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppIDs), arg0, arg1)
-}
-
-// GetAppsByName mocks base method.
-func (m *MockAppInfoServiceServer) GetAppsByName(arg0 context.Context, arg1 *pbgo.GetAppsRequest) (*pbgo.GetAppsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAppsByName", arg0, arg1)
+	ret := m.ctrl.Call(m, "GetAppsByAppGroupID", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.GetAppsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetAppsByName indicates an expected call of GetAppsByName.
-func (mr *MockAppInfoServiceServerMockRecorder) GetAppsByName(arg0, arg1 interface{}) *gomock.Call {
+// GetAppsByAppGroupID indicates an expected call of GetAppsByAppGroupID.
+func (mr *MockAppInfoServiceServerMockRecorder) GetAppsByAppGroupID(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppsByName", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppsByName), arg0, arg1)
-}
-
-// GetAppsByType mocks base method.
-func (m *MockAppInfoServiceServer) GetAppsByType(arg0 context.Context, arg1 *pbgo.GetAppsRequest) (*pbgo.GetAppsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAppsByType", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.GetAppsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetAppsByType indicates an expected call of GetAppsByType.
-func (mr *MockAppInfoServiceServerMockRecorder) GetAppsByType(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppsByType", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppsByType), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppsByAppGroupID", reflect.TypeOf((*MockAppInfoServiceServer)(nil).GetAppsByAppGroupID), arg0, arg1)
 }
 
 // UpdateApp mocks base method.
@@ -823,34 +803,19 @@ func (mr *MockAppInfoServiceServerMockRecorder) UpdateApp(arg0, arg1 interface{}
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateApp", reflect.TypeOf((*MockAppInfoServiceServer)(nil).UpdateApp), arg0, arg1)
 }
 
-// UpdateAppStatus mocks base method.
-func (m *MockAppInfoServiceServer) UpdateAppStatus(arg0 context.Context, arg1 *pbgo.UpdateAppStatusRequest) (*pbgo.SimpleResponse, error) {
+// UpdateAppGroupStatus mocks base method.
+func (m *MockAppInfoServiceServer) UpdateAppGroupStatus(arg0 context.Context, arg1 *pbgo.UpdateAppGroupStatusRequest) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateAppStatus", arg0, arg1)
+	ret := m.ctrl.Call(m, "UpdateAppGroupStatus", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// UpdateAppStatus indicates an expected call of UpdateAppStatus.
-func (mr *MockAppInfoServiceServerMockRecorder) UpdateAppStatus(arg0, arg1 interface{}) *gomock.Call {
+// UpdateAppGroupStatus indicates an expected call of UpdateAppGroupStatus.
+func (mr *MockAppInfoServiceServerMockRecorder) UpdateAppGroupStatus(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppStatus", reflect.TypeOf((*MockAppInfoServiceServer)(nil).UpdateAppStatus), arg0, arg1)
-}
-
-// UpdateEndpoints mocks base method.
-func (m *MockAppInfoServiceServer) UpdateEndpoints(arg0 context.Context, arg1 *pbgo.UpdateEndpointsRequest) (*pbgo.SimpleResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateEndpoints", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.SimpleResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// UpdateEndpoints indicates an expected call of UpdateEndpoints.
-func (mr *MockAppInfoServiceServerMockRecorder) UpdateEndpoints(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateEndpoints", reflect.TypeOf((*MockAppInfoServiceServer)(nil).UpdateEndpoints), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppGroupStatus", reflect.TypeOf((*MockAppInfoServiceServer)(nil).UpdateAppGroupStatus), arg0, arg1)
 }
 
 // mustEmbedUnimplementedAppInfoServiceServer mocks base method.

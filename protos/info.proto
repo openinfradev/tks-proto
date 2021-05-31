@@ -37,26 +37,24 @@ service InfoService {
 
 // AppInfoService is a service to manage Application info's document.
 service AppInfoService {
-  // AddApp creates new app info.
-  rpc AddApp(AddAppRequest) returns (IDResponse) {}
-  // DeleteApp deletes app info.
-  rpc DeleteApp(DeleteAppRequest) returns (SimpleResponse) {}
-  // GetAppID gets an array of app IDs with knowlege
-  rpc GetAppIDs(IDRequest) returns (IDsResponse) {}
-  // GetAllAppsByClusterID gets an array of app infos By the clusterID
-  rpc GetAllAppsByClusterID(IDRequest) returns (GetAppsResponse) {}
-  // GetAppsByName gets an array of app infos by app name in the cluster
-  rpc GetAppsByName(GetAppsRequest) returns (GetAppsResponse) {}
-  // GetAppsByType gets an array of app infos by app type in the cluster
-  rpc GetAppsByType(GetAppsRequest) returns (GetAppsResponse) {}
-  // GetApp gets app info by app ID
-  rpc GetApp(GetAppRequest) returns (GetAppResponse) {}
-  // UpdateApp updates an app info
+  // CreateAppGroup creates a new application group.
+  rpc CreateAppGroup(CreateAppGroupRequest) returns (IDResponse) {}
+  // GetAppGroupsByClusterID gets an array of app infos By the clusterID
+  rpc GetAppGroupsByClusterID(IDRequest) returns (GetAppGroupsResponse) {}
+  // GetAppGroups gets an array of app infos by app name or app type in the cluster
+  rpc GetAppGroups(GetAppGroupsRequest) returns (GetAppGroupsResponse) {}
+  // GetAppGroup gets an application group by application group ID
+  rpc GetAppGroup(GetAppGroupRequest) returns (GetAppGroupResponse) {}
+  // UpdateAppGroupStatus updates a status of an application group
+  rpc UpdateAppGroupStatus(UpdateAppGroupStatusRequest) returns (SimpleResponse) {}
+  // DeleteAppGroup deletes an app group.
+  rpc DeleteAppGroup(DeleteAppGroupRequest) returns (SimpleResponse) {}
+  // GetAppsByClusterID gets applications by application group id.
+  rpc GetAppsByAppGroupID(IDRequest) returns (GetAppsResponse) {}
+  // GetApps gets applications by application type and application id.
+  rpc GetApps(GetAppsRequest) returns (GetAppsResponse) {}
+  // UpdateApp updates application data.
   rpc UpdateApp(UpdateAppRequest) returns (SimpleResponse) {}
-  // UpdateAppStatus updates status of the application
-  rpc UpdateAppStatus(UpdateAppStatusRequest) returns (SimpleResponse) {}
-  // UpdateEndpoints updates endpoints by the application
-  rpc UpdateEndpoints(UpdateEndpointsRequest) returns (SimpleResponse) {}
 }
 
 // CreateCSPInfoRequest is used to create a new CSP Info
@@ -149,84 +147,96 @@ message UpdateClusterStatusRequest {
   ClusterStatus status = 2;
 }
 
-// AddAppRequest is used to add a new app info
-message AddAppRequest {
+// CreateAppGroupRequest is used to create a new app group.
+message CreateAppGroupRequest {
   // cluster_id is a cluster ID
   string cluster_id = 1;
-  // service_app is a service_app info
-  ServiceApp service_app = 2;
+  // app_group is an application group
+  AppGroup app_group = 2;
 }
 
-// UpdateAppRequest is used to update app info
-message UpdateAppRequest {
+// DeleteAppGroupRequest is used to delete app group.
+message DeleteAppGroupRequest {
   // cluster_id is a cluster ID
   string cluster_id = 1;
-  // service_app is a service_app info
-  ServiceApp service_app = 2;
+  // app_group_id is an app group id to delete.
+  string app_group_id = 2;
 }
 
-// DeleteAppRequest is used to delete app info
-message DeleteAppRequest {
-  // cluster_id is a cluster ID
-  string cluster_id = 1;
-  // app_id is a app id which will be deleted
-  string app_id = 2;
-}
-
-// GetAppsRequest is used to get an array of application infos on the cluster
-message GetAppsRequest {
+// GetAppGroupsRequest is used to get an array of application infos on the cluster
+message GetAppGroupsRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
   // app_name is a name of the application
-  string app_name = 2;
+  string app_group_name = 2;
   // app_type is a type of the application
-  AppType type = 3;
+  AppGroupType type = 3;
 }
 
-// GetAppRequest is used to get an array of application infos on the cluster
-message GetAppRequest {
+// GetAppGroupRequest is used to get an array of application groups on the cluster
+message GetAppGroupRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
-  // app_name is a name of the application
-  string app_id = 2;
+  // app_group_id is an id of the application group
+  string app_group_id = 2;
 }
 
 // GetAppResponse contains an array of cluster infos. 
-message GetAppResponse {
+message GetAppGroupResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // app is a application Info
-  ServiceApp app = 3;
+  // app_group is an application group
+  AppGroup app_group = 3;
 }
 
-// GetAppsResponse contains an array of application infos.
-message GetAppsResponse {
+// GetAppGroupsResponse contains an array of application infos.
+message GetAppGroupsResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // apps is an array of applications
-  repeated ServiceApp apps = 3;
+  // app_groups is an array of applications
+  repeated AppGroup app_groups = 3;
 }
 
-// UpdateAppStatusRequest is used to change the status of the app
-message UpdateAppStatusRequest {
+// UpdateAppGroupStatusRequest is used to change the status of the app
+message UpdateAppGroupStatusRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
   // app_id is the application id to change the status
   string app_id = 2;
   // status is a AppStatus of the application
-  AppStatus status = 3;
+  AppGroupStatus status = 3;
 }
 
-// UpdateEndpointsRequest is used to change status of the cluster
-message UpdateEndpointsRequest {
+// UpdateApplicationRequest is used to change status of the cluster
+message UpdateAppRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
   // app_id is the application id to change the endpoint
   string app_id = 2;
   // endpoints is an array of endpoints to update
   repeated Endpoint endpoints = 3;
+  // metadata is an unstructured metadata for application.
+  string metadata = 4;
+}
+
+// GetAppsRequest returns an array of applications
+message GetAppsRequest {
+  // app_group_id is a name of the application
+  string app_group_id = 1;
+  // app_type is a type of the application
+  AppType type = 2;
+}
+
+// GetAppsResponse returns an array of applications.
+message GetAppsResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // app_groups is an array of applications
+  repeated Application apps = 3;
 }

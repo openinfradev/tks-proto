@@ -15,10 +15,10 @@ service ClusterLcmService {
   rpc CreateCluster(CreateClusterRequest) returns (IDsResponse) {}
   // ScaleCluster scales the Kubernetes cluster
   rpc ScaleCluster(ScaleClusterRequest) returns (SimpleResponse) {}
-  // InstallApps install apps, return a array of application id
-  rpc InstallApps(InstallAppsRequest) returns (IDsResponse) {}
-  // UninstallApps uninstall apps
-  rpc UninstallApps(UninstallAppsRequest) returns (SimpleResponse) {}
+  // InstallAppGroups install app groups, return a array of app group id
+  rpc InstallAppGroups(InstallAppGroupsRequest) returns (IDsResponse) {}
+  // UninstallAppGroups uninstall app groups.
+  rpc UninstallAppGroups(UninstallAppGroupsRequest) returns (SimpleResponse) {}
 }
 
 // CreateClusterRequest is a request to create a Kubernetes cluster
@@ -44,15 +44,15 @@ message ScaleClusterRequest {
 }
 
 // InstallAppsRequest is a request to install applications on the Cluster
-message InstallAppsRequest {
+message InstallAppGroupsRequest {
   // apps are applications to install into target cluster.
-  repeated ServiceApp apps = 1; 
+  repeated AppGroup app_groups = 1; 
 }
 
-// UninstallAppsRequest is a request to delete applications on the Cluster
-message UninstallAppsRequest {
+// UninstallAppGroupsRequest is a request to delete applications on the Cluster
+message UninstallAppGroupsRequest {
   // cluster_id is Global Unique ID
   string cluster_id = 1;
-  // app_ids is a array of application id
-  repeated string app_ids = 2;
+  // app_group_ids is a array of app_group_id.
+  repeated string app_group_ids = 2;
 }

@@ -35,14 +35,14 @@ message Error {
   string msg = 1;
 }
 
-// AppStatus represents a status of the application
-enum AppStatus {
-  APP_UNSPECIFIED = 0;
-  APP_INSTALLING = 1;
-  APP_RUNNING = 2;
-  APP_DELETING = 4;
-  APP_DELETED = 5;
-  APP_ERROR = 6;
+// AppGroupStatus represents a status of the application group
+enum AppGroupStatus {
+  APP_GROUP_UNSPECIFIED = 0;
+  APP_GROUP_INSTALLING = 1;
+  APP_GROUP_RUNNING = 2;
+  APP_GROUP_DELETING = 4;
+  APP_GROUP_DELETED = 5;
+  APP_GROUP_ERROR = 6;
 }
 
 // ClusterStatus represents a status of the cluster
@@ -55,8 +55,8 @@ enum ClusterStatus {
   ERROR = 6;
 }
 
-// EpType is a key for endpoint.
-enum EpType {
+// AppType is a type of application.
+enum AppType {
   EP_UNSPECIFIED = 0;
   THANOS = 1;
   PROMETHEUS = 2;
@@ -70,41 +70,57 @@ enum EpType {
   KUBERNETES_DASHBOARD = 10;
 }
 
-// AppType is types of app
-enum AppType {
+// AppGroupType is types of app group
+enum AppGroupType {
   APP_TYPE_UNSPECIFIED = 0;
   LMA = 1;
   SERVICE_MESH = 2;
 }
 
-// Endpoint represents each endpoint with type 
+// AppType represents each endpoint with type 
 message Endpoint {
   // type indicate the software to make this endpoint
-  EpType type = 1;
+  AppType type = 1;
   // url is the url for the endpoint
   string url = 2;
 }
 
-// ServiceApp represents each Application.
-message ServiceApp {
-  //id for the application
-  string app_id = 1;
-  // name for users
-  string app_name = 2;
+// AppGroup represents an application group such as LMA, ServiceMesh.
+message AppGroup {
+  // app_group_id for the application group
+  string app_group_id = 1;
+  // app_group_name is a human-readable name.
+  string app_group_name = 2;
   // type (LMA/SERVICE_MESH)
-  AppType type = 3;
+  AppGroupType type = 3;
   // cluster_id is a cluster ID to install application.
   string cluster_id = 4;
   // a status of the application eg) Installing/Running/Error
-  AppStatus status = 5;
-  // endpoints is an array of endpoints
-  repeated Endpoint endpoints = 6;
+  AppGroupStatus status = 5;
   // external_lable is the label used for globally unique identification
-  string external_label = 7;
+  string external_label = 6;
   // created_at is  a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp created_at = 7;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 9;
+  google.protobuf.Timestamp updated_at  = 8;
+}
+
+// Application represents each Application.
+message Application {
+  //id for the application
+  string app_id = 1;
+  // type (Prometheus/Grafana/...)
+  AppType type = 2;
+  // app_group_id is an applicagion group ID.
+  string app_group_id = 3;
+  // endpoints is an array of endpoints
+  repeated Endpoint endpoints = 4;
+  // metadata is a unstructured information for application.
+  repeated Endpoint metadata = 5;
+  // created_at is  a creatioin timestamp for the application
+  google.protobuf.Timestamp created_at = 6;
+  // updated_at is a timestamp for the trigger of status change
+  google.protobuf.Timestamp updated_at  = 7;
 }
 
 // Cluster represents each Cluster.
@@ -125,8 +141,8 @@ message Cluster {
   string csp_id = 7;
   // conf is a kubernete cluster configuration
   ClusterConf conf = 8;
-  // service_apps is a array of applications
-  repeated ServiceApp service_apps = 9;
+  // app_groups is a array of applications
+  repeated AppGroup app_groups = 9;
   // kubeconfig is a default kubeconfig for the cluster
   string kubeconfig = 10;
 }

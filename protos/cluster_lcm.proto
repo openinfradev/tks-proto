@@ -43,7 +43,7 @@ message ScaleClusterRequest {
   int32 worker_replicas = 3;
 }
 
-// InstallAppsRequest is a request to install applications on the Cluster
+// InstallAppGroupsRequest requests to install application groups on cluster
 message InstallAppGroupsRequest {
   // apps are applications to install into target cluster.
   repeated AppGroup app_groups = 1; 

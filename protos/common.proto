@@ -77,7 +77,7 @@ enum AppGroupType {
   SERVICE_MESH = 2;
 }
 
-// AppType represents each endpoint with type 
+// Endpoint represents each endpoint with type 
 message Endpoint {
   // type indicate the software to make this endpoint
   AppType type = 1;

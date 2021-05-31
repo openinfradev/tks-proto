@@ -41,12 +41,13 @@ service AppInfoService {
   rpc CreateAppGroup(CreateAppGroupRequest) returns (IDResponse) {}
   // GetAppGroupsByClusterID gets an array of app infos By the clusterID
   rpc GetAppGroupsByClusterID(IDRequest) returns (GetAppGroupsResponse) {}
-  // GetAppGroups gets an array of app infos by app name or app type in the cluster
+  // GetAppGroups gets an array of app infos by name & type in the cluster
   rpc GetAppGroups(GetAppGroupsRequest) returns (GetAppGroupsResponse) {}
   // GetAppGroup gets an application group by application group ID
   rpc GetAppGroup(GetAppGroupRequest) returns (GetAppGroupResponse) {}
   // UpdateAppGroupStatus updates a status of an application group
-  rpc UpdateAppGroupStatus(UpdateAppGroupStatusRequest) returns (SimpleResponse) {}
+  rpc UpdateAppGroupStatus(UpdateAppGroupStatusRequest) returns (
+    SimpleResponse) {}
   // DeleteAppGroup deletes an app group.
   rpc DeleteAppGroup(DeleteAppGroupRequest) returns (SimpleResponse) {}
   // GetAppsByClusterID gets applications by application group id.
@@ -163,7 +164,7 @@ message DeleteAppGroupRequest {
   string app_group_id = 2;
 }
 
-// GetAppGroupsRequest is used to get an array of application infos on the cluster
+// GetAppGroupsRequest is used to get an array of application infos on cluster
 message GetAppGroupsRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
@@ -173,7 +174,7 @@ message GetAppGroupsRequest {
   AppGroupType type = 3;
 }
 
-// GetAppGroupRequest is used to get an array of application groups on the cluster
+// GetAppGroupRequest returns an array of application groups on the cluster
 message GetAppGroupRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;
@@ -181,7 +182,7 @@ message GetAppGroupRequest {
   string app_group_id = 2;
 }
 
-// GetAppResponse contains an array of cluster infos. 
+// GetAppGroupResponse contains an array of application groups. 
 message GetAppGroupResponse {
   // code is a response code.
   Code code = 1;
@@ -211,7 +212,7 @@ message UpdateAppGroupStatusRequest {
   AppGroupStatus status = 3;
 }
 
-// UpdateApplicationRequest is used to change status of the cluster
+// UpdateAppRequest updates an information of application such as endpoints.
 message UpdateAppRequest {
   // cluster_id is the global Unique cluster ID
   string cluster_id = 1;

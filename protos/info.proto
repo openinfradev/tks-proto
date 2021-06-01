@@ -164,12 +164,10 @@ message DeleteAppGroupRequest {
 
 // GetAppGroupsRequest is used to get an array of application infos on cluster
 message GetAppGroupsRequest {
-  // cluster_id is the global Unique cluster ID
-  string cluster_id = 1;
   // app_name is a name of the application
-  string app_group_name = 2;
+  string app_group_name = 1;
   // app_type is a type of the application
-  AppGroupType type = 3;
+  AppGroupType type = 2;
 }
 
 // GetAppGroupRequest returns an array of application groups on the cluster
@@ -200,8 +198,8 @@ message GetAppGroupsResponse {
 
 // UpdateAppGroupStatusRequest is used to change the status of the app
 message UpdateAppGroupStatusRequest {
-  // app_id is the application id to change the status
-  string app_id = 1;
+  // app_group_id is the application group id to change the status
+  string app_group_id = 1;
   // status is a AppStatus of the application
   AppGroupStatus status = 2;
 }

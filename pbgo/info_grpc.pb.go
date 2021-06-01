@@ -453,7 +453,7 @@ type AppInfoServiceClient interface {
 	CreateAppGroup(ctx context.Context, in *CreateAppGroupRequest, opts ...grpc.CallOption) (*IDResponse, error)
 	// GetAppGroupsByClusterID gets an array of app infos By the clusterID
 	GetAppGroupsByClusterID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetAppGroupsResponse, error)
-	// GetAppGroups gets an array of app infos by app name or app type in the cluster
+	// GetAppGroups gets an array of app infos by name & type in the cluster
 	GetAppGroups(ctx context.Context, in *GetAppGroupsRequest, opts ...grpc.CallOption) (*GetAppGroupsResponse, error)
 	// GetAppGroup gets an application group by application group ID
 	GetAppGroup(ctx context.Context, in *GetAppGroupRequest, opts ...grpc.CallOption) (*GetAppGroupResponse, error)
@@ -566,7 +566,7 @@ type AppInfoServiceServer interface {
 	CreateAppGroup(context.Context, *CreateAppGroupRequest) (*IDResponse, error)
 	// GetAppGroupsByClusterID gets an array of app infos By the clusterID
 	GetAppGroupsByClusterID(context.Context, *IDRequest) (*GetAppGroupsResponse, error)
-	// GetAppGroups gets an array of app infos by app name or app type in the cluster
+	// GetAppGroups gets an array of app infos by name & type in the cluster
 	GetAppGroups(context.Context, *GetAppGroupsRequest) (*GetAppGroupsResponse, error)
 	// GetAppGroup gets an application group by application group ID
 	GetAppGroup(context.Context, *GetAppGroupRequest) (*GetAppGroupResponse, error)

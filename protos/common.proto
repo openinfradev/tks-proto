@@ -113,10 +113,10 @@ message Application {
   AppType type = 2;
   // app_group_id is an applicagion group ID.
   string app_group_id = 3;
-  // endpoints is an array of endpoints
-  repeated Endpoint endpoints = 4;
+  // endpoints is a endpoint string.
+  string endpoints = 4;
   // metadata is a unstructured information for application.
-  repeated Endpoint metadata = 5;
+  string metadata = 5;
   // created_at is  a creatioin timestamp for the application
   google.protobuf.Timestamp created_at = 6;
   // updated_at is a timestamp for the trigger of status change

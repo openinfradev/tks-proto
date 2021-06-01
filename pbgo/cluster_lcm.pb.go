@@ -166,7 +166,7 @@ func (x *ScaleClusterRequest) GetWorkerReplicas() int32 {
 	return 0
 }
 
-// InstallAppsRequest is a request to install applications on the Cluster
+// InstallAppGroupsRequest requests to install application groups on cluster
 type InstallAppGroupsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

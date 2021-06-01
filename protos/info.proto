@@ -158,10 +158,8 @@ message CreateAppGroupRequest {
 
 // DeleteAppGroupRequest is used to delete app group.
 message DeleteAppGroupRequest {
-  // cluster_id is a cluster ID
-  string cluster_id = 1;
   // app_group_id is an app group id to delete.
-  string app_group_id = 2;
+  string app_group_id = 1;
 }
 
 // GetAppGroupsRequest is used to get an array of application infos on cluster
@@ -176,10 +174,8 @@ message GetAppGroupsRequest {
 
 // GetAppGroupRequest returns an array of application groups on the cluster
 message GetAppGroupRequest {
-  // cluster_id is the global Unique cluster ID
-  string cluster_id = 1;
   // app_group_id is an id of the application group
-  string app_group_id = 2;
+  string app_group_id = 1;
 }
 
 // GetAppGroupResponse contains an array of application groups. 
@@ -204,22 +200,20 @@ message GetAppGroupsResponse {
 
 // UpdateAppGroupStatusRequest is used to change the status of the app
 message UpdateAppGroupStatusRequest {
-  // cluster_id is the global Unique cluster ID
-  string cluster_id = 1;
   // app_id is the application id to change the status
-  string app_id = 2;
+  string app_id = 1;
   // status is a AppStatus of the application
-  AppGroupStatus status = 3;
+  AppGroupStatus status = 2;
 }
 
 // UpdateAppRequest updates an information of application such as endpoints.
 message UpdateAppRequest {
-  // cluster_id is the global Unique cluster ID
-  string cluster_id = 1;
-  // app_id is the application id to change the endpoint
-  string app_id = 2;
-  // endpoints is an array of endpoints to update
-  repeated Endpoint endpoints = 3;
+  // app_group_id is the application group id.
+  string app_group_id = 1;
+  // app_type is a type of the application
+  AppType app_type = 2;
+  // endpoints is an endpoint string.
+  string endpoint = 3;
   // metadata is an unstructured metadata for application.
   string metadata = 4;
 }

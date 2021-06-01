@@ -77,14 +77,6 @@ enum AppGroupType {
   SERVICE_MESH = 2;
 }
 
-// Endpoint represents each endpoint with type 
-message Endpoint {
-  // type indicate the software to make this endpoint
-  AppType type = 1;
-  // url is the url for the endpoint
-  string url = 2;
-}
-
 // AppGroup represents an application group such as LMA, ServiceMesh.
 message AppGroup {
   // app_group_id for the application group
@@ -113,10 +105,10 @@ message Application {
   AppType type = 2;
   // app_group_id is an applicagion group ID.
   string app_group_id = 3;
-  // endpoints is an array of endpoints
-  repeated Endpoint endpoints = 4;
+  // endpoint is a endpoint string.
+  string endpoint = 4;
   // metadata is a unstructured information for application.
-  repeated Endpoint metadata = 5;
+  string metadata = 5;
   // created_at is  a creatioin timestamp for the application
   google.protobuf.Timestamp created_at = 6;
   // updated_at is a timestamp for the trigger of status change

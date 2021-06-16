@@ -15,25 +15,15 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// InfoServiceClient is the client API for InfoService service.
+// ClusterInfoServiceClient is the client API for ClusterInfoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type InfoServiceClient interface {
-	// CreateCSPInfo create new CSP Info for the contract id.
-	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// GetCSPIDs returns all CSP ids.
-	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
-	// GetCSPIDsByContractID returns the CSP ids by the contract id.
-	GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error)
-	// UpdateCSPInfo updates an authentication config for CSP.
-	UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// GetCSPAuth returns an authentication info by csp id.
-	GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error)
-	// AddClusterInfo adds newly created cluster information
+type ClusterInfoServiceClient interface {
+	// AddClusterInfo adds new cluster information
 	AddClusterInfo(ctx context.Context, in *AddClusterInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
 	// UpdateClusterConf updates the cluster configuration information
 	UpdateClusterConf(ctx context.Context, in *UpdateClusterConfRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// GetClusterget cluster for the id of the cluster
+	// GetCluster gets cluster info for the id of the cluster
 	GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error)
 	// GetClusters get every clusters on the mutlcluster
 	GetClusters(ctx context.Context, in *GetClustersRequest, opts ...grpc.CallOption) (*GetClustersResponse, error)
@@ -41,108 +31,303 @@ type InfoServiceClient interface {
 	UpdateClusterStatus(ctx context.Context, in *UpdateClusterStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
-type infoServiceClient struct {
+type clusterInfoServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewInfoServiceClient(cc grpc.ClientConnInterface) InfoServiceClient {
-	return &infoServiceClient{cc}
+func NewClusterInfoServiceClient(cc grpc.ClientConnInterface) ClusterInfoServiceClient {
+	return &clusterInfoServiceClient{cc}
 }
 
-func (c *infoServiceClient) CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+func (c *clusterInfoServiceClient) AddClusterInfo(ctx context.Context, in *AddClusterInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/CreateCSPInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterInfoService/AddClusterInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error) {
-	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPIDs", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
-	out := new(IDsResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPIDsByContractID", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) UpdateCSPInfo(ctx context.Context, in *UpdateCSPInfoRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+func (c *clusterInfoServiceClient) UpdateClusterConf(ctx context.Context, in *UpdateClusterConfRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateCSPInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterInfoService/UpdateClusterConf", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error) {
-	out := new(GetCSPAuthResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCSPAuth", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) AddClusterInfo(ctx context.Context, in *AddClusterInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
-	out := new(IDResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/AddClusterInfo", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) UpdateClusterConf(ctx context.Context, in *UpdateClusterConfRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateClusterConf", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *infoServiceClient) GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error) {
+func (c *clusterInfoServiceClient) GetCluster(ctx context.Context, in *GetClusterRequest, opts ...grpc.CallOption) (*GetClusterResponse, error) {
 	out := new(GetClusterResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetCluster", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterInfoService/GetCluster", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) GetClusters(ctx context.Context, in *GetClustersRequest, opts ...grpc.CallOption) (*GetClustersResponse, error) {
+func (c *clusterInfoServiceClient) GetClusters(ctx context.Context, in *GetClustersRequest, opts ...grpc.CallOption) (*GetClustersResponse, error) {
 	out := new(GetClustersResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/GetClusters", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterInfoService/GetClusters", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *infoServiceClient) UpdateClusterStatus(ctx context.Context, in *UpdateClusterStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+func (c *clusterInfoServiceClient) UpdateClusterStatus(ctx context.Context, in *UpdateClusterStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
-	err := c.cc.Invoke(ctx, "/pbgo.InfoService/UpdateClusterStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pbgo.ClusterInfoService/UpdateClusterStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// InfoServiceServer is the server API for InfoService service.
-// All implementations must embed UnimplementedInfoServiceServer
+// ClusterInfoServiceServer is the server API for ClusterInfoService service.
+// All implementations must embed UnimplementedClusterInfoServiceServer
 // for forward compatibility
-type InfoServiceServer interface {
+type ClusterInfoServiceServer interface {
+	// AddClusterInfo adds new cluster information
+	AddClusterInfo(context.Context, *AddClusterInfoRequest) (*IDResponse, error)
+	// UpdateClusterConf updates the cluster configuration information
+	UpdateClusterConf(context.Context, *UpdateClusterConfRequest) (*SimpleResponse, error)
+	// GetCluster gets cluster info for the id of the cluster
+	GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error)
+	// GetClusters get every clusters on the mutlcluster
+	GetClusters(context.Context, *GetClustersRequest) (*GetClustersResponse, error)
+	// UpdateClusterStatus update Status of the Cluster
+	UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error)
+	mustEmbedUnimplementedClusterInfoServiceServer()
+}
+
+// UnimplementedClusterInfoServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedClusterInfoServiceServer struct {
+}
+
+func (UnimplementedClusterInfoServiceServer) AddClusterInfo(context.Context, *AddClusterInfoRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddClusterInfo not implemented")
+}
+func (UnimplementedClusterInfoServiceServer) UpdateClusterConf(context.Context, *UpdateClusterConfRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateClusterConf not implemented")
+}
+func (UnimplementedClusterInfoServiceServer) GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCluster not implemented")
+}
+func (UnimplementedClusterInfoServiceServer) GetClusters(context.Context, *GetClustersRequest) (*GetClustersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClusters not implemented")
+}
+func (UnimplementedClusterInfoServiceServer) UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateClusterStatus not implemented")
+}
+func (UnimplementedClusterInfoServiceServer) mustEmbedUnimplementedClusterInfoServiceServer() {}
+
+// UnsafeClusterInfoServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ClusterInfoServiceServer will
+// result in compilation errors.
+type UnsafeClusterInfoServiceServer interface {
+	mustEmbedUnimplementedClusterInfoServiceServer()
+}
+
+func RegisterClusterInfoServiceServer(s grpc.ServiceRegistrar, srv ClusterInfoServiceServer) {
+	s.RegisterService(&ClusterInfoService_ServiceDesc, srv)
+}
+
+func _ClusterInfoService_AddClusterInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddClusterInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterInfoServiceServer).AddClusterInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.ClusterInfoService/AddClusterInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterInfoServiceServer).AddClusterInfo(ctx, req.(*AddClusterInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClusterInfoService_UpdateClusterConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateClusterConfRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterInfoServiceServer).UpdateClusterConf(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.ClusterInfoService/UpdateClusterConf",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterInfoServiceServer).UpdateClusterConf(ctx, req.(*UpdateClusterConfRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClusterInfoService_GetCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterInfoServiceServer).GetCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.ClusterInfoService/GetCluster",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterInfoServiceServer).GetCluster(ctx, req.(*GetClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClusterInfoService_GetClusters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetClustersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterInfoServiceServer).GetClusters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.ClusterInfoService/GetClusters",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterInfoServiceServer).GetClusters(ctx, req.(*GetClustersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClusterInfoService_UpdateClusterStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateClusterStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterInfoServiceServer).UpdateClusterStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.ClusterInfoService/UpdateClusterStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterInfoServiceServer).UpdateClusterStatus(ctx, req.(*UpdateClusterStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ClusterInfoService_ServiceDesc is the grpc.ServiceDesc for ClusterInfoService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ClusterInfoService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pbgo.ClusterInfoService",
+	HandlerType: (*ClusterInfoServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AddClusterInfo",
+			Handler:    _ClusterInfoService_AddClusterInfo_Handler,
+		},
+		{
+			MethodName: "UpdateClusterConf",
+			Handler:    _ClusterInfoService_UpdateClusterConf_Handler,
+		},
+		{
+			MethodName: "GetCluster",
+			Handler:    _ClusterInfoService_GetCluster_Handler,
+		},
+		{
+			MethodName: "GetClusters",
+			Handler:    _ClusterInfoService_GetClusters_Handler,
+		},
+		{
+			MethodName: "UpdateClusterStatus",
+			Handler:    _ClusterInfoService_UpdateClusterStatus_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "info.proto",
+}
+
+// CspInfoServiceClient is the client API for CspInfoService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CspInfoServiceClient interface {
+	// CreateCSPInfo create new CSP Info for the contract id.
+	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetCSPIDs returns all CSP ids.
+	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
+	// GetCSPIDsByContractID returns the CSP ids by the contract id.
+	GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error)
+	// UpdateCSPInfo updates an authentication config for CSP.
+	UpdateCSPAuth(ctx context.Context, in *UpdateCSPAuthRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// GetCSPAuth returns an authentication info by csp id.
+	GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error)
+}
+
+type cspInfoServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCspInfoServiceClient(cc grpc.ClientConnInterface) CspInfoServiceClient {
+	return &cspInfoServiceClient{cc}
+}
+
+func (c *cspInfoServiceClient) CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+	out := new(IDResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/CreateCSPInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cspInfoServiceClient) GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error) {
+	out := new(IDsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/GetCSPIDs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cspInfoServiceClient) GetCSPIDsByContractID(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+	out := new(IDsResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/GetCSPIDsByContractID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cspInfoServiceClient) UpdateCSPAuth(ctx context.Context, in *UpdateCSPAuthRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/UpdateCSPAuth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cspInfoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPAuthResponse, error) {
+	out := new(GetCSPAuthResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/GetCSPAuth", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CspInfoServiceServer is the server API for CspInfoService service.
+// All implementations must embed UnimplementedCspInfoServiceServer
+// for forward compatibility
+type CspInfoServiceServer interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error)
 	// GetCSPIDs returns all CSP ids.
@@ -150,295 +335,160 @@ type InfoServiceServer interface {
 	// GetCSPIDsByContractID returns the CSP ids by the contract id.
 	GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error)
 	// UpdateCSPInfo updates an authentication config for CSP.
-	UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error)
+	UpdateCSPAuth(context.Context, *UpdateCSPAuthRequest) (*SimpleResponse, error)
 	// GetCSPAuth returns an authentication info by csp id.
 	GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error)
-	// AddClusterInfo adds newly created cluster information
-	AddClusterInfo(context.Context, *AddClusterInfoRequest) (*IDResponse, error)
-	// UpdateClusterConf updates the cluster configuration information
-	UpdateClusterConf(context.Context, *UpdateClusterConfRequest) (*SimpleResponse, error)
-	// GetClusterget cluster for the id of the cluster
-	GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error)
-	// GetClusters get every clusters on the mutlcluster
-	GetClusters(context.Context, *GetClustersRequest) (*GetClustersResponse, error)
-	// UpdateClusterStatus update Status of the Cluster
-	UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error)
-	mustEmbedUnimplementedInfoServiceServer()
+	mustEmbedUnimplementedCspInfoServiceServer()
 }
 
-// UnimplementedInfoServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedInfoServiceServer struct {
+// UnimplementedCspInfoServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCspInfoServiceServer struct {
 }
 
-func (UnimplementedInfoServiceServer) CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error) {
+func (UnimplementedCspInfoServiceServer) CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCSPInfo not implemented")
 }
-func (UnimplementedInfoServiceServer) GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
+func (UnimplementedCspInfoServiceServer) GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDs not implemented")
 }
-func (UnimplementedInfoServiceServer) GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error) {
+func (UnimplementedCspInfoServiceServer) GetCSPIDsByContractID(context.Context, *IDRequest) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDsByContractID not implemented")
 }
-func (UnimplementedInfoServiceServer) UpdateCSPInfo(context.Context, *UpdateCSPInfoRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCSPInfo not implemented")
+func (UnimplementedCspInfoServiceServer) UpdateCSPAuth(context.Context, *UpdateCSPAuthRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCSPAuth not implemented")
 }
-func (UnimplementedInfoServiceServer) GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error) {
+func (UnimplementedCspInfoServiceServer) GetCSPAuth(context.Context, *IDRequest) (*GetCSPAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCSPAuth not implemented")
 }
-func (UnimplementedInfoServiceServer) AddClusterInfo(context.Context, *AddClusterInfoRequest) (*IDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddClusterInfo not implemented")
-}
-func (UnimplementedInfoServiceServer) UpdateClusterConf(context.Context, *UpdateClusterConfRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateClusterConf not implemented")
-}
-func (UnimplementedInfoServiceServer) GetCluster(context.Context, *GetClusterRequest) (*GetClusterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCluster not implemented")
-}
-func (UnimplementedInfoServiceServer) GetClusters(context.Context, *GetClustersRequest) (*GetClustersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetClusters not implemented")
-}
-func (UnimplementedInfoServiceServer) UpdateClusterStatus(context.Context, *UpdateClusterStatusRequest) (*SimpleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateClusterStatus not implemented")
-}
-func (UnimplementedInfoServiceServer) mustEmbedUnimplementedInfoServiceServer() {}
+func (UnimplementedCspInfoServiceServer) mustEmbedUnimplementedCspInfoServiceServer() {}
 
-// UnsafeInfoServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to InfoServiceServer will
+// UnsafeCspInfoServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CspInfoServiceServer will
 // result in compilation errors.
-type UnsafeInfoServiceServer interface {
-	mustEmbedUnimplementedInfoServiceServer()
+type UnsafeCspInfoServiceServer interface {
+	mustEmbedUnimplementedCspInfoServiceServer()
 }
 
-func RegisterInfoServiceServer(s grpc.ServiceRegistrar, srv InfoServiceServer) {
-	s.RegisterService(&InfoService_ServiceDesc, srv)
+func RegisterCspInfoServiceServer(s grpc.ServiceRegistrar, srv CspInfoServiceServer) {
+	s.RegisterService(&CspInfoService_ServiceDesc, srv)
 }
 
-func _InfoService_CreateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CspInfoService_CreateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateCSPInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).CreateCSPInfo(ctx, in)
+		return srv.(CspInfoServiceServer).CreateCSPInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/CreateCSPInfo",
+		FullMethod: "/pbgo.CspInfoService/CreateCSPInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).CreateCSPInfo(ctx, req.(*CreateCSPInfoRequest))
+		return srv.(CspInfoServiceServer).CreateCSPInfo(ctx, req.(*CreateCSPInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetCSPIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CspInfoService_GetCSPIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetCSPIDs(ctx, in)
+		return srv.(CspInfoServiceServer).GetCSPIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetCSPIDs",
+		FullMethod: "/pbgo.CspInfoService/GetCSPIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetCSPIDs(ctx, req.(*emptypb.Empty))
+		return srv.(CspInfoServiceServer).GetCSPIDs(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetCSPIDsByContractID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CspInfoService_GetCSPIDsByContractID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetCSPIDsByContractID(ctx, in)
+		return srv.(CspInfoServiceServer).GetCSPIDsByContractID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetCSPIDsByContractID",
+		FullMethod: "/pbgo.CspInfoService/GetCSPIDsByContractID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetCSPIDsByContractID(ctx, req.(*IDRequest))
+		return srv.(CspInfoServiceServer).GetCSPIDsByContractID(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_UpdateCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCSPInfoRequest)
+func _CspInfoService_UpdateCSPAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCSPAuthRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).UpdateCSPInfo(ctx, in)
+		return srv.(CspInfoServiceServer).UpdateCSPAuth(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/UpdateCSPInfo",
+		FullMethod: "/pbgo.CspInfoService/UpdateCSPAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).UpdateCSPInfo(ctx, req.(*UpdateCSPInfoRequest))
+		return srv.(CspInfoServiceServer).UpdateCSPAuth(ctx, req.(*UpdateCSPAuthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_GetCSPAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CspInfoService_GetCSPAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(InfoServiceServer).GetCSPAuth(ctx, in)
+		return srv.(CspInfoServiceServer).GetCSPAuth(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetCSPAuth",
+		FullMethod: "/pbgo.CspInfoService/GetCSPAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetCSPAuth(ctx, req.(*IDRequest))
+		return srv.(CspInfoServiceServer).GetCSPAuth(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _InfoService_AddClusterInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddClusterInfoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).AddClusterInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/AddClusterInfo",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).AddClusterInfo(ctx, req.(*AddClusterInfoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_UpdateClusterConf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateClusterConfRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).UpdateClusterConf(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/UpdateClusterConf",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).UpdateClusterConf(ctx, req.(*UpdateClusterConfRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_GetCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetClusterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetCluster(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetCluster",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetCluster(ctx, req.(*GetClusterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_GetClusters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetClustersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).GetClusters(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/GetClusters",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).GetClusters(ctx, req.(*GetClustersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _InfoService_UpdateClusterStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateClusterStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(InfoServiceServer).UpdateClusterStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pbgo.InfoService/UpdateClusterStatus",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(InfoServiceServer).UpdateClusterStatus(ctx, req.(*UpdateClusterStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// InfoService_ServiceDesc is the grpc.ServiceDesc for InfoService service.
+// CspInfoService_ServiceDesc is the grpc.ServiceDesc for CspInfoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var InfoService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pbgo.InfoService",
-	HandlerType: (*InfoServiceServer)(nil),
+var CspInfoService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pbgo.CspInfoService",
+	HandlerType: (*CspInfoServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateCSPInfo",
-			Handler:    _InfoService_CreateCSPInfo_Handler,
+			Handler:    _CspInfoService_CreateCSPInfo_Handler,
 		},
 		{
 			MethodName: "GetCSPIDs",
-			Handler:    _InfoService_GetCSPIDs_Handler,
+			Handler:    _CspInfoService_GetCSPIDs_Handler,
 		},
 		{
 			MethodName: "GetCSPIDsByContractID",
-			Handler:    _InfoService_GetCSPIDsByContractID_Handler,
+			Handler:    _CspInfoService_GetCSPIDsByContractID_Handler,
 		},
 		{
-			MethodName: "UpdateCSPInfo",
-			Handler:    _InfoService_UpdateCSPInfo_Handler,
+			MethodName: "UpdateCSPAuth",
+			Handler:    _CspInfoService_UpdateCSPAuth_Handler,
 		},
 		{
 			MethodName: "GetCSPAuth",
-			Handler:    _InfoService_GetCSPAuth_Handler,
-		},
-		{
-			MethodName: "AddClusterInfo",
-			Handler:    _InfoService_AddClusterInfo_Handler,
-		},
-		{
-			MethodName: "UpdateClusterConf",
-			Handler:    _InfoService_UpdateClusterConf_Handler,
-		},
-		{
-			MethodName: "GetCluster",
-			Handler:    _InfoService_GetCluster_Handler,
-		},
-		{
-			MethodName: "GetClusters",
-			Handler:    _InfoService_GetClusters_Handler,
-		},
-		{
-			MethodName: "UpdateClusterStatus",
-			Handler:    _InfoService_UpdateClusterStatus_Handler,
+			Handler:    _CspInfoService_GetCSPAuth_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

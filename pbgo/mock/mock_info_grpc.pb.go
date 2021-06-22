@@ -14,31 +14,31 @@ import (
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
-// MockInfoServiceClient is a mock of InfoServiceClient interface.
-type MockInfoServiceClient struct {
+// MockClusterInfoServiceClient is a mock of ClusterInfoServiceClient interface.
+type MockClusterInfoServiceClient struct {
 	ctrl     *gomock.Controller
-	recorder *MockInfoServiceClientMockRecorder
+	recorder *MockClusterInfoServiceClientMockRecorder
 }
 
-// MockInfoServiceClientMockRecorder is the mock recorder for MockInfoServiceClient.
-type MockInfoServiceClientMockRecorder struct {
-	mock *MockInfoServiceClient
+// MockClusterInfoServiceClientMockRecorder is the mock recorder for MockClusterInfoServiceClient.
+type MockClusterInfoServiceClientMockRecorder struct {
+	mock *MockClusterInfoServiceClient
 }
 
-// NewMockInfoServiceClient creates a new mock instance.
-func NewMockInfoServiceClient(ctrl *gomock.Controller) *MockInfoServiceClient {
-	mock := &MockInfoServiceClient{ctrl: ctrl}
-	mock.recorder = &MockInfoServiceClientMockRecorder{mock}
+// NewMockClusterInfoServiceClient creates a new mock instance.
+func NewMockClusterInfoServiceClient(ctrl *gomock.Controller) *MockClusterInfoServiceClient {
+	mock := &MockClusterInfoServiceClient{ctrl: ctrl}
+	mock.recorder = &MockClusterInfoServiceClientMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockInfoServiceClient) EXPECT() *MockInfoServiceClientMockRecorder {
+func (m *MockClusterInfoServiceClient) EXPECT() *MockClusterInfoServiceClientMockRecorder {
 	return m.recorder
 }
 
 // AddClusterInfo mocks base method.
-func (m *MockInfoServiceClient) AddClusterInfo(ctx context.Context, in *pbgo.AddClusterInfoRequest, opts ...grpc.CallOption) (*pbgo.IDResponse, error) {
+func (m *MockClusterInfoServiceClient) AddClusterInfo(ctx context.Context, in *pbgo.AddClusterInfoRequest, opts ...grpc.CallOption) (*pbgo.IDResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
@@ -51,94 +51,14 @@ func (m *MockInfoServiceClient) AddClusterInfo(ctx context.Context, in *pbgo.Add
 }
 
 // AddClusterInfo indicates an expected call of AddClusterInfo.
-func (mr *MockInfoServiceClientMockRecorder) AddClusterInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceClientMockRecorder) AddClusterInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddClusterInfo", reflect.TypeOf((*MockInfoServiceClient)(nil).AddClusterInfo), varargs...)
-}
-
-// CreateCSPInfo mocks base method.
-func (m *MockInfoServiceClient) CreateCSPInfo(ctx context.Context, in *pbgo.CreateCSPInfoRequest, opts ...grpc.CallOption) (*pbgo.IDResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "CreateCSPInfo", varargs...)
-	ret0, _ := ret[0].(*pbgo.IDResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// CreateCSPInfo indicates an expected call of CreateCSPInfo.
-func (mr *MockInfoServiceClientMockRecorder) CreateCSPInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCSPInfo", reflect.TypeOf((*MockInfoServiceClient)(nil).CreateCSPInfo), varargs...)
-}
-
-// GetCSPAuth mocks base method.
-func (m *MockInfoServiceClient) GetCSPAuth(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.GetCSPAuthResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetCSPAuth", varargs...)
-	ret0, _ := ret[0].(*pbgo.GetCSPAuthResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCSPAuth indicates an expected call of GetCSPAuth.
-func (mr *MockInfoServiceClientMockRecorder) GetCSPAuth(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPAuth", reflect.TypeOf((*MockInfoServiceClient)(nil).GetCSPAuth), varargs...)
-}
-
-// GetCSPIDs mocks base method.
-func (m *MockInfoServiceClient) GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetCSPIDs", varargs...)
-	ret0, _ := ret[0].(*pbgo.IDsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCSPIDs indicates an expected call of GetCSPIDs.
-func (mr *MockInfoServiceClientMockRecorder) GetCSPIDs(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDs", reflect.TypeOf((*MockInfoServiceClient)(nil).GetCSPIDs), varargs...)
-}
-
-// GetCSPIDsByContractID mocks base method.
-func (m *MockInfoServiceClient) GetCSPIDsByContractID(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetCSPIDsByContractID", varargs...)
-	ret0, _ := ret[0].(*pbgo.IDsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCSPIDsByContractID indicates an expected call of GetCSPIDsByContractID.
-func (mr *MockInfoServiceClientMockRecorder) GetCSPIDsByContractID(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDsByContractID", reflect.TypeOf((*MockInfoServiceClient)(nil).GetCSPIDsByContractID), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddClusterInfo", reflect.TypeOf((*MockClusterInfoServiceClient)(nil).AddClusterInfo), varargs...)
 }
 
 // GetCluster mocks base method.
-func (m *MockInfoServiceClient) GetCluster(ctx context.Context, in *pbgo.GetClusterRequest, opts ...grpc.CallOption) (*pbgo.GetClusterResponse, error) {
+func (m *MockClusterInfoServiceClient) GetCluster(ctx context.Context, in *pbgo.GetClusterRequest, opts ...grpc.CallOption) (*pbgo.GetClusterResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
@@ -151,14 +71,14 @@ func (m *MockInfoServiceClient) GetCluster(ctx context.Context, in *pbgo.GetClus
 }
 
 // GetCluster indicates an expected call of GetCluster.
-func (mr *MockInfoServiceClientMockRecorder) GetCluster(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceClientMockRecorder) GetCluster(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCluster", reflect.TypeOf((*MockInfoServiceClient)(nil).GetCluster), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCluster", reflect.TypeOf((*MockClusterInfoServiceClient)(nil).GetCluster), varargs...)
 }
 
 // GetClusters mocks base method.
-func (m *MockInfoServiceClient) GetClusters(ctx context.Context, in *pbgo.GetClustersRequest, opts ...grpc.CallOption) (*pbgo.GetClustersResponse, error) {
+func (m *MockClusterInfoServiceClient) GetClusters(ctx context.Context, in *pbgo.GetClustersRequest, opts ...grpc.CallOption) (*pbgo.GetClustersResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
@@ -171,34 +91,14 @@ func (m *MockInfoServiceClient) GetClusters(ctx context.Context, in *pbgo.GetClu
 }
 
 // GetClusters indicates an expected call of GetClusters.
-func (mr *MockInfoServiceClientMockRecorder) GetClusters(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceClientMockRecorder) GetClusters(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClusters", reflect.TypeOf((*MockInfoServiceClient)(nil).GetClusters), varargs...)
-}
-
-// UpdateCSPInfo mocks base method.
-func (m *MockInfoServiceClient) UpdateCSPInfo(ctx context.Context, in *pbgo.UpdateCSPInfoRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{ctx, in}
-	for _, a := range opts {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "UpdateCSPInfo", varargs...)
-	ret0, _ := ret[0].(*pbgo.SimpleResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// UpdateCSPInfo indicates an expected call of UpdateCSPInfo.
-func (mr *MockInfoServiceClientMockRecorder) UpdateCSPInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCSPInfo", reflect.TypeOf((*MockInfoServiceClient)(nil).UpdateCSPInfo), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClusters", reflect.TypeOf((*MockClusterInfoServiceClient)(nil).GetClusters), varargs...)
 }
 
 // UpdateClusterConf mocks base method.
-func (m *MockInfoServiceClient) UpdateClusterConf(ctx context.Context, in *pbgo.UpdateClusterConfRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+func (m *MockClusterInfoServiceClient) UpdateClusterConf(ctx context.Context, in *pbgo.UpdateClusterConfRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
@@ -211,14 +111,14 @@ func (m *MockInfoServiceClient) UpdateClusterConf(ctx context.Context, in *pbgo.
 }
 
 // UpdateClusterConf indicates an expected call of UpdateClusterConf.
-func (mr *MockInfoServiceClientMockRecorder) UpdateClusterConf(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceClientMockRecorder) UpdateClusterConf(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterConf", reflect.TypeOf((*MockInfoServiceClient)(nil).UpdateClusterConf), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterConf", reflect.TypeOf((*MockClusterInfoServiceClient)(nil).UpdateClusterConf), varargs...)
 }
 
 // UpdateClusterStatus mocks base method.
-func (m *MockInfoServiceClient) UpdateClusterStatus(ctx context.Context, in *pbgo.UpdateClusterStatusRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+func (m *MockClusterInfoServiceClient) UpdateClusterStatus(ctx context.Context, in *pbgo.UpdateClusterStatusRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
@@ -231,37 +131,37 @@ func (m *MockInfoServiceClient) UpdateClusterStatus(ctx context.Context, in *pbg
 }
 
 // UpdateClusterStatus indicates an expected call of UpdateClusterStatus.
-func (mr *MockInfoServiceClientMockRecorder) UpdateClusterStatus(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceClientMockRecorder) UpdateClusterStatus(ctx, in interface{}, opts ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterStatus", reflect.TypeOf((*MockInfoServiceClient)(nil).UpdateClusterStatus), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterStatus", reflect.TypeOf((*MockClusterInfoServiceClient)(nil).UpdateClusterStatus), varargs...)
 }
 
-// MockInfoServiceServer is a mock of InfoServiceServer interface.
-type MockInfoServiceServer struct {
+// MockClusterInfoServiceServer is a mock of ClusterInfoServiceServer interface.
+type MockClusterInfoServiceServer struct {
 	ctrl     *gomock.Controller
-	recorder *MockInfoServiceServerMockRecorder
+	recorder *MockClusterInfoServiceServerMockRecorder
 }
 
-// MockInfoServiceServerMockRecorder is the mock recorder for MockInfoServiceServer.
-type MockInfoServiceServerMockRecorder struct {
-	mock *MockInfoServiceServer
+// MockClusterInfoServiceServerMockRecorder is the mock recorder for MockClusterInfoServiceServer.
+type MockClusterInfoServiceServerMockRecorder struct {
+	mock *MockClusterInfoServiceServer
 }
 
-// NewMockInfoServiceServer creates a new mock instance.
-func NewMockInfoServiceServer(ctrl *gomock.Controller) *MockInfoServiceServer {
-	mock := &MockInfoServiceServer{ctrl: ctrl}
-	mock.recorder = &MockInfoServiceServerMockRecorder{mock}
+// NewMockClusterInfoServiceServer creates a new mock instance.
+func NewMockClusterInfoServiceServer(ctrl *gomock.Controller) *MockClusterInfoServiceServer {
+	mock := &MockClusterInfoServiceServer{ctrl: ctrl}
+	mock.recorder = &MockClusterInfoServiceServerMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockInfoServiceServer) EXPECT() *MockInfoServiceServerMockRecorder {
+func (m *MockClusterInfoServiceServer) EXPECT() *MockClusterInfoServiceServerMockRecorder {
 	return m.recorder
 }
 
 // AddClusterInfo mocks base method.
-func (m *MockInfoServiceServer) AddClusterInfo(arg0 context.Context, arg1 *pbgo.AddClusterInfoRequest) (*pbgo.IDResponse, error) {
+func (m *MockClusterInfoServiceServer) AddClusterInfo(arg0 context.Context, arg1 *pbgo.AddClusterInfoRequest) (*pbgo.IDResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddClusterInfo", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.IDResponse)
@@ -270,73 +170,13 @@ func (m *MockInfoServiceServer) AddClusterInfo(arg0 context.Context, arg1 *pbgo.
 }
 
 // AddClusterInfo indicates an expected call of AddClusterInfo.
-func (mr *MockInfoServiceServerMockRecorder) AddClusterInfo(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceServerMockRecorder) AddClusterInfo(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddClusterInfo", reflect.TypeOf((*MockInfoServiceServer)(nil).AddClusterInfo), arg0, arg1)
-}
-
-// CreateCSPInfo mocks base method.
-func (m *MockInfoServiceServer) CreateCSPInfo(arg0 context.Context, arg1 *pbgo.CreateCSPInfoRequest) (*pbgo.IDResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateCSPInfo", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.IDResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// CreateCSPInfo indicates an expected call of CreateCSPInfo.
-func (mr *MockInfoServiceServerMockRecorder) CreateCSPInfo(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCSPInfo", reflect.TypeOf((*MockInfoServiceServer)(nil).CreateCSPInfo), arg0, arg1)
-}
-
-// GetCSPAuth mocks base method.
-func (m *MockInfoServiceServer) GetCSPAuth(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.GetCSPAuthResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCSPAuth", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.GetCSPAuthResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCSPAuth indicates an expected call of GetCSPAuth.
-func (mr *MockInfoServiceServerMockRecorder) GetCSPAuth(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPAuth", reflect.TypeOf((*MockInfoServiceServer)(nil).GetCSPAuth), arg0, arg1)
-}
-
-// GetCSPIDs mocks base method.
-func (m *MockInfoServiceServer) GetCSPIDs(arg0 context.Context, arg1 *emptypb.Empty) (*pbgo.IDsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCSPIDs", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.IDsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCSPIDs indicates an expected call of GetCSPIDs.
-func (mr *MockInfoServiceServerMockRecorder) GetCSPIDs(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDs", reflect.TypeOf((*MockInfoServiceServer)(nil).GetCSPIDs), arg0, arg1)
-}
-
-// GetCSPIDsByContractID mocks base method.
-func (m *MockInfoServiceServer) GetCSPIDsByContractID(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.IDsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCSPIDsByContractID", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.IDsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCSPIDsByContractID indicates an expected call of GetCSPIDsByContractID.
-func (mr *MockInfoServiceServerMockRecorder) GetCSPIDsByContractID(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDsByContractID", reflect.TypeOf((*MockInfoServiceServer)(nil).GetCSPIDsByContractID), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddClusterInfo", reflect.TypeOf((*MockClusterInfoServiceServer)(nil).AddClusterInfo), arg0, arg1)
 }
 
 // GetCluster mocks base method.
-func (m *MockInfoServiceServer) GetCluster(arg0 context.Context, arg1 *pbgo.GetClusterRequest) (*pbgo.GetClusterResponse, error) {
+func (m *MockClusterInfoServiceServer) GetCluster(arg0 context.Context, arg1 *pbgo.GetClusterRequest) (*pbgo.GetClusterResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetCluster", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.GetClusterResponse)
@@ -345,13 +185,13 @@ func (m *MockInfoServiceServer) GetCluster(arg0 context.Context, arg1 *pbgo.GetC
 }
 
 // GetCluster indicates an expected call of GetCluster.
-func (mr *MockInfoServiceServerMockRecorder) GetCluster(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceServerMockRecorder) GetCluster(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCluster", reflect.TypeOf((*MockInfoServiceServer)(nil).GetCluster), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCluster", reflect.TypeOf((*MockClusterInfoServiceServer)(nil).GetCluster), arg0, arg1)
 }
 
 // GetClusters mocks base method.
-func (m *MockInfoServiceServer) GetClusters(arg0 context.Context, arg1 *pbgo.GetClustersRequest) (*pbgo.GetClustersResponse, error) {
+func (m *MockClusterInfoServiceServer) GetClusters(arg0 context.Context, arg1 *pbgo.GetClustersRequest) (*pbgo.GetClustersResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetClusters", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.GetClustersResponse)
@@ -360,28 +200,13 @@ func (m *MockInfoServiceServer) GetClusters(arg0 context.Context, arg1 *pbgo.Get
 }
 
 // GetClusters indicates an expected call of GetClusters.
-func (mr *MockInfoServiceServerMockRecorder) GetClusters(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceServerMockRecorder) GetClusters(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClusters", reflect.TypeOf((*MockInfoServiceServer)(nil).GetClusters), arg0, arg1)
-}
-
-// UpdateCSPInfo mocks base method.
-func (m *MockInfoServiceServer) UpdateCSPInfo(arg0 context.Context, arg1 *pbgo.UpdateCSPInfoRequest) (*pbgo.SimpleResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateCSPInfo", arg0, arg1)
-	ret0, _ := ret[0].(*pbgo.SimpleResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// UpdateCSPInfo indicates an expected call of UpdateCSPInfo.
-func (mr *MockInfoServiceServerMockRecorder) UpdateCSPInfo(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCSPInfo", reflect.TypeOf((*MockInfoServiceServer)(nil).UpdateCSPInfo), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClusters", reflect.TypeOf((*MockClusterInfoServiceServer)(nil).GetClusters), arg0, arg1)
 }
 
 // UpdateClusterConf mocks base method.
-func (m *MockInfoServiceServer) UpdateClusterConf(arg0 context.Context, arg1 *pbgo.UpdateClusterConfRequest) (*pbgo.SimpleResponse, error) {
+func (m *MockClusterInfoServiceServer) UpdateClusterConf(arg0 context.Context, arg1 *pbgo.UpdateClusterConfRequest) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateClusterConf", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
@@ -390,13 +215,13 @@ func (m *MockInfoServiceServer) UpdateClusterConf(arg0 context.Context, arg1 *pb
 }
 
 // UpdateClusterConf indicates an expected call of UpdateClusterConf.
-func (mr *MockInfoServiceServerMockRecorder) UpdateClusterConf(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceServerMockRecorder) UpdateClusterConf(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterConf", reflect.TypeOf((*MockInfoServiceServer)(nil).UpdateClusterConf), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterConf", reflect.TypeOf((*MockClusterInfoServiceServer)(nil).UpdateClusterConf), arg0, arg1)
 }
 
 // UpdateClusterStatus mocks base method.
-func (m *MockInfoServiceServer) UpdateClusterStatus(arg0 context.Context, arg1 *pbgo.UpdateClusterStatusRequest) (*pbgo.SimpleResponse, error) {
+func (m *MockClusterInfoServiceServer) UpdateClusterStatus(arg0 context.Context, arg1 *pbgo.UpdateClusterStatusRequest) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateClusterStatus", arg0, arg1)
 	ret0, _ := ret[0].(*pbgo.SimpleResponse)
@@ -405,56 +230,324 @@ func (m *MockInfoServiceServer) UpdateClusterStatus(arg0 context.Context, arg1 *
 }
 
 // UpdateClusterStatus indicates an expected call of UpdateClusterStatus.
-func (mr *MockInfoServiceServerMockRecorder) UpdateClusterStatus(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockClusterInfoServiceServerMockRecorder) UpdateClusterStatus(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterStatus", reflect.TypeOf((*MockInfoServiceServer)(nil).UpdateClusterStatus), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateClusterStatus", reflect.TypeOf((*MockClusterInfoServiceServer)(nil).UpdateClusterStatus), arg0, arg1)
 }
 
-// mustEmbedUnimplementedInfoServiceServer mocks base method.
-func (m *MockInfoServiceServer) mustEmbedUnimplementedInfoServiceServer() {
+// mustEmbedUnimplementedClusterInfoServiceServer mocks base method.
+func (m *MockClusterInfoServiceServer) mustEmbedUnimplementedClusterInfoServiceServer() {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "mustEmbedUnimplementedInfoServiceServer")
+	m.ctrl.Call(m, "mustEmbedUnimplementedClusterInfoServiceServer")
 }
 
-// mustEmbedUnimplementedInfoServiceServer indicates an expected call of mustEmbedUnimplementedInfoServiceServer.
-func (mr *MockInfoServiceServerMockRecorder) mustEmbedUnimplementedInfoServiceServer() *gomock.Call {
+// mustEmbedUnimplementedClusterInfoServiceServer indicates an expected call of mustEmbedUnimplementedClusterInfoServiceServer.
+func (mr *MockClusterInfoServiceServerMockRecorder) mustEmbedUnimplementedClusterInfoServiceServer() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedInfoServiceServer", reflect.TypeOf((*MockInfoServiceServer)(nil).mustEmbedUnimplementedInfoServiceServer))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedClusterInfoServiceServer", reflect.TypeOf((*MockClusterInfoServiceServer)(nil).mustEmbedUnimplementedClusterInfoServiceServer))
 }
 
-// MockUnsafeInfoServiceServer is a mock of UnsafeInfoServiceServer interface.
-type MockUnsafeInfoServiceServer struct {
+// MockUnsafeClusterInfoServiceServer is a mock of UnsafeClusterInfoServiceServer interface.
+type MockUnsafeClusterInfoServiceServer struct {
 	ctrl     *gomock.Controller
-	recorder *MockUnsafeInfoServiceServerMockRecorder
+	recorder *MockUnsafeClusterInfoServiceServerMockRecorder
 }
 
-// MockUnsafeInfoServiceServerMockRecorder is the mock recorder for MockUnsafeInfoServiceServer.
-type MockUnsafeInfoServiceServerMockRecorder struct {
-	mock *MockUnsafeInfoServiceServer
+// MockUnsafeClusterInfoServiceServerMockRecorder is the mock recorder for MockUnsafeClusterInfoServiceServer.
+type MockUnsafeClusterInfoServiceServerMockRecorder struct {
+	mock *MockUnsafeClusterInfoServiceServer
 }
 
-// NewMockUnsafeInfoServiceServer creates a new mock instance.
-func NewMockUnsafeInfoServiceServer(ctrl *gomock.Controller) *MockUnsafeInfoServiceServer {
-	mock := &MockUnsafeInfoServiceServer{ctrl: ctrl}
-	mock.recorder = &MockUnsafeInfoServiceServerMockRecorder{mock}
+// NewMockUnsafeClusterInfoServiceServer creates a new mock instance.
+func NewMockUnsafeClusterInfoServiceServer(ctrl *gomock.Controller) *MockUnsafeClusterInfoServiceServer {
+	mock := &MockUnsafeClusterInfoServiceServer{ctrl: ctrl}
+	mock.recorder = &MockUnsafeClusterInfoServiceServerMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockUnsafeInfoServiceServer) EXPECT() *MockUnsafeInfoServiceServerMockRecorder {
+func (m *MockUnsafeClusterInfoServiceServer) EXPECT() *MockUnsafeClusterInfoServiceServerMockRecorder {
 	return m.recorder
 }
 
-// mustEmbedUnimplementedInfoServiceServer mocks base method.
-func (m *MockUnsafeInfoServiceServer) mustEmbedUnimplementedInfoServiceServer() {
+// mustEmbedUnimplementedClusterInfoServiceServer mocks base method.
+func (m *MockUnsafeClusterInfoServiceServer) mustEmbedUnimplementedClusterInfoServiceServer() {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "mustEmbedUnimplementedInfoServiceServer")
+	m.ctrl.Call(m, "mustEmbedUnimplementedClusterInfoServiceServer")
 }
 
-// mustEmbedUnimplementedInfoServiceServer indicates an expected call of mustEmbedUnimplementedInfoServiceServer.
-func (mr *MockUnsafeInfoServiceServerMockRecorder) mustEmbedUnimplementedInfoServiceServer() *gomock.Call {
+// mustEmbedUnimplementedClusterInfoServiceServer indicates an expected call of mustEmbedUnimplementedClusterInfoServiceServer.
+func (mr *MockUnsafeClusterInfoServiceServerMockRecorder) mustEmbedUnimplementedClusterInfoServiceServer() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedInfoServiceServer", reflect.TypeOf((*MockUnsafeInfoServiceServer)(nil).mustEmbedUnimplementedInfoServiceServer))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedClusterInfoServiceServer", reflect.TypeOf((*MockUnsafeClusterInfoServiceServer)(nil).mustEmbedUnimplementedClusterInfoServiceServer))
+}
+
+// MockCspInfoServiceClient is a mock of CspInfoServiceClient interface.
+type MockCspInfoServiceClient struct {
+	ctrl     *gomock.Controller
+	recorder *MockCspInfoServiceClientMockRecorder
+}
+
+// MockCspInfoServiceClientMockRecorder is the mock recorder for MockCspInfoServiceClient.
+type MockCspInfoServiceClientMockRecorder struct {
+	mock *MockCspInfoServiceClient
+}
+
+// NewMockCspInfoServiceClient creates a new mock instance.
+func NewMockCspInfoServiceClient(ctrl *gomock.Controller) *MockCspInfoServiceClient {
+	mock := &MockCspInfoServiceClient{ctrl: ctrl}
+	mock.recorder = &MockCspInfoServiceClientMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockCspInfoServiceClient) EXPECT() *MockCspInfoServiceClientMockRecorder {
+	return m.recorder
+}
+
+// CreateCSPInfo mocks base method.
+func (m *MockCspInfoServiceClient) CreateCSPInfo(ctx context.Context, in *pbgo.CreateCSPInfoRequest, opts ...grpc.CallOption) (*pbgo.IDResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateCSPInfo", varargs...)
+	ret0, _ := ret[0].(*pbgo.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateCSPInfo indicates an expected call of CreateCSPInfo.
+func (mr *MockCspInfoServiceClientMockRecorder) CreateCSPInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCSPInfo", reflect.TypeOf((*MockCspInfoServiceClient)(nil).CreateCSPInfo), varargs...)
+}
+
+// GetCSPAuth mocks base method.
+func (m *MockCspInfoServiceClient) GetCSPAuth(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.GetCSPAuthResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetCSPAuth", varargs...)
+	ret0, _ := ret[0].(*pbgo.GetCSPAuthResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPAuth indicates an expected call of GetCSPAuth.
+func (mr *MockCspInfoServiceClientMockRecorder) GetCSPAuth(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPAuth", reflect.TypeOf((*MockCspInfoServiceClient)(nil).GetCSPAuth), varargs...)
+}
+
+// GetCSPIDs mocks base method.
+func (m *MockCspInfoServiceClient) GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetCSPIDs", varargs...)
+	ret0, _ := ret[0].(*pbgo.IDsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPIDs indicates an expected call of GetCSPIDs.
+func (mr *MockCspInfoServiceClientMockRecorder) GetCSPIDs(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDs", reflect.TypeOf((*MockCspInfoServiceClient)(nil).GetCSPIDs), varargs...)
+}
+
+// GetCSPIDsByContractID mocks base method.
+func (m *MockCspInfoServiceClient) GetCSPIDsByContractID(ctx context.Context, in *pbgo.IDRequest, opts ...grpc.CallOption) (*pbgo.IDsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetCSPIDsByContractID", varargs...)
+	ret0, _ := ret[0].(*pbgo.IDsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPIDsByContractID indicates an expected call of GetCSPIDsByContractID.
+func (mr *MockCspInfoServiceClientMockRecorder) GetCSPIDsByContractID(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDsByContractID", reflect.TypeOf((*MockCspInfoServiceClient)(nil).GetCSPIDsByContractID), varargs...)
+}
+
+// UpdateCSPAuth mocks base method.
+func (m *MockCspInfoServiceClient) UpdateCSPAuth(ctx context.Context, in *pbgo.UpdateCSPAuthRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateCSPAuth", varargs...)
+	ret0, _ := ret[0].(*pbgo.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateCSPAuth indicates an expected call of UpdateCSPAuth.
+func (mr *MockCspInfoServiceClientMockRecorder) UpdateCSPAuth(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCSPAuth", reflect.TypeOf((*MockCspInfoServiceClient)(nil).UpdateCSPAuth), varargs...)
+}
+
+// MockCspInfoServiceServer is a mock of CspInfoServiceServer interface.
+type MockCspInfoServiceServer struct {
+	ctrl     *gomock.Controller
+	recorder *MockCspInfoServiceServerMockRecorder
+}
+
+// MockCspInfoServiceServerMockRecorder is the mock recorder for MockCspInfoServiceServer.
+type MockCspInfoServiceServerMockRecorder struct {
+	mock *MockCspInfoServiceServer
+}
+
+// NewMockCspInfoServiceServer creates a new mock instance.
+func NewMockCspInfoServiceServer(ctrl *gomock.Controller) *MockCspInfoServiceServer {
+	mock := &MockCspInfoServiceServer{ctrl: ctrl}
+	mock.recorder = &MockCspInfoServiceServerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockCspInfoServiceServer) EXPECT() *MockCspInfoServiceServerMockRecorder {
+	return m.recorder
+}
+
+// CreateCSPInfo mocks base method.
+func (m *MockCspInfoServiceServer) CreateCSPInfo(arg0 context.Context, arg1 *pbgo.CreateCSPInfoRequest) (*pbgo.IDResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateCSPInfo", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateCSPInfo indicates an expected call of CreateCSPInfo.
+func (mr *MockCspInfoServiceServerMockRecorder) CreateCSPInfo(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCSPInfo", reflect.TypeOf((*MockCspInfoServiceServer)(nil).CreateCSPInfo), arg0, arg1)
+}
+
+// GetCSPAuth mocks base method.
+func (m *MockCspInfoServiceServer) GetCSPAuth(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.GetCSPAuthResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCSPAuth", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.GetCSPAuthResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPAuth indicates an expected call of GetCSPAuth.
+func (mr *MockCspInfoServiceServerMockRecorder) GetCSPAuth(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPAuth", reflect.TypeOf((*MockCspInfoServiceServer)(nil).GetCSPAuth), arg0, arg1)
+}
+
+// GetCSPIDs mocks base method.
+func (m *MockCspInfoServiceServer) GetCSPIDs(arg0 context.Context, arg1 *emptypb.Empty) (*pbgo.IDsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCSPIDs", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.IDsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPIDs indicates an expected call of GetCSPIDs.
+func (mr *MockCspInfoServiceServerMockRecorder) GetCSPIDs(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDs", reflect.TypeOf((*MockCspInfoServiceServer)(nil).GetCSPIDs), arg0, arg1)
+}
+
+// GetCSPIDsByContractID mocks base method.
+func (m *MockCspInfoServiceServer) GetCSPIDsByContractID(arg0 context.Context, arg1 *pbgo.IDRequest) (*pbgo.IDsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCSPIDsByContractID", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.IDsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPIDsByContractID indicates an expected call of GetCSPIDsByContractID.
+func (mr *MockCspInfoServiceServerMockRecorder) GetCSPIDsByContractID(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDsByContractID", reflect.TypeOf((*MockCspInfoServiceServer)(nil).GetCSPIDsByContractID), arg0, arg1)
+}
+
+// UpdateCSPAuth mocks base method.
+func (m *MockCspInfoServiceServer) UpdateCSPAuth(arg0 context.Context, arg1 *pbgo.UpdateCSPAuthRequest) (*pbgo.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateCSPAuth", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateCSPAuth indicates an expected call of UpdateCSPAuth.
+func (mr *MockCspInfoServiceServerMockRecorder) UpdateCSPAuth(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCSPAuth", reflect.TypeOf((*MockCspInfoServiceServer)(nil).UpdateCSPAuth), arg0, arg1)
+}
+
+// mustEmbedUnimplementedCspInfoServiceServer mocks base method.
+func (m *MockCspInfoServiceServer) mustEmbedUnimplementedCspInfoServiceServer() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "mustEmbedUnimplementedCspInfoServiceServer")
+}
+
+// mustEmbedUnimplementedCspInfoServiceServer indicates an expected call of mustEmbedUnimplementedCspInfoServiceServer.
+func (mr *MockCspInfoServiceServerMockRecorder) mustEmbedUnimplementedCspInfoServiceServer() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedCspInfoServiceServer", reflect.TypeOf((*MockCspInfoServiceServer)(nil).mustEmbedUnimplementedCspInfoServiceServer))
+}
+
+// MockUnsafeCspInfoServiceServer is a mock of UnsafeCspInfoServiceServer interface.
+type MockUnsafeCspInfoServiceServer struct {
+	ctrl     *gomock.Controller
+	recorder *MockUnsafeCspInfoServiceServerMockRecorder
+}
+
+// MockUnsafeCspInfoServiceServerMockRecorder is the mock recorder for MockUnsafeCspInfoServiceServer.
+type MockUnsafeCspInfoServiceServerMockRecorder struct {
+	mock *MockUnsafeCspInfoServiceServer
+}
+
+// NewMockUnsafeCspInfoServiceServer creates a new mock instance.
+func NewMockUnsafeCspInfoServiceServer(ctrl *gomock.Controller) *MockUnsafeCspInfoServiceServer {
+	mock := &MockUnsafeCspInfoServiceServer{ctrl: ctrl}
+	mock.recorder = &MockUnsafeCspInfoServiceServerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockUnsafeCspInfoServiceServer) EXPECT() *MockUnsafeCspInfoServiceServerMockRecorder {
+	return m.recorder
+}
+
+// mustEmbedUnimplementedCspInfoServiceServer mocks base method.
+func (m *MockUnsafeCspInfoServiceServer) mustEmbedUnimplementedCspInfoServiceServer() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "mustEmbedUnimplementedCspInfoServiceServer")
+}
+
+// mustEmbedUnimplementedCspInfoServiceServer indicates an expected call of mustEmbedUnimplementedCspInfoServiceServer.
+func (mr *MockUnsafeCspInfoServiceServerMockRecorder) mustEmbedUnimplementedCspInfoServiceServer() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedCspInfoServiceServer", reflect.TypeOf((*MockUnsafeCspInfoServiceServer)(nil).mustEmbedUnimplementedCspInfoServiceServer))
 }
 
 // MockAppInfoServiceClient is a mock of AppInfoServiceClient interface.

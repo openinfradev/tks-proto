@@ -10,23 +10,13 @@ import "google/protobuf/empty.proto";
 
 option go_package = "github.com/sktelecom/tks-proto/pbgo";
 
-// InfoService is a service to manage info's document.
-service InfoService {
-  // CreateCSPInfo create new CSP Info for the contract id.
-  rpc CreateCSPInfo(CreateCSPInfoRequest) returns (IDResponse) {}
-  // GetCSPIDs returns all CSP ids.
-  rpc GetCSPIDs(google.protobuf.Empty) returns (IDsResponse) {}
-  // GetCSPIDsByContractID returns the CSP ids by the contract id.
-  rpc GetCSPIDsByContractID(IDRequest) returns (IDsResponse) {}
-  // UpdateCSPInfo updates an authentication config for CSP.
-  rpc UpdateCSPInfo(UpdateCSPInfoRequest) returns (SimpleResponse) {}
-  // GetCSPAuth returns an authentication info by csp id.
-  rpc GetCSPAuth(IDRequest) returns (GetCSPAuthResponse) {}
-  // AddClusterInfo adds newly created cluster information
+// ClusterInfoService is a service to manage cluster info document.
+service ClusterInfoService {
+  // AddClusterInfo adds new cluster information
   rpc AddClusterInfo(AddClusterInfoRequest) returns (IDResponse) {}
   // UpdateClusterConf updates the cluster configuration information
   rpc UpdateClusterConf(UpdateClusterConfRequest) returns (SimpleResponse) {}
-  // GetClusterget cluster for the id of the cluster
+  // GetCluster gets cluster info for the id of the cluster
   rpc GetCluster(GetClusterRequest) returns (GetClusterResponse) {}
   // GetClusters get every clusters on the mutlcluster
   rpc GetClusters(GetClustersRequest) returns (GetClustersResponse) {}
@@ -35,7 +25,22 @@ service InfoService {
     returns (SimpleResponse) {}
 }
 
-// AppInfoService is a service to manage Application info's document.
+// CspInfoService is a service to manage CSP info document.
+service CspInfoService {
+  // CreateCSPInfo create new CSP Info for the contract id.
+  rpc CreateCSPInfo(CreateCSPInfoRequest) returns (IDResponse) {}
+  // GetCSPIDs returns all CSP ids.
+  rpc GetCSPIDs(google.protobuf.Empty) returns (IDsResponse) {}
+  // GetCSPIDsByContractID returns the CSP ids by the contract id.
+  rpc GetCSPIDsByContractID(IDRequest) returns (IDsResponse) {}
+  // UpdateCSPInfo updates an authentication config for CSP.
+  rpc UpdateCSPAuth(UpdateCSPAuthRequest) returns (SimpleResponse) {}
+  // GetCSPAuth returns an authentication info by csp id.
+  rpc GetCSPAuth(IDRequest) returns (GetCSPAuthResponse) {}
+  // AddClusterInfo adds newly created cluster information
+}
+
+// AppInfoService is a service to manage Application info document.
 service AppInfoService {
   // CreateAppGroup creates a new application group.
   rpc CreateAppGroup(CreateAppGroupRequest) returns (IDResponse) {}
@@ -79,8 +84,8 @@ message GetCSPAuthResponse {
   string auth = 3;
 }
 
-// UpdateCSPInfoRequest updates an authenticationg information for CSP.
-message UpdateCSPInfoRequest {
+// UpdateCSPAuthRequest updates an authenticationg information for CSP.
+message UpdateCSPAuthRequest {
   // csp_id is .
   string csp_id = 1;
   // auth is an authentication info to update.
@@ -128,6 +133,8 @@ message GetClusterResponse {
 message GetClustersRequest {
   // csp_id is a Global Unique ID
   string csp_id = 1;
+  // Unique contract ID
+  string contract_id = 2;
 }
 
 // GetClustersResponse contains an array of cluster infos. 

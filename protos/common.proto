@@ -190,3 +190,12 @@ message IDResponse {
   // id is a id
   string id = 3;
 }
+
+// CSPType represents a type of the cloud service provier
+enum CSPType {
+  CSPTYPE_UNSPECIFIED = 0;
+  AWS = 1;
+  GCP = 2;
+  AZURE = 3;
+}
+

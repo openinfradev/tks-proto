@@ -71,6 +71,8 @@ message CreateCSPInfoRequest {
   string csp_name = 2;
   // auth is an optional. This is an authentication info for IaaS.
   string auth = 3;
+  // type is a cloud service provider type.
+  string type = 4;
 }
 
 // GetCSPAuthResponse is used to get an authentication information by

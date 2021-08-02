@@ -261,6 +261,8 @@ var ClusterInfoService_ServiceDesc = grpc.ServiceDesc{
 type CspInfoServiceClient interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetCSPInfo
+	GetCSPInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPInfoResponse, error)
 	// GetCSPIDs returns all CSP ids.
 	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
 	// GetCSPIDsByContractID returns the CSP ids by the contract id.
@@ -282,6 +284,15 @@ func NewCspInfoServiceClient(cc grpc.ClientConnInterface) CspInfoServiceClient {
 func (c *cspInfoServiceClient) CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
 	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/CreateCSPInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cspInfoServiceClient) GetCSPInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPInfoResponse, error) {
+	out := new(GetCSPInfoResponse)
+	err := c.cc.Invoke(ctx, "/pbgo.CspInfoService/GetCSPInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -330,6 +341,8 @@ func (c *cspInfoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, op
 type CspInfoServiceServer interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error)
+	// GetCSPInfo
+	GetCSPInfo(context.Context, *IDRequest) (*GetCSPInfoResponse, error)
 	// GetCSPIDs returns all CSP ids.
 	GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error)
 	// GetCSPIDsByContractID returns the CSP ids by the contract id.
@@ -347,6 +360,9 @@ type UnimplementedCspInfoServiceServer struct {
 
 func (UnimplementedCspInfoServiceServer) CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCSPInfo not implemented")
+}
+func (UnimplementedCspInfoServiceServer) GetCSPInfo(context.Context, *IDRequest) (*GetCSPInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPInfo not implemented")
 }
 func (UnimplementedCspInfoServiceServer) GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDs not implemented")
@@ -387,6 +403,24 @@ func _CspInfoService_CreateCSPInfo_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CspInfoServiceServer).CreateCSPInfo(ctx, req.(*CreateCSPInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CspInfoService_GetCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CspInfoServiceServer).GetCSPInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbgo.CspInfoService/GetCSPInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CspInfoServiceServer).GetCSPInfo(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -473,6 +507,10 @@ var CspInfoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCSPInfo",
 			Handler:    _CspInfoService_CreateCSPInfo_Handler,
+		},
+		{
+			MethodName: "GetCSPInfo",
+			Handler:    _CspInfoService_GetCSPInfo_Handler,
 		},
 		{
 			MethodName: "GetCSPIDs",

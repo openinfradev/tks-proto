@@ -155,6 +155,8 @@ message ClusterConf {
   int64 worker_root_size = 6;
   // k8s_version is a kubernetes version for the cluster
   string k8s_version = 7;
+
+  string region = 8;
 }
 
 // IDRequest is a request with a id
@@ -191,8 +193,8 @@ message IDResponse {
   string id = 3;
 }
 
-// CSPType represents a type of the cloud service provier
-enum CSPType {
+
+enum CspType {
   CSPTYPE_UNSPECIFIED = 0;
   AWS = 1;
   GCP = 2;

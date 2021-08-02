@@ -29,10 +29,8 @@ service ClusterInfoService {
 service CspInfoService {
   // CreateCSPInfo create new CSP Info for the contract id.
   rpc CreateCSPInfo(CreateCSPInfoRequest) returns (IDResponse) {}
-
-  // GetCSPInfo
+  // GetCSPInfo returns an csp info by csp id.
   rpc GetCSPInfo(IDRequest) returns (GetCSPInfoResponse) {}
-
   // GetCSPIDs returns all CSP ids.
   rpc GetCSPIDs(google.protobuf.Empty) returns (IDsResponse) {}
   // GetCSPIDsByContractID returns the CSP ids by the contract id.
@@ -75,7 +73,7 @@ message CreateCSPInfoRequest {
   string csp_name = 2;
   // auth is an optional. This is an authentication info for IaaS.
   string auth = 3;
-  // type is a cloud service provider type.
+  // csp_type is a type of cloud service provider.
   CspType csp_type = 4;
 }
 

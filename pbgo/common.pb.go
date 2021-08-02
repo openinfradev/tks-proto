@@ -686,7 +686,7 @@ type Cluster struct {
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// updated_at is a timestamp for the trigger of status change
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	// status is a status of the cluste eg) Installing/Running/Error
+	// status is a status of the cluster eg) Installing/Running/Error
 	Status ClusterStatus `protobuf:"varint,5,opt,name=status,proto3,enum=pbgo.ClusterStatus" json:"status,omitempty"`
 	// contract_id is a contract ID.
 	ContractId string `protobuf:"bytes,6,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
@@ -822,7 +822,8 @@ type ClusterConf struct {
 	WorkerRootSize int64 `protobuf:"varint,6,opt,name=worker_root_size,json=workerRootSize,proto3" json:"worker_root_size,omitempty"`
 	// k8s_version is a kubernetes version for the cluster
 	K8SVersion string `protobuf:"bytes,7,opt,name=k8s_version,json=k8sVersion,proto3" json:"k8s_version,omitempty"`
-	Region     string `protobuf:"bytes,8,opt,name=region,proto3" json:"region,omitempty"`
+	// region is a cluster region
+	Region string `protobuf:"bytes,8,opt,name=region,proto3" json:"region,omitempty"`
 }
 
 func (x *ClusterConf) Reset() {

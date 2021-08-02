@@ -261,7 +261,7 @@ var ClusterInfoService_ServiceDesc = grpc.ServiceDesc{
 type CspInfoServiceClient interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// GetCSPInfo
+	// GetCSPInfo returns an csp info by csp id.
 	GetCSPInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPInfoResponse, error)
 	// GetCSPIDs returns all CSP ids.
 	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
@@ -341,7 +341,7 @@ func (c *cspInfoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, op
 type CspInfoServiceServer interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error)
-	// GetCSPInfo
+	// GetCSPInfo returns an csp info by csp id.
 	GetCSPInfo(context.Context, *IDRequest) (*GetCSPInfoResponse, error)
 	// GetCSPIDs returns all CSP ids.
 	GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error)

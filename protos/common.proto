@@ -125,7 +125,7 @@ message Cluster {
   google.protobuf.Timestamp created_at = 3;
   // updated_at is a timestamp for the trigger of status change
   google.protobuf.Timestamp updated_at  = 4;
-  // status is a status of the cluste eg) Installing/Running/Error
+  // status is a status of the cluster eg) Installing/Running/Error
   ClusterStatus status = 5;
   // contract_id is a contract ID.
   string contract_id = 6;
@@ -155,7 +155,7 @@ message ClusterConf {
   int64 worker_root_size = 6;
   // k8s_version is a kubernetes version for the cluster
   string k8s_version = 7;
-
+  // region is a cluster region
   string region = 8;
 }
 

@@ -36,7 +36,7 @@ type CreateCSPInfoRequest struct {
 	CspName string `protobuf:"bytes,2,opt,name=csp_name,json=cspName,proto3" json:"csp_name,omitempty"`
 	// auth is an optional. This is an authentication info for IaaS.
 	Auth string `protobuf:"bytes,3,opt,name=auth,proto3" json:"auth,omitempty"`
-	// type is a cloud service provider type.
+	// csp_type is a type of cloud service provider.
 	CspType CspType `protobuf:"varint,4,opt,name=csp_type,json=cspType,proto3,enum=pbgo.CspType" json:"csp_type,omitempty"`
 }
 

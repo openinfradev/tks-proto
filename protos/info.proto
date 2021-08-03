@@ -77,13 +77,19 @@ message CreateCSPInfoRequest {
   CspType csp_type = 4;
 }
 
-// GetCSPInfoResponse
+// GetCSPInfoResponse is used to get info of csp
 message GetCSPInfoResponse {
+  // code is a response code.
   Code code = 1;
+  // error is a detailed error message.
   Error error = 2;
+  // contract_id is a contract ID.
   string contract_id = 3;
+  // csp_name is a name for users
   string csp_name = 4;
+  // auth is an optional. This is an authentication info for IaaS.
   string auth = 5;
+  // csp_type is a type of cloud service provider.
   CspType csp_type = 6;
 }
 

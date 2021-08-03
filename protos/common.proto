@@ -77,6 +77,14 @@ enum AppGroupType {
   SERVICE_MESH = 2;
 }
 
+// CspType is types of cloud service provider
+enum CspType {
+  CSPTYPE_UNSPECIFIED = 0;
+  AWS = 1;
+  GCP = 2;
+  AZURE = 3;
+}
+
 // AppGroup represents an application group such as LMA, ServiceMesh.
 message AppGroup {
   // app_group_id for the application group
@@ -193,11 +201,4 @@ message IDResponse {
   string id = 3;
 }
 
-
-enum CspType {
-  CSPTYPE_UNSPECIFIED = 0;
-  AWS = 1;
-  GCP = 2;
-  AZURE = 3;
-}
 

@@ -12,8 +12,18 @@ If there are no errors, `.pb.go` files would be generated in `pbgo/` directory.
 ```console
 $ make build
 go get -u github.com/golang/protobuf/protoc-gen-go
-protoc --proto_path=protos --go_out=pbgo --go_opt=paths=source_relative protos/*.proto
+protoc --proto_path=protos --go_out=tks_pb --go_opt=paths=source_relative protos/*.proto
 
-$ ls pbgo
+$ ls tks_pb
 common.pb.go   contract.pb.go
+```
+
+### Generate python binding for grpc client
+You can generate python binding using following command.  
+```console
+$ pip3 install grpcio grpcio-tools
+$ python3 -m grpc_tools.protoc -I./protos --python_out=./tks_pb_python --grpc_python_out=./tks_pb_python protos/*.proto
+
+$ ls tks_pb_python
+cluster_lcm_pb2.py  cluster_lcm_pb2_grpc.py  ...  contract_pb2.py  contract_pb2_grpc.py  info_pb2.py  info_pb2_grpc.py
 ```

@@ -593,6 +593,26 @@ func (mr *MockAppInfoServiceClientMockRecorder) CreateAppGroup(ctx, in interface
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAppGroup", reflect.TypeOf((*MockAppInfoServiceClient)(nil).CreateAppGroup), varargs...)
 }
 
+// DeleteApp mocks base method.
+func (m *MockAppInfoServiceClient) DeleteApp(ctx context.Context, in *pbgo.DeleteAppRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteApp", varargs...)
+	ret0, _ := ret[0].(*pbgo.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteApp indicates an expected call of DeleteApp.
+func (mr *MockAppInfoServiceClientMockRecorder) DeleteApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteApp", reflect.TypeOf((*MockAppInfoServiceClient)(nil).DeleteApp), varargs...)
+}
+
 // DeleteAppGroup mocks base method.
 func (m *MockAppInfoServiceClient) DeleteAppGroup(ctx context.Context, in *pbgo.DeleteAppGroupRequest, opts ...grpc.CallOption) (*pbgo.SimpleResponse, error) {
 	m.ctrl.T.Helper()
@@ -789,6 +809,21 @@ func (m *MockAppInfoServiceServer) CreateAppGroup(arg0 context.Context, arg1 *pb
 func (mr *MockAppInfoServiceServerMockRecorder) CreateAppGroup(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAppGroup", reflect.TypeOf((*MockAppInfoServiceServer)(nil).CreateAppGroup), arg0, arg1)
+}
+
+// DeleteApp mocks base method.
+func (m *MockAppInfoServiceServer) DeleteApp(arg0 context.Context, arg1 *pbgo.DeleteAppRequest) (*pbgo.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteApp", arg0, arg1)
+	ret0, _ := ret[0].(*pbgo.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteApp indicates an expected call of DeleteApp.
+func (mr *MockAppInfoServiceServerMockRecorder) DeleteApp(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteApp", reflect.TypeOf((*MockAppInfoServiceServer)(nil).DeleteApp), arg0, arg1)
 }
 
 // DeleteAppGroup mocks base method.

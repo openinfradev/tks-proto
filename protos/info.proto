@@ -8,7 +8,7 @@ package pbgo;
 import "common.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/pbgo";
+option go_package = "github.com/openinfradev/tks-proto/pbgo";
 
 // ClusterInfoService is a service to manage cluster info document.
 service ClusterInfoService {

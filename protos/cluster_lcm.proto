@@ -7,7 +7,7 @@ package pbgo;
 
 import "common.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/pbgo";
+option go_package = "github.com/openinfradev/tks-proto/pbgo";
 
 // ClusterLcmService is a service to manage cluster's document.
 service ClusterLcmService {

@@ -8,7 +8,7 @@ package pbgo;
 import "common.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/pbgo";
+option go_package = "github.com/openinfradev/tks-proto/pbgo";
 
 // ContractService is a service to manage contract's document.
 service ContractService {

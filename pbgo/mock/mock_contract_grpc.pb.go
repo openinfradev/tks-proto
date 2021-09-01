@@ -9,7 +9,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	pbgo "github.com/sktelecom/tks-proto/pbgo"
+	pbgo "github.com/openinfradev/tks-proto/pbgo"
 	grpc "google.golang.org/grpc"
 )
 

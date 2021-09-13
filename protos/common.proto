@@ -7,7 +7,7 @@ package tks_pb;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/tks_pb";
+option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 
 // Code is a response code for gRpc request.
 enum Code {

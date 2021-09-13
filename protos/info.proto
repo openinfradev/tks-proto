@@ -8,7 +8,7 @@ package tks_pb;
 import "common.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/tks_pb";
+option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 
 // ClusterInfoService is a service to manage cluster info document.
 service ClusterInfoService {

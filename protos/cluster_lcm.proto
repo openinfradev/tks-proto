@@ -7,7 +7,7 @@ package tks_pb;
 
 import "common.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/tks_pb";
+option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 
 // ClusterLcmService is a service to manage cluster's document.
 service ClusterLcmService {

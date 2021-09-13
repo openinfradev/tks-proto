@@ -8,7 +8,7 @@ package tks_pb;
 import "common.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/sktelecom/tks-proto/tks_pb";
+option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 
 // ContractService is a service to manage contract's document.
 service ContractService {

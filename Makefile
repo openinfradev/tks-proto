@@ -1,6 +1,11 @@
 .PHONY: compile
 PROTOC_GEN_GO := $(GOPATH)/bin/protoc-gen-go
 PROTOC := $(shell which protoc)
+
+# Make it always try to install the packages,
+# since pip checks if the package is installed
+PY_GRPC_TOOLS := must-install
+
 # If protoc isn't on the path, set it to a target that's never up to date, so
 # the install command always runs.
 ifeq ($(PROTOC),)
@@ -26,10 +31,13 @@ endif
 $(PROTOC_GEN_GO):
 	go get -u github.com/golang/protobuf/protoc-gen-go
 
-generate: protos | $(PROTOC_GEN_GO) $(PROTOC)
+$(PY_GRPC_TOOLS):
+	pip3 install grpcio grpcio-tools
+
+generate: protos | $(PROTOC_GEN_GO) $(PROTOC) $(PY_GRPC_TOOLS)
 	protoc --proto_path=protos --go_out=tks_pb --go_opt=paths=source_relative \
-	--go-grpc_out=tks_pb --go-grpc_opt=paths=source_relative \
-	protos/*.proto
+	--go-grpc_out=tks_pb --go-grpc_opt=paths=source_relative protos/*.proto
+	python3 -m grpc_tools.protoc -I./protos --python_out=./tks_pb_python --grpc_python_out=./tks_pb_python protos/*.proto
 
 # This is a "phony" target - an alias for the above command, so "make build"
 # still works.

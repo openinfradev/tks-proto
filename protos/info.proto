@@ -3,12 +3,12 @@
 */
 
 syntax = "proto3";
-package pbgo;
+package tks_pb;
 
 import "common.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/openinfradev/tks-proto/pbgo";
+option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 
 // ClusterInfoService is a service to manage cluster info document.
 service ClusterInfoService {
@@ -211,7 +211,7 @@ message UpdateAppGroupStatusRequest {
   AppGroupStatus status = 2;
 }
 
-// UpdateAppRequest updates an information of application such as endpoints.
+// UpdateAppRequest updates information of application such as endpoints.
 message UpdateAppRequest {
   // app_group_id is the application group id.
   string app_group_id = 1;

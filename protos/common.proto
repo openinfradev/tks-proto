@@ -204,13 +204,13 @@ message IDResponse {
 // KeycloakInfo represents a keycloak info.
 message KeycloakInfo {
   // Id for cluster
-  string clusterId = 1;
+  string cluster_id = 1;
   // Realm
   string realm = 2;
   // Client Id 
-  string clientId = 3;
+  string client_id = 3;
   // Secret key
   string secret = 4;
   // Private key
-  string privateKey = 5;
+  string private_key = 5;
 }

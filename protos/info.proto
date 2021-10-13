@@ -294,6 +294,6 @@ message GetKeycloakInfoResponse {
   // orror is a detailed error message.
   Error error = 2;
   // keycloakInfos is a detailed keycloak info.
-  repeated KeycloakInfo keycloakInfos = 3; 
+  repeated KeycloakInfo keycloak_infos = 3; 
 }
 

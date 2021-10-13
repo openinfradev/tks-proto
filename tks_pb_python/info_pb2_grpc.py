@@ -781,7 +781,8 @@ class AppInfoService(object):
 
 
 class KeycloakInfoServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """KeycloakInfoService is a service to manage Keycloak info.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -812,28 +813,33 @@ class KeycloakInfoServiceStub(object):
 
 
 class KeycloakInfoServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """KeycloakInfoService is a service to manage Keycloak info.
+    """
 
     def CreateKeycloakInfo(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """CreateKeycloakInfo creates a new keycloak info.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetKeycloakInfoByClusterId(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """GetKeycloakInfoByClusterId gets an array of keycloak infos By the clusterID
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateKeycloakInfo(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """UpdateKeycloakInfo updates a status of an keycloak info
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteKeycloakInfo(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """DeleteKeycloakInfo deletes an keycloak info.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -869,7 +875,8 @@ def add_KeycloakInfoServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class KeycloakInfoService(object):
-    """Missing associated documentation comment in .proto file."""
+    """KeycloakInfoService is a service to manage Keycloak info.
+    """
 
     @staticmethod
     def CreateKeycloakInfo(request,

@@ -1156,15 +1156,21 @@ func (x *IDResponse) GetId() string {
 	return ""
 }
 
+// KeycloakInfo represents a keycloak info.
 type KeycloakInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClusterId  string `protobuf:"bytes,1,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
-	Realm      string `protobuf:"bytes,2,opt,name=realm,proto3" json:"realm,omitempty"`
-	ClientId   string `protobuf:"bytes,3,opt,name=clientId,proto3" json:"clientId,omitempty"`
-	Secret     string `protobuf:"bytes,4,opt,name=secret,proto3" json:"secret,omitempty"`
+	// Id for cluster
+	ClusterId string `protobuf:"bytes,1,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
+	// Realm
+	Realm string `protobuf:"bytes,2,opt,name=realm,proto3" json:"realm,omitempty"`
+	// Client Id
+	ClientId string `protobuf:"bytes,3,opt,name=clientId,proto3" json:"clientId,omitempty"`
+	// Secret key
+	Secret string `protobuf:"bytes,4,opt,name=secret,proto3" json:"secret,omitempty"`
+	// Private key
 	PrivateKey string `protobuf:"bytes,5,opt,name=privateKey,proto3" json:"privateKey,omitempty"`
 }
 

@@ -1361,15 +1361,21 @@ func (x *GetAppsResponse) GetApps() []*Application {
 	return nil
 }
 
+// CreateKeycloakInfoRequest is used to create a new keycloak Info
 type CreateKeycloakInfoRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClusterId  string `protobuf:"bytes,1,opt,name=cluster_id,json=clusterId,proto3" json:"cluster_id,omitempty"`
-	Realm      string `protobuf:"bytes,2,opt,name=realm,proto3" json:"realm,omitempty"`
-	ClientId   string `protobuf:"bytes,3,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
-	Secret     string `protobuf:"bytes,4,opt,name=secret,proto3" json:"secret,omitempty"`
+	// Id for cluster
+	ClusterId string `protobuf:"bytes,1,opt,name=cluster_id,json=clusterId,proto3" json:"cluster_id,omitempty"`
+	// Realm
+	Realm string `protobuf:"bytes,2,opt,name=realm,proto3" json:"realm,omitempty"`
+	// Client Id
+	ClientId string `protobuf:"bytes,3,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	// Secret
+	Secret string `protobuf:"bytes,4,opt,name=secret,proto3" json:"secret,omitempty"`
+	// Private key
 	PrivateKey string `protobuf:"bytes,5,opt,name=private_key,json=privateKey,proto3" json:"private_key,omitempty"`
 }
 
@@ -1440,13 +1446,17 @@ func (x *CreateKeycloakInfoRequest) GetPrivateKey() string {
 	return ""
 }
 
+// GetKeycloakInfoResponse returns an array of keycloak infos
 type GetKeycloakInfoResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code          Code            `protobuf:"varint,1,opt,name=code,proto3,enum=tks_pb.Code" json:"code,omitempty"`
-	Error         *Error          `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// code is a response code.
+	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=tks_pb.Code" json:"code,omitempty"`
+	// orror is a detailed error message.
+	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	// keycloakInfos is a detailed keycloak info.
 	KeycloakInfos []*KeycloakInfo `protobuf:"bytes,3,rep,name=keycloakInfos,proto3" json:"keycloakInfos,omitempty"`
 }
 

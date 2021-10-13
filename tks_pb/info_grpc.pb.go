@@ -929,9 +929,13 @@ var AppInfoService_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KeycloakInfoServiceClient interface {
+	// CreateKeycloakInfo creates a new keycloak info.
 	CreateKeycloakInfo(ctx context.Context, in *CreateKeycloakInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetKeycloakInfoByClusterId gets an array of keycloak infos By the clusterID
 	GetKeycloakInfoByClusterId(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetKeycloakInfoResponse, error)
+	// UpdateKeycloakInfo updates a status of an keycloak info
 	UpdateKeycloakInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// DeleteKeycloakInfo deletes an keycloak info.
 	DeleteKeycloakInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
@@ -983,9 +987,13 @@ func (c *keycloakInfoServiceClient) DeleteKeycloakInfo(ctx context.Context, in *
 // All implementations must embed UnimplementedKeycloakInfoServiceServer
 // for forward compatibility
 type KeycloakInfoServiceServer interface {
+	// CreateKeycloakInfo creates a new keycloak info.
 	CreateKeycloakInfo(context.Context, *CreateKeycloakInfoRequest) (*IDResponse, error)
+	// GetKeycloakInfoByClusterId gets an array of keycloak infos By the clusterID
 	GetKeycloakInfoByClusterId(context.Context, *IDRequest) (*GetKeycloakInfoResponse, error)
+	// UpdateKeycloakInfo updates a status of an keycloak info
 	UpdateKeycloakInfo(context.Context, *IDRequest) (*SimpleResponse, error)
+	// DeleteKeycloakInfo deletes an keycloak info.
 	DeleteKeycloakInfo(context.Context, *IDRequest) (*SimpleResponse, error)
 	mustEmbedUnimplementedKeycloakInfoServiceServer()
 }

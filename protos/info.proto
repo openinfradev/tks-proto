@@ -29,6 +29,8 @@ service ClusterInfoService {
 service CspInfoService {
   // CreateCSPInfo create new CSP Info for the contract id.
   rpc CreateCSPInfo(CreateCSPInfoRequest) returns (IDResponse) {}
+  // GetCSPInfo returns an csp info by csp id.
+  rpc GetCSPInfo(IDRequest) returns (GetCSPInfoResponse) {}
   // GetCSPIDs returns all CSP ids.
   rpc GetCSPIDs(google.protobuf.Empty) returns (IDsResponse) {}
   // GetCSPIDsByContractID returns the CSP ids by the contract id.
@@ -63,6 +65,18 @@ service AppInfoService {
   rpc UpdateApp(UpdateAppRequest) returns (SimpleResponse) {}
 }
 
+// KeycloakInfoService is a service to manage Keycloak info.
+service KeycloakInfoService {
+  // CreateKeycloakInfo creates a new keycloak info.
+  rpc CreateKeycloakInfo(CreateKeycloakInfoRequest) returns (IDResponse) {}
+  // GetKeycloakInfoByClusterId gets an array of keycloak infos By the clusterID
+  rpc GetKeycloakInfoByClusterId(IDRequest) returns (GetKeycloakInfoResponse) {}
+  // UpdateKeycloakInfo updates a status of an keycloak info
+  rpc UpdateKeycloakInfo(IDRequest) returns (SimpleResponse) {}
+  // DeleteKeycloakInfo deletes an keycloak info.
+  rpc DeleteKeycloakInfo(IDRequest) returns (SimpleResponse) {}
+}
+
 // CreateCSPInfoRequest is used to create a new CSP Info
 message CreateCSPInfoRequest {
   // contract_id is Global Unique MultiCluster ID
@@ -71,6 +85,24 @@ message CreateCSPInfoRequest {
   string csp_name = 2;
   // auth is an optional. This is an authentication info for IaaS.
   string auth = 3;
+  // csp_type is a type of cloud service provider.
+  CspType csp_type = 4;
+}
+
+// GetCSPInfoResponse is used to get info of csp
+message GetCSPInfoResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // contract_id is a contract ID.
+  string contract_id = 3;
+  // csp_name is a name for users
+  string csp_name = 4;
+  // auth is an optional. This is an authentication info for IaaS.
+  string auth = 5;
+  // csp_type is a type of cloud service provider.
+  CspType csp_type = 6;
 }
 
 // GetCSPAuthResponse is used to get an authentication information by
@@ -211,7 +243,7 @@ message UpdateAppGroupStatusRequest {
   AppGroupStatus status = 2;
 }
 
-// UpdateAppRequest updates information of application such as endpoints.
+// UpdateAppRequest updates an information of application such as endpoints.
 message UpdateAppRequest {
   // app_group_id is the application group id.
   string app_group_id = 1;
@@ -240,3 +272,28 @@ message GetAppsResponse {
   // app_groups is an array of applications
   repeated Application apps = 3;
 }
+
+// CreateKeycloakInfoRequest is used to create a new keycloak Info
+message CreateKeycloakInfoRequest {
+  // Id for cluster
+  string cluster_id = 1;
+  // Realm 
+  string realm = 2;
+  // Client Id
+  string client_id = 3;
+  // Secret
+  string secret = 4;
+  // Private key
+  string private_key = 5;
+}
+
+// GetKeycloakInfoResponse returns an array of keycloak infos
+message GetKeycloakInfoResponse {
+  // code is a response code.
+  Code code = 1;
+  // orror is a detailed error message.
+  Error error = 2;
+  // keycloakInfos is a detailed keycloak info.
+  repeated KeycloakInfo keycloakInfos = 3; 
+}
+

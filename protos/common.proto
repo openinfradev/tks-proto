@@ -77,6 +77,14 @@ enum AppGroupType {
   SERVICE_MESH = 2;
 }
 
+// CspType is types of cloud service provider
+enum CspType {
+  CSPTYPE_UNSPECIFIED = 0;
+  AWS = 1;
+  GCP = 2;
+  AZURE = 3;
+}
+
 // AppGroup represents an application group such as LMA, ServiceMesh.
 message AppGroup {
   // app_group_id for the application group
@@ -155,6 +163,8 @@ message ClusterConf {
   int64 worker_root_size = 6;
   // k8s_version is a kubernetes version for the cluster
   string k8s_version = 7;
+  // region is a cluster region
+  string region = 8;
 }
 
 // IDRequest is a request with a id
@@ -189,4 +199,18 @@ message IDResponse {
   Error error = 2;
   // id is a id
   string id = 3;
+}
+
+// KeycloakInfo represents a keycloak info.
+message KeycloakInfo {
+  // Id for cluster
+  string clusterId = 1;
+  // Realm
+  string realm = 2;
+  // Client Id 
+  string clientId = 3;
+  // Secret key
+  string secret = 4;
+  // Private key
+  string privateKey = 5;
 }

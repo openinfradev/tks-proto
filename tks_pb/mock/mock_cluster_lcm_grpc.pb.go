@@ -37,14 +37,14 @@ func (m *MockClusterLcmServiceClient) EXPECT() *MockClusterLcmServiceClientMockR
 }
 
 // CreateCluster mocks base method.
-func (m *MockClusterLcmServiceClient) CreateCluster(ctx context.Context, in *tks_pb.CreateClusterRequest, opts ...grpc.CallOption) (*tks_pb.IDsResponse, error) {
+func (m *MockClusterLcmServiceClient) CreateCluster(ctx context.Context, in *tks_pb.CreateClusterRequest, opts ...grpc.CallOption) (*tks_pb.IDResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateCluster", varargs...)
-	ret0, _ := ret[0].(*tks_pb.IDsResponse)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -140,10 +140,10 @@ func (m *MockClusterLcmServiceServer) EXPECT() *MockClusterLcmServiceServerMockR
 }
 
 // CreateCluster mocks base method.
-func (m *MockClusterLcmServiceServer) CreateCluster(arg0 context.Context, arg1 *tks_pb.CreateClusterRequest) (*tks_pb.IDsResponse, error) {
+func (m *MockClusterLcmServiceServer) CreateCluster(arg0 context.Context, arg1 *tks_pb.CreateClusterRequest) (*tks_pb.IDResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateCluster", arg0, arg1)
-	ret0, _ := ret[0].(*tks_pb.IDsResponse)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

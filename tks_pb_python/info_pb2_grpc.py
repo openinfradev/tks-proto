@@ -223,6 +223,11 @@ class CspInfoServiceStub(object):
                 request_serializer=info__pb2.CreateCSPInfoRequest.SerializeToString,
                 response_deserializer=common__pb2.IDResponse.FromString,
                 )
+        self.GetCSPInfo = channel.unary_unary(
+                '/tks_pb.CspInfoService/GetCSPInfo',
+                request_serializer=common__pb2.IDRequest.SerializeToString,
+                response_deserializer=info__pb2.GetCSPInfoResponse.FromString,
+                )
         self.GetCSPIDs = channel.unary_unary(
                 '/tks_pb.CspInfoService/GetCSPIDs',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
@@ -251,6 +256,13 @@ class CspInfoServiceServicer(object):
 
     def CreateCSPInfo(self, request, context):
         """CreateCSPInfo create new CSP Info for the contract id.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetCSPInfo(self, request, context):
+        """GetCSPInfo returns an csp info by csp id.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -291,6 +303,11 @@ def add_CspInfoServiceServicer_to_server(servicer, server):
                     servicer.CreateCSPInfo,
                     request_deserializer=info__pb2.CreateCSPInfoRequest.FromString,
                     response_serializer=common__pb2.IDResponse.SerializeToString,
+            ),
+            'GetCSPInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCSPInfo,
+                    request_deserializer=common__pb2.IDRequest.FromString,
+                    response_serializer=info__pb2.GetCSPInfoResponse.SerializeToString,
             ),
             'GetCSPIDs': grpc.unary_unary_rpc_method_handler(
                     servicer.GetCSPIDs,
@@ -337,6 +354,23 @@ class CspInfoService(object):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.CspInfoService/CreateCSPInfo',
             info__pb2.CreateCSPInfoRequest.SerializeToString,
             common__pb2.IDResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetCSPInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.CspInfoService/GetCSPInfo',
+            common__pb2.IDRequest.SerializeToString,
+            info__pb2.GetCSPInfoResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -741,6 +775,166 @@ class AppInfoService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.AppInfoService/UpdateApp',
             info__pb2.UpdateAppRequest.SerializeToString,
+            common__pb2.SimpleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class KeycloakInfoServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.CreateKeycloakInfo = channel.unary_unary(
+                '/tks_pb.KeycloakInfoService/CreateKeycloakInfo',
+                request_serializer=info__pb2.CreateKeycloakInfoRequest.SerializeToString,
+                response_deserializer=common__pb2.IDResponse.FromString,
+                )
+        self.GetKeycloakInfoByClusterId = channel.unary_unary(
+                '/tks_pb.KeycloakInfoService/GetKeycloakInfoByClusterId',
+                request_serializer=common__pb2.IDRequest.SerializeToString,
+                response_deserializer=info__pb2.GetKeycloakInfoResponse.FromString,
+                )
+        self.UpdateKeycloakInfo = channel.unary_unary(
+                '/tks_pb.KeycloakInfoService/UpdateKeycloakInfo',
+                request_serializer=common__pb2.IDRequest.SerializeToString,
+                response_deserializer=common__pb2.SimpleResponse.FromString,
+                )
+        self.DeleteKeycloakInfo = channel.unary_unary(
+                '/tks_pb.KeycloakInfoService/DeleteKeycloakInfo',
+                request_serializer=common__pb2.IDRequest.SerializeToString,
+                response_deserializer=common__pb2.SimpleResponse.FromString,
+                )
+
+
+class KeycloakInfoServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def CreateKeycloakInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetKeycloakInfoByClusterId(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateKeycloakInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteKeycloakInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_KeycloakInfoServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'CreateKeycloakInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateKeycloakInfo,
+                    request_deserializer=info__pb2.CreateKeycloakInfoRequest.FromString,
+                    response_serializer=common__pb2.IDResponse.SerializeToString,
+            ),
+            'GetKeycloakInfoByClusterId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetKeycloakInfoByClusterId,
+                    request_deserializer=common__pb2.IDRequest.FromString,
+                    response_serializer=info__pb2.GetKeycloakInfoResponse.SerializeToString,
+            ),
+            'UpdateKeycloakInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateKeycloakInfo,
+                    request_deserializer=common__pb2.IDRequest.FromString,
+                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+            ),
+            'DeleteKeycloakInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteKeycloakInfo,
+                    request_deserializer=common__pb2.IDRequest.FromString,
+                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'tks_pb.KeycloakInfoService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class KeycloakInfoService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def CreateKeycloakInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.KeycloakInfoService/CreateKeycloakInfo',
+            info__pb2.CreateKeycloakInfoRequest.SerializeToString,
+            common__pb2.IDResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetKeycloakInfoByClusterId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.KeycloakInfoService/GetKeycloakInfoByClusterId',
+            common__pb2.IDRequest.SerializeToString,
+            info__pb2.GetKeycloakInfoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateKeycloakInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.KeycloakInfoService/UpdateKeycloakInfo',
+            common__pb2.IDRequest.SerializeToString,
+            common__pb2.SimpleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteKeycloakInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.KeycloakInfoService/DeleteKeycloakInfo',
+            common__pb2.IDRequest.SerializeToString,
             common__pb2.SimpleResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

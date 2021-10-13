@@ -19,7 +19,7 @@ class ClusterLcmServiceStub(object):
         self.CreateCluster = channel.unary_unary(
                 '/tks_pb.ClusterLcmService/CreateCluster',
                 request_serializer=cluster__lcm__pb2.CreateClusterRequest.SerializeToString,
-                response_deserializer=common__pb2.IDsResponse.FromString,
+                response_deserializer=common__pb2.IDResponse.FromString,
                 )
         self.ScaleCluster = channel.unary_unary(
                 '/tks_pb.ClusterLcmService/ScaleCluster',
@@ -76,7 +76,7 @@ def add_ClusterLcmServiceServicer_to_server(servicer, server):
             'CreateCluster': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCluster,
                     request_deserializer=cluster__lcm__pb2.CreateClusterRequest.FromString,
-                    response_serializer=common__pb2.IDsResponse.SerializeToString,
+                    response_serializer=common__pb2.IDResponse.SerializeToString,
             ),
             'ScaleCluster': grpc.unary_unary_rpc_method_handler(
                     servicer.ScaleCluster,
@@ -117,7 +117,7 @@ class ClusterLcmService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.ClusterLcmService/CreateCluster',
             cluster__lcm__pb2.CreateClusterRequest.SerializeToString,
-            common__pb2.IDsResponse.FromString,
+            common__pb2.IDResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

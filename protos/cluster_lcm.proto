@@ -12,7 +12,7 @@ option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 // ClusterLcmService is a service to manage cluster's document.
 service ClusterLcmService {
   // CreateCluster creates a Kubernetes cluster and returns cluster id
-  rpc CreateCluster(CreateClusterRequest) returns (IDsResponse) {}
+  rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
   // ScaleCluster scales the Kubernetes cluster
   rpc ScaleCluster(ScaleClusterRequest) returns (SimpleResponse) {}
   // InstallAppGroups install app groups, return a array of app group id

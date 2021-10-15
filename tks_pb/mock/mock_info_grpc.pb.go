@@ -385,6 +385,26 @@ func (mr *MockCspInfoServiceClientMockRecorder) GetCSPIDsByContractID(ctx, in in
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDsByContractID", reflect.TypeOf((*MockCspInfoServiceClient)(nil).GetCSPIDsByContractID), varargs...)
 }
 
+// GetCSPInfo mocks base method.
+func (m *MockCspInfoServiceClient) GetCSPInfo(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.GetCSPInfoResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetCSPInfo", varargs...)
+	ret0, _ := ret[0].(*tks_pb.GetCSPInfoResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPInfo indicates an expected call of GetCSPInfo.
+func (mr *MockCspInfoServiceClientMockRecorder) GetCSPInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPInfo", reflect.TypeOf((*MockCspInfoServiceClient)(nil).GetCSPInfo), varargs...)
+}
+
 // UpdateCSPAuth mocks base method.
 func (m *MockCspInfoServiceClient) UpdateCSPAuth(ctx context.Context, in *tks_pb.UpdateCSPAuthRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
 	m.ctrl.T.Helper()
@@ -486,6 +506,21 @@ func (m *MockCspInfoServiceServer) GetCSPIDsByContractID(arg0 context.Context, a
 func (mr *MockCspInfoServiceServerMockRecorder) GetCSPIDsByContractID(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPIDsByContractID", reflect.TypeOf((*MockCspInfoServiceServer)(nil).GetCSPIDsByContractID), arg0, arg1)
+}
+
+// GetCSPInfo mocks base method.
+func (m *MockCspInfoServiceServer) GetCSPInfo(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.GetCSPInfoResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCSPInfo", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.GetCSPInfoResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCSPInfo indicates an expected call of GetCSPInfo.
+func (mr *MockCspInfoServiceServerMockRecorder) GetCSPInfo(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCSPInfo", reflect.TypeOf((*MockCspInfoServiceServer)(nil).GetCSPInfo), arg0, arg1)
 }
 
 // UpdateCSPAuth mocks base method.
@@ -956,4 +991,237 @@ func (m *MockUnsafeAppInfoServiceServer) mustEmbedUnimplementedAppInfoServiceSer
 func (mr *MockUnsafeAppInfoServiceServerMockRecorder) mustEmbedUnimplementedAppInfoServiceServer() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedAppInfoServiceServer", reflect.TypeOf((*MockUnsafeAppInfoServiceServer)(nil).mustEmbedUnimplementedAppInfoServiceServer))
+}
+
+// MockKeycloakInfoServiceClient is a mock of KeycloakInfoServiceClient interface.
+type MockKeycloakInfoServiceClient struct {
+	ctrl     *gomock.Controller
+	recorder *MockKeycloakInfoServiceClientMockRecorder
+}
+
+// MockKeycloakInfoServiceClientMockRecorder is the mock recorder for MockKeycloakInfoServiceClient.
+type MockKeycloakInfoServiceClientMockRecorder struct {
+	mock *MockKeycloakInfoServiceClient
+}
+
+// NewMockKeycloakInfoServiceClient creates a new mock instance.
+func NewMockKeycloakInfoServiceClient(ctrl *gomock.Controller) *MockKeycloakInfoServiceClient {
+	mock := &MockKeycloakInfoServiceClient{ctrl: ctrl}
+	mock.recorder = &MockKeycloakInfoServiceClientMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockKeycloakInfoServiceClient) EXPECT() *MockKeycloakInfoServiceClientMockRecorder {
+	return m.recorder
+}
+
+// CreateKeycloakInfo mocks base method.
+func (m *MockKeycloakInfoServiceClient) CreateKeycloakInfo(ctx context.Context, in *tks_pb.CreateKeycloakInfoRequest, opts ...grpc.CallOption) (*tks_pb.IDResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateKeycloakInfo", varargs...)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateKeycloakInfo indicates an expected call of CreateKeycloakInfo.
+func (mr *MockKeycloakInfoServiceClientMockRecorder) CreateKeycloakInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateKeycloakInfo", reflect.TypeOf((*MockKeycloakInfoServiceClient)(nil).CreateKeycloakInfo), varargs...)
+}
+
+// DeleteKeycloakInfo mocks base method.
+func (m *MockKeycloakInfoServiceClient) DeleteKeycloakInfo(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteKeycloakInfo", varargs...)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteKeycloakInfo indicates an expected call of DeleteKeycloakInfo.
+func (mr *MockKeycloakInfoServiceClientMockRecorder) DeleteKeycloakInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteKeycloakInfo", reflect.TypeOf((*MockKeycloakInfoServiceClient)(nil).DeleteKeycloakInfo), varargs...)
+}
+
+// GetKeycloakInfoByClusterId mocks base method.
+func (m *MockKeycloakInfoServiceClient) GetKeycloakInfoByClusterId(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.GetKeycloakInfoResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetKeycloakInfoByClusterId", varargs...)
+	ret0, _ := ret[0].(*tks_pb.GetKeycloakInfoResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetKeycloakInfoByClusterId indicates an expected call of GetKeycloakInfoByClusterId.
+func (mr *MockKeycloakInfoServiceClientMockRecorder) GetKeycloakInfoByClusterId(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKeycloakInfoByClusterId", reflect.TypeOf((*MockKeycloakInfoServiceClient)(nil).GetKeycloakInfoByClusterId), varargs...)
+}
+
+// UpdateKeycloakInfo mocks base method.
+func (m *MockKeycloakInfoServiceClient) UpdateKeycloakInfo(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateKeycloakInfo", varargs...)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateKeycloakInfo indicates an expected call of UpdateKeycloakInfo.
+func (mr *MockKeycloakInfoServiceClientMockRecorder) UpdateKeycloakInfo(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateKeycloakInfo", reflect.TypeOf((*MockKeycloakInfoServiceClient)(nil).UpdateKeycloakInfo), varargs...)
+}
+
+// MockKeycloakInfoServiceServer is a mock of KeycloakInfoServiceServer interface.
+type MockKeycloakInfoServiceServer struct {
+	ctrl     *gomock.Controller
+	recorder *MockKeycloakInfoServiceServerMockRecorder
+}
+
+// MockKeycloakInfoServiceServerMockRecorder is the mock recorder for MockKeycloakInfoServiceServer.
+type MockKeycloakInfoServiceServerMockRecorder struct {
+	mock *MockKeycloakInfoServiceServer
+}
+
+// NewMockKeycloakInfoServiceServer creates a new mock instance.
+func NewMockKeycloakInfoServiceServer(ctrl *gomock.Controller) *MockKeycloakInfoServiceServer {
+	mock := &MockKeycloakInfoServiceServer{ctrl: ctrl}
+	mock.recorder = &MockKeycloakInfoServiceServerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockKeycloakInfoServiceServer) EXPECT() *MockKeycloakInfoServiceServerMockRecorder {
+	return m.recorder
+}
+
+// CreateKeycloakInfo mocks base method.
+func (m *MockKeycloakInfoServiceServer) CreateKeycloakInfo(arg0 context.Context, arg1 *tks_pb.CreateKeycloakInfoRequest) (*tks_pb.IDResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateKeycloakInfo", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateKeycloakInfo indicates an expected call of CreateKeycloakInfo.
+func (mr *MockKeycloakInfoServiceServerMockRecorder) CreateKeycloakInfo(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateKeycloakInfo", reflect.TypeOf((*MockKeycloakInfoServiceServer)(nil).CreateKeycloakInfo), arg0, arg1)
+}
+
+// DeleteKeycloakInfo mocks base method.
+func (m *MockKeycloakInfoServiceServer) DeleteKeycloakInfo(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteKeycloakInfo", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteKeycloakInfo indicates an expected call of DeleteKeycloakInfo.
+func (mr *MockKeycloakInfoServiceServerMockRecorder) DeleteKeycloakInfo(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteKeycloakInfo", reflect.TypeOf((*MockKeycloakInfoServiceServer)(nil).DeleteKeycloakInfo), arg0, arg1)
+}
+
+// GetKeycloakInfoByClusterId mocks base method.
+func (m *MockKeycloakInfoServiceServer) GetKeycloakInfoByClusterId(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.GetKeycloakInfoResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetKeycloakInfoByClusterId", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.GetKeycloakInfoResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetKeycloakInfoByClusterId indicates an expected call of GetKeycloakInfoByClusterId.
+func (mr *MockKeycloakInfoServiceServerMockRecorder) GetKeycloakInfoByClusterId(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKeycloakInfoByClusterId", reflect.TypeOf((*MockKeycloakInfoServiceServer)(nil).GetKeycloakInfoByClusterId), arg0, arg1)
+}
+
+// UpdateKeycloakInfo mocks base method.
+func (m *MockKeycloakInfoServiceServer) UpdateKeycloakInfo(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateKeycloakInfo", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateKeycloakInfo indicates an expected call of UpdateKeycloakInfo.
+func (mr *MockKeycloakInfoServiceServerMockRecorder) UpdateKeycloakInfo(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateKeycloakInfo", reflect.TypeOf((*MockKeycloakInfoServiceServer)(nil).UpdateKeycloakInfo), arg0, arg1)
+}
+
+// mustEmbedUnimplementedKeycloakInfoServiceServer mocks base method.
+func (m *MockKeycloakInfoServiceServer) mustEmbedUnimplementedKeycloakInfoServiceServer() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "mustEmbedUnimplementedKeycloakInfoServiceServer")
+}
+
+// mustEmbedUnimplementedKeycloakInfoServiceServer indicates an expected call of mustEmbedUnimplementedKeycloakInfoServiceServer.
+func (mr *MockKeycloakInfoServiceServerMockRecorder) mustEmbedUnimplementedKeycloakInfoServiceServer() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedKeycloakInfoServiceServer", reflect.TypeOf((*MockKeycloakInfoServiceServer)(nil).mustEmbedUnimplementedKeycloakInfoServiceServer))
+}
+
+// MockUnsafeKeycloakInfoServiceServer is a mock of UnsafeKeycloakInfoServiceServer interface.
+type MockUnsafeKeycloakInfoServiceServer struct {
+	ctrl     *gomock.Controller
+	recorder *MockUnsafeKeycloakInfoServiceServerMockRecorder
+}
+
+// MockUnsafeKeycloakInfoServiceServerMockRecorder is the mock recorder for MockUnsafeKeycloakInfoServiceServer.
+type MockUnsafeKeycloakInfoServiceServerMockRecorder struct {
+	mock *MockUnsafeKeycloakInfoServiceServer
+}
+
+// NewMockUnsafeKeycloakInfoServiceServer creates a new mock instance.
+func NewMockUnsafeKeycloakInfoServiceServer(ctrl *gomock.Controller) *MockUnsafeKeycloakInfoServiceServer {
+	mock := &MockUnsafeKeycloakInfoServiceServer{ctrl: ctrl}
+	mock.recorder = &MockUnsafeKeycloakInfoServiceServerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockUnsafeKeycloakInfoServiceServer) EXPECT() *MockUnsafeKeycloakInfoServiceServerMockRecorder {
+	return m.recorder
+}
+
+// mustEmbedUnimplementedKeycloakInfoServiceServer mocks base method.
+func (m *MockUnsafeKeycloakInfoServiceServer) mustEmbedUnimplementedKeycloakInfoServiceServer() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "mustEmbedUnimplementedKeycloakInfoServiceServer")
+}
+
+// mustEmbedUnimplementedKeycloakInfoServiceServer indicates an expected call of mustEmbedUnimplementedKeycloakInfoServiceServer.
+func (mr *MockUnsafeKeycloakInfoServiceServerMockRecorder) mustEmbedUnimplementedKeycloakInfoServiceServer() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedKeycloakInfoServiceServer", reflect.TypeOf((*MockUnsafeKeycloakInfoServiceServer)(nil).mustEmbedUnimplementedKeycloakInfoServiceServer))
 }

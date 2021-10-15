@@ -261,6 +261,8 @@ var ClusterInfoService_ServiceDesc = grpc.ServiceDesc{
 type CspInfoServiceClient interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetCSPInfo returns an csp info by csp id.
+	GetCSPInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPInfoResponse, error)
 	// GetCSPIDs returns all CSP ids.
 	GetCSPIDs(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IDsResponse, error)
 	// GetCSPIDsByContractID returns the CSP ids by the contract id.
@@ -282,6 +284,15 @@ func NewCspInfoServiceClient(cc grpc.ClientConnInterface) CspInfoServiceClient {
 func (c *cspInfoServiceClient) CreateCSPInfo(ctx context.Context, in *CreateCSPInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.CspInfoService/CreateCSPInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cspInfoServiceClient) GetCSPInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetCSPInfoResponse, error) {
+	out := new(GetCSPInfoResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.CspInfoService/GetCSPInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -330,6 +341,8 @@ func (c *cspInfoServiceClient) GetCSPAuth(ctx context.Context, in *IDRequest, op
 type CspInfoServiceServer interface {
 	// CreateCSPInfo create new CSP Info for the contract id.
 	CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error)
+	// GetCSPInfo returns an csp info by csp id.
+	GetCSPInfo(context.Context, *IDRequest) (*GetCSPInfoResponse, error)
 	// GetCSPIDs returns all CSP ids.
 	GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error)
 	// GetCSPIDsByContractID returns the CSP ids by the contract id.
@@ -347,6 +360,9 @@ type UnimplementedCspInfoServiceServer struct {
 
 func (UnimplementedCspInfoServiceServer) CreateCSPInfo(context.Context, *CreateCSPInfoRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCSPInfo not implemented")
+}
+func (UnimplementedCspInfoServiceServer) GetCSPInfo(context.Context, *IDRequest) (*GetCSPInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCSPInfo not implemented")
 }
 func (UnimplementedCspInfoServiceServer) GetCSPIDs(context.Context, *emptypb.Empty) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCSPIDs not implemented")
@@ -387,6 +403,24 @@ func _CspInfoService_CreateCSPInfo_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CspInfoServiceServer).CreateCSPInfo(ctx, req.(*CreateCSPInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CspInfoService_GetCSPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CspInfoServiceServer).GetCSPInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.CspInfoService/GetCSPInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CspInfoServiceServer).GetCSPInfo(ctx, req.(*IDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -473,6 +507,10 @@ var CspInfoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCSPInfo",
 			Handler:    _CspInfoService_CreateCSPInfo_Handler,
+		},
+		{
+			MethodName: "GetCSPInfo",
+			Handler:    _CspInfoService_GetCSPInfo_Handler,
 		},
 		{
 			MethodName: "GetCSPIDs",
@@ -881,6 +919,208 @@ var AppInfoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateApp",
 			Handler:    _AppInfoService_UpdateApp_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "info.proto",
+}
+
+// KeycloakInfoServiceClient is the client API for KeycloakInfoService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type KeycloakInfoServiceClient interface {
+	// CreateKeycloakInfo creates a new keycloak info.
+	CreateKeycloakInfo(ctx context.Context, in *CreateKeycloakInfoRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// GetKeycloakInfoByClusterId gets an array of keycloak infos By the clusterID
+	GetKeycloakInfoByClusterId(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetKeycloakInfoResponse, error)
+	// UpdateKeycloakInfo updates a status of an keycloak info
+	UpdateKeycloakInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// DeleteKeycloakInfo deletes an keycloak info.
+	DeleteKeycloakInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+}
+
+type keycloakInfoServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewKeycloakInfoServiceClient(cc grpc.ClientConnInterface) KeycloakInfoServiceClient {
+	return &keycloakInfoServiceClient{cc}
+}
+
+func (c *keycloakInfoServiceClient) CreateKeycloakInfo(ctx context.Context, in *CreateKeycloakInfoRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+	out := new(IDResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.KeycloakInfoService/CreateKeycloakInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *keycloakInfoServiceClient) GetKeycloakInfoByClusterId(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetKeycloakInfoResponse, error) {
+	out := new(GetKeycloakInfoResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.KeycloakInfoService/GetKeycloakInfoByClusterId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *keycloakInfoServiceClient) UpdateKeycloakInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.KeycloakInfoService/UpdateKeycloakInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *keycloakInfoServiceClient) DeleteKeycloakInfo(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.KeycloakInfoService/DeleteKeycloakInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// KeycloakInfoServiceServer is the server API for KeycloakInfoService service.
+// All implementations must embed UnimplementedKeycloakInfoServiceServer
+// for forward compatibility
+type KeycloakInfoServiceServer interface {
+	// CreateKeycloakInfo creates a new keycloak info.
+	CreateKeycloakInfo(context.Context, *CreateKeycloakInfoRequest) (*IDResponse, error)
+	// GetKeycloakInfoByClusterId gets an array of keycloak infos By the clusterID
+	GetKeycloakInfoByClusterId(context.Context, *IDRequest) (*GetKeycloakInfoResponse, error)
+	// UpdateKeycloakInfo updates a status of an keycloak info
+	UpdateKeycloakInfo(context.Context, *IDRequest) (*SimpleResponse, error)
+	// DeleteKeycloakInfo deletes an keycloak info.
+	DeleteKeycloakInfo(context.Context, *IDRequest) (*SimpleResponse, error)
+	mustEmbedUnimplementedKeycloakInfoServiceServer()
+}
+
+// UnimplementedKeycloakInfoServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedKeycloakInfoServiceServer struct {
+}
+
+func (UnimplementedKeycloakInfoServiceServer) CreateKeycloakInfo(context.Context, *CreateKeycloakInfoRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKeycloakInfo not implemented")
+}
+func (UnimplementedKeycloakInfoServiceServer) GetKeycloakInfoByClusterId(context.Context, *IDRequest) (*GetKeycloakInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKeycloakInfoByClusterId not implemented")
+}
+func (UnimplementedKeycloakInfoServiceServer) UpdateKeycloakInfo(context.Context, *IDRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateKeycloakInfo not implemented")
+}
+func (UnimplementedKeycloakInfoServiceServer) DeleteKeycloakInfo(context.Context, *IDRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteKeycloakInfo not implemented")
+}
+func (UnimplementedKeycloakInfoServiceServer) mustEmbedUnimplementedKeycloakInfoServiceServer() {}
+
+// UnsafeKeycloakInfoServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to KeycloakInfoServiceServer will
+// result in compilation errors.
+type UnsafeKeycloakInfoServiceServer interface {
+	mustEmbedUnimplementedKeycloakInfoServiceServer()
+}
+
+func RegisterKeycloakInfoServiceServer(s grpc.ServiceRegistrar, srv KeycloakInfoServiceServer) {
+	s.RegisterService(&KeycloakInfoService_ServiceDesc, srv)
+}
+
+func _KeycloakInfoService_CreateKeycloakInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKeycloakInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeycloakInfoServiceServer).CreateKeycloakInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.KeycloakInfoService/CreateKeycloakInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeycloakInfoServiceServer).CreateKeycloakInfo(ctx, req.(*CreateKeycloakInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KeycloakInfoService_GetKeycloakInfoByClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeycloakInfoServiceServer).GetKeycloakInfoByClusterId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.KeycloakInfoService/GetKeycloakInfoByClusterId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeycloakInfoServiceServer).GetKeycloakInfoByClusterId(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KeycloakInfoService_UpdateKeycloakInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeycloakInfoServiceServer).UpdateKeycloakInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.KeycloakInfoService/UpdateKeycloakInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeycloakInfoServiceServer).UpdateKeycloakInfo(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KeycloakInfoService_DeleteKeycloakInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeycloakInfoServiceServer).DeleteKeycloakInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.KeycloakInfoService/DeleteKeycloakInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeycloakInfoServiceServer).DeleteKeycloakInfo(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// KeycloakInfoService_ServiceDesc is the grpc.ServiceDesc for KeycloakInfoService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var KeycloakInfoService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "tks_pb.KeycloakInfoService",
+	HandlerType: (*KeycloakInfoServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateKeycloakInfo",
+			Handler:    _KeycloakInfoService_CreateKeycloakInfo_Handler,
+		},
+		{
+			MethodName: "GetKeycloakInfoByClusterId",
+			Handler:    _KeycloakInfoService_GetKeycloakInfoByClusterId_Handler,
+		},
+		{
+			MethodName: "UpdateKeycloakInfo",
+			Handler:    _KeycloakInfoService_UpdateKeycloakInfo_Handler,
+		},
+		{
+			MethodName: "DeleteKeycloakInfo",
+			Handler:    _KeycloakInfoService_DeleteKeycloakInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

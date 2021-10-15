@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ClusterLcmServiceClient interface {
 	// CreateCluster creates a Kubernetes cluster and returns cluster id
-	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDsResponse, error)
+	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
 	// ScaleCluster scales the Kubernetes cluster
 	ScaleCluster(ctx context.Context, in *ScaleClusterRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 	// InstallAppGroups install app groups, return a array of app group id
@@ -36,8 +36,8 @@ func NewClusterLcmServiceClient(cc grpc.ClientConnInterface) ClusterLcmServiceCl
 	return &clusterLcmServiceClient{cc}
 }
 
-func (c *clusterLcmServiceClient) CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
-	out := new(IDsResponse)
+func (c *clusterLcmServiceClient) CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+	out := new(IDResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.ClusterLcmService/CreateCluster", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -77,7 +77,7 @@ func (c *clusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *Un
 // for forward compatibility
 type ClusterLcmServiceServer interface {
 	// CreateCluster creates a Kubernetes cluster and returns cluster id
-	CreateCluster(context.Context, *CreateClusterRequest) (*IDsResponse, error)
+	CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error)
 	// ScaleCluster scales the Kubernetes cluster
 	ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error)
 	// InstallAppGroups install app groups, return a array of app group id
@@ -91,7 +91,7 @@ type ClusterLcmServiceServer interface {
 type UnimplementedClusterLcmServiceServer struct {
 }
 
-func (UnimplementedClusterLcmServiceServer) CreateCluster(context.Context, *CreateClusterRequest) (*IDsResponse, error) {
+func (UnimplementedClusterLcmServiceServer) CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCluster not implemented")
 }
 func (UnimplementedClusterLcmServiceServer) ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error) {

@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z(github.com/openinfradev/tks-proto/tks_pb',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x06tks_pb\x1a\x1fgoogle/protobuf/timestamp.proto\"\x14\n\x05\x45rror\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x90\x02\n\x08\x41ppGroup\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12\x16\n\x0e\x61pp_group_name\x18\x02 \x01(\t\x12\"\n\x04type\x18\x03 \x01(\x0e\x32\x14.tks_pb.AppGroupType\x12\x12\n\ncluster_id\x18\x04 \x01(\t\x12&\n\x06status\x18\x05 \x01(\x0e\x32\x16.tks_pb.AppGroupStatus\x12\x16\n\x0e\x65xternal_label\x18\x06 \x01(\t\x12.\n\ncreated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd6\x01\n\x0b\x41pplication\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\x12\x14\n\x0c\x61pp_group_id\x18\x03 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x04 \x01(\t\x12\x10\n\x08metadata\x18\x05 \x01(\t\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xac\x02\n\x07\x43luster\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12.\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12%\n\x06status\x18\x05 \x01(\x0e\x32\x15.tks_pb.ClusterStatus\x12\x13\n\x0b\x63ontract_id\x18\x06 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x07 \x01(\t\x12!\n\x04\x63onf\x18\x08 \x01(\x0b\x32\x13.tks_pb.ClusterConf\x12$\n\napp_groups\x18\t \x03(\x0b\x32\x10.tks_pb.AppGroup\x12\x12\n\nkubeconfig\x18\n \x01(\t\"\xb6\x01\n\x0b\x43lusterConf\x12\x15\n\rmaster_flavor\x18\x01 \x01(\t\x12\x17\n\x0fmaster_replicas\x18\x02 \x01(\x05\x12\x18\n\x10master_root_size\x18\x03 \x01(\x03\x12\x15\n\rworker_flavor\x18\x04 \x01(\t\x12\x17\n\x0fworker_replicas\x18\x05 \x01(\x05\x12\x18\n\x10worker_root_size\x18\x06 \x01(\x03\x12\x13\n\x0bk8s_version\x18\x07 \x01(\t\"\x17\n\tIDRequest\x12\n\n\x02id\x18\x01 \x01(\t\"J\n\x0eSimpleResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\"T\n\x0bIDsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0b\n\x03ids\x18\x03 \x03(\t\"R\n\nIDResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\n\n\x02id\x18\x03 \x01(\t*\xb4\x02\n\x04\x43ode\x12\x12\n\x0eOK_UNSPECIFIED\x10\x00\x12\r\n\tCANCELLED\x10\x01\x12\x0b\n\x07UNKNOWN\x10\x02\x12\x14\n\x10INVALID_ARGUMENT\x10\x03\x12\x15\n\x11\x44\x45\x41\x44LINE_EXCEEDED\x10\x04\x12\r\n\tNOT_FOUND\x10\x05\x12\x12\n\x0e\x41LREADY_EXISTS\x10\x06\x12\x15\n\x11PERMISSION_DENIED\x10\x07\x12\x13\n\x0fUNAUTHENTICATED\x10\x10\x12\x16\n\x12RESOURCE_EXHAUSTED\x10\x08\x12\x17\n\x13\x46\x41ILED_PRECONDITION\x10\t\x12\x0b\n\x07\x41\x42ORTED\x10\n\x12\x10\n\x0cOUT_OF_RANGE\x10\x0b\x12\x11\n\rUNIMPLEMENTED\x10\x0c\x12\x0c\n\x08INTERNAL\x10\r\x12\x0f\n\x0bUNAVAILABLE\x10\x0e*\xa0\x01\n\x0e\x41ppGroupStatus\x12\x19\n\x15\x41PP_GROUP_UNSPECIFIED\x10\x00\x12\x18\n\x14\x41PP_GROUP_INSTALLING\x10\x01\x12\x15\n\x11\x41PP_GROUP_RUNNING\x10\x02\x12\x16\n\x12\x41PP_GROUP_DELETING\x10\x04\x12\x15\n\x11\x41PP_GROUP_DELETED\x10\x05\x12\x13\n\x0f\x41PP_GROUP_ERROR\x10\x06*c\n\rClusterStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0e\n\nINSTALLING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x0c\n\x08\x44\x45LETING\x10\x04\x12\x0b\n\x07\x44\x45LETED\x10\x05\x12\t\n\x05\x45RROR\x10\x06*\xb5\x01\n\x07\x41ppType\x12\x12\n\x0e\x45P_UNSPECIFIED\x10\x00\x12\n\n\x06THANOS\x10\x01\x12\x0e\n\nPROMETHEUS\x10\x02\x12\x0b\n\x07GRAFANA\x10\x03\x12\t\n\x05KIALI\x10\x04\x12\n\n\x06KIBANA\x10\x05\x12\x10\n\x0c\x45LASTICSERCH\x10\x06\x12\x11\n\rCLOUD_CONSOLE\x10\x07\x12\x0b\n\x07HORIZON\x10\x08\x12\n\n\x06JAEGER\x10\t\x12\x18\n\x14KUBERNETES_DASHBOARD\x10\n*C\n\x0c\x41ppGroupType\x12\x18\n\x14\x41PP_TYPE_UNSPECIFIED\x10\x00\x12\x07\n\x03LMA\x10\x01\x12\x10\n\x0cSERVICE_MESH\x10\x02\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x06tks_pb\x1a\x1fgoogle/protobuf/timestamp.proto\"\x14\n\x05\x45rror\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x90\x02\n\x08\x41ppGroup\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12\x16\n\x0e\x61pp_group_name\x18\x02 \x01(\t\x12\"\n\x04type\x18\x03 \x01(\x0e\x32\x14.tks_pb.AppGroupType\x12\x12\n\ncluster_id\x18\x04 \x01(\t\x12&\n\x06status\x18\x05 \x01(\x0e\x32\x16.tks_pb.AppGroupStatus\x12\x16\n\x0e\x65xternal_label\x18\x06 \x01(\t\x12.\n\ncreated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd6\x01\n\x0b\x41pplication\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\x12\x14\n\x0c\x61pp_group_id\x18\x03 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x04 \x01(\t\x12\x10\n\x08metadata\x18\x05 \x01(\t\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xac\x02\n\x07\x43luster\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12.\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12%\n\x06status\x18\x05 \x01(\x0e\x32\x15.tks_pb.ClusterStatus\x12\x13\n\x0b\x63ontract_id\x18\x06 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x07 \x01(\t\x12!\n\x04\x63onf\x18\x08 \x01(\x0b\x32\x13.tks_pb.ClusterConf\x12$\n\napp_groups\x18\t \x03(\x0b\x32\x10.tks_pb.AppGroup\x12\x12\n\nkubeconfig\x18\n \x01(\t\"\xc6\x01\n\x0b\x43lusterConf\x12\x15\n\rmaster_flavor\x18\x01 \x01(\t\x12\x17\n\x0fmaster_replicas\x18\x02 \x01(\x05\x12\x18\n\x10master_root_size\x18\x03 \x01(\x03\x12\x15\n\rworker_flavor\x18\x04 \x01(\t\x12\x17\n\x0fworker_replicas\x18\x05 \x01(\x05\x12\x18\n\x10worker_root_size\x18\x06 \x01(\x03\x12\x13\n\x0bk8s_version\x18\x07 \x01(\t\x12\x0e\n\x06region\x18\x08 \x01(\t\"\x17\n\tIDRequest\x12\n\n\x02id\x18\x01 \x01(\t\"J\n\x0eSimpleResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\"T\n\x0bIDsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0b\n\x03ids\x18\x03 \x03(\t\"R\n\nIDResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\n\n\x02id\x18\x03 \x01(\t\"i\n\x0cKeycloakInfo\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\r\n\x05realm\x18\x02 \x01(\t\x12\x11\n\tclient_id\x18\x03 \x01(\t\x12\x0e\n\x06secret\x18\x04 \x01(\t\x12\x13\n\x0bprivate_key\x18\x05 \x01(\t*\xb4\x02\n\x04\x43ode\x12\x12\n\x0eOK_UNSPECIFIED\x10\x00\x12\r\n\tCANCELLED\x10\x01\x12\x0b\n\x07UNKNOWN\x10\x02\x12\x14\n\x10INVALID_ARGUMENT\x10\x03\x12\x15\n\x11\x44\x45\x41\x44LINE_EXCEEDED\x10\x04\x12\r\n\tNOT_FOUND\x10\x05\x12\x12\n\x0e\x41LREADY_EXISTS\x10\x06\x12\x15\n\x11PERMISSION_DENIED\x10\x07\x12\x13\n\x0fUNAUTHENTICATED\x10\x10\x12\x16\n\x12RESOURCE_EXHAUSTED\x10\x08\x12\x17\n\x13\x46\x41ILED_PRECONDITION\x10\t\x12\x0b\n\x07\x41\x42ORTED\x10\n\x12\x10\n\x0cOUT_OF_RANGE\x10\x0b\x12\x11\n\rUNIMPLEMENTED\x10\x0c\x12\x0c\n\x08INTERNAL\x10\r\x12\x0f\n\x0bUNAVAILABLE\x10\x0e*\xa0\x01\n\x0e\x41ppGroupStatus\x12\x19\n\x15\x41PP_GROUP_UNSPECIFIED\x10\x00\x12\x18\n\x14\x41PP_GROUP_INSTALLING\x10\x01\x12\x15\n\x11\x41PP_GROUP_RUNNING\x10\x02\x12\x16\n\x12\x41PP_GROUP_DELETING\x10\x04\x12\x15\n\x11\x41PP_GROUP_DELETED\x10\x05\x12\x13\n\x0f\x41PP_GROUP_ERROR\x10\x06*c\n\rClusterStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0e\n\nINSTALLING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x0c\n\x08\x44\x45LETING\x10\x04\x12\x0b\n\x07\x44\x45LETED\x10\x05\x12\t\n\x05\x45RROR\x10\x06*\xb5\x01\n\x07\x41ppType\x12\x12\n\x0e\x45P_UNSPECIFIED\x10\x00\x12\n\n\x06THANOS\x10\x01\x12\x0e\n\nPROMETHEUS\x10\x02\x12\x0b\n\x07GRAFANA\x10\x03\x12\t\n\x05KIALI\x10\x04\x12\n\n\x06KIBANA\x10\x05\x12\x10\n\x0c\x45LASTICSERCH\x10\x06\x12\x11\n\rCLOUD_CONSOLE\x10\x07\x12\x0b\n\x07HORIZON\x10\x08\x12\n\n\x06JAEGER\x10\t\x12\x18\n\x14KUBERNETES_DASHBOARD\x10\n*C\n\x0c\x41ppGroupType\x12\x18\n\x14\x41PP_TYPE_UNSPECIFIED\x10\x00\x12\x07\n\x03LMA\x10\x01\x12\x10\n\x0cSERVICE_MESH\x10\x02*?\n\x07\x43spType\x12\x17\n\x13\x43SPTYPE_UNSPECIFIED\x10\x00\x12\x07\n\x03\x41WS\x10\x01\x12\x07\n\x03GCP\x10\x02\x12\t\n\x05\x41ZURE\x10\x03\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -115,8 +115,8 @@ _CODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1331,
-  serialized_end=1639,
+  serialized_start=1454,
+  serialized_end=1762,
 )
 _sym_db.RegisterEnumDescriptor(_CODE)
 
@@ -161,8 +161,8 @@ _APPGROUPSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1642,
-  serialized_end=1802,
+  serialized_start=1765,
+  serialized_end=1925,
 )
 _sym_db.RegisterEnumDescriptor(_APPGROUPSTATUS)
 
@@ -207,8 +207,8 @@ _CLUSTERSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1804,
-  serialized_end=1903,
+  serialized_start=1927,
+  serialized_end=2026,
 )
 _sym_db.RegisterEnumDescriptor(_CLUSTERSTATUS)
 
@@ -278,8 +278,8 @@ _APPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1906,
-  serialized_end=2087,
+  serialized_start=2029,
+  serialized_end=2210,
 )
 _sym_db.RegisterEnumDescriptor(_APPTYPE)
 
@@ -309,12 +309,48 @@ _APPGROUPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2089,
-  serialized_end=2156,
+  serialized_start=2212,
+  serialized_end=2279,
 )
 _sym_db.RegisterEnumDescriptor(_APPGROUPTYPE)
 
 AppGroupType = enum_type_wrapper.EnumTypeWrapper(_APPGROUPTYPE)
+_CSPTYPE = _descriptor.EnumDescriptor(
+  name='CspType',
+  full_name='tks_pb.CspType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='CSPTYPE_UNSPECIFIED', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='AWS', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='GCP', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='AZURE', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2281,
+  serialized_end=2344,
+)
+_sym_db.RegisterEnumDescriptor(_CSPTYPE)
+
+CspType = enum_type_wrapper.EnumTypeWrapper(_CSPTYPE)
 OK_UNSPECIFIED = 0
 CANCELLED = 1
 UNKNOWN = 2
@@ -357,6 +393,10 @@ KUBERNETES_DASHBOARD = 10
 APP_TYPE_UNSPECIFIED = 0
 LMA = 1
 SERVICE_MESH = 2
+CSPTYPE_UNSPECIFIED = 0
+AWS = 1
+GCP = 2
+AZURE = 3
 
 
 
@@ -699,6 +739,13 @@ _CLUSTERCONF = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='region', full_name='tks_pb.ClusterConf.region', index=7,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -712,7 +759,7 @@ _CLUSTERCONF = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=875,
-  serialized_end=1057,
+  serialized_end=1073,
 )
 
 
@@ -743,8 +790,8 @@ _IDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1059,
-  serialized_end=1082,
+  serialized_start=1075,
+  serialized_end=1098,
 )
 
 
@@ -782,8 +829,8 @@ _SIMPLERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1084,
-  serialized_end=1158,
+  serialized_start=1100,
+  serialized_end=1174,
 )
 
 
@@ -828,8 +875,8 @@ _IDSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1160,
-  serialized_end=1244,
+  serialized_start=1176,
+  serialized_end=1260,
 )
 
 
@@ -874,8 +921,68 @@ _IDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1246,
-  serialized_end=1328,
+  serialized_start=1262,
+  serialized_end=1344,
+)
+
+
+_KEYCLOAKINFO = _descriptor.Descriptor(
+  name='KeycloakInfo',
+  full_name='tks_pb.KeycloakInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='cluster_id', full_name='tks_pb.KeycloakInfo.cluster_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='realm', full_name='tks_pb.KeycloakInfo.realm', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='client_id', full_name='tks_pb.KeycloakInfo.client_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='secret', full_name='tks_pb.KeycloakInfo.secret', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='private_key', full_name='tks_pb.KeycloakInfo.private_key', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1346,
+  serialized_end=1451,
 )
 
 _APPGROUP.fields_by_name['type'].enum_type = _APPGROUPTYPE
@@ -905,11 +1012,13 @@ DESCRIPTOR.message_types_by_name['IDRequest'] = _IDREQUEST
 DESCRIPTOR.message_types_by_name['SimpleResponse'] = _SIMPLERESPONSE
 DESCRIPTOR.message_types_by_name['IDsResponse'] = _IDSRESPONSE
 DESCRIPTOR.message_types_by_name['IDResponse'] = _IDRESPONSE
+DESCRIPTOR.message_types_by_name['KeycloakInfo'] = _KEYCLOAKINFO
 DESCRIPTOR.enum_types_by_name['Code'] = _CODE
 DESCRIPTOR.enum_types_by_name['AppGroupStatus'] = _APPGROUPSTATUS
 DESCRIPTOR.enum_types_by_name['ClusterStatus'] = _CLUSTERSTATUS
 DESCRIPTOR.enum_types_by_name['AppType'] = _APPTYPE
 DESCRIPTOR.enum_types_by_name['AppGroupType'] = _APPGROUPTYPE
+DESCRIPTOR.enum_types_by_name['CspType'] = _CSPTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Error = _reflection.GeneratedProtocolMessageType('Error', (_message.Message,), {
@@ -974,6 +1083,13 @@ IDResponse = _reflection.GeneratedProtocolMessageType('IDResponse', (_message.Me
   # @@protoc_insertion_point(class_scope:tks_pb.IDResponse)
   })
 _sym_db.RegisterMessage(IDResponse)
+
+KeycloakInfo = _reflection.GeneratedProtocolMessageType('KeycloakInfo', (_message.Message,), {
+  'DESCRIPTOR' : _KEYCLOAKINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.KeycloakInfo)
+  })
+_sym_db.RegisterMessage(KeycloakInfo)
 
 
 DESCRIPTOR._options = None

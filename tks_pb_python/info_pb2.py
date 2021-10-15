@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z(github.com/openinfradev/tks-proto/tks_pb',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\ninfo.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"K\n\x14\x43reateCSPInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x02 \x01(\t\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\"\\\n\x12GetCSPAuthResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\"4\n\x14UpdateCSPAuthRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x0c\n\x04\x61uth\x18\x02 \x01(\t\"m\n\x15\x41\x64\x64\x43lusterInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"Q\n\x18UpdateClusterConfRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12!\n\x04\x63onf\x18\x02 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"\'\n\x11GetClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\"p\n\x12GetClusterResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12 \n\x07\x63luster\x18\x03 \x01(\x0b\x32\x0f.tks_pb.Cluster\"9\n\x12GetClustersRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x02 \x01(\t\"r\n\x13GetClustersResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x08\x63lusters\x18\x03 \x03(\x0b\x32\x0f.tks_pb.Cluster\"W\n\x1aUpdateClusterStatusRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12%\n\x06status\x18\x02 \x01(\x0e\x32\x15.tks_pb.ClusterStatus\"P\n\x15\x43reateAppGroupRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12#\n\tapp_group\x18\x02 \x01(\x0b\x32\x10.tks_pb.AppGroup\"-\n\x15\x44\x65leteAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"Q\n\x13GetAppGroupsRequest\x12\x16\n\x0e\x61pp_group_name\x18\x01 \x01(\t\x12\"\n\x04type\x18\x02 \x01(\x0e\x32\x14.tks_pb.AppGroupType\"*\n\x12GetAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"t\n\x13GetAppGroupResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12#\n\tapp_group\x18\x03 \x01(\x0b\x32\x10.tks_pb.AppGroup\"v\n\x14GetAppGroupsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12$\n\napp_groups\x18\x03 \x03(\x0b\x32\x10.tks_pb.AppGroup\"[\n\x1bUpdateAppGroupStatusRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.tks_pb.AppGroupStatus\"o\n\x10UpdateAppRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12!\n\x08\x61pp_type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x10\n\x08metadata\x18\x04 \x01(\t\"E\n\x0eGetAppsRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\"n\n\x0fGetAppsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x04\x61pps\x18\x03 \x03(\x0b\x32\x13.tks_pb.Application2\x92\x03\n\x12\x43lusterInfoService\x12\x45\n\x0e\x41\x64\x64\x43lusterInfo\x12\x1d.tks_pb.AddClusterInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12O\n\x11UpdateClusterConf\x12 .tks_pb.UpdateClusterConfRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x45\n\nGetCluster\x12\x19.tks_pb.GetClusterRequest\x1a\x1a.tks_pb.GetClusterResponse\"\x00\x12H\n\x0bGetClusters\x12\x1a.tks_pb.GetClustersRequest\x1a\x1b.tks_pb.GetClustersResponse\"\x00\x12S\n\x13UpdateClusterStatus\x12\".tks_pb.UpdateClusterStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\xdc\x02\n\x0e\x43spInfoService\x12\x43\n\rCreateCSPInfo\x12\x1c.tks_pb.CreateCSPInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12:\n\tGetCSPIDs\x12\x16.google.protobuf.Empty\x1a\x13.tks_pb.IDsResponse\"\x00\x12\x41\n\x15GetCSPIDsByContractID\x12\x11.tks_pb.IDRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12G\n\rUpdateCSPAuth\x12\x1c.tks_pb.UpdateCSPAuthRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12=\n\nGetCSPAuth\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPAuthResponse\"\x00\x32\xa2\x05\n\x0e\x41ppInfoService\x12\x45\n\x0e\x43reateAppGroup\x12\x1d.tks_pb.CreateAppGroupRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12L\n\x17GetAppGroupsByClusterID\x12\x11.tks_pb.IDRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12K\n\x0cGetAppGroups\x12\x1b.tks_pb.GetAppGroupsRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12H\n\x0bGetAppGroup\x12\x1a.tks_pb.GetAppGroupRequest\x1a\x1b.tks_pb.GetAppGroupResponse\"\x00\x12U\n\x14UpdateAppGroupStatus\x12#.tks_pb.UpdateAppGroupStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12I\n\x0e\x44\x65leteAppGroup\x12\x1d.tks_pb.DeleteAppGroupRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x43\n\x13GetAppsByAppGroupID\x12\x11.tks_pb.IDRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12<\n\x07GetApps\x12\x16.tks_pb.GetAppsRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12?\n\tUpdateApp\x12\x18.tks_pb.UpdateAppRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3'
+  serialized_pb=b'\n\ninfo.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"n\n\x14\x43reateCSPInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x02 \x01(\t\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\x12!\n\x08\x63sp_type\x18\x04 \x01(\x0e\x32\x0f.tks_pb.CspType\"\xa6\x01\n\x12GetCSPInfoResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x04 \x01(\t\x12\x0c\n\x04\x61uth\x18\x05 \x01(\t\x12!\n\x08\x63sp_type\x18\x06 \x01(\x0e\x32\x0f.tks_pb.CspType\"\\\n\x12GetCSPAuthResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\"4\n\x14UpdateCSPAuthRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x0c\n\x04\x61uth\x18\x02 \x01(\t\"m\n\x15\x41\x64\x64\x43lusterInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"Q\n\x18UpdateClusterConfRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12!\n\x04\x63onf\x18\x02 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"\'\n\x11GetClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\"p\n\x12GetClusterResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12 \n\x07\x63luster\x18\x03 \x01(\x0b\x32\x0f.tks_pb.Cluster\"9\n\x12GetClustersRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x02 \x01(\t\"r\n\x13GetClustersResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x08\x63lusters\x18\x03 \x03(\x0b\x32\x0f.tks_pb.Cluster\"W\n\x1aUpdateClusterStatusRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12%\n\x06status\x18\x02 \x01(\x0e\x32\x15.tks_pb.ClusterStatus\"P\n\x15\x43reateAppGroupRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12#\n\tapp_group\x18\x02 \x01(\x0b\x32\x10.tks_pb.AppGroup\"-\n\x15\x44\x65leteAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"Q\n\x13GetAppGroupsRequest\x12\x16\n\x0e\x61pp_group_name\x18\x01 \x01(\t\x12\"\n\x04type\x18\x02 \x01(\x0e\x32\x14.tks_pb.AppGroupType\"*\n\x12GetAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"t\n\x13GetAppGroupResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12#\n\tapp_group\x18\x03 \x01(\x0b\x32\x10.tks_pb.AppGroup\"v\n\x14GetAppGroupsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12$\n\napp_groups\x18\x03 \x03(\x0b\x32\x10.tks_pb.AppGroup\"[\n\x1bUpdateAppGroupStatusRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.tks_pb.AppGroupStatus\"o\n\x10UpdateAppRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12!\n\x08\x61pp_type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x10\n\x08metadata\x18\x04 \x01(\t\"E\n\x0eGetAppsRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\"n\n\x0fGetAppsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x04\x61pps\x18\x03 \x03(\x0b\x32\x13.tks_pb.Application\"v\n\x19\x43reateKeycloakInfoRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\r\n\x05realm\x18\x02 \x01(\t\x12\x11\n\tclient_id\x18\x03 \x01(\t\x12\x0e\n\x06secret\x18\x04 \x01(\t\x12\x13\n\x0bprivate_key\x18\x05 \x01(\t\"\x81\x01\n\x17GetKeycloakInfoResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12,\n\x0ekeycloak_infos\x18\x03 \x03(\x0b\x32\x14.tks_pb.KeycloakInfo2\x92\x03\n\x12\x43lusterInfoService\x12\x45\n\x0e\x41\x64\x64\x43lusterInfo\x12\x1d.tks_pb.AddClusterInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12O\n\x11UpdateClusterConf\x12 .tks_pb.UpdateClusterConfRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x45\n\nGetCluster\x12\x19.tks_pb.GetClusterRequest\x1a\x1a.tks_pb.GetClusterResponse\"\x00\x12H\n\x0bGetClusters\x12\x1a.tks_pb.GetClustersRequest\x1a\x1b.tks_pb.GetClustersResponse\"\x00\x12S\n\x13UpdateClusterStatus\x12\".tks_pb.UpdateClusterStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\x9b\x03\n\x0e\x43spInfoService\x12\x43\n\rCreateCSPInfo\x12\x1c.tks_pb.CreateCSPInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12=\n\nGetCSPInfo\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPInfoResponse\"\x00\x12:\n\tGetCSPIDs\x12\x16.google.protobuf.Empty\x1a\x13.tks_pb.IDsResponse\"\x00\x12\x41\n\x15GetCSPIDsByContractID\x12\x11.tks_pb.IDRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12G\n\rUpdateCSPAuth\x12\x1c.tks_pb.UpdateCSPAuthRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12=\n\nGetCSPAuth\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPAuthResponse\"\x00\x32\xa2\x05\n\x0e\x41ppInfoService\x12\x45\n\x0e\x43reateAppGroup\x12\x1d.tks_pb.CreateAppGroupRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12L\n\x17GetAppGroupsByClusterID\x12\x11.tks_pb.IDRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12K\n\x0cGetAppGroups\x12\x1b.tks_pb.GetAppGroupsRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12H\n\x0bGetAppGroup\x12\x1a.tks_pb.GetAppGroupRequest\x1a\x1b.tks_pb.GetAppGroupResponse\"\x00\x12U\n\x14UpdateAppGroupStatus\x12#.tks_pb.UpdateAppGroupStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12I\n\x0e\x44\x65leteAppGroup\x12\x1d.tks_pb.DeleteAppGroupRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x43\n\x13GetAppsByAppGroupID\x12\x11.tks_pb.IDRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12<\n\x07GetApps\x12\x16.tks_pb.GetAppsRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12?\n\tUpdateApp\x12\x18.tks_pb.UpdateAppRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\xbe\x02\n\x13KeycloakInfoService\x12M\n\x12\x43reateKeycloakInfo\x12!.tks_pb.CreateKeycloakInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12R\n\x1aGetKeycloakInfoByClusterId\x12\x11.tks_pb.IDRequest\x1a\x1f.tks_pb.GetKeycloakInfoResponse\"\x00\x12\x41\n\x12UpdateKeycloakInfo\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x41\n\x12\x44\x65leteKeycloakInfo\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3'
   ,
   dependencies=[common__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -57,6 +57,13 @@ _CREATECSPINFOREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='csp_type', full_name='tks_pb.CreateCSPInfoRequest.csp_type', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -70,7 +77,74 @@ _CREATECSPINFOREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=65,
-  serialized_end=140,
+  serialized_end=175,
+)
+
+
+_GETCSPINFORESPONSE = _descriptor.Descriptor(
+  name='GetCSPInfoResponse',
+  full_name='tks_pb.GetCSPInfoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='code', full_name='tks_pb.GetCSPInfoResponse.code', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='error', full_name='tks_pb.GetCSPInfoResponse.error', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='contract_id', full_name='tks_pb.GetCSPInfoResponse.contract_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='csp_name', full_name='tks_pb.GetCSPInfoResponse.csp_name', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='auth', full_name='tks_pb.GetCSPInfoResponse.auth', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='csp_type', full_name='tks_pb.GetCSPInfoResponse.csp_type', index=5,
+      number=6, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=178,
+  serialized_end=344,
 )
 
 
@@ -115,8 +189,8 @@ _GETCSPAUTHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=142,
-  serialized_end=234,
+  serialized_start=346,
+  serialized_end=438,
 )
 
 
@@ -154,8 +228,8 @@ _UPDATECSPAUTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=236,
-  serialized_end=288,
+  serialized_start=440,
+  serialized_end=492,
 )
 
 
@@ -207,8 +281,8 @@ _ADDCLUSTERINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=290,
-  serialized_end=399,
+  serialized_start=494,
+  serialized_end=603,
 )
 
 
@@ -246,8 +320,8 @@ _UPDATECLUSTERCONFREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=401,
-  serialized_end=482,
+  serialized_start=605,
+  serialized_end=686,
 )
 
 
@@ -278,8 +352,8 @@ _GETCLUSTERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=484,
-  serialized_end=523,
+  serialized_start=688,
+  serialized_end=727,
 )
 
 
@@ -324,8 +398,8 @@ _GETCLUSTERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=525,
-  serialized_end=637,
+  serialized_start=729,
+  serialized_end=841,
 )
 
 
@@ -363,8 +437,8 @@ _GETCLUSTERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=639,
-  serialized_end=696,
+  serialized_start=843,
+  serialized_end=900,
 )
 
 
@@ -409,8 +483,8 @@ _GETCLUSTERSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=698,
-  serialized_end=812,
+  serialized_start=902,
+  serialized_end=1016,
 )
 
 
@@ -448,8 +522,8 @@ _UPDATECLUSTERSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=814,
-  serialized_end=901,
+  serialized_start=1018,
+  serialized_end=1105,
 )
 
 
@@ -487,8 +561,8 @@ _CREATEAPPGROUPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=903,
-  serialized_end=983,
+  serialized_start=1107,
+  serialized_end=1187,
 )
 
 
@@ -519,8 +593,8 @@ _DELETEAPPGROUPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=985,
-  serialized_end=1030,
+  serialized_start=1189,
+  serialized_end=1234,
 )
 
 
@@ -558,8 +632,8 @@ _GETAPPGROUPSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1032,
-  serialized_end=1113,
+  serialized_start=1236,
+  serialized_end=1317,
 )
 
 
@@ -590,8 +664,8 @@ _GETAPPGROUPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1115,
-  serialized_end=1157,
+  serialized_start=1319,
+  serialized_end=1361,
 )
 
 
@@ -636,8 +710,8 @@ _GETAPPGROUPRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1159,
-  serialized_end=1275,
+  serialized_start=1363,
+  serialized_end=1479,
 )
 
 
@@ -682,8 +756,8 @@ _GETAPPGROUPSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1277,
-  serialized_end=1395,
+  serialized_start=1481,
+  serialized_end=1599,
 )
 
 
@@ -721,8 +795,8 @@ _UPDATEAPPGROUPSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1397,
-  serialized_end=1488,
+  serialized_start=1601,
+  serialized_end=1692,
 )
 
 
@@ -774,8 +848,8 @@ _UPDATEAPPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1490,
-  serialized_end=1601,
+  serialized_start=1694,
+  serialized_end=1805,
 )
 
 
@@ -813,8 +887,8 @@ _GETAPPSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1603,
-  serialized_end=1672,
+  serialized_start=1807,
+  serialized_end=1876,
 )
 
 
@@ -859,10 +933,120 @@ _GETAPPSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1674,
-  serialized_end=1784,
+  serialized_start=1878,
+  serialized_end=1988,
 )
 
+
+_CREATEKEYCLOAKINFOREQUEST = _descriptor.Descriptor(
+  name='CreateKeycloakInfoRequest',
+  full_name='tks_pb.CreateKeycloakInfoRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='cluster_id', full_name='tks_pb.CreateKeycloakInfoRequest.cluster_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='realm', full_name='tks_pb.CreateKeycloakInfoRequest.realm', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='client_id', full_name='tks_pb.CreateKeycloakInfoRequest.client_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='secret', full_name='tks_pb.CreateKeycloakInfoRequest.secret', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='private_key', full_name='tks_pb.CreateKeycloakInfoRequest.private_key', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1990,
+  serialized_end=2108,
+)
+
+
+_GETKEYCLOAKINFORESPONSE = _descriptor.Descriptor(
+  name='GetKeycloakInfoResponse',
+  full_name='tks_pb.GetKeycloakInfoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='code', full_name='tks_pb.GetKeycloakInfoResponse.code', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='error', full_name='tks_pb.GetKeycloakInfoResponse.error', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='keycloak_infos', full_name='tks_pb.GetKeycloakInfoResponse.keycloak_infos', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2111,
+  serialized_end=2240,
+)
+
+_CREATECSPINFOREQUEST.fields_by_name['csp_type'].enum_type = common__pb2._CSPTYPE
+_GETCSPINFORESPONSE.fields_by_name['code'].enum_type = common__pb2._CODE
+_GETCSPINFORESPONSE.fields_by_name['error'].message_type = common__pb2._ERROR
+_GETCSPINFORESPONSE.fields_by_name['csp_type'].enum_type = common__pb2._CSPTYPE
 _GETCSPAUTHRESPONSE.fields_by_name['code'].enum_type = common__pb2._CODE
 _GETCSPAUTHRESPONSE.fields_by_name['error'].message_type = common__pb2._ERROR
 _ADDCLUSTERINFOREQUEST.fields_by_name['conf'].message_type = common__pb2._CLUSTERCONF
@@ -888,7 +1072,11 @@ _GETAPPSREQUEST.fields_by_name['type'].enum_type = common__pb2._APPTYPE
 _GETAPPSRESPONSE.fields_by_name['code'].enum_type = common__pb2._CODE
 _GETAPPSRESPONSE.fields_by_name['error'].message_type = common__pb2._ERROR
 _GETAPPSRESPONSE.fields_by_name['apps'].message_type = common__pb2._APPLICATION
+_GETKEYCLOAKINFORESPONSE.fields_by_name['code'].enum_type = common__pb2._CODE
+_GETKEYCLOAKINFORESPONSE.fields_by_name['error'].message_type = common__pb2._ERROR
+_GETKEYCLOAKINFORESPONSE.fields_by_name['keycloak_infos'].message_type = common__pb2._KEYCLOAKINFO
 DESCRIPTOR.message_types_by_name['CreateCSPInfoRequest'] = _CREATECSPINFOREQUEST
+DESCRIPTOR.message_types_by_name['GetCSPInfoResponse'] = _GETCSPINFORESPONSE
 DESCRIPTOR.message_types_by_name['GetCSPAuthResponse'] = _GETCSPAUTHRESPONSE
 DESCRIPTOR.message_types_by_name['UpdateCSPAuthRequest'] = _UPDATECSPAUTHREQUEST
 DESCRIPTOR.message_types_by_name['AddClusterInfoRequest'] = _ADDCLUSTERINFOREQUEST
@@ -908,6 +1096,8 @@ DESCRIPTOR.message_types_by_name['UpdateAppGroupStatusRequest'] = _UPDATEAPPGROU
 DESCRIPTOR.message_types_by_name['UpdateAppRequest'] = _UPDATEAPPREQUEST
 DESCRIPTOR.message_types_by_name['GetAppsRequest'] = _GETAPPSREQUEST
 DESCRIPTOR.message_types_by_name['GetAppsResponse'] = _GETAPPSRESPONSE
+DESCRIPTOR.message_types_by_name['CreateKeycloakInfoRequest'] = _CREATEKEYCLOAKINFOREQUEST
+DESCRIPTOR.message_types_by_name['GetKeycloakInfoResponse'] = _GETKEYCLOAKINFORESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CreateCSPInfoRequest = _reflection.GeneratedProtocolMessageType('CreateCSPInfoRequest', (_message.Message,), {
@@ -916,6 +1106,13 @@ CreateCSPInfoRequest = _reflection.GeneratedProtocolMessageType('CreateCSPInfoRe
   # @@protoc_insertion_point(class_scope:tks_pb.CreateCSPInfoRequest)
   })
 _sym_db.RegisterMessage(CreateCSPInfoRequest)
+
+GetCSPInfoResponse = _reflection.GeneratedProtocolMessageType('GetCSPInfoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETCSPINFORESPONSE,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.GetCSPInfoResponse)
+  })
+_sym_db.RegisterMessage(GetCSPInfoResponse)
 
 GetCSPAuthResponse = _reflection.GeneratedProtocolMessageType('GetCSPAuthResponse', (_message.Message,), {
   'DESCRIPTOR' : _GETCSPAUTHRESPONSE,
@@ -1050,6 +1247,20 @@ GetAppsResponse = _reflection.GeneratedProtocolMessageType('GetAppsResponse', (_
   })
 _sym_db.RegisterMessage(GetAppsResponse)
 
+CreateKeycloakInfoRequest = _reflection.GeneratedProtocolMessageType('CreateKeycloakInfoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEKEYCLOAKINFOREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.CreateKeycloakInfoRequest)
+  })
+_sym_db.RegisterMessage(CreateKeycloakInfoRequest)
+
+GetKeycloakInfoResponse = _reflection.GeneratedProtocolMessageType('GetKeycloakInfoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETKEYCLOAKINFORESPONSE,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.GetKeycloakInfoResponse)
+  })
+_sym_db.RegisterMessage(GetKeycloakInfoResponse)
+
 
 DESCRIPTOR._options = None
 
@@ -1060,8 +1271,8 @@ _CLUSTERINFOSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1787,
-  serialized_end=2189,
+  serialized_start=2243,
+  serialized_end=2645,
   methods=[
   _descriptor.MethodDescriptor(
     name='AddClusterInfo',
@@ -1126,8 +1337,8 @@ _CSPINFOSERVICE = _descriptor.ServiceDescriptor(
   index=1,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2192,
-  serialized_end=2540,
+  serialized_start=2648,
+  serialized_end=3059,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateCSPInfo',
@@ -1140,9 +1351,19 @@ _CSPINFOSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetCSPInfo',
+    full_name='tks_pb.CspInfoService.GetCSPInfo',
+    index=1,
+    containing_service=None,
+    input_type=common__pb2._IDREQUEST,
+    output_type=_GETCSPINFORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='GetCSPIDs',
     full_name='tks_pb.CspInfoService.GetCSPIDs',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     output_type=common__pb2._IDSRESPONSE,
@@ -1152,7 +1373,7 @@ _CSPINFOSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCSPIDsByContractID',
     full_name='tks_pb.CspInfoService.GetCSPIDsByContractID',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=common__pb2._IDREQUEST,
     output_type=common__pb2._IDSRESPONSE,
@@ -1162,7 +1383,7 @@ _CSPINFOSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='UpdateCSPAuth',
     full_name='tks_pb.CspInfoService.UpdateCSPAuth',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_UPDATECSPAUTHREQUEST,
     output_type=common__pb2._SIMPLERESPONSE,
@@ -1172,7 +1393,7 @@ _CSPINFOSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCSPAuth',
     full_name='tks_pb.CspInfoService.GetCSPAuth',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=common__pb2._IDREQUEST,
     output_type=_GETCSPAUTHRESPONSE,
@@ -1192,8 +1413,8 @@ _APPINFOSERVICE = _descriptor.ServiceDescriptor(
   index=2,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2543,
-  serialized_end=3217,
+  serialized_start=3062,
+  serialized_end=3736,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateAppGroup',
@@ -1289,5 +1510,61 @@ _APPINFOSERVICE = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_APPINFOSERVICE)
 
 DESCRIPTOR.services_by_name['AppInfoService'] = _APPINFOSERVICE
+
+
+_KEYCLOAKINFOSERVICE = _descriptor.ServiceDescriptor(
+  name='KeycloakInfoService',
+  full_name='tks_pb.KeycloakInfoService',
+  file=DESCRIPTOR,
+  index=3,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=3739,
+  serialized_end=4057,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='CreateKeycloakInfo',
+    full_name='tks_pb.KeycloakInfoService.CreateKeycloakInfo',
+    index=0,
+    containing_service=None,
+    input_type=_CREATEKEYCLOAKINFOREQUEST,
+    output_type=common__pb2._IDRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetKeycloakInfoByClusterId',
+    full_name='tks_pb.KeycloakInfoService.GetKeycloakInfoByClusterId',
+    index=1,
+    containing_service=None,
+    input_type=common__pb2._IDREQUEST,
+    output_type=_GETKEYCLOAKINFORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateKeycloakInfo',
+    full_name='tks_pb.KeycloakInfoService.UpdateKeycloakInfo',
+    index=2,
+    containing_service=None,
+    input_type=common__pb2._IDREQUEST,
+    output_type=common__pb2._SIMPLERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DeleteKeycloakInfo',
+    full_name='tks_pb.KeycloakInfoService.DeleteKeycloakInfo',
+    index=3,
+    containing_service=None,
+    input_type=common__pb2._IDREQUEST,
+    output_type=common__pb2._SIMPLERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_KEYCLOAKINFOSERVICE)
+
+DESCRIPTOR.services_by_name['KeycloakInfoService'] = _KEYCLOAKINFOSERVICE
 
 # @@protoc_insertion_point(module_scope)

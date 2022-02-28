@@ -13,11 +13,13 @@ option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 service ClusterLcmService {
   // CreateCluster creates a Kubernetes cluster and returns cluster id
   rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
-  // ScaleCluster scales the Kubernetes cluster
+  // ScaleCluster scales Kubernetes cluster
   rpc ScaleCluster(ScaleClusterRequest) returns (SimpleResponse) {}
-  // InstallAppGroups install app groups, return a array of app group id
+  // DeleteCluster deletes Kubernetes cluster
+  rpc DeleteCluster(IDRequest) returns (SimpleResponse) {}
+  // InstallAppGroups installs app groups, returns an array of app group id
   rpc InstallAppGroups(InstallAppGroupsRequest) returns (IDsResponse) {}
-  // UninstallAppGroups uninstall app groups.
+  // UninstallAppGroups uninstalls app groups.
   rpc UninstallAppGroups(UninstallAppGroupsRequest) returns (SimpleResponse) {}
 }
 

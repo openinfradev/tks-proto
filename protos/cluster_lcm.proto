@@ -20,7 +20,7 @@ service ClusterLcmService {
   // InstallAppGroups installs app groups, returns an array of app group id
   rpc InstallAppGroups(InstallAppGroupsRequest) returns (IDsResponse) {}
   // UninstallAppGroups uninstalls app groups.
-  rpc UninstallAppGroups(UninstallAppGroupsRequest) returns (SimpleResponse) {}
+  rpc UninstallAppGroups(UninstallAppGroupsRequest) returns (IDsResponse) {}
 }
 
 // CreateClusterRequest is a request to create a Kubernetes cluster

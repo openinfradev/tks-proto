@@ -26,6 +26,11 @@ class ClusterLcmServiceStub(object):
                 request_serializer=cluster__lcm__pb2.ScaleClusterRequest.SerializeToString,
                 response_deserializer=common__pb2.SimpleResponse.FromString,
                 )
+        self.DeleteCluster = channel.unary_unary(
+                '/tks_pb.ClusterLcmService/DeleteCluster',
+                request_serializer=common__pb2.IDRequest.SerializeToString,
+                response_deserializer=common__pb2.SimpleResponse.FromString,
+                )
         self.InstallAppGroups = channel.unary_unary(
                 '/tks_pb.ClusterLcmService/InstallAppGroups',
                 request_serializer=cluster__lcm__pb2.InstallAppGroupsRequest.SerializeToString,
@@ -50,21 +55,28 @@ class ClusterLcmServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ScaleCluster(self, request, context):
-        """ScaleCluster scales the Kubernetes cluster
+        """ScaleCluster scales Kubernetes cluster
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteCluster(self, request, context):
+        """DeleteCluster deletes Kubernetes cluster
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def InstallAppGroups(self, request, context):
-        """InstallAppGroups install app groups, return a array of app group id
+        """InstallAppGroups installs app groups, returns an array of app group id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UninstallAppGroups(self, request, context):
-        """UninstallAppGroups uninstall app groups.
+        """UninstallAppGroups uninstalls app groups.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -81,6 +93,11 @@ def add_ClusterLcmServiceServicer_to_server(servicer, server):
             'ScaleCluster': grpc.unary_unary_rpc_method_handler(
                     servicer.ScaleCluster,
                     request_deserializer=cluster__lcm__pb2.ScaleClusterRequest.FromString,
+                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+            ),
+            'DeleteCluster': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteCluster,
+                    request_deserializer=common__pb2.IDRequest.FromString,
                     response_serializer=common__pb2.SimpleResponse.SerializeToString,
             ),
             'InstallAppGroups': grpc.unary_unary_rpc_method_handler(
@@ -134,6 +151,23 @@ class ClusterLcmService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.ClusterLcmService/ScaleCluster',
             cluster__lcm__pb2.ScaleClusterRequest.SerializeToString,
+            common__pb2.SimpleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteCluster(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.ClusterLcmService/DeleteCluster',
+            common__pb2.IDRequest.SerializeToString,
             common__pb2.SimpleResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

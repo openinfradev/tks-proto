@@ -20,11 +20,13 @@ const _ = grpc.SupportPackageIsVersion7
 type ClusterLcmServiceClient interface {
 	// CreateCluster creates a Kubernetes cluster and returns cluster id
 	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
-	// ScaleCluster scales the Kubernetes cluster
+	// ScaleCluster scales Kubernetes cluster
 	ScaleCluster(ctx context.Context, in *ScaleClusterRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
-	// InstallAppGroups install app groups, return a array of app group id
+	// DeleteCluster deletes Kubernetes cluster
+	DeleteCluster(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// InstallAppGroups installs app groups, returns an array of app group id
 	InstallAppGroups(ctx context.Context, in *InstallAppGroupsRequest, opts ...grpc.CallOption) (*IDsResponse, error)
-	// UninstallAppGroups uninstall app groups.
+	// UninstallAppGroups uninstalls app groups.
 	UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
@@ -48,6 +50,15 @@ func (c *clusterLcmServiceClient) CreateCluster(ctx context.Context, in *CreateC
 func (c *clusterLcmServiceClient) ScaleCluster(ctx context.Context, in *ScaleClusterRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
 	out := new(SimpleResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.ClusterLcmService/ScaleCluster", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clusterLcmServiceClient) DeleteCluster(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
+	out := new(SimpleResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.ClusterLcmService/DeleteCluster", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,11 +89,13 @@ func (c *clusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *Un
 type ClusterLcmServiceServer interface {
 	// CreateCluster creates a Kubernetes cluster and returns cluster id
 	CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error)
-	// ScaleCluster scales the Kubernetes cluster
+	// ScaleCluster scales Kubernetes cluster
 	ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error)
-	// InstallAppGroups install app groups, return a array of app group id
+	// DeleteCluster deletes Kubernetes cluster
+	DeleteCluster(context.Context, *IDRequest) (*SimpleResponse, error)
+	// InstallAppGroups installs app groups, returns an array of app group id
 	InstallAppGroups(context.Context, *InstallAppGroupsRequest) (*IDsResponse, error)
-	// UninstallAppGroups uninstall app groups.
+	// UninstallAppGroups uninstalls app groups.
 	UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*SimpleResponse, error)
 	mustEmbedUnimplementedClusterLcmServiceServer()
 }
@@ -96,6 +109,9 @@ func (UnimplementedClusterLcmServiceServer) CreateCluster(context.Context, *Crea
 }
 func (UnimplementedClusterLcmServiceServer) ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleCluster not implemented")
+}
+func (UnimplementedClusterLcmServiceServer) DeleteCluster(context.Context, *IDRequest) (*SimpleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCluster not implemented")
 }
 func (UnimplementedClusterLcmServiceServer) InstallAppGroups(context.Context, *InstallAppGroupsRequest) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InstallAppGroups not implemented")
@@ -152,6 +168,24 @@ func _ClusterLcmService_ScaleCluster_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ClusterLcmService_DeleteCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterLcmServiceServer).DeleteCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.ClusterLcmService/DeleteCluster",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterLcmServiceServer).DeleteCluster(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ClusterLcmService_InstallAppGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InstallAppGroupsRequest)
 	if err := dec(in); err != nil {
@@ -202,6 +236,10 @@ var ClusterLcmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ScaleCluster",
 			Handler:    _ClusterLcmService_ScaleCluster_Handler,
+		},
+		{
+			MethodName: "DeleteCluster",
+			Handler:    _ClusterLcmService_DeleteCluster_Handler,
 		},
 		{
 			MethodName: "InstallAppGroups",

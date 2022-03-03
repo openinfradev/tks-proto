@@ -56,6 +56,26 @@ func (mr *MockClusterLcmServiceClientMockRecorder) CreateCluster(ctx, in interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCluster", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).CreateCluster), varargs...)
 }
 
+// DeleteCluster mocks base method.
+func (m *MockClusterLcmServiceClient) DeleteCluster(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteCluster", varargs...)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteCluster indicates an expected call of DeleteCluster.
+func (mr *MockClusterLcmServiceClientMockRecorder) DeleteCluster(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCluster", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).DeleteCluster), varargs...)
+}
+
 // InstallAppGroups mocks base method.
 func (m *MockClusterLcmServiceClient) InstallAppGroups(ctx context.Context, in *tks_pb.InstallAppGroupsRequest, opts ...grpc.CallOption) (*tks_pb.IDsResponse, error) {
 	m.ctrl.T.Helper()
@@ -152,6 +172,21 @@ func (m *MockClusterLcmServiceServer) CreateCluster(arg0 context.Context, arg1 *
 func (mr *MockClusterLcmServiceServerMockRecorder) CreateCluster(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCluster", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).CreateCluster), arg0, arg1)
+}
+
+// DeleteCluster mocks base method.
+func (m *MockClusterLcmServiceServer) DeleteCluster(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteCluster", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteCluster indicates an expected call of DeleteCluster.
+func (mr *MockClusterLcmServiceServerMockRecorder) DeleteCluster(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCluster", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).DeleteCluster), arg0, arg1)
 }
 
 // InstallAppGroups mocks base method.

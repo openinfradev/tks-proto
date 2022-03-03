@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z(github.com/openinfradev/tks-proto/tks_pb',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63luster_lcm.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\"l\n\x14\x43reateClusterRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"[\n\x13ScaleClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x17\n\x0fmaster_replicas\x18\x02 \x01(\x05\x12\x17\n\x0fworker_replicas\x18\x03 \x01(\x05\"?\n\x17InstallAppGroupsRequest\x12$\n\napp_groups\x18\x01 \x03(\x0b\x32\x10.tks_pb.AppGroup\"F\n\x19UninstallAppGroupsRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x15\n\rapp_group_ids\x18\x02 \x03(\t2\xbe\x02\n\x11\x43lusterLcmService\x12\x43\n\rCreateCluster\x12\x1c.tks_pb.CreateClusterRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12\x45\n\x0cScaleCluster\x12\x1b.tks_pb.ScaleClusterRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12J\n\x10InstallAppGroups\x12\x1f.tks_pb.InstallAppGroupsRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12Q\n\x12UninstallAppGroups\x12!.tks_pb.UninstallAppGroupsRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3'
+  serialized_pb=b'\n\x11\x63luster_lcm.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\"l\n\x14\x43reateClusterRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"[\n\x13ScaleClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x17\n\x0fmaster_replicas\x18\x02 \x01(\x05\x12\x17\n\x0fworker_replicas\x18\x03 \x01(\x05\"?\n\x17InstallAppGroupsRequest\x12$\n\napp_groups\x18\x01 \x03(\x0b\x32\x10.tks_pb.AppGroup\"F\n\x19UninstallAppGroupsRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x15\n\rapp_group_ids\x18\x02 \x03(\t2\xfc\x02\n\x11\x43lusterLcmService\x12\x43\n\rCreateCluster\x12\x1c.tks_pb.CreateClusterRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12\x45\n\x0cScaleCluster\x12\x1b.tks_pb.ScaleClusterRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12<\n\rDeleteCluster\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12J\n\x10InstallAppGroups\x12\x1f.tks_pb.InstallAppGroupsRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12Q\n\x12UninstallAppGroups\x12!.tks_pb.UninstallAppGroupsRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3'
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -243,7 +243,7 @@ _CLUSTERLCMSERVICE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=384,
-  serialized_end=702,
+  serialized_end=764,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateCluster',
@@ -266,9 +266,19 @@ _CLUSTERLCMSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='DeleteCluster',
+    full_name='tks_pb.ClusterLcmService.DeleteCluster',
+    index=2,
+    containing_service=None,
+    input_type=common__pb2._IDREQUEST,
+    output_type=common__pb2._SIMPLERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='InstallAppGroups',
     full_name='tks_pb.ClusterLcmService.InstallAppGroups',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_INSTALLAPPGROUPSREQUEST,
     output_type=common__pb2._IDSRESPONSE,
@@ -278,7 +288,7 @@ _CLUSTERLCMSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='UninstallAppGroups',
     full_name='tks_pb.ClusterLcmService.UninstallAppGroups',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_UNINSTALLAPPGROUPSREQUEST,
     output_type=common__pb2._SIMPLERESPONSE,

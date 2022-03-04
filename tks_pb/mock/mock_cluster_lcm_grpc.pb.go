@@ -117,14 +117,14 @@ func (mr *MockClusterLcmServiceClientMockRecorder) ScaleCluster(ctx, in interfac
 }
 
 // UninstallAppGroups mocks base method.
-func (m *MockClusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *tks_pb.UninstallAppGroupsRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+func (m *MockClusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *tks_pb.UninstallAppGroupsRequest, opts ...grpc.CallOption) (*tks_pb.IDsResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "UninstallAppGroups", varargs...)
-	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret0, _ := ret[0].(*tks_pb.IDsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -220,10 +220,10 @@ func (mr *MockClusterLcmServiceServerMockRecorder) ScaleCluster(arg0, arg1 inter
 }
 
 // UninstallAppGroups mocks base method.
-func (m *MockClusterLcmServiceServer) UninstallAppGroups(arg0 context.Context, arg1 *tks_pb.UninstallAppGroupsRequest) (*tks_pb.SimpleResponse, error) {
+func (m *MockClusterLcmServiceServer) UninstallAppGroups(arg0 context.Context, arg1 *tks_pb.UninstallAppGroupsRequest) (*tks_pb.IDsResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UninstallAppGroups", arg0, arg1)
-	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret0, _ := ret[0].(*tks_pb.IDsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

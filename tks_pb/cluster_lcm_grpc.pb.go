@@ -27,7 +27,7 @@ type ClusterLcmServiceClient interface {
 	// InstallAppGroups installs app groups, returns an array of app group id
 	InstallAppGroups(ctx context.Context, in *InstallAppGroupsRequest, opts ...grpc.CallOption) (*IDsResponse, error)
 	// UninstallAppGroups uninstalls app groups.
-	UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*IDsResponse, error)
 }
 
 type clusterLcmServiceClient struct {
@@ -74,8 +74,8 @@ func (c *clusterLcmServiceClient) InstallAppGroups(ctx context.Context, in *Inst
 	return out, nil
 }
 
-func (c *clusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
+func (c *clusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *UninstallAppGroupsRequest, opts ...grpc.CallOption) (*IDsResponse, error) {
+	out := new(IDsResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.ClusterLcmService/UninstallAppGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,7 +96,7 @@ type ClusterLcmServiceServer interface {
 	// InstallAppGroups installs app groups, returns an array of app group id
 	InstallAppGroups(context.Context, *InstallAppGroupsRequest) (*IDsResponse, error)
 	// UninstallAppGroups uninstalls app groups.
-	UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*SimpleResponse, error)
+	UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*IDsResponse, error)
 	mustEmbedUnimplementedClusterLcmServiceServer()
 }
 
@@ -116,7 +116,7 @@ func (UnimplementedClusterLcmServiceServer) DeleteCluster(context.Context, *IDRe
 func (UnimplementedClusterLcmServiceServer) InstallAppGroups(context.Context, *InstallAppGroupsRequest) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InstallAppGroups not implemented")
 }
-func (UnimplementedClusterLcmServiceServer) UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*SimpleResponse, error) {
+func (UnimplementedClusterLcmServiceServer) UninstallAppGroups(context.Context, *UninstallAppGroupsRequest) (*IDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UninstallAppGroups not implemented")
 }
 func (UnimplementedClusterLcmServiceServer) mustEmbedUnimplementedClusterLcmServiceServer() {}

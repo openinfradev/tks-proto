@@ -39,7 +39,7 @@ class ClusterLcmServiceStub(object):
         self.UninstallAppGroups = channel.unary_unary(
                 '/tks_pb.ClusterLcmService/UninstallAppGroups',
                 request_serializer=cluster__lcm__pb2.UninstallAppGroupsRequest.SerializeToString,
-                response_deserializer=common__pb2.SimpleResponse.FromString,
+                response_deserializer=common__pb2.IDsResponse.FromString,
                 )
 
 
@@ -108,7 +108,7 @@ def add_ClusterLcmServiceServicer_to_server(servicer, server):
             'UninstallAppGroups': grpc.unary_unary_rpc_method_handler(
                     servicer.UninstallAppGroups,
                     request_deserializer=cluster__lcm__pb2.UninstallAppGroupsRequest.FromString,
-                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+                    response_serializer=common__pb2.IDsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -202,6 +202,6 @@ class ClusterLcmService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.ClusterLcmService/UninstallAppGroups',
             cluster__lcm__pb2.UninstallAppGroupsRequest.SerializeToString,
-            common__pb2.SimpleResponse.FromString,
+            common__pb2.IDsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

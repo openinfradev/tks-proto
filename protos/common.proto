@@ -148,24 +148,34 @@ message Cluster {
   string kubeconfig = 10;
 }
 
+// ClusterRawConf represents raw data for K8S cluster configuration.
+message ClusterRawConf {
+  // name of user ssh key for ec2 instance connection
+  string ssh_key_name = 1;
+  // region is a AWS region name
+  string region = 2;
+  // number of AZ in selected region
+  int32 num_of_az = 3;
+  // type of the worker machine
+  string machine_type = 4;
+  // number of replicas for worker machine
+  int32 machine_replicas = 5;
+}
+
 // ClusterConf represents a Kubernetes cluster configuration.
 message ClusterConf {
-  // master_flavor is a machine node spec flavor for the master nodes
-  string master_flavor = 1;
-  // master_replicas is a number of the master nodes
-  int32 master_replicas = 2;
-  // master_root_size is a root volume size of the master nodes
-  int64 master_root_size = 3;
-  // worker_flavor is a machine node spec flavor for the worker nodes
-  string worker_flavor = 4;
-  // worker_replicas is a number of the worker nodes
-  int32 worker_replicas = 5;
-  // worker_root_size is a root volume size of the worker nodes
-  int64 worker_root_size = 6;
-  // k8s_version is a kubernetes version for the cluster
-  string k8s_version = 7;
-  // region is a cluster region
-  string region = 8;
+  // name of user ssh key for ec2 instance connection
+  string ssh_key_name = 1;
+  // region is a AWS region name
+  string region = 2;
+  // number of AZ in selected region
+  int32 num_of_az = 3;
+  // type of the worker machine
+  string machine_type = 4;
+  // minimum number of worker node that can be scaled in
+  int32 min_size_per_az = 5;
+  // maximum number of worker node that can be scaled out
+  int32 max_size_per_az = 6;
 }
 
 // IDRequest is a request with a id

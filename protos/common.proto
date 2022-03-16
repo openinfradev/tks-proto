@@ -75,6 +75,7 @@ enum AppGroupType {
   APP_TYPE_UNSPECIFIED = 0;
   LMA = 1;
   SERVICE_MESH = 2;
+  LMA_EFK = 3;
 }
 
 // CspType is types of cloud service provider
@@ -91,7 +92,7 @@ message AppGroup {
   string app_group_id = 1;
   // app_group_name is a human-readable name.
   string app_group_name = 2;
-  // type (LMA/SERVICE_MESH)
+  // type (LMA/SERVICE_MESH/LMA_EFK)
   AppGroupType type = 3;
   // cluster_id is a cluster ID to install application.
   string cluster_id = 4;

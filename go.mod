@@ -4,7 +4,6 @@ go 1.16
 
 require (
 	github.com/golang/mock v1.6.0
-	github.com/golang/protobuf v1.5.2 // indirect
 	golang.org/x/net v0.0.0-20210902165921-8d991716f632 // indirect
 	golang.org/x/sys v0.0.0-20210902050250-f475640dd07b // indirect
 	golang.org/x/text v0.3.7 // indirect

@@ -32,7 +32,7 @@ message CreateClusterRequest {
   // cluster_name is a cluster name defined by users
   string name = 3;
   // conf is a cluster configuration
-  ClusterConf conf = 4;
+  ClusterRawConf conf = 4;
 }
 
 // ScaleClusterRequest is a request to scale the number of nodes on the cluster

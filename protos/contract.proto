@@ -20,6 +20,8 @@ service ContractService {
   rpc UpdateServices(UpdateServicesRequest) returns (UpdateServicesResponse) {}
   // GetContract returns a contract if exists.
   rpc GetContract(GetContractRequest) returns (GetContractResponse) {}
+  // GetDefaultContract returns a default contract.
+  rpc GetDefaultContract(IDRequest) returns (GetContractResponse) {}
   // Getcontracts return a list of contract.
   rpc GetContracts(GetContractsRequest) returns (GetContractsResponse) {}
   // GetQuota returns a quota for the contract.

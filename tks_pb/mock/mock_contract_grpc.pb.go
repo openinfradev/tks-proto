@@ -116,6 +116,26 @@ func (mr *MockContractServiceClientMockRecorder) GetContracts(ctx, in interface{
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetContracts", reflect.TypeOf((*MockContractServiceClient)(nil).GetContracts), varargs...)
 }
 
+// GetDefaultContract mocks base method.
+func (m *MockContractServiceClient) GetDefaultContract(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.GetContractResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetDefaultContract", varargs...)
+	ret0, _ := ret[0].(*tks_pb.GetContractResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetDefaultContract indicates an expected call of GetDefaultContract.
+func (mr *MockContractServiceClientMockRecorder) GetDefaultContract(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDefaultContract", reflect.TypeOf((*MockContractServiceClient)(nil).GetDefaultContract), varargs...)
+}
+
 // GetQuota mocks base method.
 func (m *MockContractServiceClient) GetQuota(ctx context.Context, in *tks_pb.GetQuotaRequest, opts ...grpc.CallOption) (*tks_pb.GetQuotaResponse, error) {
 	m.ctrl.T.Helper()
@@ -257,6 +277,21 @@ func (m *MockContractServiceServer) GetContracts(arg0 context.Context, arg1 *tks
 func (mr *MockContractServiceServerMockRecorder) GetContracts(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetContracts", reflect.TypeOf((*MockContractServiceServer)(nil).GetContracts), arg0, arg1)
+}
+
+// GetDefaultContract mocks base method.
+func (m *MockContractServiceServer) GetDefaultContract(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.GetContractResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetDefaultContract", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.GetContractResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetDefaultContract indicates an expected call of GetDefaultContract.
+func (mr *MockContractServiceServerMockRecorder) GetDefaultContract(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDefaultContract", reflect.TypeOf((*MockContractServiceServer)(nil).GetDefaultContract), arg0, arg1)
 }
 
 // GetQuota mocks base method.

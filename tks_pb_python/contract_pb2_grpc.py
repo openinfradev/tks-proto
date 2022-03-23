@@ -2,6 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+import common_pb2 as common__pb2
 import contract_pb2 as contract__pb2
 
 
@@ -33,6 +34,11 @@ class ContractServiceStub(object):
         self.GetContract = channel.unary_unary(
                 '/tks_pb.ContractService/GetContract',
                 request_serializer=contract__pb2.GetContractRequest.SerializeToString,
+                response_deserializer=contract__pb2.GetContractResponse.FromString,
+                )
+        self.GetDefaultContract = channel.unary_unary(
+                '/tks_pb.ContractService/GetDefaultContract',
+                request_serializer=common__pb2.IDRequest.SerializeToString,
                 response_deserializer=contract__pb2.GetContractResponse.FromString,
                 )
         self.GetContracts = channel.unary_unary(
@@ -84,6 +90,13 @@ class ContractServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDefaultContract(self, request, context):
+        """GetDefaultContract returns a default contract.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetContracts(self, request, context):
         """Getcontracts return a list of contract.
         """
@@ -126,6 +139,11 @@ def add_ContractServiceServicer_to_server(servicer, server):
             'GetContract': grpc.unary_unary_rpc_method_handler(
                     servicer.GetContract,
                     request_deserializer=contract__pb2.GetContractRequest.FromString,
+                    response_serializer=contract__pb2.GetContractResponse.SerializeToString,
+            ),
+            'GetDefaultContract': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDefaultContract,
+                    request_deserializer=common__pb2.IDRequest.FromString,
                     response_serializer=contract__pb2.GetContractResponse.SerializeToString,
             ),
             'GetContracts': grpc.unary_unary_rpc_method_handler(
@@ -218,6 +236,23 @@ class ContractService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.ContractService/GetContract',
             contract__pb2.GetContractRequest.SerializeToString,
+            contract__pb2.GetContractResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDefaultContract(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.ContractService/GetDefaultContract',
+            common__pb2.IDRequest.SerializeToString,
             contract__pb2.GetContractResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

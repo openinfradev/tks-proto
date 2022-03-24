@@ -13,10 +13,11 @@ _sym_db = _symbol_database.Default()
 
 
 import common_pb2 as common__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ontract.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x96\x01\n\x15\x43reateContractRequest\x12\x17\n\x0f\x63ontractor_name\x18\x01 \x01(\t\x12$\n\x05quota\x18\x02 \x01(\x0b\x32\x15.tks_pb.ContractQuota\x12\x1a\n\x12\x61vailable_services\x18\x03 \x03(\t\x12\x10\n\x08\x63sp_name\x18\x04 \x01(\t\x12\x10\n\x08\x63sp_auth\x18\x05 \x01(\t\"w\n\x16\x43reateContractResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0e\n\x06\x63sp_id\x18\x03 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x04 \x01(\t\"j\n\rContractQuota\x12\x0b\n\x03\x63pu\x18\x01 \x01(\x12\x12\x0e\n\x06memory\x18\x02 \x01(\x12\x12\r\n\x05\x62lock\x18\x03 \x01(\x12\x12\x11\n\tblock_ssd\x18\x04 \x01(\x12\x12\n\n\x02\x66s\x18\x05 \x01(\x12\x12\x0e\n\x06\x66s_ssd\x18\x06 \x01(\x12\"O\n\x12UpdateQuotaRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12$\n\x05quota\x18\x02 \x01(\x0b\x32\x15.tks_pb.ContractQuota\"\xbd\x01\n\x13UpdateQuotaResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12)\n\nprev_quota\x18\x04 \x01(\x0b\x32\x15.tks_pb.ContractQuota\x12,\n\rcurrent_quota\x18\x05 \x01(\x0b\x32\x15.tks_pb.ContractQuota\"H\n\x15UpdateServicesRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x1a\n\x12\x61vailable_services\x18\x02 \x03(\t\"\x98\x01\n\x16UpdateServicesResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12\x15\n\rprev_services\x18\x04 \x03(\t\x12\x18\n\x10\x63urrent_services\x18\x05 \x03(\t\")\n\x12GetContractRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"s\n\x13GetContractResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\"\n\x08\x63ontract\x18\x03 \x01(\x0b\x32\x10.tks_pb.Contract\"\xea\x01\n\x08\x43ontract\x12\x17\n\x0f\x63ontractor_name\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x02 \x01(\t\x12$\n\x05quota\x18\x03 \x01(\x0b\x32\x15.tks_pb.ContractQuota\x12\x1a\n\x12\x61vailable_services\x18\x04 \x03(\t\x12\x0e\n\x06\x63sp_id\x18\x05 \x01(\t\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\ncreated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x15\n\x13GetContractsRequest\"u\n\x14GetContractsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12#\n\tcontracts\x18\x03 \x03(\x0b\x32\x10.tks_pb.Contract\"&\n\x0fGetQuotaRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"r\n\x10GetQuotaResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12$\n\x05quota\x18\x03 \x01(\x0b\x32\x15.tks_pb.ContractQuota\"2\n\x1bGetAvailableServicesRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"w\n\x1cGetAvailableServicesResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x1d\n\x15\x61vaiable_service_apps\x18\x03 \x03(\t2\x86\x05\n\x0f\x43ontractService\x12Q\n\x0e\x43reateContract\x12\x1d.tks_pb.CreateContractRequest\x1a\x1e.tks_pb.CreateContractResponse\"\x00\x12H\n\x0bUpdateQuota\x12\x1a.tks_pb.UpdateQuotaRequest\x1a\x1b.tks_pb.UpdateQuotaResponse\"\x00\x12Q\n\x0eUpdateServices\x12\x1d.tks_pb.UpdateServicesRequest\x1a\x1e.tks_pb.UpdateServicesResponse\"\x00\x12H\n\x0bGetContract\x12\x1a.tks_pb.GetContractRequest\x1a\x1b.tks_pb.GetContractResponse\"\x00\x12\x46\n\x12GetDefaultContract\x12\x11.tks_pb.IDRequest\x1a\x1b.tks_pb.GetContractResponse\"\x00\x12K\n\x0cGetContracts\x12\x1b.tks_pb.GetContractsRequest\x1a\x1c.tks_pb.GetContractsResponse\"\x00\x12?\n\x08GetQuota\x12\x17.tks_pb.GetQuotaRequest\x1a\x18.tks_pb.GetQuotaResponse\"\x00\x12\x63\n\x14GetAvailableServices\x12#.tks_pb.GetAvailableServicesRequest\x1a$.tks_pb.GetAvailableServicesResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ontract.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x96\x01\n\x15\x43reateContractRequest\x12\x17\n\x0f\x63ontractor_name\x18\x01 \x01(\t\x12$\n\x05quota\x18\x02 \x01(\x0b\x32\x15.tks_pb.ContractQuota\x12\x1a\n\x12\x61vailable_services\x18\x03 \x03(\t\x12\x10\n\x08\x63sp_name\x18\x04 \x01(\t\x12\x10\n\x08\x63sp_auth\x18\x05 \x01(\t\"w\n\x16\x43reateContractResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0e\n\x06\x63sp_id\x18\x03 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x04 \x01(\t\"j\n\rContractQuota\x12\x0b\n\x03\x63pu\x18\x01 \x01(\x12\x12\x0e\n\x06memory\x18\x02 \x01(\x12\x12\r\n\x05\x62lock\x18\x03 \x01(\x12\x12\x11\n\tblock_ssd\x18\x04 \x01(\x12\x12\n\n\x02\x66s\x18\x05 \x01(\x12\x12\x0e\n\x06\x66s_ssd\x18\x06 \x01(\x12\"O\n\x12UpdateQuotaRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12$\n\x05quota\x18\x02 \x01(\x0b\x32\x15.tks_pb.ContractQuota\"\xbd\x01\n\x13UpdateQuotaResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12)\n\nprev_quota\x18\x04 \x01(\x0b\x32\x15.tks_pb.ContractQuota\x12,\n\rcurrent_quota\x18\x05 \x01(\x0b\x32\x15.tks_pb.ContractQuota\"H\n\x15UpdateServicesRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x1a\n\x12\x61vailable_services\x18\x02 \x03(\t\"\x98\x01\n\x16UpdateServicesResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12\x15\n\rprev_services\x18\x04 \x03(\t\x12\x18\n\x10\x63urrent_services\x18\x05 \x03(\t\")\n\x12GetContractRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"s\n\x13GetContractResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\"\n\x08\x63ontract\x18\x03 \x01(\x0b\x32\x10.tks_pb.Contract\"\xea\x01\n\x08\x43ontract\x12\x17\n\x0f\x63ontractor_name\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x02 \x01(\t\x12$\n\x05quota\x18\x03 \x01(\x0b\x32\x15.tks_pb.ContractQuota\x12\x1a\n\x12\x61vailable_services\x18\x04 \x03(\t\x12\x0e\n\x06\x63sp_id\x18\x05 \x01(\t\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\ncreated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x15\n\x13GetContractsRequest\"u\n\x14GetContractsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12#\n\tcontracts\x18\x03 \x03(\x0b\x32\x10.tks_pb.Contract\"&\n\x0fGetQuotaRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"r\n\x10GetQuotaResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12$\n\x05quota\x18\x03 \x01(\x0b\x32\x15.tks_pb.ContractQuota\"2\n\x1bGetAvailableServicesRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"w\n\x1cGetAvailableServicesResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x1d\n\x15\x61vaiable_service_apps\x18\x03 \x03(\t2\x8b\x05\n\x0f\x43ontractService\x12Q\n\x0e\x43reateContract\x12\x1d.tks_pb.CreateContractRequest\x1a\x1e.tks_pb.CreateContractResponse\"\x00\x12H\n\x0bUpdateQuota\x12\x1a.tks_pb.UpdateQuotaRequest\x1a\x1b.tks_pb.UpdateQuotaResponse\"\x00\x12Q\n\x0eUpdateServices\x12\x1d.tks_pb.UpdateServicesRequest\x1a\x1e.tks_pb.UpdateServicesResponse\"\x00\x12H\n\x0bGetContract\x12\x1a.tks_pb.GetContractRequest\x1a\x1b.tks_pb.GetContractResponse\"\x00\x12K\n\x12GetDefaultContract\x12\x16.google.protobuf.Empty\x1a\x1b.tks_pb.GetContractResponse\"\x00\x12K\n\x0cGetContracts\x12\x1b.tks_pb.GetContractsRequest\x1a\x1c.tks_pb.GetContractsResponse\"\x00\x12?\n\x08GetQuota\x12\x17.tks_pb.GetQuotaRequest\x1a\x18.tks_pb.GetQuotaResponse\"\x00\x12\x63\n\x14GetAvailableServices\x12#.tks_pb.GetAvailableServicesRequest\x1a$.tks_pb.GetAvailableServicesResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3')
 
 
 
@@ -153,38 +154,38 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z(github.com/openinfradev/tks-proto/tks_pb'
-  _CREATECONTRACTREQUEST._serialized_start=74
-  _CREATECONTRACTREQUEST._serialized_end=224
-  _CREATECONTRACTRESPONSE._serialized_start=226
-  _CREATECONTRACTRESPONSE._serialized_end=345
-  _CONTRACTQUOTA._serialized_start=347
-  _CONTRACTQUOTA._serialized_end=453
-  _UPDATEQUOTAREQUEST._serialized_start=455
-  _UPDATEQUOTAREQUEST._serialized_end=534
-  _UPDATEQUOTARESPONSE._serialized_start=537
-  _UPDATEQUOTARESPONSE._serialized_end=726
-  _UPDATESERVICESREQUEST._serialized_start=728
-  _UPDATESERVICESREQUEST._serialized_end=800
-  _UPDATESERVICESRESPONSE._serialized_start=803
-  _UPDATESERVICESRESPONSE._serialized_end=955
-  _GETCONTRACTREQUEST._serialized_start=957
-  _GETCONTRACTREQUEST._serialized_end=998
-  _GETCONTRACTRESPONSE._serialized_start=1000
-  _GETCONTRACTRESPONSE._serialized_end=1115
-  _CONTRACT._serialized_start=1118
-  _CONTRACT._serialized_end=1352
-  _GETCONTRACTSREQUEST._serialized_start=1354
-  _GETCONTRACTSREQUEST._serialized_end=1375
-  _GETCONTRACTSRESPONSE._serialized_start=1377
-  _GETCONTRACTSRESPONSE._serialized_end=1494
-  _GETQUOTAREQUEST._serialized_start=1496
-  _GETQUOTAREQUEST._serialized_end=1534
-  _GETQUOTARESPONSE._serialized_start=1536
-  _GETQUOTARESPONSE._serialized_end=1650
-  _GETAVAILABLESERVICESREQUEST._serialized_start=1652
-  _GETAVAILABLESERVICESREQUEST._serialized_end=1702
-  _GETAVAILABLESERVICESRESPONSE._serialized_start=1704
-  _GETAVAILABLESERVICESRESPONSE._serialized_end=1823
-  _CONTRACTSERVICE._serialized_start=1826
-  _CONTRACTSERVICE._serialized_end=2472
+  _CREATECONTRACTREQUEST._serialized_start=103
+  _CREATECONTRACTREQUEST._serialized_end=253
+  _CREATECONTRACTRESPONSE._serialized_start=255
+  _CREATECONTRACTRESPONSE._serialized_end=374
+  _CONTRACTQUOTA._serialized_start=376
+  _CONTRACTQUOTA._serialized_end=482
+  _UPDATEQUOTAREQUEST._serialized_start=484
+  _UPDATEQUOTAREQUEST._serialized_end=563
+  _UPDATEQUOTARESPONSE._serialized_start=566
+  _UPDATEQUOTARESPONSE._serialized_end=755
+  _UPDATESERVICESREQUEST._serialized_start=757
+  _UPDATESERVICESREQUEST._serialized_end=829
+  _UPDATESERVICESRESPONSE._serialized_start=832
+  _UPDATESERVICESRESPONSE._serialized_end=984
+  _GETCONTRACTREQUEST._serialized_start=986
+  _GETCONTRACTREQUEST._serialized_end=1027
+  _GETCONTRACTRESPONSE._serialized_start=1029
+  _GETCONTRACTRESPONSE._serialized_end=1144
+  _CONTRACT._serialized_start=1147
+  _CONTRACT._serialized_end=1381
+  _GETCONTRACTSREQUEST._serialized_start=1383
+  _GETCONTRACTSREQUEST._serialized_end=1404
+  _GETCONTRACTSRESPONSE._serialized_start=1406
+  _GETCONTRACTSRESPONSE._serialized_end=1523
+  _GETQUOTAREQUEST._serialized_start=1525
+  _GETQUOTAREQUEST._serialized_end=1563
+  _GETQUOTARESPONSE._serialized_start=1565
+  _GETQUOTARESPONSE._serialized_end=1679
+  _GETAVAILABLESERVICESREQUEST._serialized_start=1681
+  _GETAVAILABLESERVICESREQUEST._serialized_end=1731
+  _GETAVAILABLESERVICESRESPONSE._serialized_start=1733
+  _GETAVAILABLESERVICESRESPONSE._serialized_end=1852
+  _CONTRACTSERVICE._serialized_start=1855
+  _CONTRACTSERVICE._serialized_end=2506
 # @@protoc_insertion_point(module_scope)

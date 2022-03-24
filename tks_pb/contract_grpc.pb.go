@@ -30,6 +30,8 @@ type ContractServiceClient interface {
 	UpdateServices(ctx context.Context, in *UpdateServicesRequest, opts ...grpc.CallOption) (*UpdateServicesResponse, error)
 	// GetContract returns a contract if exists.
 	GetContract(ctx context.Context, in *GetContractRequest, opts ...grpc.CallOption) (*GetContractResponse, error)
+	// GetDefaultContract returns a default contract.
+	GetDefaultContract(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetContractResponse, error)
 	// Getcontracts return a list of contract.
 	GetContracts(ctx context.Context, in *GetContractsRequest, opts ...grpc.CallOption) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
@@ -82,6 +84,15 @@ func (c *contractServiceClient) GetContract(ctx context.Context, in *GetContract
 	return out, nil
 }
 
+func (c *contractServiceClient) GetDefaultContract(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetContractResponse, error) {
+	out := new(GetContractResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.ContractService/GetDefaultContract", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *contractServiceClient) GetContracts(ctx context.Context, in *GetContractsRequest, opts ...grpc.CallOption) (*GetContractsResponse, error) {
 	out := new(GetContractsResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.ContractService/GetContracts", in, out, opts...)
@@ -121,6 +132,8 @@ type ContractServiceServer interface {
 	UpdateServices(context.Context, *UpdateServicesRequest) (*UpdateServicesResponse, error)
 	// GetContract returns a contract if exists.
 	GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error)
+	// GetDefaultContract returns a default contract.
+	GetDefaultContract(context.Context, *IDRequest) (*GetContractResponse, error)
 	// Getcontracts return a list of contract.
 	GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
@@ -145,6 +158,9 @@ func (UnimplementedContractServiceServer) UpdateServices(context.Context, *Updat
 }
 func (UnimplementedContractServiceServer) GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContract not implemented")
+}
+func (UnimplementedContractServiceServer) GetDefaultContract(context.Context, *IDRequest) (*GetContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDefaultContract not implemented")
 }
 func (UnimplementedContractServiceServer) GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContracts not implemented")
@@ -240,6 +256,24 @@ func _ContractService_GetContract_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContractService_GetDefaultContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContractServiceServer).GetDefaultContract(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.ContractService/GetDefaultContract",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContractServiceServer).GetDefaultContract(ctx, req.(*IDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ContractService_GetContracts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetContractsRequest)
 	if err := dec(in); err != nil {
@@ -316,6 +350,10 @@ var ContractService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetContract",
 			Handler:    _ContractService_GetContract_Handler,
+		},
+		{
+			MethodName: "GetDefaultContract",
+			Handler:    _ContractService_GetDefaultContract_Handler,
 		},
 		{
 			MethodName: "GetContracts",

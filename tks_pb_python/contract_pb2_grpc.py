@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import common_pb2 as common__pb2
 import contract_pb2 as contract__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 class ContractServiceStub(object):
@@ -38,7 +38,7 @@ class ContractServiceStub(object):
                 )
         self.GetDefaultContract = channel.unary_unary(
                 '/tks_pb.ContractService/GetDefaultContract',
-                request_serializer=common__pb2.IDRequest.SerializeToString,
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=contract__pb2.GetContractResponse.FromString,
                 )
         self.GetContracts = channel.unary_unary(
@@ -143,7 +143,7 @@ def add_ContractServiceServicer_to_server(servicer, server):
             ),
             'GetDefaultContract': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDefaultContract,
-                    request_deserializer=common__pb2.IDRequest.FromString,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=contract__pb2.GetContractResponse.SerializeToString,
             ),
             'GetContracts': grpc.unary_unary_rpc_method_handler(
@@ -252,7 +252,7 @@ class ContractService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.ContractService/GetDefaultContract',
-            common__pb2.IDRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             contract__pb2.GetContractResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -31,7 +32,7 @@ type ContractServiceClient interface {
 	// GetContract returns a contract if exists.
 	GetContract(ctx context.Context, in *GetContractRequest, opts ...grpc.CallOption) (*GetContractResponse, error)
 	// GetDefaultContract returns a default contract.
-	GetDefaultContract(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetContractResponse, error)
+	GetDefaultContract(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetContractResponse, error)
 	// Getcontracts return a list of contract.
 	GetContracts(ctx context.Context, in *GetContractsRequest, opts ...grpc.CallOption) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
@@ -84,7 +85,7 @@ func (c *contractServiceClient) GetContract(ctx context.Context, in *GetContract
 	return out, nil
 }
 
-func (c *contractServiceClient) GetDefaultContract(ctx context.Context, in *IDRequest, opts ...grpc.CallOption) (*GetContractResponse, error) {
+func (c *contractServiceClient) GetDefaultContract(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetContractResponse, error) {
 	out := new(GetContractResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.ContractService/GetDefaultContract", in, out, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type ContractServiceServer interface {
 	// GetContract returns a contract if exists.
 	GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error)
 	// GetDefaultContract returns a default contract.
-	GetDefaultContract(context.Context, *IDRequest) (*GetContractResponse, error)
+	GetDefaultContract(context.Context, *emptypb.Empty) (*GetContractResponse, error)
 	// Getcontracts return a list of contract.
 	GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error)
 	// GetQuota returns a quota for the contract.
@@ -159,7 +160,7 @@ func (UnimplementedContractServiceServer) UpdateServices(context.Context, *Updat
 func (UnimplementedContractServiceServer) GetContract(context.Context, *GetContractRequest) (*GetContractResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContract not implemented")
 }
-func (UnimplementedContractServiceServer) GetDefaultContract(context.Context, *IDRequest) (*GetContractResponse, error) {
+func (UnimplementedContractServiceServer) GetDefaultContract(context.Context, *emptypb.Empty) (*GetContractResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDefaultContract not implemented")
 }
 func (UnimplementedContractServiceServer) GetContracts(context.Context, *GetContractsRequest) (*GetContractsResponse, error) {
@@ -257,7 +258,7 @@ func _ContractService_GetContract_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _ContractService_GetDefaultContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IDRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -269,7 +270,7 @@ func _ContractService_GetDefaultContract_Handler(srv interface{}, ctx context.Co
 		FullMethod: "/tks_pb.ContractService/GetDefaultContract",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContractServiceServer).GetDefaultContract(ctx, req.(*IDRequest))
+		return srv.(ContractServiceServer).GetDefaultContract(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

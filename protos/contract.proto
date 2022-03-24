@@ -6,6 +6,7 @@ syntax = "proto3";
 package tks_pb;
 
 import "common.proto";
+import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/openinfradev/tks-proto/tks_pb";
@@ -21,7 +22,7 @@ service ContractService {
   // GetContract returns a contract if exists.
   rpc GetContract(GetContractRequest) returns (GetContractResponse) {}
   // GetDefaultContract returns a default contract.
-  rpc GetDefaultContract(IDRequest) returns (GetContractResponse) {}
+  rpc GetDefaultContract(google.protobuf.Empty) returns (GetContractResponse) {}
   // Getcontracts return a list of contract.
   rpc GetContracts(GetContractsRequest) returns (GetContractsResponse) {}
   // GetQuota returns a quota for the contract.

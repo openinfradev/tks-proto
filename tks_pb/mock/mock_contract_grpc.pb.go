@@ -11,6 +11,7 @@ import (
 	gomock "github.com/golang/mock/gomock"
 	tks_pb "github.com/openinfradev/tks-proto/tks_pb"
 	grpc "google.golang.org/grpc"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // MockContractServiceClient is a mock of ContractServiceClient interface.
@@ -117,7 +118,7 @@ func (mr *MockContractServiceClientMockRecorder) GetContracts(ctx, in interface{
 }
 
 // GetDefaultContract mocks base method.
-func (m *MockContractServiceClient) GetDefaultContract(ctx context.Context, in *tks_pb.IDRequest, opts ...grpc.CallOption) (*tks_pb.GetContractResponse, error) {
+func (m *MockContractServiceClient) GetDefaultContract(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*tks_pb.GetContractResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
@@ -280,7 +281,7 @@ func (mr *MockContractServiceServerMockRecorder) GetContracts(arg0, arg1 interfa
 }
 
 // GetDefaultContract mocks base method.
-func (m *MockContractServiceServer) GetDefaultContract(arg0 context.Context, arg1 *tks_pb.IDRequest) (*tks_pb.GetContractResponse, error) {
+func (m *MockContractServiceServer) GetDefaultContract(arg0 context.Context, arg1 *emptypb.Empty) (*tks_pb.GetContractResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetDefaultContract", arg0, arg1)
 	ret0, _ := ret[0].(*tks_pb.GetContractResponse)

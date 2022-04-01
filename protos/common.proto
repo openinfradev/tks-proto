@@ -96,14 +96,18 @@ message AppGroup {
   AppGroupType type = 3;
   // cluster_id is a cluster ID to install application.
   string cluster_id = 4;
+  // workflow_id is a argo workflow id
+  string workflow_id = 5;
   // a status of the application eg) Installing/Running/Error
-  AppGroupStatus status = 5;
+  AppGroupStatus status = 6;
+  // a status description of the application 
+  string status_desc = 7;
   // external_lable is the label used for globally unique identification
-  string external_label = 6;
+  string external_label = 8;
   // created_at is  a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp created_at = 9;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 8;
+  google.protobuf.Timestamp updated_at  = 10;
 }
 
 // Application represents each Application.
@@ -134,18 +138,22 @@ message Cluster {
   google.protobuf.Timestamp created_at = 3;
   // updated_at is a timestamp for the trigger of status change
   google.protobuf.Timestamp updated_at  = 4;
+  // workflow_id is a argo workflow id
+  string workflow_id = 5;
   // status is a status of the cluste eg) Installing/Running/Error
-  ClusterStatus status = 5;
+  ClusterStatus status = 6;
+  // status_desc is a detail description of the cluster status
+  string status_desc = 7;
   // contract_id is a contract ID.
-  string contract_id = 6;
+  string contract_id = 8;
   // csp_id is an ID of CSPInfo.
-  string csp_id = 7;
+  string csp_id = 9;
   // conf is a kubernete cluster configuration
-  ClusterConf conf = 8;
+  ClusterConf conf = 10;
   // app_groups is a array of applications
-  repeated AppGroup app_groups = 9;
+  repeated AppGroup app_groups = 11;
   // kubeconfig is a default kubeconfig for the cluster
-  string kubeconfig = 10;
+  string kubeconfig = 12;
 }
 
 // ClusterRawConf represents raw data for K8S cluster configuration.

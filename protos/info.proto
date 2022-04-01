@@ -185,6 +185,10 @@ message UpdateClusterStatusRequest {
   string cluster_id = 1;
   // status is the clusterstatus to be changed
   ClusterStatus status = 2;
+  // status_desc is a detail message of cluster status.
+  string status_desc = 3;
+  // workflow_id is a argo workflow ID(name)
+  string workflow_id = 4;
 }
 
 // CreateAppGroupRequest is used to create a new app group.
@@ -241,6 +245,10 @@ message UpdateAppGroupStatusRequest {
   string app_group_id = 1;
   // status is a AppStatus of the application
   AppGroupStatus status = 2;
+  // status_desc is a detail message of cluster status.
+  string status_desc = 3;
+  // workflow_id is a argo workflow ID(name)
+  string workflow_id = 4;
 }
 
 // UpdateAppRequest updates an information of application such as endpoints.

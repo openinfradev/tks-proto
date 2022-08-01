@@ -65,6 +65,15 @@ service AppInfoService {
   rpc UpdateApp(UpdateAppRequest) returns (SimpleResponse) {}
 }
 
+// AppServeAppService is a service to manage Application in AppServing service.
+service AppServeAppService {
+  rpc CreateAppServeApp(CreateAppServeAppRequest) returns (IDResponse) {}
+  rpc UpdateAppServeApp(UpdateAppServeAppRequest) returns (SimpleResponse) {}
+  rpc GetAppServeApp(GetAppServeAppRequest) returns (GetAppServeAppResponse) {}
+  rpc GetAppServeApps(GetAppServeAppsRequest) returns (GetAppServeAppsResponse) {}
+  rpc UpdateAppServeAppStatus(UpdateAppServeAppStatusRequest) returns (SimpleResponse) {}
+  rpc UpdateAppServeAppEndpoint(UpdateAppServeAppEndpointRequest) returns (SimpleResponse) {}
+}
 // KeycloakInfoService is a service to manage Keycloak info.
 service KeycloakInfoService {
   // CreateKeycloakInfo creates a new keycloak info.
@@ -305,3 +314,55 @@ message GetKeycloakInfoResponse {
   repeated KeycloakInfo keycloak_infos = 3; 
 }
 
+/////////////////
+// AppServeApp //
+/////////////////
+
+// CreateAppServeAppRequest is used to add a new application by app-serving service.
+message CreateAppServeAppRequest {
+  // string contract_id;
+  AppServeApp app = 1;
+}
+
+message UpdateAppServeAppRequest {
+  string app_serve_app_id = 1;
+  AppServeApp app = 2;
+}
+
+message GetAppServeAppsRequest {
+  string contract_id = 1;
+}
+
+message GetAppServeAppRequest {
+  string contract_id = 1;
+  string app_serve_app_id = 2;
+}
+
+message GetAppServeAppResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // cluster is info for the cluster
+  AppServeApp app = 3;
+}
+
+message GetAppServeAppsResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // cluster is info. for the cluster
+  repeated AppServeApp apps = 3;
+}
+
+message UpdateAppServeAppStatusRequest {
+  string app_serve_app_id = 1;
+  string status = 2;
+  string output = 3;
+}
+
+message UpdateAppServeAppEndpointRequest {
+  string app_serve_app_id = 1;
+  string endpoint = 2;
+}

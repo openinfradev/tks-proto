@@ -16,7 +16,7 @@ import common_pb2 as common__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ninfo.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"n\n\x14\x43reateCSPInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x02 \x01(\t\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\x12!\n\x08\x63sp_type\x18\x04 \x01(\x0e\x32\x0f.tks_pb.CspType\"\xa6\x01\n\x12GetCSPInfoResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x04 \x01(\t\x12\x0c\n\x04\x61uth\x18\x05 \x01(\t\x12!\n\x08\x63sp_type\x18\x06 \x01(\x0e\x32\x0f.tks_pb.CspType\"\\\n\x12GetCSPAuthResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\"4\n\x14UpdateCSPAuthRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x0c\n\x04\x61uth\x18\x02 \x01(\t\"m\n\x15\x41\x64\x64\x43lusterInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"Q\n\x18UpdateClusterConfRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12!\n\x04\x63onf\x18\x02 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"\'\n\x11GetClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\"p\n\x12GetClusterResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12 \n\x07\x63luster\x18\x03 \x01(\x0b\x32\x0f.tks_pb.Cluster\"9\n\x12GetClustersRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x02 \x01(\t\"r\n\x13GetClustersResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x08\x63lusters\x18\x03 \x03(\x0b\x32\x0f.tks_pb.Cluster\"\x81\x01\n\x1aUpdateClusterStatusRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12%\n\x06status\x18\x02 \x01(\x0e\x32\x15.tks_pb.ClusterStatus\x12\x13\n\x0bstatus_desc\x18\x03 \x01(\t\x12\x13\n\x0bworkflow_id\x18\x04 \x01(\t\"P\n\x15\x43reateAppGroupRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12#\n\tapp_group\x18\x02 \x01(\x0b\x32\x10.tks_pb.AppGroup\"-\n\x15\x44\x65leteAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"Q\n\x13GetAppGroupsRequest\x12\x16\n\x0e\x61pp_group_name\x18\x01 \x01(\t\x12\"\n\x04type\x18\x02 \x01(\x0e\x32\x14.tks_pb.AppGroupType\"*\n\x12GetAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"t\n\x13GetAppGroupResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12#\n\tapp_group\x18\x03 \x01(\x0b\x32\x10.tks_pb.AppGroup\"v\n\x14GetAppGroupsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12$\n\napp_groups\x18\x03 \x03(\x0b\x32\x10.tks_pb.AppGroup\"\x85\x01\n\x1bUpdateAppGroupStatusRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.tks_pb.AppGroupStatus\x12\x13\n\x0bstatus_desc\x18\x03 \x01(\t\x12\x13\n\x0bworkflow_id\x18\x04 \x01(\t\"o\n\x10UpdateAppRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12!\n\x08\x61pp_type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x10\n\x08metadata\x18\x04 \x01(\t\"E\n\x0eGetAppsRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\"n\n\x0fGetAppsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x04\x61pps\x18\x03 \x03(\x0b\x32\x13.tks_pb.Application\"v\n\x19\x43reateKeycloakInfoRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\r\n\x05realm\x18\x02 \x01(\t\x12\x11\n\tclient_id\x18\x03 \x01(\t\x12\x0e\n\x06secret\x18\x04 \x01(\t\x12\x13\n\x0bprivate_key\x18\x05 \x01(\t\"\x81\x01\n\x17GetKeycloakInfoResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12,\n\x0ekeycloak_infos\x18\x03 \x03(\x0b\x32\x14.tks_pb.KeycloakInfo2\x92\x03\n\x12\x43lusterInfoService\x12\x45\n\x0e\x41\x64\x64\x43lusterInfo\x12\x1d.tks_pb.AddClusterInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12O\n\x11UpdateClusterConf\x12 .tks_pb.UpdateClusterConfRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x45\n\nGetCluster\x12\x19.tks_pb.GetClusterRequest\x1a\x1a.tks_pb.GetClusterResponse\"\x00\x12H\n\x0bGetClusters\x12\x1a.tks_pb.GetClustersRequest\x1a\x1b.tks_pb.GetClustersResponse\"\x00\x12S\n\x13UpdateClusterStatus\x12\".tks_pb.UpdateClusterStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\x9b\x03\n\x0e\x43spInfoService\x12\x43\n\rCreateCSPInfo\x12\x1c.tks_pb.CreateCSPInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12=\n\nGetCSPInfo\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPInfoResponse\"\x00\x12:\n\tGetCSPIDs\x12\x16.google.protobuf.Empty\x1a\x13.tks_pb.IDsResponse\"\x00\x12\x41\n\x15GetCSPIDsByContractID\x12\x11.tks_pb.IDRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12G\n\rUpdateCSPAuth\x12\x1c.tks_pb.UpdateCSPAuthRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12=\n\nGetCSPAuth\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPAuthResponse\"\x00\x32\xa2\x05\n\x0e\x41ppInfoService\x12\x45\n\x0e\x43reateAppGroup\x12\x1d.tks_pb.CreateAppGroupRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12L\n\x17GetAppGroupsByClusterID\x12\x11.tks_pb.IDRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12K\n\x0cGetAppGroups\x12\x1b.tks_pb.GetAppGroupsRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12H\n\x0bGetAppGroup\x12\x1a.tks_pb.GetAppGroupRequest\x1a\x1b.tks_pb.GetAppGroupResponse\"\x00\x12U\n\x14UpdateAppGroupStatus\x12#.tks_pb.UpdateAppGroupStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12I\n\x0e\x44\x65leteAppGroup\x12\x1d.tks_pb.DeleteAppGroupRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x43\n\x13GetAppsByAppGroupID\x12\x11.tks_pb.IDRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12<\n\x07GetApps\x12\x16.tks_pb.GetAppsRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12?\n\tUpdateApp\x12\x18.tks_pb.UpdateAppRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\xbe\x02\n\x13KeycloakInfoService\x12M\n\x12\x43reateKeycloakInfo\x12!.tks_pb.CreateKeycloakInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12R\n\x1aGetKeycloakInfoByClusterId\x12\x11.tks_pb.IDRequest\x1a\x1f.tks_pb.GetKeycloakInfoResponse\"\x00\x12\x41\n\x12UpdateKeycloakInfo\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x41\n\x12\x44\x65leteKeycloakInfo\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ninfo.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"n\n\x14\x43reateCSPInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x02 \x01(\t\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\x12!\n\x08\x63sp_type\x18\x04 \x01(\x0e\x32\x0f.tks_pb.CspType\"\xa6\x01\n\x12GetCSPInfoResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x13\n\x0b\x63ontract_id\x18\x03 \x01(\t\x12\x10\n\x08\x63sp_name\x18\x04 \x01(\t\x12\x0c\n\x04\x61uth\x18\x05 \x01(\t\x12!\n\x08\x63sp_type\x18\x06 \x01(\x0e\x32\x0f.tks_pb.CspType\"\\\n\x12GetCSPAuthResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12\x0c\n\x04\x61uth\x18\x03 \x01(\t\"4\n\x14UpdateCSPAuthRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x0c\n\x04\x61uth\x18\x02 \x01(\t\"m\n\x15\x41\x64\x64\x43lusterInfoRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12!\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"Q\n\x18UpdateClusterConfRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12!\n\x04\x63onf\x18\x02 \x01(\x0b\x32\x13.tks_pb.ClusterConf\"\'\n\x11GetClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\"p\n\x12GetClusterResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12 \n\x07\x63luster\x18\x03 \x01(\x0b\x32\x0f.tks_pb.Cluster\"9\n\x12GetClustersRequest\x12\x0e\n\x06\x63sp_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontract_id\x18\x02 \x01(\t\"r\n\x13GetClustersResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x08\x63lusters\x18\x03 \x03(\x0b\x32\x0f.tks_pb.Cluster\"\x81\x01\n\x1aUpdateClusterStatusRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12%\n\x06status\x18\x02 \x01(\x0e\x32\x15.tks_pb.ClusterStatus\x12\x13\n\x0bstatus_desc\x18\x03 \x01(\t\x12\x13\n\x0bworkflow_id\x18\x04 \x01(\t\"P\n\x15\x43reateAppGroupRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12#\n\tapp_group\x18\x02 \x01(\x0b\x32\x10.tks_pb.AppGroup\"-\n\x15\x44\x65leteAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"Q\n\x13GetAppGroupsRequest\x12\x16\n\x0e\x61pp_group_name\x18\x01 \x01(\t\x12\"\n\x04type\x18\x02 \x01(\x0e\x32\x14.tks_pb.AppGroupType\"*\n\x12GetAppGroupRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\"t\n\x13GetAppGroupResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12#\n\tapp_group\x18\x03 \x01(\x0b\x32\x10.tks_pb.AppGroup\"v\n\x14GetAppGroupsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12$\n\napp_groups\x18\x03 \x03(\x0b\x32\x10.tks_pb.AppGroup\"\x85\x01\n\x1bUpdateAppGroupStatusRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12&\n\x06status\x18\x02 \x01(\x0e\x32\x16.tks_pb.AppGroupStatus\x12\x13\n\x0bstatus_desc\x18\x03 \x01(\t\x12\x13\n\x0bworkflow_id\x18\x04 \x01(\t\"o\n\x10UpdateAppRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12!\n\x08\x61pp_type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x10\n\x08metadata\x18\x04 \x01(\t\"E\n\x0eGetAppsRequest\x12\x14\n\x0c\x61pp_group_id\x18\x01 \x01(\t\x12\x1d\n\x04type\x18\x02 \x01(\x0e\x32\x0f.tks_pb.AppType\"n\n\x0fGetAppsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x04\x61pps\x18\x03 \x03(\x0b\x32\x13.tks_pb.Application\"v\n\x19\x43reateKeycloakInfoRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\r\n\x05realm\x18\x02 \x01(\t\x12\x11\n\tclient_id\x18\x03 \x01(\t\x12\x0e\n\x06secret\x18\x04 \x01(\t\x12\x13\n\x0bprivate_key\x18\x05 \x01(\t\"\x81\x01\n\x17GetKeycloakInfoResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12,\n\x0ekeycloak_infos\x18\x03 \x03(\x0b\x32\x14.tks_pb.KeycloakInfo\"<\n\x18\x43reateAppServeAppRequest\x12 \n\x03\x61pp\x18\x01 \x01(\x0b\x32\x13.tks_pb.AppServeApp\"V\n\x18UpdateAppServeAppRequest\x12\x18\n\x10\x61pp_serve_app_id\x18\x01 \x01(\t\x12 \n\x03\x61pp\x18\x02 \x01(\x0b\x32\x13.tks_pb.AppServeApp\"-\n\x16GetAppServeAppsRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\"F\n\x15GetAppServeAppRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x18\n\x10\x61pp_serve_app_id\x18\x02 \x01(\t\"t\n\x16GetAppServeAppResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12 \n\x03\x61pp\x18\x03 \x01(\x0b\x32\x13.tks_pb.AppServeApp\"v\n\x17GetAppServeAppsResponse\x12\x1a\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x0c.tks_pb.Code\x12\x1c\n\x05\x65rror\x18\x02 \x01(\x0b\x32\r.tks_pb.Error\x12!\n\x04\x61pps\x18\x03 \x03(\x0b\x32\x13.tks_pb.AppServeApp\"Z\n\x1eUpdateAppServeAppStatusRequest\x12\x18\n\x10\x61pp_serve_app_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x0e\n\x06output\x18\x03 \x01(\t\"N\n UpdateAppServeAppEndpointRequest\x12\x18\n\x10\x61pp_serve_app_id\x18\x01 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x02 \x01(\t2\x92\x03\n\x12\x43lusterInfoService\x12\x45\n\x0e\x41\x64\x64\x43lusterInfo\x12\x1d.tks_pb.AddClusterInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12O\n\x11UpdateClusterConf\x12 .tks_pb.UpdateClusterConfRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x45\n\nGetCluster\x12\x19.tks_pb.GetClusterRequest\x1a\x1a.tks_pb.GetClusterResponse\"\x00\x12H\n\x0bGetClusters\x12\x1a.tks_pb.GetClustersRequest\x1a\x1b.tks_pb.GetClustersResponse\"\x00\x12S\n\x13UpdateClusterStatus\x12\".tks_pb.UpdateClusterStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\x9b\x03\n\x0e\x43spInfoService\x12\x43\n\rCreateCSPInfo\x12\x1c.tks_pb.CreateCSPInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12=\n\nGetCSPInfo\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPInfoResponse\"\x00\x12:\n\tGetCSPIDs\x12\x16.google.protobuf.Empty\x1a\x13.tks_pb.IDsResponse\"\x00\x12\x41\n\x15GetCSPIDsByContractID\x12\x11.tks_pb.IDRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12G\n\rUpdateCSPAuth\x12\x1c.tks_pb.UpdateCSPAuthRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12=\n\nGetCSPAuth\x12\x11.tks_pb.IDRequest\x1a\x1a.tks_pb.GetCSPAuthResponse\"\x00\x32\xa2\x05\n\x0e\x41ppInfoService\x12\x45\n\x0e\x43reateAppGroup\x12\x1d.tks_pb.CreateAppGroupRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12L\n\x17GetAppGroupsByClusterID\x12\x11.tks_pb.IDRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12K\n\x0cGetAppGroups\x12\x1b.tks_pb.GetAppGroupsRequest\x1a\x1c.tks_pb.GetAppGroupsResponse\"\x00\x12H\n\x0bGetAppGroup\x12\x1a.tks_pb.GetAppGroupRequest\x1a\x1b.tks_pb.GetAppGroupResponse\"\x00\x12U\n\x14UpdateAppGroupStatus\x12#.tks_pb.UpdateAppGroupStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12I\n\x0e\x44\x65leteAppGroup\x12\x1d.tks_pb.DeleteAppGroupRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x43\n\x13GetAppsByAppGroupID\x12\x11.tks_pb.IDRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12<\n\x07GetApps\x12\x16.tks_pb.GetAppsRequest\x1a\x17.tks_pb.GetAppsResponse\"\x00\x12?\n\tUpdateApp\x12\x18.tks_pb.UpdateAppRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\x99\x04\n\x12\x41ppServeAppService\x12K\n\x11\x43reateAppServeApp\x12 .tks_pb.CreateAppServeAppRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12O\n\x11UpdateAppServeApp\x12 .tks_pb.UpdateAppServeAppRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12Q\n\x0eGetAppServeApp\x12\x1d.tks_pb.GetAppServeAppRequest\x1a\x1e.tks_pb.GetAppServeAppResponse\"\x00\x12T\n\x0fGetAppServeApps\x12\x1e.tks_pb.GetAppServeAppsRequest\x1a\x1f.tks_pb.GetAppServeAppsResponse\"\x00\x12[\n\x17UpdateAppServeAppStatus\x12&.tks_pb.UpdateAppServeAppStatusRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12_\n\x19UpdateAppServeAppEndpoint\x12(.tks_pb.UpdateAppServeAppEndpointRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x32\xbe\x02\n\x13KeycloakInfoService\x12M\n\x12\x43reateKeycloakInfo\x12!.tks_pb.CreateKeycloakInfoRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12R\n\x1aGetKeycloakInfoByClusterId\x12\x11.tks_pb.IDRequest\x1a\x1f.tks_pb.GetKeycloakInfoResponse\"\x00\x12\x41\n\x12UpdateKeycloakInfo\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12\x41\n\x12\x44\x65leteKeycloakInfo\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3')
 
 
 
@@ -43,6 +43,14 @@ _GETAPPSREQUEST = DESCRIPTOR.message_types_by_name['GetAppsRequest']
 _GETAPPSRESPONSE = DESCRIPTOR.message_types_by_name['GetAppsResponse']
 _CREATEKEYCLOAKINFOREQUEST = DESCRIPTOR.message_types_by_name['CreateKeycloakInfoRequest']
 _GETKEYCLOAKINFORESPONSE = DESCRIPTOR.message_types_by_name['GetKeycloakInfoResponse']
+_CREATEAPPSERVEAPPREQUEST = DESCRIPTOR.message_types_by_name['CreateAppServeAppRequest']
+_UPDATEAPPSERVEAPPREQUEST = DESCRIPTOR.message_types_by_name['UpdateAppServeAppRequest']
+_GETAPPSERVEAPPSREQUEST = DESCRIPTOR.message_types_by_name['GetAppServeAppsRequest']
+_GETAPPSERVEAPPREQUEST = DESCRIPTOR.message_types_by_name['GetAppServeAppRequest']
+_GETAPPSERVEAPPRESPONSE = DESCRIPTOR.message_types_by_name['GetAppServeAppResponse']
+_GETAPPSERVEAPPSRESPONSE = DESCRIPTOR.message_types_by_name['GetAppServeAppsResponse']
+_UPDATEAPPSERVEAPPSTATUSREQUEST = DESCRIPTOR.message_types_by_name['UpdateAppServeAppStatusRequest']
+_UPDATEAPPSERVEAPPENDPOINTREQUEST = DESCRIPTOR.message_types_by_name['UpdateAppServeAppEndpointRequest']
 CreateCSPInfoRequest = _reflection.GeneratedProtocolMessageType('CreateCSPInfoRequest', (_message.Message,), {
   'DESCRIPTOR' : _CREATECSPINFOREQUEST,
   '__module__' : 'info_pb2'
@@ -204,9 +212,66 @@ GetKeycloakInfoResponse = _reflection.GeneratedProtocolMessageType('GetKeycloakI
   })
 _sym_db.RegisterMessage(GetKeycloakInfoResponse)
 
+CreateAppServeAppRequest = _reflection.GeneratedProtocolMessageType('CreateAppServeAppRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEAPPSERVEAPPREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.CreateAppServeAppRequest)
+  })
+_sym_db.RegisterMessage(CreateAppServeAppRequest)
+
+UpdateAppServeAppRequest = _reflection.GeneratedProtocolMessageType('UpdateAppServeAppRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEAPPSERVEAPPREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.UpdateAppServeAppRequest)
+  })
+_sym_db.RegisterMessage(UpdateAppServeAppRequest)
+
+GetAppServeAppsRequest = _reflection.GeneratedProtocolMessageType('GetAppServeAppsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETAPPSERVEAPPSREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.GetAppServeAppsRequest)
+  })
+_sym_db.RegisterMessage(GetAppServeAppsRequest)
+
+GetAppServeAppRequest = _reflection.GeneratedProtocolMessageType('GetAppServeAppRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETAPPSERVEAPPREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.GetAppServeAppRequest)
+  })
+_sym_db.RegisterMessage(GetAppServeAppRequest)
+
+GetAppServeAppResponse = _reflection.GeneratedProtocolMessageType('GetAppServeAppResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETAPPSERVEAPPRESPONSE,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.GetAppServeAppResponse)
+  })
+_sym_db.RegisterMessage(GetAppServeAppResponse)
+
+GetAppServeAppsResponse = _reflection.GeneratedProtocolMessageType('GetAppServeAppsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETAPPSERVEAPPSRESPONSE,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.GetAppServeAppsResponse)
+  })
+_sym_db.RegisterMessage(GetAppServeAppsResponse)
+
+UpdateAppServeAppStatusRequest = _reflection.GeneratedProtocolMessageType('UpdateAppServeAppStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEAPPSERVEAPPSTATUSREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.UpdateAppServeAppStatusRequest)
+  })
+_sym_db.RegisterMessage(UpdateAppServeAppStatusRequest)
+
+UpdateAppServeAppEndpointRequest = _reflection.GeneratedProtocolMessageType('UpdateAppServeAppEndpointRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATEAPPSERVEAPPENDPOINTREQUEST,
+  '__module__' : 'info_pb2'
+  # @@protoc_insertion_point(class_scope:tks_pb.UpdateAppServeAppEndpointRequest)
+  })
+_sym_db.RegisterMessage(UpdateAppServeAppEndpointRequest)
+
 _CLUSTERINFOSERVICE = DESCRIPTOR.services_by_name['ClusterInfoService']
 _CSPINFOSERVICE = DESCRIPTOR.services_by_name['CspInfoService']
 _APPINFOSERVICE = DESCRIPTOR.services_by_name['AppInfoService']
+_APPSERVEAPPSERVICE = DESCRIPTOR.services_by_name['AppServeAppService']
 _KEYCLOAKINFOSERVICE = DESCRIPTOR.services_by_name['KeycloakInfoService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
@@ -258,12 +323,30 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CREATEKEYCLOAKINFOREQUEST._serialized_end=2194
   _GETKEYCLOAKINFORESPONSE._serialized_start=2197
   _GETKEYCLOAKINFORESPONSE._serialized_end=2326
-  _CLUSTERINFOSERVICE._serialized_start=2329
-  _CLUSTERINFOSERVICE._serialized_end=2731
-  _CSPINFOSERVICE._serialized_start=2734
-  _CSPINFOSERVICE._serialized_end=3145
-  _APPINFOSERVICE._serialized_start=3148
-  _APPINFOSERVICE._serialized_end=3822
-  _KEYCLOAKINFOSERVICE._serialized_start=3825
-  _KEYCLOAKINFOSERVICE._serialized_end=4143
+  _CREATEAPPSERVEAPPREQUEST._serialized_start=2328
+  _CREATEAPPSERVEAPPREQUEST._serialized_end=2388
+  _UPDATEAPPSERVEAPPREQUEST._serialized_start=2390
+  _UPDATEAPPSERVEAPPREQUEST._serialized_end=2476
+  _GETAPPSERVEAPPSREQUEST._serialized_start=2478
+  _GETAPPSERVEAPPSREQUEST._serialized_end=2523
+  _GETAPPSERVEAPPREQUEST._serialized_start=2525
+  _GETAPPSERVEAPPREQUEST._serialized_end=2595
+  _GETAPPSERVEAPPRESPONSE._serialized_start=2597
+  _GETAPPSERVEAPPRESPONSE._serialized_end=2713
+  _GETAPPSERVEAPPSRESPONSE._serialized_start=2715
+  _GETAPPSERVEAPPSRESPONSE._serialized_end=2833
+  _UPDATEAPPSERVEAPPSTATUSREQUEST._serialized_start=2835
+  _UPDATEAPPSERVEAPPSTATUSREQUEST._serialized_end=2925
+  _UPDATEAPPSERVEAPPENDPOINTREQUEST._serialized_start=2927
+  _UPDATEAPPSERVEAPPENDPOINTREQUEST._serialized_end=3005
+  _CLUSTERINFOSERVICE._serialized_start=3008
+  _CLUSTERINFOSERVICE._serialized_end=3410
+  _CSPINFOSERVICE._serialized_start=3413
+  _CSPINFOSERVICE._serialized_end=3824
+  _APPINFOSERVICE._serialized_start=3827
+  _APPINFOSERVICE._serialized_end=4501
+  _APPSERVEAPPSERVICE._serialized_start=4504
+  _APPSERVEAPPSERVICE._serialized_end=5041
+  _KEYCLOAKINFOSERVICE._serialized_start=5044
+  _KEYCLOAKINFOSERVICE._serialized_end=5362
 # @@protoc_insertion_point(module_scope)

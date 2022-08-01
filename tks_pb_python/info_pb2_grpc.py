@@ -780,6 +780,235 @@ class AppInfoService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
+class AppServeAppServiceStub(object):
+    """AppServeAppService is a service to manage Application in AppServing service.
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.CreateAppServeApp = channel.unary_unary(
+                '/tks_pb.AppServeAppService/CreateAppServeApp',
+                request_serializer=info__pb2.CreateAppServeAppRequest.SerializeToString,
+                response_deserializer=common__pb2.IDResponse.FromString,
+                )
+        self.UpdateAppServeApp = channel.unary_unary(
+                '/tks_pb.AppServeAppService/UpdateAppServeApp',
+                request_serializer=info__pb2.UpdateAppServeAppRequest.SerializeToString,
+                response_deserializer=common__pb2.SimpleResponse.FromString,
+                )
+        self.GetAppServeApp = channel.unary_unary(
+                '/tks_pb.AppServeAppService/GetAppServeApp',
+                request_serializer=info__pb2.GetAppServeAppRequest.SerializeToString,
+                response_deserializer=info__pb2.GetAppServeAppResponse.FromString,
+                )
+        self.GetAppServeApps = channel.unary_unary(
+                '/tks_pb.AppServeAppService/GetAppServeApps',
+                request_serializer=info__pb2.GetAppServeAppsRequest.SerializeToString,
+                response_deserializer=info__pb2.GetAppServeAppsResponse.FromString,
+                )
+        self.UpdateAppServeAppStatus = channel.unary_unary(
+                '/tks_pb.AppServeAppService/UpdateAppServeAppStatus',
+                request_serializer=info__pb2.UpdateAppServeAppStatusRequest.SerializeToString,
+                response_deserializer=common__pb2.SimpleResponse.FromString,
+                )
+        self.UpdateAppServeAppEndpoint = channel.unary_unary(
+                '/tks_pb.AppServeAppService/UpdateAppServeAppEndpoint',
+                request_serializer=info__pb2.UpdateAppServeAppEndpointRequest.SerializeToString,
+                response_deserializer=common__pb2.SimpleResponse.FromString,
+                )
+
+
+class AppServeAppServiceServicer(object):
+    """AppServeAppService is a service to manage Application in AppServing service.
+    """
+
+    def CreateAppServeApp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateAppServeApp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAppServeApp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAppServeApps(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateAppServeAppStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateAppServeAppEndpoint(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_AppServeAppServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'CreateAppServeApp': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAppServeApp,
+                    request_deserializer=info__pb2.CreateAppServeAppRequest.FromString,
+                    response_serializer=common__pb2.IDResponse.SerializeToString,
+            ),
+            'UpdateAppServeApp': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAppServeApp,
+                    request_deserializer=info__pb2.UpdateAppServeAppRequest.FromString,
+                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+            ),
+            'GetAppServeApp': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAppServeApp,
+                    request_deserializer=info__pb2.GetAppServeAppRequest.FromString,
+                    response_serializer=info__pb2.GetAppServeAppResponse.SerializeToString,
+            ),
+            'GetAppServeApps': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAppServeApps,
+                    request_deserializer=info__pb2.GetAppServeAppsRequest.FromString,
+                    response_serializer=info__pb2.GetAppServeAppsResponse.SerializeToString,
+            ),
+            'UpdateAppServeAppStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAppServeAppStatus,
+                    request_deserializer=info__pb2.UpdateAppServeAppStatusRequest.FromString,
+                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+            ),
+            'UpdateAppServeAppEndpoint': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAppServeAppEndpoint,
+                    request_deserializer=info__pb2.UpdateAppServeAppEndpointRequest.FromString,
+                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'tks_pb.AppServeAppService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class AppServeAppService(object):
+    """AppServeAppService is a service to manage Application in AppServing service.
+    """
+
+    @staticmethod
+    def CreateAppServeApp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/CreateAppServeApp',
+            info__pb2.CreateAppServeAppRequest.SerializeToString,
+            common__pb2.IDResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateAppServeApp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/UpdateAppServeApp',
+            info__pb2.UpdateAppServeAppRequest.SerializeToString,
+            common__pb2.SimpleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAppServeApp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/GetAppServeApp',
+            info__pb2.GetAppServeAppRequest.SerializeToString,
+            info__pb2.GetAppServeAppResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAppServeApps(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/GetAppServeApps',
+            info__pb2.GetAppServeAppsRequest.SerializeToString,
+            info__pb2.GetAppServeAppsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateAppServeAppStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/UpdateAppServeAppStatus',
+            info__pb2.UpdateAppServeAppStatusRequest.SerializeToString,
+            common__pb2.SimpleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateAppServeAppEndpoint(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/UpdateAppServeAppEndpoint',
+            info__pb2.UpdateAppServeAppEndpointRequest.SerializeToString,
+            common__pb2.SimpleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
 class KeycloakInfoServiceStub(object):
     """KeycloakInfoService is a service to manage Keycloak info.
     """

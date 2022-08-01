@@ -993,6 +993,309 @@ func (mr *MockUnsafeAppInfoServiceServerMockRecorder) mustEmbedUnimplementedAppI
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedAppInfoServiceServer", reflect.TypeOf((*MockUnsafeAppInfoServiceServer)(nil).mustEmbedUnimplementedAppInfoServiceServer))
 }
 
+// MockAppServeAppServiceClient is a mock of AppServeAppServiceClient interface.
+type MockAppServeAppServiceClient struct {
+	ctrl     *gomock.Controller
+	recorder *MockAppServeAppServiceClientMockRecorder
+}
+
+// MockAppServeAppServiceClientMockRecorder is the mock recorder for MockAppServeAppServiceClient.
+type MockAppServeAppServiceClientMockRecorder struct {
+	mock *MockAppServeAppServiceClient
+}
+
+// NewMockAppServeAppServiceClient creates a new mock instance.
+func NewMockAppServeAppServiceClient(ctrl *gomock.Controller) *MockAppServeAppServiceClient {
+	mock := &MockAppServeAppServiceClient{ctrl: ctrl}
+	mock.recorder = &MockAppServeAppServiceClientMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockAppServeAppServiceClient) EXPECT() *MockAppServeAppServiceClientMockRecorder {
+	return m.recorder
+}
+
+// CreateAppServeApp mocks base method.
+func (m *MockAppServeAppServiceClient) CreateAppServeApp(ctx context.Context, in *tks_pb.CreateAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.IDResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "CreateAppServeApp", varargs...)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateAppServeApp indicates an expected call of CreateAppServeApp.
+func (mr *MockAppServeAppServiceClientMockRecorder) CreateAppServeApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAppServeApp", reflect.TypeOf((*MockAppServeAppServiceClient)(nil).CreateAppServeApp), varargs...)
+}
+
+// GetAppServeApp mocks base method.
+func (m *MockAppServeAppServiceClient) GetAppServeApp(ctx context.Context, in *tks_pb.GetAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.GetAppServeAppResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetAppServeApp", varargs...)
+	ret0, _ := ret[0].(*tks_pb.GetAppServeAppResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppServeApp indicates an expected call of GetAppServeApp.
+func (mr *MockAppServeAppServiceClientMockRecorder) GetAppServeApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppServeApp", reflect.TypeOf((*MockAppServeAppServiceClient)(nil).GetAppServeApp), varargs...)
+}
+
+// GetAppServeApps mocks base method.
+func (m *MockAppServeAppServiceClient) GetAppServeApps(ctx context.Context, in *tks_pb.GetAppServeAppsRequest, opts ...grpc.CallOption) (*tks_pb.GetAppServeAppsResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetAppServeApps", varargs...)
+	ret0, _ := ret[0].(*tks_pb.GetAppServeAppsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppServeApps indicates an expected call of GetAppServeApps.
+func (mr *MockAppServeAppServiceClientMockRecorder) GetAppServeApps(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppServeApps", reflect.TypeOf((*MockAppServeAppServiceClient)(nil).GetAppServeApps), varargs...)
+}
+
+// UpdateAppServeApp mocks base method.
+func (m *MockAppServeAppServiceClient) UpdateAppServeApp(ctx context.Context, in *tks_pb.UpdateAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateAppServeApp", varargs...)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAppServeApp indicates an expected call of UpdateAppServeApp.
+func (mr *MockAppServeAppServiceClientMockRecorder) UpdateAppServeApp(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppServeApp", reflect.TypeOf((*MockAppServeAppServiceClient)(nil).UpdateAppServeApp), varargs...)
+}
+
+// UpdateAppServeAppEndpoint mocks base method.
+func (m *MockAppServeAppServiceClient) UpdateAppServeAppEndpoint(ctx context.Context, in *tks_pb.UpdateAppServeAppEndpointRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateAppServeAppEndpoint", varargs...)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAppServeAppEndpoint indicates an expected call of UpdateAppServeAppEndpoint.
+func (mr *MockAppServeAppServiceClientMockRecorder) UpdateAppServeAppEndpoint(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppServeAppEndpoint", reflect.TypeOf((*MockAppServeAppServiceClient)(nil).UpdateAppServeAppEndpoint), varargs...)
+}
+
+// UpdateAppServeAppStatus mocks base method.
+func (m *MockAppServeAppServiceClient) UpdateAppServeAppStatus(ctx context.Context, in *tks_pb.UpdateAppServeAppStatusRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateAppServeAppStatus", varargs...)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAppServeAppStatus indicates an expected call of UpdateAppServeAppStatus.
+func (mr *MockAppServeAppServiceClientMockRecorder) UpdateAppServeAppStatus(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppServeAppStatus", reflect.TypeOf((*MockAppServeAppServiceClient)(nil).UpdateAppServeAppStatus), varargs...)
+}
+
+// MockAppServeAppServiceServer is a mock of AppServeAppServiceServer interface.
+type MockAppServeAppServiceServer struct {
+	ctrl     *gomock.Controller
+	recorder *MockAppServeAppServiceServerMockRecorder
+}
+
+// MockAppServeAppServiceServerMockRecorder is the mock recorder for MockAppServeAppServiceServer.
+type MockAppServeAppServiceServerMockRecorder struct {
+	mock *MockAppServeAppServiceServer
+}
+
+// NewMockAppServeAppServiceServer creates a new mock instance.
+func NewMockAppServeAppServiceServer(ctrl *gomock.Controller) *MockAppServeAppServiceServer {
+	mock := &MockAppServeAppServiceServer{ctrl: ctrl}
+	mock.recorder = &MockAppServeAppServiceServerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockAppServeAppServiceServer) EXPECT() *MockAppServeAppServiceServerMockRecorder {
+	return m.recorder
+}
+
+// CreateAppServeApp mocks base method.
+func (m *MockAppServeAppServiceServer) CreateAppServeApp(arg0 context.Context, arg1 *tks_pb.CreateAppServeAppRequest) (*tks_pb.IDResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateAppServeApp", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateAppServeApp indicates an expected call of CreateAppServeApp.
+func (mr *MockAppServeAppServiceServerMockRecorder) CreateAppServeApp(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAppServeApp", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).CreateAppServeApp), arg0, arg1)
+}
+
+// GetAppServeApp mocks base method.
+func (m *MockAppServeAppServiceServer) GetAppServeApp(arg0 context.Context, arg1 *tks_pb.GetAppServeAppRequest) (*tks_pb.GetAppServeAppResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAppServeApp", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.GetAppServeAppResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppServeApp indicates an expected call of GetAppServeApp.
+func (mr *MockAppServeAppServiceServerMockRecorder) GetAppServeApp(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppServeApp", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).GetAppServeApp), arg0, arg1)
+}
+
+// GetAppServeApps mocks base method.
+func (m *MockAppServeAppServiceServer) GetAppServeApps(arg0 context.Context, arg1 *tks_pb.GetAppServeAppsRequest) (*tks_pb.GetAppServeAppsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAppServeApps", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.GetAppServeAppsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAppServeApps indicates an expected call of GetAppServeApps.
+func (mr *MockAppServeAppServiceServerMockRecorder) GetAppServeApps(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAppServeApps", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).GetAppServeApps), arg0, arg1)
+}
+
+// UpdateAppServeApp mocks base method.
+func (m *MockAppServeAppServiceServer) UpdateAppServeApp(arg0 context.Context, arg1 *tks_pb.UpdateAppServeAppRequest) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateAppServeApp", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAppServeApp indicates an expected call of UpdateAppServeApp.
+func (mr *MockAppServeAppServiceServerMockRecorder) UpdateAppServeApp(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppServeApp", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).UpdateAppServeApp), arg0, arg1)
+}
+
+// UpdateAppServeAppEndpoint mocks base method.
+func (m *MockAppServeAppServiceServer) UpdateAppServeAppEndpoint(arg0 context.Context, arg1 *tks_pb.UpdateAppServeAppEndpointRequest) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateAppServeAppEndpoint", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAppServeAppEndpoint indicates an expected call of UpdateAppServeAppEndpoint.
+func (mr *MockAppServeAppServiceServerMockRecorder) UpdateAppServeAppEndpoint(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppServeAppEndpoint", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).UpdateAppServeAppEndpoint), arg0, arg1)
+}
+
+// UpdateAppServeAppStatus mocks base method.
+func (m *MockAppServeAppServiceServer) UpdateAppServeAppStatus(arg0 context.Context, arg1 *tks_pb.UpdateAppServeAppStatusRequest) (*tks_pb.SimpleResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateAppServeAppStatus", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAppServeAppStatus indicates an expected call of UpdateAppServeAppStatus.
+func (mr *MockAppServeAppServiceServerMockRecorder) UpdateAppServeAppStatus(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAppServeAppStatus", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).UpdateAppServeAppStatus), arg0, arg1)
+}
+
+// mustEmbedUnimplementedAppServeAppServiceServer mocks base method.
+func (m *MockAppServeAppServiceServer) mustEmbedUnimplementedAppServeAppServiceServer() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "mustEmbedUnimplementedAppServeAppServiceServer")
+}
+
+// mustEmbedUnimplementedAppServeAppServiceServer indicates an expected call of mustEmbedUnimplementedAppServeAppServiceServer.
+func (mr *MockAppServeAppServiceServerMockRecorder) mustEmbedUnimplementedAppServeAppServiceServer() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedAppServeAppServiceServer", reflect.TypeOf((*MockAppServeAppServiceServer)(nil).mustEmbedUnimplementedAppServeAppServiceServer))
+}
+
+// MockUnsafeAppServeAppServiceServer is a mock of UnsafeAppServeAppServiceServer interface.
+type MockUnsafeAppServeAppServiceServer struct {
+	ctrl     *gomock.Controller
+	recorder *MockUnsafeAppServeAppServiceServerMockRecorder
+}
+
+// MockUnsafeAppServeAppServiceServerMockRecorder is the mock recorder for MockUnsafeAppServeAppServiceServer.
+type MockUnsafeAppServeAppServiceServerMockRecorder struct {
+	mock *MockUnsafeAppServeAppServiceServer
+}
+
+// NewMockUnsafeAppServeAppServiceServer creates a new mock instance.
+func NewMockUnsafeAppServeAppServiceServer(ctrl *gomock.Controller) *MockUnsafeAppServeAppServiceServer {
+	mock := &MockUnsafeAppServeAppServiceServer{ctrl: ctrl}
+	mock.recorder = &MockUnsafeAppServeAppServiceServerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockUnsafeAppServeAppServiceServer) EXPECT() *MockUnsafeAppServeAppServiceServerMockRecorder {
+	return m.recorder
+}
+
+// mustEmbedUnimplementedAppServeAppServiceServer mocks base method.
+func (m *MockUnsafeAppServeAppServiceServer) mustEmbedUnimplementedAppServeAppServiceServer() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "mustEmbedUnimplementedAppServeAppServiceServer")
+}
+
+// mustEmbedUnimplementedAppServeAppServiceServer indicates an expected call of mustEmbedUnimplementedAppServeAppServiceServer.
+func (mr *MockUnsafeAppServeAppServiceServerMockRecorder) mustEmbedUnimplementedAppServeAppServiceServer() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "mustEmbedUnimplementedAppServeAppServiceServer", reflect.TypeOf((*MockUnsafeAppServeAppServiceServer)(nil).mustEmbedUnimplementedAppServeAppServiceServer))
+}
+
 // MockKeycloakInfoServiceClient is a mock of KeycloakInfoServiceClient interface.
 type MockKeycloakInfoServiceClient struct {
 	ctrl     *gomock.Controller

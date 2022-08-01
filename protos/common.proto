@@ -186,6 +186,38 @@ message ClusterConf {
   int32 max_size_per_az = 6;
 }
 
+// AppServeApp represents each Application in app-serving service.
+message AppServeApp {
+  //id for the application
+  string id = 1;
+  // application name
+  string name = 2;
+  // contract_id is a contract ID which this app belongs to
+  string contract_id = 3;
+  // application version
+  string version = 4;
+  // type (build/deploy/all)
+  string task_type = 5;
+  // status is app status
+  string status = 6;
+  // output for task result
+  string output = 7;
+  // URL of java app artifact (Eg, Jar)
+  string artifact_url = 8;
+  // URL of built image for the java app
+  string image_url = 9;
+  // endpoint URL of deployed app
+  string endpoint_url = 10;
+  // target cluster to which the app is deployed
+  string target_cluster = 11;
+  // java app profile
+  string profile = 12;
+  // created_at is  a creatioin timestamp for the application
+  google.protobuf.Timestamp created_at = 13;
+  // updated_at is a timestamp for the trigger of status change
+  google.protobuf.Timestamp updated_at  = 14;
+}
+
 // IDRequest is a request with a id
 message IDRequest {
   // id is a id to ask

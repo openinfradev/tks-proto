@@ -933,11 +933,17 @@ var AppInfoService_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServeAppServiceClient interface {
+	// CreateAppServeApp creates a new ASA that is an app by app-serving service.
 	CreateAppServeApp(ctx context.Context, in *CreateAppServeAppRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// UpdateAppServeApp updates ASA spec for new deployment.
 	UpdateAppServeApp(ctx context.Context, in *UpdateAppServeAppRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// GetAppServeApp gets an ASA info.
 	GetAppServeApp(ctx context.Context, in *GetAppServeAppRequest, opts ...grpc.CallOption) (*GetAppServeAppResponse, error)
+	// GetAppServeApps get all ASA infos in specific contract.
 	GetAppServeApps(ctx context.Context, in *GetAppServeAppsRequest, opts ...grpc.CallOption) (*GetAppServeAppsResponse, error)
+	// UpdateAppServeAppStatus updates status of already deployed ASA.
 	UpdateAppServeAppStatus(ctx context.Context, in *UpdateAppServeAppStatusRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	// UpdateAppServeAppEndpoint updates endpoint of already deployed ASA.
 	UpdateAppServeAppEndpoint(ctx context.Context, in *UpdateAppServeAppEndpointRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 }
 
@@ -1007,11 +1013,17 @@ func (c *appServeAppServiceClient) UpdateAppServeAppEndpoint(ctx context.Context
 // All implementations must embed UnimplementedAppServeAppServiceServer
 // for forward compatibility
 type AppServeAppServiceServer interface {
+	// CreateAppServeApp creates a new ASA that is an app by app-serving service.
 	CreateAppServeApp(context.Context, *CreateAppServeAppRequest) (*IDResponse, error)
+	// UpdateAppServeApp updates ASA spec for new deployment.
 	UpdateAppServeApp(context.Context, *UpdateAppServeAppRequest) (*SimpleResponse, error)
+	// GetAppServeApp gets an ASA info.
 	GetAppServeApp(context.Context, *GetAppServeAppRequest) (*GetAppServeAppResponse, error)
+	// GetAppServeApps get all ASA infos in specific contract.
 	GetAppServeApps(context.Context, *GetAppServeAppsRequest) (*GetAppServeAppsResponse, error)
+	// UpdateAppServeAppStatus updates status of already deployed ASA.
 	UpdateAppServeAppStatus(context.Context, *UpdateAppServeAppStatusRequest) (*SimpleResponse, error)
+	// UpdateAppServeAppEndpoint updates endpoint of already deployed ASA.
 	UpdateAppServeAppEndpoint(context.Context, *UpdateAppServeAppEndpointRequest) (*SimpleResponse, error)
 	mustEmbedUnimplementedAppServeAppServiceServer()
 }

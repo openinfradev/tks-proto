@@ -1549,13 +1549,13 @@ func (x *GetKeycloakInfoResponse) GetKeycloakInfos() []*KeycloakInfo {
 	return nil
 }
 
-// CreateAppServeAppRequest is used to add a new application by app-serving service.
+// CreateAppServeAppRequest is a request used to add an ASA
 type CreateAppServeAppRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// string contract_id;
+	// ASA spec to create
 	App *AppServeApp `protobuf:"bytes,1,opt,name=app,proto3" json:"app,omitempty"`
 }
 
@@ -1598,13 +1598,16 @@ func (x *CreateAppServeAppRequest) GetApp() *AppServeApp {
 	return nil
 }
 
+// UpdateAppServeAppRequest is a request used to update an ASA
 type UpdateAppServeAppRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AppServeAppId string       `protobuf:"bytes,1,opt,name=app_serve_app_id,json=appServeAppId,proto3" json:"app_serve_app_id,omitempty"`
-	App           *AppServeApp `protobuf:"bytes,2,opt,name=app,proto3" json:"app,omitempty"`
+	// ID of ASA to update
+	AppServeAppId string `protobuf:"bytes,1,opt,name=app_serve_app_id,json=appServeAppId,proto3" json:"app_serve_app_id,omitempty"`
+	// New ASA spec to apply
+	App *AppServeApp `protobuf:"bytes,2,opt,name=app,proto3" json:"app,omitempty"`
 }
 
 func (x *UpdateAppServeAppRequest) Reset() {
@@ -1653,11 +1656,13 @@ func (x *UpdateAppServeAppRequest) GetApp() *AppServeApp {
 	return nil
 }
 
+// GetAppServeAppsRequest is a request used to get ASAs
 type GetAppServeAppsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Contract ID to which the ASAs belong
 	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
 }
 
@@ -1700,12 +1705,15 @@ func (x *GetAppServeAppsRequest) GetContractId() string {
 	return ""
 }
 
+// GetAppServeAppRequest is a request used to get an ASA
 type GetAppServeAppRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ContractId    string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// Contract ID to which the ASA belongs
+	ContractId string `protobuf:"bytes,1,opt,name=contract_id,json=contractId,proto3" json:"contract_id,omitempty"`
+	// ASA ID to get
 	AppServeAppId string `protobuf:"bytes,2,opt,name=app_serve_app_id,json=appServeAppId,proto3" json:"app_serve_app_id,omitempty"`
 }
 
@@ -1755,6 +1763,7 @@ func (x *GetAppServeAppRequest) GetAppServeAppId() string {
 	return ""
 }
 
+// GetAppServeAppResponse is a response that includes ASA info
 type GetAppServeAppResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1764,7 +1773,7 @@ type GetAppServeAppResponse struct {
 	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=tks_pb.Code" json:"code,omitempty"`
 	// error is a detailed error message.
 	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	// cluster is info for the cluster
+	// app is ASA info
 	App *AppServeApp `protobuf:"bytes,3,opt,name=app,proto3" json:"app,omitempty"`
 }
 
@@ -1821,6 +1830,7 @@ func (x *GetAppServeAppResponse) GetApp() *AppServeApp {
 	return nil
 }
 
+// GetAppServeAppsResponse is a response that includes ASA infos
 type GetAppServeAppsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1830,7 +1840,7 @@ type GetAppServeAppsResponse struct {
 	Code Code `protobuf:"varint,1,opt,name=code,proto3,enum=tks_pb.Code" json:"code,omitempty"`
 	// error is a detailed error message.
 	Error *Error `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	// cluster is info. for the cluster
+	// apps is list that include ASA infos
 	Apps []*AppServeApp `protobuf:"bytes,3,rep,name=apps,proto3" json:"apps,omitempty"`
 }
 
@@ -1887,14 +1897,18 @@ func (x *GetAppServeAppsResponse) GetApps() []*AppServeApp {
 	return nil
 }
 
+// UpdateAppServeAppStatusRequest is a request used to update ASA status
 type UpdateAppServeAppStatusRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// ASA ID whose status is updated
 	AppServeAppId string `protobuf:"bytes,1,opt,name=app_serve_app_id,json=appServeAppId,proto3" json:"app_serve_app_id,omitempty"`
-	Status        string `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
-	Output        string `protobuf:"bytes,3,opt,name=output,proto3" json:"output,omitempty"`
+	// status is new status of ASA to apply
+	Status string `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	// output is console output of ASA task
+	Output string `protobuf:"bytes,3,opt,name=output,proto3" json:"output,omitempty"`
 }
 
 func (x *UpdateAppServeAppStatusRequest) Reset() {
@@ -1950,13 +1964,16 @@ func (x *UpdateAppServeAppStatusRequest) GetOutput() string {
 	return ""
 }
 
+// UpdateAppServeAppEndpointRequest is a request used to update ASA endpoint
 type UpdateAppServeAppEndpointRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// ASA ID whose endpoint is updated
 	AppServeAppId string `protobuf:"bytes,1,opt,name=app_serve_app_id,json=appServeAppId,proto3" json:"app_serve_app_id,omitempty"`
-	Endpoint      string `protobuf:"bytes,2,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	// endpoint to be used to access ASA
+	Endpoint string `protobuf:"bytes,2,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
 }
 
 func (x *UpdateAppServeAppEndpointRequest) Reset() {

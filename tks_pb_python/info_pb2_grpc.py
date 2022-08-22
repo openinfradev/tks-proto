@@ -827,37 +827,43 @@ class AppServeAppServiceServicer(object):
     """
 
     def CreateAppServeApp(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """CreateAppServeApp creates a new ASA that is an app by app-serving service.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateAppServeApp(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """UpdateAppServeApp updates ASA spec for new deployment.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetAppServeApp(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """GetAppServeApp gets an ASA info.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetAppServeApps(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """GetAppServeApps get all ASA infos in specific contract.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateAppServeAppStatus(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """UpdateAppServeAppStatus updates status of already deployed ASA.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateAppServeAppEndpoint(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """UpdateAppServeAppEndpoint updates endpoint of already deployed ASA.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

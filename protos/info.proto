@@ -67,12 +67,21 @@ service AppInfoService {
 
 // AppServeAppService is a service to manage Application in AppServing service.
 service AppServeAppService {
+  // CreateAppServeApp creates a new ASA that is an app by app-serving service.
   rpc CreateAppServeApp(CreateAppServeAppRequest) returns (IDResponse) {}
+  // UpdateAppServeApp updates ASA spec for new deployment.
   rpc UpdateAppServeApp(UpdateAppServeAppRequest) returns (SimpleResponse) {}
+  // GetAppServeApp gets an ASA info.
   rpc GetAppServeApp(GetAppServeAppRequest) returns (GetAppServeAppResponse) {}
-  rpc GetAppServeApps(GetAppServeAppsRequest) returns (GetAppServeAppsResponse) {}
-  rpc UpdateAppServeAppStatus(UpdateAppServeAppStatusRequest) returns (SimpleResponse) {}
-  rpc UpdateAppServeAppEndpoint(UpdateAppServeAppEndpointRequest) returns (SimpleResponse) {}
+  // GetAppServeApps get all ASA infos in specific contract.
+  rpc GetAppServeApps(GetAppServeAppsRequest)
+    returns (GetAppServeAppsResponse) {}
+  // UpdateAppServeAppStatus updates status of already deployed ASA.
+  rpc UpdateAppServeAppStatus(UpdateAppServeAppStatusRequest)
+    returns (SimpleResponse) {}
+  // UpdateAppServeAppEndpoint updates endpoint of already deployed ASA.
+  rpc UpdateAppServeAppEndpoint(UpdateAppServeAppEndpointRequest)
+    returns (SimpleResponse) {}
 }
 // KeycloakInfoService is a service to manage Keycloak info.
 service KeycloakInfoService {
@@ -314,55 +323,68 @@ message GetKeycloakInfoResponse {
   repeated KeycloakInfo keycloak_infos = 3; 
 }
 
-/////////////////
-// AppServeApp //
-/////////////////
-
-// CreateAppServeAppRequest is used to add a new application by app-serving service.
+// CreateAppServeAppRequest is a request used to add an ASA
 message CreateAppServeAppRequest {
-  // string contract_id;
+  // ASA spec to create
   AppServeApp app = 1;
 }
 
+// UpdateAppServeAppRequest is a request used to update an ASA
 message UpdateAppServeAppRequest {
+  // ID of ASA to update 
   string app_serve_app_id = 1;
+  // New ASA spec to apply
   AppServeApp app = 2;
 }
 
+// GetAppServeAppsRequest is a request used to get ASAs
 message GetAppServeAppsRequest {
+  // Contract ID to which the ASAs belong
   string contract_id = 1;
 }
 
+// GetAppServeAppRequest is a request used to get an ASA
 message GetAppServeAppRequest {
+  // Contract ID to which the ASA belongs
   string contract_id = 1;
+  // ASA ID to get
   string app_serve_app_id = 2;
 }
 
+// GetAppServeAppResponse is a response that includes ASA info
 message GetAppServeAppResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // cluster is info for the cluster
+  // app is ASA info
   AppServeApp app = 3;
 }
 
+// GetAppServeAppsResponse is a response that includes ASA infos
 message GetAppServeAppsResponse {
   // code is a response code.
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // cluster is info. for the cluster
+  // apps is list that include ASA infos
   repeated AppServeApp apps = 3;
 }
 
+// UpdateAppServeAppStatusRequest is a request used to update ASA status
 message UpdateAppServeAppStatusRequest {
+  // ASA ID whose status is updated
   string app_serve_app_id = 1;
+  // status is new status of ASA to apply
   string status = 2;
+  // output is console output of ASA task
   string output = 3;
 }
 
+// UpdateAppServeAppEndpointRequest is a request used to update ASA endpoint
 message UpdateAppServeAppEndpointRequest {
+  // ASA ID whose endpoint is updated
   string app_serve_app_id = 1;
+  // endpoint to be used to access ASA
   string endpoint = 2;
 }

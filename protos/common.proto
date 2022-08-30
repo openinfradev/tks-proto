@@ -209,7 +209,7 @@ message AppServeApp {
   // endpoint URL of deployed app
   string endpoint_url = 10;
   // target cluster to which the app is deployed
-  string target_cluster = 11;
+  string target_cluster_id = 11;
   // java app profile
   string profile = 12;
   // created_at is  a creatioin timestamp for the application

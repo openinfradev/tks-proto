@@ -35,7 +35,8 @@ endif
 # If $GOPATH/bin/protoc-gen-go does not exist, we'll run this command to install
 # it.
 $(PROTOC_GEN_GO):
-	go get -u github.com/golang/protobuf/protoc-gen-go
+	go get -u google.golang.org/protobuf/cmd/protoc-gen-go
+	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 $(MOCKGEN):
 	go get -u github.com/golang/mock/mockgen

@@ -65,7 +65,8 @@ service AppInfoService {
   rpc UpdateApp(UpdateAppRequest) returns (SimpleResponse) {}
 }
 
-// AppServeAppService is a service to manage Application in AppServing service.
+// AppServeAppService is a service to manage AppServeApp(ASA)
+// which is an application in AppServing service.
 service AppServeAppService {
   // CreateAppServeApp creates a new ASA that is an app by app-serving service.
   rpc CreateAppServeApp(CreateAppServeAppRequest) returns (IDResponse) {}

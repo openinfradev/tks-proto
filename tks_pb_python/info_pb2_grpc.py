@@ -781,7 +781,8 @@ class AppInfoService(object):
 
 
 class AppServeAppServiceStub(object):
-    """AppServeAppService is a service to manage Application in AppServing service.
+    """AppServeAppService is a service to manage AppServeApp(ASA)
+    which is an application in AppServing service.
     """
 
     def __init__(self, channel):
@@ -823,7 +824,8 @@ class AppServeAppServiceStub(object):
 
 
 class AppServeAppServiceServicer(object):
-    """AppServeAppService is a service to manage Application in AppServing service.
+    """AppServeAppService is a service to manage AppServeApp(ASA)
+    which is an application in AppServing service.
     """
 
     def CreateAppServeApp(self, request, context):
@@ -909,7 +911,8 @@ def add_AppServeAppServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class AppServeAppService(object):
-    """AppServeAppService is a service to manage Application in AppServing service.
+    """AppServeAppService is a service to manage AppServeApp(ASA)
+    which is an application in AppServing service.
     """
 
     @staticmethod

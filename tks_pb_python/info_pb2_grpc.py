@@ -794,12 +794,12 @@ class AppServeAppServiceStub(object):
         self.CreateAppServeApp = channel.unary_unary(
                 '/tks_pb.AppServeAppService/CreateAppServeApp',
                 request_serializer=info__pb2.CreateAppServeAppRequest.SerializeToString,
-                response_deserializer=common__pb2.IDResponse.FromString,
+                response_deserializer=info__pb2.CreateAppServeAppResponse.FromString,
                 )
         self.UpdateAppServeApp = channel.unary_unary(
                 '/tks_pb.AppServeAppService/UpdateAppServeApp',
                 request_serializer=info__pb2.UpdateAppServeAppRequest.SerializeToString,
-                response_deserializer=common__pb2.SimpleResponse.FromString,
+                response_deserializer=info__pb2.UpdateAppServeAppResponse.FromString,
                 )
         self.GetAppServeApp = channel.unary_unary(
                 '/tks_pb.AppServeAppService/GetAppServeApp',
@@ -876,12 +876,12 @@ def add_AppServeAppServiceServicer_to_server(servicer, server):
             'CreateAppServeApp': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateAppServeApp,
                     request_deserializer=info__pb2.CreateAppServeAppRequest.FromString,
-                    response_serializer=common__pb2.IDResponse.SerializeToString,
+                    response_serializer=info__pb2.CreateAppServeAppResponse.SerializeToString,
             ),
             'UpdateAppServeApp': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateAppServeApp,
                     request_deserializer=info__pb2.UpdateAppServeAppRequest.FromString,
-                    response_serializer=common__pb2.SimpleResponse.SerializeToString,
+                    response_serializer=info__pb2.UpdateAppServeAppResponse.SerializeToString,
             ),
             'GetAppServeApp': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAppServeApp,
@@ -928,7 +928,7 @@ class AppServeAppService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/CreateAppServeApp',
             info__pb2.CreateAppServeAppRequest.SerializeToString,
-            common__pb2.IDResponse.FromString,
+            info__pb2.CreateAppServeAppResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -945,7 +945,7 @@ class AppServeAppService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.AppServeAppService/UpdateAppServeApp',
             info__pb2.UpdateAppServeAppRequest.SerializeToString,
-            common__pb2.SimpleResponse.FromString,
+            info__pb2.UpdateAppServeAppResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

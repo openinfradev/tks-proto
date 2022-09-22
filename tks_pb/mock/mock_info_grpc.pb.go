@@ -1017,14 +1017,14 @@ func (m *MockAppServeAppServiceClient) EXPECT() *MockAppServeAppServiceClientMoc
 }
 
 // CreateAppServeApp mocks base method.
-func (m *MockAppServeAppServiceClient) CreateAppServeApp(ctx context.Context, in *tks_pb.CreateAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.IDResponse, error) {
+func (m *MockAppServeAppServiceClient) CreateAppServeApp(ctx context.Context, in *tks_pb.CreateAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.CreateAppServeAppResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateAppServeApp", varargs...)
-	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret0, _ := ret[0].(*tks_pb.CreateAppServeAppResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -1077,14 +1077,14 @@ func (mr *MockAppServeAppServiceClientMockRecorder) GetAppServeApps(ctx, in inte
 }
 
 // UpdateAppServeApp mocks base method.
-func (m *MockAppServeAppServiceClient) UpdateAppServeApp(ctx context.Context, in *tks_pb.UpdateAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.SimpleResponse, error) {
+func (m *MockAppServeAppServiceClient) UpdateAppServeApp(ctx context.Context, in *tks_pb.UpdateAppServeAppRequest, opts ...grpc.CallOption) (*tks_pb.UpdateAppServeAppResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "UpdateAppServeApp", varargs...)
-	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret0, _ := ret[0].(*tks_pb.UpdateAppServeAppResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -1160,10 +1160,10 @@ func (m *MockAppServeAppServiceServer) EXPECT() *MockAppServeAppServiceServerMoc
 }
 
 // CreateAppServeApp mocks base method.
-func (m *MockAppServeAppServiceServer) CreateAppServeApp(arg0 context.Context, arg1 *tks_pb.CreateAppServeAppRequest) (*tks_pb.IDResponse, error) {
+func (m *MockAppServeAppServiceServer) CreateAppServeApp(arg0 context.Context, arg1 *tks_pb.CreateAppServeAppRequest) (*tks_pb.CreateAppServeAppResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateAppServeApp", arg0, arg1)
-	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret0, _ := ret[0].(*tks_pb.CreateAppServeAppResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -1205,10 +1205,10 @@ func (mr *MockAppServeAppServiceServerMockRecorder) GetAppServeApps(arg0, arg1 i
 }
 
 // UpdateAppServeApp mocks base method.
-func (m *MockAppServeAppServiceServer) UpdateAppServeApp(arg0 context.Context, arg1 *tks_pb.UpdateAppServeAppRequest) (*tks_pb.SimpleResponse, error) {
+func (m *MockAppServeAppServiceServer) UpdateAppServeApp(arg0 context.Context, arg1 *tks_pb.UpdateAppServeAppRequest) (*tks_pb.UpdateAppServeAppResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateAppServeApp", arg0, arg1)
-	ret0, _ := ret[0].(*tks_pb.SimpleResponse)
+	ret0, _ := ret[0].(*tks_pb.UpdateAppServeAppResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

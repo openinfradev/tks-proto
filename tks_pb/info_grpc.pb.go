@@ -934,9 +934,9 @@ var AppInfoService_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppServeAppServiceClient interface {
 	// CreateAppServeApp creates a new ASA that is an app by app-serving service.
-	CreateAppServeApp(ctx context.Context, in *CreateAppServeAppRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	CreateAppServeApp(ctx context.Context, in *CreateAppServeAppRequest, opts ...grpc.CallOption) (*CreateAppServeAppResponse, error)
 	// UpdateAppServeApp updates ASA spec for new deployment.
-	UpdateAppServeApp(ctx context.Context, in *UpdateAppServeAppRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
+	UpdateAppServeApp(ctx context.Context, in *UpdateAppServeAppRequest, opts ...grpc.CallOption) (*UpdateAppServeAppResponse, error)
 	// GetAppServeApp gets an ASA info.
 	GetAppServeApp(ctx context.Context, in *GetAppServeAppRequest, opts ...grpc.CallOption) (*GetAppServeAppResponse, error)
 	// GetAppServeApps get all ASA infos in specific contract.
@@ -955,8 +955,8 @@ func NewAppServeAppServiceClient(cc grpc.ClientConnInterface) AppServeAppService
 	return &appServeAppServiceClient{cc}
 }
 
-func (c *appServeAppServiceClient) CreateAppServeApp(ctx context.Context, in *CreateAppServeAppRequest, opts ...grpc.CallOption) (*IDResponse, error) {
-	out := new(IDResponse)
+func (c *appServeAppServiceClient) CreateAppServeApp(ctx context.Context, in *CreateAppServeAppRequest, opts ...grpc.CallOption) (*CreateAppServeAppResponse, error) {
+	out := new(CreateAppServeAppResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.AppServeAppService/CreateAppServeApp", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -964,8 +964,8 @@ func (c *appServeAppServiceClient) CreateAppServeApp(ctx context.Context, in *Cr
 	return out, nil
 }
 
-func (c *appServeAppServiceClient) UpdateAppServeApp(ctx context.Context, in *UpdateAppServeAppRequest, opts ...grpc.CallOption) (*SimpleResponse, error) {
-	out := new(SimpleResponse)
+func (c *appServeAppServiceClient) UpdateAppServeApp(ctx context.Context, in *UpdateAppServeAppRequest, opts ...grpc.CallOption) (*UpdateAppServeAppResponse, error) {
+	out := new(UpdateAppServeAppResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.AppServeAppService/UpdateAppServeApp", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1014,9 +1014,9 @@ func (c *appServeAppServiceClient) UpdateAppServeAppEndpoint(ctx context.Context
 // for forward compatibility
 type AppServeAppServiceServer interface {
 	// CreateAppServeApp creates a new ASA that is an app by app-serving service.
-	CreateAppServeApp(context.Context, *CreateAppServeAppRequest) (*IDResponse, error)
+	CreateAppServeApp(context.Context, *CreateAppServeAppRequest) (*CreateAppServeAppResponse, error)
 	// UpdateAppServeApp updates ASA spec for new deployment.
-	UpdateAppServeApp(context.Context, *UpdateAppServeAppRequest) (*SimpleResponse, error)
+	UpdateAppServeApp(context.Context, *UpdateAppServeAppRequest) (*UpdateAppServeAppResponse, error)
 	// GetAppServeApp gets an ASA info.
 	GetAppServeApp(context.Context, *GetAppServeAppRequest) (*GetAppServeAppResponse, error)
 	// GetAppServeApps get all ASA infos in specific contract.
@@ -1032,10 +1032,10 @@ type AppServeAppServiceServer interface {
 type UnimplementedAppServeAppServiceServer struct {
 }
 
-func (UnimplementedAppServeAppServiceServer) CreateAppServeApp(context.Context, *CreateAppServeAppRequest) (*IDResponse, error) {
+func (UnimplementedAppServeAppServiceServer) CreateAppServeApp(context.Context, *CreateAppServeAppRequest) (*CreateAppServeAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAppServeApp not implemented")
 }
-func (UnimplementedAppServeAppServiceServer) UpdateAppServeApp(context.Context, *UpdateAppServeAppRequest) (*SimpleResponse, error) {
+func (UnimplementedAppServeAppServiceServer) UpdateAppServeApp(context.Context, *UpdateAppServeAppRequest) (*UpdateAppServeAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAppServeApp not implemented")
 }
 func (UnimplementedAppServeAppServiceServer) GetAppServeApp(context.Context, *GetAppServeAppRequest) (*GetAppServeAppResponse, error) {

@@ -69,9 +69,11 @@ service AppInfoService {
 // which is an application in AppServing service.
 service AppServeAppService {
   // CreateAppServeApp creates a new ASA that is an app by app-serving service.
-  rpc CreateAppServeApp(CreateAppServeAppRequest) returns (IDResponse) {}
+  rpc CreateAppServeApp(CreateAppServeAppRequest)
+    returns (CreateAppServeAppResponse) {}
   // UpdateAppServeApp updates ASA spec for new deployment.
-  rpc UpdateAppServeApp(UpdateAppServeAppRequest) returns (SimpleResponse) {}
+  rpc UpdateAppServeApp(UpdateAppServeAppRequest)
+    returns (UpdateAppServeAppResponse) {}
   // GetAppServeApp gets an ASA info.
   rpc GetAppServeApp(GetAppServeAppRequest) returns (GetAppServeAppResponse) {}
   // GetAppServeApps get all ASA infos in specific contract.
@@ -326,16 +328,18 @@ message GetKeycloakInfoResponse {
 
 // CreateAppServeAppRequest is a request used to add an ASA
 message CreateAppServeAppRequest {
-  // ASA spec to create
-  AppServeApp app = 1;
+  // ASA to create
+  AppServeApp app_serve_app = 1;
+  // ASA task to create
+  AppServeAppTask app_serve_app_task = 2;
 }
 
 // UpdateAppServeAppRequest is a request used to update an ASA
 message UpdateAppServeAppRequest {
-  // ID of ASA to update 
+  // ASA ID to update
   string app_serve_app_id = 1;
-  // New ASA spec to apply
-  AppServeApp app = 2;
+  // New ASA task to create
+  AppServeAppTask app_serve_app_task = 2;
 }
 
 // GetAppServeAppsRequest is a request used to get ASAs
@@ -346,10 +350,30 @@ message GetAppServeAppsRequest {
 
 // GetAppServeAppRequest is a request used to get an ASA
 message GetAppServeAppRequest {
-  // Contract ID to which the ASA belongs
-  string contract_id = 1;
   // ASA ID to get
-  string app_serve_app_id = 2;
+  string app_serve_app_id = 1;
+}
+
+// CreateAppServeAppResponse contains ASA ID and related task ID.
+message CreateAppServeAppResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // id is ID of ASA just created.
+  string id = 3;
+  // task_id is ID of ASA task just created.
+  string task_id = 4;
+}
+
+// UpdateAppServeAppResponse contains ASA task ID.
+message UpdateAppServeAppResponse {
+  // code is a response code.
+  Code code = 1;
+  // error is a detailed error message.
+  Error error = 2;
+  // task_id is ID of ASA task just created.
+  string task_id = 3;
 }
 
 // GetAppServeAppResponse is a response that includes ASA info
@@ -358,8 +382,8 @@ message GetAppServeAppResponse {
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // app is ASA info
-  AppServeApp app = 3;
+  // app_serve_app with all tasks included
+  AppServeAppCombined app_serve_app_combined = 3;
 }
 
 // GetAppServeAppsResponse is a response that includes ASA infos
@@ -368,14 +392,14 @@ message GetAppServeAppsResponse {
   Code code = 1;
   // error is a detailed error message.
   Error error = 2;
-  // apps is list that include ASA infos
-  repeated AppServeApp apps = 3;
+  // appServeApps is list of ASA infos
+  repeated AppServeApp app_serve_apps = 3;
 }
 
 // UpdateAppServeAppStatusRequest is a request used to update ASA status
 message UpdateAppServeAppStatusRequest {
-  // ASA ID whose status is updated
-  string app_serve_app_id = 1;
+  // ASA task ID whose status is updated
+  string app_serve_app_task_id = 1;
   // status is new status of ASA to apply
   string status = 2;
   // output is console output of ASA task
@@ -386,6 +410,10 @@ message UpdateAppServeAppStatusRequest {
 message UpdateAppServeAppEndpointRequest {
   // ASA ID whose endpoint is updated
   string app_serve_app_id = 1;
+  // ASA Task ID whose helm_revision is updated
+  string app_serve_app_task_id = 2;
   // endpoint to be used to access ASA
-  string endpoint = 2;
+  string endpoint = 3;
+  // helm_revision of deployed app release
+  int32 helm_revision = 4;
 }

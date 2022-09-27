@@ -33,6 +33,8 @@ message CreateClusterRequest {
   string name = 3;
   // conf is a cluster configuration
   ClusterRawConf conf = 4;
+  // template_name is a site template name for the cluster
+  string template_name = 5;
 }
 
 // ScaleClusterRequest is a request to scale the number of nodes on the cluster

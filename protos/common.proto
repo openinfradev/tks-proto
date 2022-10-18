@@ -108,6 +108,10 @@ message AppGroup {
   google.protobuf.Timestamp created_at = 9;
   // updated_at is a timestamp for the trigger of status change
   google.protobuf.Timestamp updated_at  = 10;
+  // creator is a user UID of appgroup creator
+  string creator = 11;
+  // description is a appgroup description
+  string description = 12;
 }
 
 // Application represents each Application.
@@ -154,6 +158,10 @@ message Cluster {
   repeated AppGroup app_groups = 11;
   // kubeconfig is a default kubeconfig for the cluster
   string kubeconfig = 12;
+  // creator is a user UID of cluster creator
+  string creator = 13;
+  // description is a cluster description
+  string description = 14;
 }
 
 // ClusterRawConf represents raw data for K8S cluster configuration.

@@ -155,6 +155,10 @@ message AddClusterInfoRequest {
   string name = 3;
   // conf is a cluster configuration
   ClusterConf conf = 4;
+  // creator is a user UID of cluster creator
+  string creator = 5;
+  // description is a cluster description
+  string description = 6;
 }
 
 // UpdateClusterConfRequest is used to update kubernetes cluster configuration

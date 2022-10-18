@@ -45,6 +45,10 @@ message CreateContractRequest {
   string csp_name = 4;
   // csp_auth is an authentication information for IaaS Provider.
   string csp_auth = 5;
+  // creator is a user UID of contract creator
+  string creator = 6;
+  // description is a contract description
+  string description = 7;
 }
 
 // CreateContractResponse is a response to the CreateContractRequest request 
@@ -160,6 +164,10 @@ message Contract {
   google.protobuf.Timestamp updated_at = 6;
   // created_at is a timestamp created.
   google.protobuf.Timestamp created_at = 7;
+  // creator is a user UID of contract creator
+  string creator = 8;
+  // description is a contract description
+  string description = 9;
 }
 
 // GetContractsRequest is a request to inquire all contracts 

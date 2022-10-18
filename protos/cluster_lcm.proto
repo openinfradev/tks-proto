@@ -35,6 +35,10 @@ message CreateClusterRequest {
   ClusterRawConf conf = 4;
   // template_name is a site template name for the cluster
   string template_name = 5;
+  // creator is a user UID of cluster creator
+  string creator = 6;
+  // description is a cluster description
+  string description = 7;
 }
 
 // ScaleClusterRequest is a request to scale the number of nodes on the cluster

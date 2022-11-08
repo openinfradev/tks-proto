@@ -21,6 +21,11 @@ class ClusterLcmServiceStub(object):
                 request_serializer=cluster__lcm__pb2.CreateClusterRequest.SerializeToString,
                 response_deserializer=common__pb2.IDResponse.FromString,
                 )
+        self.ImportCluster = channel.unary_unary(
+                '/tks_pb.ClusterLcmService/ImportCluster',
+                request_serializer=cluster__lcm__pb2.ImportClusterRequest.SerializeToString,
+                response_deserializer=common__pb2.IDResponse.FromString,
+                )
         self.ScaleCluster = channel.unary_unary(
                 '/tks_pb.ClusterLcmService/ScaleCluster',
                 request_serializer=cluster__lcm__pb2.ScaleClusterRequest.SerializeToString,
@@ -49,6 +54,13 @@ class ClusterLcmServiceServicer(object):
 
     def CreateCluster(self, request, context):
         """CreateCluster creates a Kubernetes cluster and returns cluster id
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ImportCluster(self, request, context):
+        """ImportCluster register a Kubernetes cluster and returns cluster id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -88,6 +100,11 @@ def add_ClusterLcmServiceServicer_to_server(servicer, server):
             'CreateCluster': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateCluster,
                     request_deserializer=cluster__lcm__pb2.CreateClusterRequest.FromString,
+                    response_serializer=common__pb2.IDResponse.SerializeToString,
+            ),
+            'ImportCluster': grpc.unary_unary_rpc_method_handler(
+                    servicer.ImportCluster,
+                    request_deserializer=cluster__lcm__pb2.ImportClusterRequest.FromString,
                     response_serializer=common__pb2.IDResponse.SerializeToString,
             ),
             'ScaleCluster': grpc.unary_unary_rpc_method_handler(
@@ -134,6 +151,23 @@ class ClusterLcmService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/tks_pb.ClusterLcmService/CreateCluster',
             cluster__lcm__pb2.CreateClusterRequest.SerializeToString,
+            common__pb2.IDResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ImportCluster(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tks_pb.ClusterLcmService/ImportCluster',
+            cluster__lcm__pb2.ImportClusterRequest.SerializeToString,
             common__pb2.IDResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

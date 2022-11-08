@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type ClusterLcmServiceClient interface {
 	// CreateCluster creates a Kubernetes cluster and returns cluster id
 	CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
+	// ImportCluster register a Kubernetes cluster and returns cluster id
+	ImportCluster(ctx context.Context, in *ImportClusterRequest, opts ...grpc.CallOption) (*IDResponse, error)
 	// ScaleCluster scales Kubernetes cluster
 	ScaleCluster(ctx context.Context, in *ScaleClusterRequest, opts ...grpc.CallOption) (*SimpleResponse, error)
 	// DeleteCluster deletes Kubernetes cluster
@@ -45,6 +47,15 @@ func NewClusterLcmServiceClient(cc grpc.ClientConnInterface) ClusterLcmServiceCl
 func (c *clusterLcmServiceClient) CreateCluster(ctx context.Context, in *CreateClusterRequest, opts ...grpc.CallOption) (*IDResponse, error) {
 	out := new(IDResponse)
 	err := c.cc.Invoke(ctx, "/tks_pb.ClusterLcmService/CreateCluster", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clusterLcmServiceClient) ImportCluster(ctx context.Context, in *ImportClusterRequest, opts ...grpc.CallOption) (*IDResponse, error) {
+	out := new(IDResponse)
+	err := c.cc.Invoke(ctx, "/tks_pb.ClusterLcmService/ImportCluster", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +104,8 @@ func (c *clusterLcmServiceClient) UninstallAppGroups(ctx context.Context, in *Un
 type ClusterLcmServiceServer interface {
 	// CreateCluster creates a Kubernetes cluster and returns cluster id
 	CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error)
+	// ImportCluster register a Kubernetes cluster and returns cluster id
+	ImportCluster(context.Context, *ImportClusterRequest) (*IDResponse, error)
 	// ScaleCluster scales Kubernetes cluster
 	ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error)
 	// DeleteCluster deletes Kubernetes cluster
@@ -110,6 +123,9 @@ type UnimplementedClusterLcmServiceServer struct {
 
 func (UnimplementedClusterLcmServiceServer) CreateCluster(context.Context, *CreateClusterRequest) (*IDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCluster not implemented")
+}
+func (UnimplementedClusterLcmServiceServer) ImportCluster(context.Context, *ImportClusterRequest) (*IDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ImportCluster not implemented")
 }
 func (UnimplementedClusterLcmServiceServer) ScaleCluster(context.Context, *ScaleClusterRequest) (*SimpleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleCluster not implemented")
@@ -150,6 +166,24 @@ func _ClusterLcmService_CreateCluster_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ClusterLcmServiceServer).CreateCluster(ctx, req.(*CreateClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClusterLcmService_ImportCluster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImportClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClusterLcmServiceServer).ImportCluster(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tks_pb.ClusterLcmService/ImportCluster",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClusterLcmServiceServer).ImportCluster(ctx, req.(*ImportClusterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -236,6 +270,10 @@ var ClusterLcmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCluster",
 			Handler:    _ClusterLcmService_CreateCluster_Handler,
+		},
+		{
+			MethodName: "ImportCluster",
+			Handler:    _ClusterLcmService_ImportCluster_Handler,
 		},
 		{
 			MethodName: "ScaleCluster",

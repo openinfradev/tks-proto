@@ -13,6 +13,8 @@ option go_package = "github.com/openinfradev/tks-proto/tks_pb";
 service ClusterLcmService {
   // CreateCluster creates a Kubernetes cluster and returns cluster id
   rpc CreateCluster(CreateClusterRequest) returns (IDResponse) {}
+  // ImportCluster register a Kubernetes cluster and returns cluster id
+  rpc ImportCluster(ImportClusterRequest) returns (IDResponse) {}
   // ScaleCluster scales Kubernetes cluster
   rpc ScaleCluster(ScaleClusterRequest) returns (SimpleResponse) {}
   // DeleteCluster deletes Kubernetes cluster
@@ -39,6 +41,20 @@ message CreateClusterRequest {
   string creator = 6;
   // description is a cluster description
   string description = 7;
+}
+
+// ImportClusterRequest is a request to import a Kubernetes cluster
+message ImportClusterRequest {
+  // contract_id is a contract ID.
+  string contract_id = 1;
+  // cluster_name is a cluster name defined by users
+  string name = 2;
+  // description is a cluster description
+  string description = 3;
+  // kubeconfig of the cluster
+  string kubeconfig = 4;
+  // creator is a user UID of cluster creator
+  string creator = 5;
 }
 
 // ScaleClusterRequest is a request to scale the number of nodes on the cluster

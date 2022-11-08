@@ -76,6 +76,26 @@ func (mr *MockClusterLcmServiceClientMockRecorder) DeleteCluster(ctx, in interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCluster", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).DeleteCluster), varargs...)
 }
 
+// ImportCluster mocks base method.
+func (m *MockClusterLcmServiceClient) ImportCluster(ctx context.Context, in *tks_pb.ImportClusterRequest, opts ...grpc.CallOption) (*tks_pb.IDResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ImportCluster", varargs...)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ImportCluster indicates an expected call of ImportCluster.
+func (mr *MockClusterLcmServiceClientMockRecorder) ImportCluster(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ImportCluster", reflect.TypeOf((*MockClusterLcmServiceClient)(nil).ImportCluster), varargs...)
+}
+
 // InstallAppGroups mocks base method.
 func (m *MockClusterLcmServiceClient) InstallAppGroups(ctx context.Context, in *tks_pb.InstallAppGroupsRequest, opts ...grpc.CallOption) (*tks_pb.IDsResponse, error) {
 	m.ctrl.T.Helper()
@@ -187,6 +207,21 @@ func (m *MockClusterLcmServiceServer) DeleteCluster(arg0 context.Context, arg1 *
 func (mr *MockClusterLcmServiceServerMockRecorder) DeleteCluster(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCluster", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).DeleteCluster), arg0, arg1)
+}
+
+// ImportCluster mocks base method.
+func (m *MockClusterLcmServiceServer) ImportCluster(arg0 context.Context, arg1 *tks_pb.ImportClusterRequest) (*tks_pb.IDResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ImportCluster", arg0, arg1)
+	ret0, _ := ret[0].(*tks_pb.IDResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ImportCluster indicates an expected call of ImportCluster.
+func (mr *MockClusterLcmServiceServerMockRecorder) ImportCluster(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ImportCluster", reflect.TypeOf((*MockClusterLcmServiceServer)(nil).ImportCluster), arg0, arg1)
 }
 
 // InstallAppGroups mocks base method.

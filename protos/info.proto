@@ -159,6 +159,8 @@ message AddClusterInfoRequest {
   string creator = 5;
   // description is a cluster description
   string description = 6;
+  // template_name is a site template name for the cluster
+  string template_name = 6;
 }
 
 // UpdateClusterConfRequest is used to update kubernetes cluster configuration

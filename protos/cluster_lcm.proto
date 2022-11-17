@@ -52,9 +52,11 @@ message ImportClusterRequest {
   // description is a cluster description
   string description = 3;
   // kubeconfig of the cluster
-  string kubeconfig = 4;
+  bytes kubeconfig = 4;
+  // template_name is a site template name for the cluster
+  string template_name = 5;
   // creator is a user UID of cluster creator
-  string creator = 5;
+  string creator = 6;
 }
 
 // ScaleClusterRequest is a request to scale the number of nodes on the cluster

@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x63luster_lcm.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\"\xac\x01\n\x14\x43reateClusterRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12$\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x16.tks_pb.ClusterRawConf\x12\x15\n\rtemplate_name\x18\x05 \x01(\t\x12\x0f\n\x07\x63reator\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\"s\n\x14ImportClusterRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x12\n\nkubeconfig\x18\x04 \x01(\t\x12\x0f\n\x07\x63reator\x18\x05 \x01(\t\"[\n\x13ScaleClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x17\n\x0fmaster_replicas\x18\x02 \x01(\x05\x12\x17\n\x0fworker_replicas\x18\x03 \x01(\x05\"?\n\x17InstallAppGroupsRequest\x12$\n\napp_groups\x18\x01 \x03(\x0b\x32\x10.tks_pb.AppGroup\"F\n\x19UninstallAppGroupsRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x15\n\rapp_group_ids\x18\x02 \x03(\t2\xbe\x03\n\x11\x43lusterLcmService\x12\x43\n\rCreateCluster\x12\x1c.tks_pb.CreateClusterRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12\x43\n\rImportCluster\x12\x1c.tks_pb.ImportClusterRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12\x45\n\x0cScaleCluster\x12\x1b.tks_pb.ScaleClusterRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12<\n\rDeleteCluster\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12J\n\x10InstallAppGroups\x12\x1f.tks_pb.InstallAppGroupsRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12N\n\x12UninstallAppGroups\x12!.tks_pb.UninstallAppGroupsRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x63luster_lcm.proto\x12\x06tks_pb\x1a\x0c\x63ommon.proto\"\xac\x01\n\x14\x43reateClusterRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0e\n\x06\x63sp_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12$\n\x04\x63onf\x18\x04 \x01(\x0b\x32\x16.tks_pb.ClusterRawConf\x12\x15\n\rtemplate_name\x18\x05 \x01(\t\x12\x0f\n\x07\x63reator\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x07 \x01(\t\"\x8a\x01\n\x14ImportClusterRequest\x12\x13\n\x0b\x63ontract_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x12\n\nkubeconfig\x18\x04 \x01(\x0c\x12\x15\n\rtemplate_name\x18\x05 \x01(\t\x12\x0f\n\x07\x63reator\x18\x06 \x01(\t\"[\n\x13ScaleClusterRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x17\n\x0fmaster_replicas\x18\x02 \x01(\x05\x12\x17\n\x0fworker_replicas\x18\x03 \x01(\x05\"?\n\x17InstallAppGroupsRequest\x12$\n\napp_groups\x18\x01 \x03(\x0b\x32\x10.tks_pb.AppGroup\"F\n\x19UninstallAppGroupsRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x15\n\rapp_group_ids\x18\x02 \x03(\t2\xbe\x03\n\x11\x43lusterLcmService\x12\x43\n\rCreateCluster\x12\x1c.tks_pb.CreateClusterRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12\x43\n\rImportCluster\x12\x1c.tks_pb.ImportClusterRequest\x1a\x12.tks_pb.IDResponse\"\x00\x12\x45\n\x0cScaleCluster\x12\x1b.tks_pb.ScaleClusterRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12<\n\rDeleteCluster\x12\x11.tks_pb.IDRequest\x1a\x16.tks_pb.SimpleResponse\"\x00\x12J\n\x10InstallAppGroups\x12\x1f.tks_pb.InstallAppGroupsRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x12N\n\x12UninstallAppGroups\x12!.tks_pb.UninstallAppGroupsRequest\x1a\x13.tks_pb.IDsResponse\"\x00\x42*Z(github.com/openinfradev/tks-proto/tks_pbb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'cluster_lcm_pb2', globals())
@@ -24,14 +24,14 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'Z(github.com/openinfradev/tks-proto/tks_pb'
   _CREATECLUSTERREQUEST._serialized_start=44
   _CREATECLUSTERREQUEST._serialized_end=216
-  _IMPORTCLUSTERREQUEST._serialized_start=218
-  _IMPORTCLUSTERREQUEST._serialized_end=333
-  _SCALECLUSTERREQUEST._serialized_start=335
-  _SCALECLUSTERREQUEST._serialized_end=426
-  _INSTALLAPPGROUPSREQUEST._serialized_start=428
-  _INSTALLAPPGROUPSREQUEST._serialized_end=491
-  _UNINSTALLAPPGROUPSREQUEST._serialized_start=493
-  _UNINSTALLAPPGROUPSREQUEST._serialized_end=563
-  _CLUSTERLCMSERVICE._serialized_start=566
-  _CLUSTERLCMSERVICE._serialized_end=1012
+  _IMPORTCLUSTERREQUEST._serialized_start=219
+  _IMPORTCLUSTERREQUEST._serialized_end=357
+  _SCALECLUSTERREQUEST._serialized_start=359
+  _SCALECLUSTERREQUEST._serialized_end=450
+  _INSTALLAPPGROUPSREQUEST._serialized_start=452
+  _INSTALLAPPGROUPSREQUEST._serialized_end=515
+  _UNINSTALLAPPGROUPSREQUEST._serialized_start=517
+  _UNINSTALLAPPGROUPSREQUEST._serialized_end=587
+  _CLUSTERLCMSERVICE._serialized_start=590
+  _CLUSTERLCMSERVICE._serialized_end=1036
 # @@protoc_insertion_point(module_scope)

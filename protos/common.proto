@@ -230,16 +230,22 @@ message AppServeAppTask {
   string output = 5;
   // URL of java app artifact (Eg, Jar)
   string artifact_url = 6;
-  // URL of built image for the java app
+  // URL of built image for app
   string image_url = 7;
+  // Executable path of app image
+  string executable_path = 8;
   // java app profile
-  string profile = 8;
+  string profile = 9;
+  // java app port
+  string port = 10;
+  // resource spec of app pod
+  string resource_spec = 11;
   // revision of deployed helm release
-  int32 helm_revision = 9;
+  int32 helm_revision = 12;
   // created_at is  a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp created_at = 13;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 11;
+  google.protobuf.Timestamp updated_at  = 14;
 }
 
 // AppServeAppCombined represents each appServeApp with tasks included.

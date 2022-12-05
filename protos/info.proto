@@ -350,6 +350,8 @@ message UpdateAppServeAppRequest {
 message GetAppServeAppsRequest {
   // Contract ID to which the ASAs belong
   string contract_id = 1;
+  // Contract ID to which the ASAs belong
+  bool show_all = 2;
 }
 
 // GetAppServeAppRequest is a request used to get an ASA

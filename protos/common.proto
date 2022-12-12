@@ -204,16 +204,18 @@ message AppServeApp {
   string contract_id = 3;
   // type (build/deploy/all)
   string type = 4;
+  // app_type (spring/springboot)
+  string app_type = 5;
   // endpoint URL of deployed app
-  string endpoint_url = 5;
+  string endpoint_url = 6;
   // target cluster to which the app is deployed
-  string target_cluster_id = 6;
+  string target_cluster_id = 7;
   // status is status of deployed app
-  string status = 7;
-  // created_at is  a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 8;
+  string status = 8;
+  // created_at is a creatioin timestamp for the application
+  google.protobuf.Timestamp created_at = 9;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 9;
+  google.protobuf.Timestamp updated_at  = 10;
 }
 
 // AppServeAppTask represents each appServeApp task.

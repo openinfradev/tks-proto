@@ -238,16 +238,22 @@ message AppServeAppTask {
   string executable_path = 8;
   // java app profile
   string profile = 9;
+  // java app config
+  string app_config = 10;
+  // java app secret
+  string app_secret = 11;
+  // env variable list for java app
+  string extra_env = 12;
   // java app port
-  string port = 10;
+  string port = 13;
   // resource spec of app pod
-  string resource_spec = 11;
+  string resource_spec = 14;
   // revision of deployed helm release
-  int32 helm_revision = 12;
+  int32 helm_revision = 15;
   // created_at is  a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 13;
+  google.protobuf.Timestamp created_at = 16;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 14;
+  google.protobuf.Timestamp updated_at  = 17;
 }
 
 // AppServeAppCombined represents each appServeApp with tasks included.

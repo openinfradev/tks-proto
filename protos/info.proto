@@ -420,6 +420,8 @@ message UpdateAppServeAppEndpointRequest {
   string app_serve_app_task_id = 2;
   // endpoint to be used to access ASA
   string endpoint = 3;
+  // endpoint to be used to access ASA preview svc in B/G mode
+  string preview_endpoint = 4;
   // helm_revision of deployed app release
-  int32 helm_revision = 4;
+  int32 helm_revision = 5;
 }

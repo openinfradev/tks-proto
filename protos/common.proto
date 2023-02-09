@@ -208,14 +208,16 @@ message AppServeApp {
   string app_type = 5;
   // endpoint URL of deployed app
   string endpoint_url = 6;
+  // preview svc endpoint URL in B/G deployment
+  string preview_endpoint_url = 7;
   // target cluster to which the app is deployed
-  string target_cluster_id = 7;
+  string target_cluster_id = 8;
   // status is status of deployed app
-  string status = 8;
+  string status = 9;
   // created_at is a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp created_at = 10;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 10;
+  google.protobuf.Timestamp updated_at  = 11;
 }
 
 // AppServeAppTask represents each appServeApp task.
@@ -250,10 +252,12 @@ message AppServeAppTask {
   string resource_spec = 14;
   // revision of deployed helm release
   int32 helm_revision = 15;
+  // deployment strategy (eg, rolling-update)
+  string strategy = 16;
   // created_at is  a creatioin timestamp for the application
-  google.protobuf.Timestamp created_at = 16;
+  google.protobuf.Timestamp created_at = 17;
   // updated_at is a timestamp for the trigger of status change
-  google.protobuf.Timestamp updated_at  = 17;
+  google.protobuf.Timestamp updated_at  = 18;
 }
 
 // AppServeAppCombined represents each appServeApp with tasks included.
